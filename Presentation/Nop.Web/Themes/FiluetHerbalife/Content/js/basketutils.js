@@ -337,11 +337,23 @@ function updateproductincart(oldquantity, newquantity, $buy, $input, unit) {
         contentType: false,
         processData: false,
         success: function (data, textStatus, jqXHR) {
-
+            var items = data.Items;
+            var hasWarnings = false;
+            items.forEach(function (item) {
+                var warnings = item.Warnings;
+                if (warnings.length > 0) {
+                    hasWarnings = true;
+                    warnings.forEach(function (warning) {
+                        displayPopupNotificationwarning(warning, 'warning', true);
+                    });
+                }
+            });
             displayAjaxLoading(false);
-            $input.val(newquantity);
-
-            updateshoppingcartitems();
+            if (!hasWarnings)
+            {
+                $input.val(newquantity);
+                updateshoppingcartitems();
+            }
         },
         error: function (jqXHR, textStatus, errorThrown) {
             displayAjaxLoading(false);

@@ -41,7 +41,7 @@ namespace ISDK.Filuet.OnlineOrdering.CorePlugin.Infrastructure
                 await InsertLogAsync(LogLevel.Error, message, exception?.ToString() ?? string.Empty, customer);
         }
 
-        public override Task<Log> InsertLogAsync(Nop.Core.Domain.Logging.LogLevel logLevel, string shortMessage, string fullMessage = "", Customer customer = null)
+        public override Task<Log> InsertLogAsync(LogLevel logLevel, string shortMessage, string fullMessage = "", Customer customer = null)
         {
             var convertedLogLevel = (Microsoft.Extensions.Logging.LogLevel)((int)logLevel/10);
             _logger.Log(convertedLogLevel, "{shortMessage}:{fullMessage}", shortMessage, fullMessage);

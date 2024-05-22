@@ -28,6 +28,9 @@ header .mob.logo {
 header .mob.logo img {
     display: block !important;
 }
+header .mob.logo a{
+    padding:20px;
+}
 
 header .langs {
     margin-left: auto !important;
@@ -1019,14 +1022,15 @@ header .shipping-country-selector .mini_modal {
     }
 
     header .mob.logo {
-        display: block !important;
-        min-width: 150px !important;
+        display: flex !important;
+        align-items: center !important;
+        min-width: 200px !important;
         max-width: 150px !important;
         min-height: 65px !important;
         max-height: 65px !important;
     }
     header .mob.logo img {
-        width: 130px !important;
+        width: 100% !important;
     }
     header .info .cont{
         align-items:end !important;

@@ -337,13 +337,29 @@
             contentType: false,
             processData: false,
             success: function (data, textStatus, jqXHR) {
-                $input.val(newquantity);
-                let productId = $root.data('productid');
-                let formatedSubTotal = data.Items.find(({ ProductId }) => ProductId == productId).SubTotal;
-                $root.find('.col_total_price').text(`${formatedSubTotal}`);
-                $('.btn.back_btn').replaceWith('<button name="checkout" class="btn checkout_btn">@T("Checkout.Button")</button>');
-                UpdateOrderTotals();
-                updateshoppingcartitems();
+                var items = data.Items;
+                var hasWarnings = false;
+                items.forEach(function (item) {
+                    var warnings = item.Warnings;
+                    if (warnings.length > 0) {
+                        hasWarnings = true;
+                        warnings.forEach(function (warning) {
+                            displayPopupNotificationwarning(warning, 'Attention!', true);
+                        });
+                    }
+                });
+                displayAjaxLoading(false);
+                if (!hasWarnings) {
+                    $input.val(newquantity);
+                    let productId = $root.data('productid');
+                    let formatedSubTotal = data.Items.find(({ ProductId }) => ProductId == productId).SubTotal;
+                    $root.find('.col_total_price').text(`${formatedSubTotal}`);
+                    $('.btn.back_btn').replaceWith('<button name="checkout" class="btn checkout_btn">@T("Checkout.Button")</button>');
+                    UpdateOrderTotals();
+                    updateshoppingcartitems();
+                }
+                $('.minus').prop('disabled', false);
+                $('.plus').prop('disabled', false);
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 displayAjaxLoading(false);

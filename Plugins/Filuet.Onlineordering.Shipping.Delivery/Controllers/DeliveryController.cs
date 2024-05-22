@@ -304,11 +304,11 @@ namespace Filuet.Onlineordering.Shipping.Delivery.Controllers
                     var deliveryOperatorDeliveryTypeDeliveryCityDependencyById = await _deliveryOperatorDeliveryTypeDeliveryCityDependenciesService.GetDeliveryOperator_DeliveryType_DeliveryCity_DependencyByIdAsync(dodtdcd);
                     if (deliveryOperatorDeliveryTypeDeliveryCityDependencyById.DeliveryTypeId == (int)ShipingMethodEnum.PickPoint)
                     {
-                        operatorPrice1.DeliveryPrise = (criterion * (_deliveryPluginSettings.PickPoint)) / 100;
+                        operatorPrice1.DeliveryPrise = Math.Round((criterion * (_deliveryPluginSettings.PickPoint)) / 100, 2);
                     }
                     if (deliveryOperatorDeliveryTypeDeliveryCityDependencyById.DeliveryTypeId == (int)ShipingMethodEnum.Delivery)
                     {
-                        operatorPrice1.DeliveryPrise = (criterion * (_deliveryPluginSettings.HomeDelivery)) / 100;
+                        operatorPrice1.DeliveryPrise = Math.Round((criterion * (_deliveryPluginSettings.HomeDelivery)) / 100, 2);
                     }
                     await _genericAttributeService.SaveAttributeAsync(currentCustomer, CustomerAttributeNames.DeliveryPrice, operatorPrice1?.DeliveryPrise ?? 0);
                     return new JsonResult(operatorPrice1);

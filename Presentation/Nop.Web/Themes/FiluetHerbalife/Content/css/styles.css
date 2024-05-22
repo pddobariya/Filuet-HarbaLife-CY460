@@ -1234,7 +1234,7 @@ header .logo {
 header .logo img
 {
     display: block;
-    width: 180px;
+    width: 100%;
     object-fit: cover;
     object-position: center;
 }
@@ -5705,7 +5705,7 @@ div .slide .swiper-slide .visible .active > div .products-product-sticker {
 {
     display: block;
 
-    height: 28px;
+    height: 41px;
     margin-bottom: 12px;
 }
 

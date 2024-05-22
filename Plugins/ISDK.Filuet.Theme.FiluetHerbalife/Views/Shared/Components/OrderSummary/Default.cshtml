@@ -16,69 +16,13 @@
 <script type="text/javascript">
     $(document).ready(function () {
 
-        $('body').on('click', '.amount .minus', function (e) {
-            if ($('.ajax-loading-block-window').is(':visible')) {
-                return;
-            }
-
-        e.preventDefault();
-
-
-
-        const $parent = $(this).closest('.amount'),
-            $input = $parent.find('.input'),
-            inputVal = parseFloat($input.val()),
-            minimum = parseFloat($input.data('minimum')),
-            step = parseFloat($input.data('step')),
-            $root = $(this).closest('.product');
-
-        if (inputVal - step > minimum) {
-            displayAjaxLoading(true);
-            let oldquantity = inputVal;
-            let newquantity = inputVal - step;
-            updateproductincart(oldquantity, newquantity, $root, $input);
-            if (newquantity === 0) {
-                removefromcart($root)
-            }
-        }
-        else
-        {
-            removefromcart($root)
-        }
-        
-    });
-
-        $('body').on('click', '.amount .plus', function (e) {
-            if ($('.ajax-loading-block-window').is(':visible')) {
-                return;
-            }
-
-        e.preventDefault();
-
-
-
-        const $parent = $(this).closest('.amount'),
-            $input = $parent.find('.input'),
-            inputVal = parseFloat($input.val()),
-            maximum = parseFloat($input.data('maximum')),
-            step = parseFloat($input.data('step')),
-            $root = $(this).closest('.product');
-
-        if (inputVal < maximum) {
-            displayAjaxLoading(true);
-            let oldquantity = inputVal;
-            let newquantity = inputVal + step;
-            updateproductincart(oldquantity, newquantity, $root, $input);
-        }
-    });
-
-
-        $('body').on('change', '.amount .input', function (e) {
-            if ($('.ajax-loading-block-window').is(':visible')) {
-                return;
-            }
+            $('body').on('click', '.amount .minus', function (e) {
+                if ($('.ajax-loading-block-window').is(':visible')) {
+                    return;
+                }
 
             e.preventDefault();
+
 
 
             const $parent = $(this).closest('.amount'),
@@ -86,9 +30,56 @@
                 inputVal = parseFloat($input.val()),
                 minimum = parseFloat($input.data('minimum')),
                 step = parseFloat($input.data('step')),
-                unit = $input.data('unit'),
                 $root = $(this).closest('.product');
 
+            if (inputVal - step > minimum) {
+                displayAjaxLoading(true);
+                let oldquantity = inputVal;
+                let newquantity = inputVal - step;
+                updateproductincart(oldquantity, newquantity, $root, $input);
+                if (newquantity === 0) {
+                    removefromcart($root)
+                }
+            }
+            else
+            {
+                removefromcart($root)
+            }
+        
+        });
+
+        $('body').on('click', '.amount .plus', function (e) {
+                if ($('.ajax-loading-block-window').is(':visible')) {
+                    return;
+                }
+            e.preventDefault();
+            const $parent = $(this).closest('.amount'),
+                $input = $parent.find('.input'),
+                inputVal = parseFloat($input.val()),
+                maximum = parseFloat($input.data('maximum')),
+                step = parseFloat($input.data('step')),
+                $root = $(this).closest('.product');
+            if (inputVal < maximum) {
+                displayAjaxLoading(true);
+                let oldquantity = inputVal;
+                let newquantity = inputVal + step;
+                updateproductincart(oldquantity, newquantity, $root, $input);
+            }
+        });
+
+
+        $('body').on('change', '.amount .input', function (e) {
+            if ($('.ajax-loading-block-window').is(':visible')) {
+                return;
+            }
+            e.preventDefault();
+            const $parent = $(this).closest('.amount'),
+                $input = $parent.find('.input'),
+                inputVal = parseFloat($input.val()),
+                minimum = parseFloat($input.data('minimum')),
+                step = parseFloat($input.data('step')),
+                unit = $input.data('unit'),
+                $root = $(this).closest('.product');
             if (inputVal > minimum) {
                 displayAjaxLoading(true);
                 let oldquantity = inputVal-step;
@@ -104,98 +95,93 @@
         });
 
 
+        $('body').on('click', '.col_delete .delete_btn', function (e) {
+            e.preventDefault();
 
-    $('body').on('click', '.col_delete .delete_btn', function (e) {
-        e.preventDefault();
+            const $root = $(this).closest('.product'),
+                $input = $root.find('.amount .input'),
+                inputVal = parseFloat($input.val());
+            if (inputVal > 0) {
+                removefromcart($root);
+            }
 
-        const $root = $(this).closest('.product'),
-            $input = $root.find('.amount .input'),
-            inputVal = parseFloat($input.val());
-        if (inputVal > 0) {
-            removefromcart($root);
-        }
+        });
 
-    });
+        $(document).on('click', '.add_product .submit_btn', function (e) {
+            e.preventDefault();
 
-    $(document).on('click', '.add_product .submit_btn', function (e) {
-        e.preventDefault();
+            const $root = $(this).closest('.add_product'),
+                $input = $root.find('#product_sku_form').find('.input'),
+                inputVal = $input.val();
 
-        const $root = $(this).closest('.add_product'),
-            $input = $root.find('#product_sku_form').find('.input'),
-            inputVal = $input.val();
+            if (inputVal) {
+                let searchproductbysku = 'FiluetHerbalifePublic/GetProductBySku?sku=' + inputVal;
+                displayAjaxLoading(true);
+                $.ajax({
+                    cache: false,
+                    url: searchproductbysku,
+                    type: 'GET',
+                    data: {},
+                    contentType: false,
+                    processData: false,
+                    success: function (data, textStatus, jqXHR) {
+                        displayAjaxLoading(false);
+                        const $not_found_product = $root.find('.not_found');
+                        const $success_product = $root.find('.success');
+                        if (data.success) {
+                            $root.find('.btn').prop('disabled', false)
 
-        if (inputVal) {
-            let searchproductbysku = 'FiluetHerbalifePublic/GetProductBySku?sku=' + inputVal;
-            displayAjaxLoading(true);
-            $.ajax({
-                cache: false,
-                url: searchproductbysku,
-                type: 'GET',
-                data: {},
-                contentType: false,
-                processData: false,
-                success: function (data, textStatus, jqXHR) {
-                    displayAjaxLoading(false);
-                    const $not_found_product = $root.find('.not_found');
-                    const $success_product = $root.find('.success');
-                    if (data.success) {
-                        $root.find('.btn').prop('disabled', false)
+                            $not_found_product.css('display', 'none');
 
-                        $not_found_product.css('display', 'none');
+                            $success_product.css('display', '');
+                            $success_product.find('.name').text('' + data.productName)
+                            $success_product.find('#productId').text('' + data.productId);
+                        }
+                        else {
+                            $root.find('.btn').prop('disabled', true)
 
-                        $success_product.css('display', '');
-                        $success_product.find('.name').text('' + data.productName)
-                        $success_product.find('#productId').text('' + data.productId);
+                            $success_product.css('display', 'none');
+                            $success_product.find('.name').text('')
+                            $success_product.find('#productId').text('');
+
+                            $not_found_product.css('display', '');
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        displayAjaxLoading(false);
+                        alert('@T("Common.Error")');
                     }
-                    else {
-                        $root.find('.btn').prop('disabled', true)
+                });
+            }
+        });
 
-                        $success_product.css('display', 'none');
-                        $success_product.find('.name').text('')
-                        $success_product.find('#productId').text('');
+        $(document).on('click', '.add_product .btn', function (e) {
+            e.preventDefault();
 
-                        $not_found_product.css('display', '');
-                    }
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    displayAjaxLoading(false);
-                    alert('@T("Common.Error")');
-                }
+            const $root = $(this).closest('.add_product'),
+                inputVal = $root.find('.success').find('#productId').text();
+
+            if (inputVal) {
+                addproducttocart('/addproducttocart/catalog/' + inputVal + '/1/1/?forceredirection=True', inputVal, null)
+            }
+        });
+
+        if ($("#month").length) {
+            var checkout = $("[name='checkout']")
+            checkout.prop('disabled', true);
+            $(document).on('change', '#month', function (e) {
+                e.preventDefault();
+                $('.btn.back_btn').replaceWith('<button name="checkout" class="btn checkout_btn">@T("Checkout.Button")</button>');
+                checkout.prop('disabled', !$('#month').val());
             });
         }
     });
 
-    $(document).on('click', '.add_product .btn', function (e) {
-        e.preventDefault();
-
-        const $root = $(this).closest('.add_product'),
-            inputVal = $root.find('.success').find('#productId').text();
-
-        if (inputVal) {
-            addproducttocart('/addproducttocart/catalog/' + inputVal + '/1/1/?forceredirection=True', inputVal, null)
-        }
-    });
-
-    if ($("#month").length) {
-        var checkout = $("[name='checkout']")
-        checkout.prop('disabled', true);
-        $(document).on('change', '#month', function (e) {
-            e.preventDefault();
-            $('.btn.back_btn').replaceWith('<button name="checkout" class="btn checkout_btn">@T("Checkout.Button")</button>');
-            checkout.prop('disabled', !$('#month').val());
-        });
-    }
-});
-
-
     function removefromcart(root) {
-   
         displayAjaxLoading(true);
         root.find('.removefromcart').prop('checked', true);
-
         let form = root.find('.shopping-cart-form');
         let data = new FormData(form[0]);
-
         $.ajax({
             cache: false,
             url: "cart",
@@ -213,67 +199,67 @@
                 alert('@T("Common.Error")');
             }
         });        
-}
+    }
 
-function addproducttocart(addtocartlink, productId, buyBtn) {
-    displayAjaxLoading(true);
-    var postData = {};
-    addAntiForgeryToken(postData);
-    $.ajax({
-        cache: false,
-        url: addtocartlink,
-        type: "POST",
-        dataType: "json",
-            data: postData,
-        success: function (data, textStatus, jqXHR) {
-            if (data.success) {
-                $.ajax({
-                    cache: false,
-                    url: '@Html.Raw(Url.Action("GetUserCart", "FiluetHerbalifePublic"))',
-                    type: "POST",
-                    data: {
-                        ProductId: productId
-                    },
-                    contentType: false,
-                    processData: false,
-                    success: function (data, textStatus, jqXHR) {
+    function addproducttocart(addtocartlink, productId, buyBtn) {
+        displayAjaxLoading(true);
+        var postData = {};
+        addAntiForgeryToken(postData);
+        $.ajax({
+            cache: false,
+            url: addtocartlink,
+            type: "POST",
+            dataType: "json",
+                data: postData,
+            success: function (data, textStatus, jqXHR) {
+                if (data.success) {
+                    $.ajax({
+                        cache: false,
+                        url: '@Html.Raw(Url.Action("GetUserCart", "FiluetHerbalifePublic"))',
+                        type: "POST",
+                        data: {
+                            ProductId: productId
+                        },
+                        contentType: false,
+                        processData: false,
+                        success: function (data, textStatus, jqXHR) {
 
-                        displayAjaxLoading(false);
-                        if (data.length) {
-                            for (let item of data) {
-                                if (item.ProductId === productId) {
-                                    $(buyBtn).closest('.buy').find('.removefromcart').val(item.Id);
-                                    let $itemquantity = $(buyBtn).closest('.buy').find('.itemquantity');
-                                    if (!$itemquantity.length) {
-                                        $(buyBtn).closest('.buy').find('.shopping-cart-form').append('<input class="itemquantity" name="itemquantity' + item.Id + '" value="' + item.Quantity + '">');
+                            displayAjaxLoading(false);
+                            if (data.length) {
+                                for (let item of data) {
+                                    if (item.ProductId === productId) {
+                                        $(buyBtn).closest('.buy').find('.removefromcart').val(item.Id);
+                                        let $itemquantity = $(buyBtn).closest('.buy').find('.itemquantity');
+                                        if (!$itemquantity.length) {
+                                            $(buyBtn).closest('.buy').find('.shopping-cart-form').append('<input class="itemquantity" name="itemquantity' + item.Id + '" value="' + item.Quantity + '">');
+                                        }
+                                        break;
                                     }
-                                    break;
                                 }
+                                $(buyBtn).addClass('active');
                             }
-                            $(buyBtn).addClass('active');
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            displayAjaxLoading(false);
+                            alert('@T("Common.Error")');
                         }
-                    },
-                    error: function (jqXHR, textStatus, errorThrown) {
-                        displayAjaxLoading(false);
-                        alert('@T("Common.Error")');
-                    }
-                });
-            } else if (data.redirect) {
-                displayAjaxLoading(false);
-                window.location.replace(data.redirect);
-            } else if (data.message) {
-                displayAjaxLoading(false);
-                displayPopupNotificationwarning(data.message, 'warning', true);
-            } else {
+                    });
+                } else if (data.redirect) {
+                    displayAjaxLoading(false);
+                    window.location.replace(data.redirect);
+                } else if (data.message) {
+                    displayAjaxLoading(false);
+                    displayPopupNotificationwarning(data.message, 'warning', true);
+                } else {
+                    displayAjaxLoading(false);
+                    alert('@T("Common.Error")');
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
                 displayAjaxLoading(false);
                 alert('@T("Common.Error")');
             }
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            displayAjaxLoading(false);
-            alert('@T("Common.Error")');
-        }
-    });
+        });
     }
 
     function displayPopupNotificationwarning(message, messagetype, modal) {
@@ -325,85 +311,101 @@ function addproducttocart(addtocartlink, productId, buyBtn) {
 
     function updateproductincart(oldquantity, newquantity, $root, $input) {
 
-    $root.find('.itemquantity').val(newquantity);
-    var form = $root.find('.shopping-cart-form');
-    var formData = new FormData(form[0]);
+        $root.find('.itemquantity').val(newquantity);
+        var form = $root.find('.shopping-cart-form');
+        var formData = new FormData(form[0]);
 
-    $.ajax({
-        cache: false,
-        url: "cart",
-        type: "POST",
-        data: formData,
-        contentType: false,
-        processData: false,
-        success: function (data, textStatus, jqXHR) {
-            $input.val(newquantity);
-            let productId = $root.data('productid');
-            let formatedSubTotal = data.Items.find(({ ProductId }) => ProductId == productId).SubTotal;
-            $root.find('.col_total_price').text(`${formatedSubTotal}`);
-            $('.btn.back_btn').replaceWith('<button name="checkout" class="btn checkout_btn">@T("Checkout.Button")</button>');
-            UpdateOrderTotals();
-            updateshoppingcartitems();
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            displayAjaxLoading(false);
-            $root.find('.itemquantity').val(oldquantity);
-            alert('@T("Common.Error")');
-        }
-    });
-}
-
-function updateflyoutcart() {
-    $.ajax({
-        url: "FiluetHerbalifePublic/GetFlyoutShoppingCart",
-        type: "GET",
-        success: function (data, textStatus, jqXHR) {
-            $('#flyout_cart_root').html('' + data);
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            alert('@T("Common.Error")');
-        }
-    });
-}
-
-function updateshoppingcartitems() {
-    $.ajax({
-        url: "FiluetHerbalifePublic/GetShoppingCartItems",
-        type: "GET",
-        success: function (data, textStatus, jqXHR) {
-            $('#shopping_cart_quantity').html('(' + data.quantity + ')');
-            updateflyoutcart();
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            alert('@T("Common.Error")');
-        }
-    });
-}
-
-function UpdateOrderTotals() {
-    $.ajax({
-        cache: false,
-        url: '@Html.Raw(Url.Action("GetOrderTotals", "FiluetHerbalifePublic"))',
-        type: "GET",
-        data: null,
-        contentType: false,
-        processData: false,
-        success: function (data, textStatus, jqXHR) {
-            displayAjaxLoading(false);
-            if (data.success) {
-                $("#order_totals_price").text(data.orderTotal);
-                $("#order_volume_points").text(data.orderVolumePoints);
-            }
-            else {
+        $.ajax({
+            cache: false,
+            url: "cart",
+            type: "POST",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (data, textStatus, jqXHR) {
+                var items = data.Items;
+                var hasWarnings = false;
+                items.forEach(function (item) {
+                    var warnings = item.Warnings;
+                    if (warnings.length > 0) {
+                        hasWarnings = true;
+                        warnings.forEach(function (warning) {
+                            displayPopupNotificationwarning(warning, 'warning', true);
+                        });
+                    }
+                });
+                displayAjaxLoading(false);
+                if (!hasWarnings) {
+                    $input.val(newquantity);
+                    let productId = $root.data('productid');
+                    let formatedSubTotal = data.Items.find(({ ProductId }) => ProductId == productId).SubTotal;
+                    $root.find('.col_total_price').text(`${formatedSubTotal}`);
+                    $('.btn.back_btn').replaceWith('<button name="checkout" class="btn checkout_btn">@T("Checkout.Button")</button>');
+                    UpdateOrderTotals();
+                    updateshoppingcartitems();
+                }
+                $('.minus').prop('disabled', false);
+                $('.plus').prop('disabled', false);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                displayAjaxLoading(false);
+                $root.find('.itemquantity').val(oldquantity);
                 alert('@T("Common.Error")');
             }
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            displayAjaxLoading(false);
-            alert('@T("Common.Error")');
-        }
-    });
-}
+        });
+    }
+
+    function updateflyoutcart() {
+        $.ajax({
+            url: "FiluetHerbalifePublic/GetFlyoutShoppingCart",
+            type: "GET",
+            success: function (data, textStatus, jqXHR) {
+                $('#flyout_cart_root').html('' + data);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert('@T("Common.Error")');
+            }
+        });
+    }
+
+    function updateshoppingcartitems() {
+        $.ajax({
+            url: "FiluetHerbalifePublic/GetShoppingCartItems",
+            type: "GET",
+            success: function (data, textStatus, jqXHR) {
+                $('#shopping_cart_quantity').html('(' + data.quantity + ')');
+                updateflyoutcart();
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert('@T("Common.Error")');
+            }
+        });
+    }
+
+    function UpdateOrderTotals() {
+        $.ajax({
+            cache: false,
+            url: '@Html.Raw(Url.Action("GetOrderTotals", "FiluetHerbalifePublic"))',
+            type: "GET",
+            data: null,
+            contentType: false,
+            processData: false,
+            success: function (data, textStatus, jqXHR) {
+                displayAjaxLoading(false);
+                if (data.success) {
+                    $("#order_totals_price").text(data.orderTotal);
+                    $("#order_volume_points").text(data.orderVolumePoints);
+                }
+                else {
+                    alert('@T("Common.Error")');
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                displayAjaxLoading(false);
+                alert('@T("Common.Error")');
+            }
+        });
+    }
 </script>
 
 @if (Model.IsEditable)

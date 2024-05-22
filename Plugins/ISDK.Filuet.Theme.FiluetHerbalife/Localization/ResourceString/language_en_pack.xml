@@ -546,5 +546,11 @@
 	</LocaleResource>
 	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.SiteTitle">
 		<Value>Address</Value>
+	</LocaleResource>
+	<LocaleResource Name="NopFiluetCommon.ShoppingCart.ProductUpdateWarning">
+		<Value>Please note! You Can only add {0} SKU {1}</Value>
+	</LocaleResource>
+	<LocaleResource Name="NopFiluetCommon.Products.Availability.OutOfStock">
+		<Value>Product Sku {0} Out of stock</Value>
 	</LocaleResource>	
 </Language>
