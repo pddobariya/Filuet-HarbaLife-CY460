@@ -1,0 +1,94 @@
+﻿@model HeaderLinksModel
+
+@using Nop.Core.Domain.Customers
+@using Nop.Services.Common
+
+@inject Nop.Core.IWebHelper webHelper
+@inject Nop.Core.IWorkContext workContext
+@inject IGenericAttributeService genericAttributeService
+
+@*@{
+    var customer = await workContext.GetCurrentCustomerAsync();
+    var userName = string.Join(' ',
+        (await genericAttributeService.GetAttributeAsync<string>(customer, NopCustomerDefaults.FirstNameAttribute)),
+        (await genericAttributeService.GetAttributeAsync<string>(customer, NopCustomerDefaults.LastNameAttribute)));
+}*@
+
+@await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.HeaderLinksBefore, additionalData = Model })
+
+@if (Model.IsAuthenticated)
+{
+    <div class="account modal_cont">
+        <button class="user mini_modal_btn" data-modal-id="#account_modal">
+           @* <div class="name">@userName</div>*@
+            <div class="icon"></div>
+        </button>
+
+        <button class="mob_user">
+            <svg class="icon">
+                <use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_user")">
+                </use>
+            </svg>
+        </button>
+
+        <div class="mini_modal" id="account_modal">
+            <div>
+                <a href="@Url.RouteUrl("CustomerInfo")">
+                    <span>@T("ISDK.Filuet.Theme.FiluetHerbalife.Account.Profile")</span>
+                </a>
+            </div>
+
+            <div>
+                <a href="@Url.RouteUrl("CustomerOrders")">
+                    <span>@T("Account.CustomerOrders")</span>
+                </a>
+            </div>
+
+            <div>
+                <a href="@Url.RouteUrl("Logout")">
+                    <svg class="icon">
+                        <use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_logout")"></use>
+                    </svg>
+                    <span>@T("ISDK.Filuet.Theme.FiluetHerbalife.Account.Logout")</span>
+                </a>
+            </div>
+        </div>
+    </div>
+}
+
+@if (Model.WishlistEnabled)
+{
+    <a href="@Url.RouteUrl("Wishlist")" class="ico-wishlist">
+        <span class="wishlist-label">@T("Wishlist")</span>
+        <span class="wishlist-qty">@T("Wishlist.HeaderQuantity", Model.WishlistItems)</span>
+    </a>
+}
+
+@if (Model.ShoppingCartEnabled)
+{
+    <div class="links">
+        <a href="@Url.RouteUrl("ShoppingCart")" class="cart_link">
+            <svg class="icon">
+                <use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_cart")">
+                </use>
+            </svg>
+        </a>
+
+        @**
+            <div class="notifications modal_cont">
+                <button class="btn mini_modal_btn" data-modal-id="#notifications_modal">
+                    <svg class="icon">
+                        <use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_notifications")">
+                        </use>
+                    </svg>
+                </button>
+
+                <div class="mini_modal" id="notifications_modal">
+
+                </div>
+            </div>
+        *@
+    </div>
+}
+
+@await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.HeaderLinksAfter, additionalData = Model })

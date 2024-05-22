@@ -1,0 +1,47 @@
+﻿@model IList<ProductOverviewModel>
+
+@{            
+    var cachedCategoriesModel = (await _catalogModelFactory.PrepareCategorySimpleModelsAsync());
+    var catalogue = cachedCategoriesModel.FirstOrDefault(x => x.Id == _themeFiluetHerbalifeSettings.CategoryIdForCatalogue) ?? new CategorySimpleModel { SeName = "catalogue" };
+}
+
+@if (Model.Count > 0)
+{
+    <section class="products block">
+        <div class="cont">
+            <div class="block_head padding_right">
+                <div class="title">@T("ShoppingCart.CrossSells")</div>
+
+                <div class="all_link">
+                    <a href="@Url.RouteUrl("Category", new { SeName = catalogue.SeName })">@T("ISDK.Filuet.Theme.FiluetHerbalife.ShowMoreGoods")</a>
+                </div>
+            </div>
+
+            <div class="swiper-container carousel" id="products_slider1">
+                <div class="swiper-wrapper">
+
+                    @foreach (var product in Model)
+                    {
+                        <div class="slide swiper-slide">
+                            @await Html.PartialAsync("_ProductBox", product)
+                        </div>
+                    }
+
+                </div>
+
+                <div class="swiper-button-prev">
+                    <svg class="icon"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_arrow_left")"></use></svg>
+                </div>
+
+                <div class="swiper-button-next">
+                    <svg class="icon"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_arrow_right")"></use></svg>
+                </div>
+            </div>
+
+
+            <div class="mob_all_link">
+                <a href="@Url.RouteUrl("Category", new { SeName = catalogue.SeName })">@T("ISDK.Filuet.Theme.FiluetHerbalife.ShowMoreGoods")</a>
+            </div>
+        </div>
+    </section>
+}

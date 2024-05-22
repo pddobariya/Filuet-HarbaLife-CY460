@@ -1,0 +1,11 @@
+﻿{
+  "Group": "Xcellence-it",
+  "FriendlyName": "Livechat",
+  "SystemName": "Filuet.Plugin.Widget.Livechat",
+  "Version": "1.50",
+  "SupportedVersions": [ "4.60" ],
+  "Author": "Xcellence-it",
+  "DisplayOrder": 1,
+  "FileName": "Filuet.Plugin.Widget.Livechat.dll",
+  "Description": "Livechat"
+}

@@ -1,0 +1,38 @@
+@model FiluetOrderTotalsModel
+
+@{
+    bool isShowExtraData = Model.IsShowExtraData;
+    string orderVolumePoints = Model.OrderVolumePoints;
+    string orderTotal = Model.OrderTotal;
+}
+<div class="total-info">
+    @if (!isShowExtraData)
+    {
+        <table class="cart-total short-cart-total">
+            <tbody>
+                <tr class="order-total">
+                    <td class="cart-total-left">
+                        <label>@T("ShoppingCart.Totals.OrderTotal"):</label>
+                    </td>
+                    <td class="cart-total-right">
+                        <span class="value-summary"><strong>@orderTotal</strong></span>
+                    </td>
+                </tr>
+                <tr class="order-total">
+                    <td class="cart-total-left">
+                        <label>@T("ShoppingCart.Totals.OrderVolumePoints"):</label>
+                    </td>
+                    <td class="cart-total-right">
+                        <span class="value-summary"><strong>@orderVolumePoints</strong></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="cart-totals-fineprint">@T("ShoppingCart.Totals.Disclaimer")</div>
+        <!-- Total doesn't include possible shipping cost. Your total will be updated on the next page after you select shipping. -->
+    }
+    else
+    {
+        @await Html.PartialAsync("_OrderTotalDetails", Model)
+    }
+</div>

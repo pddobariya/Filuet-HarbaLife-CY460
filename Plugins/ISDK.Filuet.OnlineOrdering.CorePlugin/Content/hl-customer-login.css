@@ -1,0 +1,230 @@
+﻿.header {
+    border-bottom: 3px solid #568A2E;
+}
+
+.header-top {
+    background-color: #fff;
+    background-image: none;
+}
+
+.header-logo {
+    float: left;
+}
+
+.header-selectors-wrapper {
+    margin: 10px 0;
+    float: right;
+}
+
+.styleSelect_item {
+    background-color: #fff;
+}
+
+    .styleSelect_item li:hover span {
+        background: #eee;
+    }
+
+.new_select {
+    color: #0080ff;
+    background-color: #fff;
+}
+
+.splash .dots-div {
+    margin-top: -80px;
+    padding-top: 80px;
+    position: relative;
+    height: 564px;
+}
+
+.splash #blackbg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #000;
+    width: 100%;
+    z-index: -1;
+    overflow: hidden;
+    height: 564px;
+}
+
+    .splash #blackbg img {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .splash #blackbg img {
+        min-width: 100%;
+        min-height: 100%;
+        z-index: 0;
+    }
+
+.splash .aside {
+    float: left;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-top: 20px;
+    vertical-align: top;
+}
+
+.splash .myhl-login,
+.splash .myhl-login-catalog {
+    float: right;
+    box-shadow: 0 3px 0 rgba(0, 0, 0, 0.2);
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    padding-top: 20px;
+    vertical-align: top;
+    background-color: #7ac143;
+}
+
+    .splash .myhl-login .form-fields,
+    .splash .myhl-login-catalog .form-fields {
+        box-shadow: none;
+        background: none;
+    }
+
+    .splash .myhl-login .forgot,
+    .splash .myhl-login-catalog .forgot {
+        color: white;
+        font-size: 14px;
+    }
+
+    .splash .myhl-login .oauth,
+    .splash .myhl-login-catalog .oauth {
+        color: grey;
+        font-size: 14px;
+        font-weight: bolder;
+    }
+
+    .splash .myhl-login .message-error,
+    .splash .myhl-login-catalog .message-error {
+        margin: 0px 5px;
+        font-size: 14px;
+    }
+
+        .splash .myhl-login .message-error a,
+        .splash .myhl-login-catalog .message-error a {
+            text-decoration: underline;
+        }
+
+    .splash .myhl-login h3,
+    .splash .myhl-login-catalog h3 {
+        color: #515151;
+        text-align: center;
+        padding: 10px;
+        font-weight: 700;
+        font-family: "Proxima Nova", Arial, sans-serif;
+    }
+
+    .splash .myhl-login .whitebkg,
+    .splash .myhl-login-catalog .whitebkg {
+        color: #fff;
+        padding: 0 20px 1px;
+        background-color: #fff;
+    }
+
+    .splash .myhl-login span,
+    .splash .myhl-login-catalog span {
+        margin: 0 0 14px;
+        color: #000;
+        text-align: center;
+        display: inline-block;
+        width: 100%;
+        font-size: 14px;
+        font-family: "Proxima Nova", Arial, sans-serif;
+    }
+
+    .splash .myhl-login .btnforward,
+    .splash .myhl-login-catalog .btnforward {
+        text-align: center;
+        margin: 0 0 20px;
+    }
+
+        .splash .myhl-login .btnforward input,
+        .splash .myhl-login-catalog .btnforward input {
+            border-radius: 3px;
+            font-weight: 700;
+            font-size: 16px;
+            text-align: center;
+            font-family: "Proxima Nova", Arial, sans-serif;
+        }
+
+        .splash .myhl-login .btnforward a,
+        .splash .myhl-login-catalog .btnforward a {
+            border-radius: 3px;
+            font-weight: 700;
+            font-size: 16px;
+            text-align: center;
+            font-family: "Proxima Nova", Arial, sans-serif;
+        }
+
+.header-main {
+    width: 300px;
+    margin: 0 auto;
+}
+
+    .header-main h3 {
+        text-align: center;
+        color: #fff;
+        /*text-shadow: 1px 1px 2px rgba(0,0,0,.4);*/
+        font-size: 24px;
+    }
+
+@media (min-width: 660px) {
+    .header-main {
+        width: 100%;
+        padding: 20px;
+    }
+
+        .header-main h3 {
+            font-size: 28px;
+        }
+
+    .splash .myhl-login,
+    .splash .myhl-login-catalog {
+        width: 460px;
+    }
+
+        .splash .myhl-login h3,
+        .splash .myhl-login-catalog h3 {
+            font-size: 28px;
+        }
+
+    .login-button {
+        width: 410px;
+    }
+}
+/* login button */
+.login-page .button-1,
+.login-page .button-1:hover {
+    border-color: #0080ff !important;
+    box-shadow: 0 1px 0 0 #0080ff !important;
+    background-color: #0080ff !important;
+}
+
+.login-page .login-button {
+    padding: 6px 0;
+    white-space: normal;
+}
+
+.login-page .form-fields .input-label {
+    color: #ffffff;
+    padding: 8px 8px 0 0;
+    font-size: 15px;
+    width: 77px;
+    overflow: hidden;
+    margin-right: 8px;
+}
+
+.login-page .form-fields .input-control {
+    width: 195px;
+}
+
+.login-page .form-fields .input-label,
+.login-page .form-fields .input-control {
+    float: left;
+}

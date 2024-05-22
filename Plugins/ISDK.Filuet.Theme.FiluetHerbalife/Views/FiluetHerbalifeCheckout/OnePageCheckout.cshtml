@@ -1,0 +1,221 @@
+﻿@model ISDK.Filuet.Theme.FiluetHerbalife.Models.Checkout.CustomOnePageCheckoutModel
+@{
+    Layout = "_ColumnsOne";
+
+    //scripts
+    NopHtml.AddScriptParts(ResourceLocation.Footer, "~/js/public.onepagecheckout.js");
+    NopHtml.AddScriptParts(ResourceLocation.Footer, "~/Themes/FiluetHerbalife/Content/js/processorder.js");
+
+    var storeLocation = webHelper.GetStoreLocation();
+
+    NopHtml.AddCssFileParts("~/lib_npm/jquery-ui-dist/jquery-ui.min.css");
+
+    //title
+    NopHtml.AddTitleParts(T("PageTitle.Checkout").Text);
+    //page class
+    NopHtml.AppendPageCssClassParts("html-checkout-page");
+}
+@{
+    var email = (await workContext.GetCurrentCustomerAsync()).Email;
+    var userName = string.Join(' ',
+        (await workContext.GetCurrentCustomerAsync()).FirstName,
+        (await workContext.GetCurrentCustomerAsync()).LastName);
+}
+
+@{
+    var viewData = new ViewDataDictionary(ViewData)
+{
+        {"checkoutActiveClass", "active"}
+    };
+}
+@await Html.PartialAsync("_CheckoutSteps", viewData)
+
+
+<section class="checkout_info block">
+    <div class="cont">
+        <div class="block_head">
+            <div class="title">@T("ISDK.Filuet.Theme.FiluetHerbalife.Checkout.FillOrderDetails")</div>
+        </div>
+
+        <form asp-controller="FiluetHerbalifeCheckout" asp-action="OpcSaveShippingDelivery" method="post" id="co-shipping-method-and-payment-info-form" class="form">
+            <script asp-location="Footer">
+                var localized_data = {
+                    SpecifyMethodError: "@T("Plugins.ShippingMethods.Delivery.FillIn")",
+                };
+
+                var phoneMask = "@(!string.IsNullOrEmpty(Model.PhoneMask) ? Model.PhoneMask : "")";
+
+                HerbalifeOnePageCheckout.init('#co-shipping-method-and-payment-info-form',
+                    '@(storeLocation)checkout/OpcSaveShippingMethod/',
+                    localized_data, phoneMask);
+            </script>
+
+            <div class="col">
+                <div class="line">
+                    <div class="label">@T("ISDK.Filuet.Theme.FiluetHerbalife.Checkout.ShippingCountry")</div>
+
+                    <div class="field">
+                        <select id="shipping-country-select" name="shippingCountry" placeholder="Select..." style="display: none;">
+                        </select>
+                    </div>
+                </div>
+
+                <div class="line">
+                    <div class="label">@T("ISDK.Filuet.Theme.FiluetHerbalife.Checkout.ShippingMethod")</div>
+
+                    <div class="field">
+                        <select id="delivery-type-select" name="deliveryType" placeholder="Select..." style="display: none;">
+                        </select>
+                    </div>
+                </div>
+
+                <div class="line">
+                    <div id="delivery-city-label" class="label">@T("Order.Shipping.City")</div>
+
+                    <div class="field">
+                        <select id="delivery-city-select" name="deliveryCity" placeholder="Select..." style="display: none;">
+                        </select>
+                    </div>
+                </div>
+
+                <div id="delivery-operator-cont" class="line">
+                    <div id="delivery-operator-label" class="label">@T("Plugins.ShippingMethods.Delivery.DeliveryOperator")</div>
+
+                    <div class="field">
+                        <select id="delivery-operator-select" name="deliveryOperator" placeholder="Select..." style="display: none;">
+                        </select>
+                    </div>
+                </div>
+
+                <div id="pick-address-cont" class="line">
+                    <div id="selfpickup-address-label" class="label">@T("Plugins.ShippingMethods.Delivery.PickupCenterAddress")</div>
+                    <div id="pickpoint-address-label" class="label">@T("Plugins.ShippingMethods.Delivery.PickupPointAddress")</div>
+
+                    <div class="field">
+                        <select id="pick-address-select" name="deliveryAddress" placeholder="Select..." style="display: none;">
+                        </select>
+                    </div>
+                </div>
+
+                <div id="delivery-address-cont" class="line">
+                    <div id="delivery-address-label" class="label">@T("Plugins.ShippingMethods.Delivery.Fields.Address")</div>
+
+                    <div class="field">
+                        <input id="delivery-address-input" type="text" name="deliveryAddress" value="" class="input" placeholder="" />
+                    </div>
+                </div>
+
+                <div id="delivery-postcode-cont" class="line">
+                    <div id="delivery-postcode-label" class="label">@T("Plugins.ShippingMethods.Delivery.PostCode")</div>
+
+                    <div class="field">
+                        <input id="delivery-postcode-input" type="text" name="receiverPostCode" value="" class="input" placeholder="" />
+                    </div>
+                </div>
+
+                <div class="line">
+                    <div class="label">@T("ShoppingCart.Totals.DeliveryPrice")</div>
+
+                    <div id="delivery-price-div" class="field delivery_price" name="">€ 0.00</div>
+                    <input id="delivery-priceId-input" type="number" name="operatorPriceId" style="display: none;" />
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="line">
+                    <div id="receiver-name-label" class="label">@T("ISDK.Filuet.Theme.FiluetHerbalife.Checkout.ReceiverName")</div>
+
+                    <div class="field">
+                        <input id="receiver-name-input" type="text" name="receiverName" value="@userName" class="input" placeholder="" />
+                    </div>
+                </div>
+
+                <div class="line">
+                    <div id="receiver-phone-label" class="label">@T("Order.Phone")</div>
+                    <div id="receiver-phone-format-label" class="label">@Html.Raw(T("Plugins.ShippingMethods.Delivery.EnterPhoneFormat").Text.EscapeJavaScriptString())</div>
+
+                    <div class="field">
+                        <span style="text-align: center; position: relative; float: left; top: 10px;">@Model.PhonePrefix</span>
+                        <input id="receiver-phone-input" name="receiverPhone" list="phones" value="" class="input" style="width: calc(100% - 50px); margin-left: 50px;" inputmode="verbatim" />
+                        <datalist id="phones">
+                            @foreach (var phone in Model.Phones)
+                            {
+                                <option value="@phone" />
+                            }
+                        </datalist>
+                    </div>
+                </div>
+
+                <div class="line">
+                    <div id="receiver-email-label" class="label">@T("Order.Email")</div>
+
+                    <div class="field">
+                        <input id="receiver-email-input" type="email" name="receiverEmail" value="@email" class="input" placeholder="" />
+                    </div>
+                </div>
+
+                @await Component.InvokeAsync("PaymentPayeezy")
+            </div>
+
+            <div class="col">
+                <div class="line">
+                    <div class="label">@T("ISDK.Filuet.Theme.FiluetHerbalife.Shipping.DeliveryComment") <b>(50)</b></div>
+
+                    <div class="field">
+                        <textarea name="comment" maxlength="50"></textarea>
+                    </div>
+                </div>
+                @if (Model.PaymentMethods.Count > 0)
+                {
+                    @for (var i = 0; i < Model.PaymentMethods.Count; i++)
+                    {
+                        var paymentMethod = Model.PaymentMethods[i];
+                        var paymentMethodName = paymentMethod.Name;
+                        if (!string.IsNullOrEmpty(paymentMethod.Fee))
+                        {
+                            paymentMethodName = T("Checkout.SelectPaymentMethod.MethodAndFee", paymentMethodName, paymentMethod.Fee).Text;
+                        }
+                        <div class="line">
+                            <div class="method-name">
+                                @if (!string.IsNullOrEmpty(paymentMethod.LogoUrl))
+                                {
+                                    <div class="payment-logo">
+                                        <label for="paymentmethod_@(i)">
+                                            <img src="@paymentMethod.LogoUrl" alt="@paymentMethodName" height="64" />
+                                        </label>
+                                    </div>
+                                }
+                                <div class="payment-details">
+                                    <input id="paymentmethod_@(i)" type="radio" name="paymentmethod" value="@(paymentMethod.PaymentMethodSystemName)" checked="@paymentMethod.Selected"/>
+                                    <label for="paymentmethod_@(i)">@paymentMethodName</label>
+                                    @if (!string.IsNullOrEmpty(paymentMethod.Description))
+                                    {
+                                        <div class="payment-description">@paymentMethod.Description</div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </form>
+
+        <div class="btns">
+            <a href="@Url.RouteUrl("ShoppingCart")" class="btn back_btn">@T("Common.Back")</a>
+            <button onclick="HerbalifeOnePageCheckout.save()" class="btn next_btn">@T("Common.Continue")</button>
+        </div>
+    </div>
+</section>
+
+<section class="modal" id="unable_deliver_modal">
+    <div class="modal_title">@T("ISDK.Filuet.Theme.FiluetHerbalife.Checkout.UnableToDeliver")</div>
+
+    <div id="unable_deliver_modal_hidden_desc" style="display: none;">@T("Cart.Dialogiscartvalid")</div>
+    <div id="unable_deliver_modal_desc" class="modal_desc"></div>
+
+    <div class="btns">
+        <a href="@Url.RouteUrl("ShoppingCart")" class="btn green edit_order_btn">@T("ISDK.Filuet.Theme.FiluetHerbalife.Checkout.EditOrder")</a>
+
+        <a href="" id="change_country_btn" class="btn change_month_btn">@T("ISDK.Filuet.Theme.FiluetHerbalife.Checkout.ChangeCountry")</a>
+    </div>
+</section>

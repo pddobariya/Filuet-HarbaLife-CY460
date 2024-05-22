@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>AngularApp</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+
+<body>
+
+  <div class="content">
+    <div class="form-horizontal">
+      <div class="panel-group">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="form-group row">
+              <div class="col-md-3">
+                <div class="label-wrapper"><label class="control-label" for="IsEnableCountryRestrictions">Enable country
+                    restrictions</label>
+                  <div title="Enable country restrictions" data-toggle="tooltip" class="ico-help"><i
+                      class="fa fa-question-circle"></i></div>
+                </div>
+              </div>
+              <div class="col-md-8">
+                <input class="check-box" data-val="true"
+                  data-val-required="The Enable country restrictions field is required."
+                  id="IsEnableCountryRestrictions" name="IsEnableCountryRestrictions" type="checkbox">
+                <span class="field-validation-valid" data-valmsg-for="IsEnableCountryRestrictions"
+                  data-valmsg-replace="true"></span>
+              </div>
+            </div>
+            <input type="hidden" id="WhitelistedCountries" name="WhitelistedCountries" value="">
+
+            <app-root></app-root>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</body>
+
+</html>

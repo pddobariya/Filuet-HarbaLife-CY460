@@ -1,0 +1,753 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<Copyright>Copyright © Nop Solutions, Ltd</Copyright>
+		<Company>Nop Solutions, Ltd</Company>
+		<Authors>Nop Solutions, Ltd</Authors>
+		<PackageLicenseUrl></PackageLicenseUrl>
+		<PackageProjectUrl>https://www.nopcommerce.com/</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/nopSolutions/nopCommerce</RepositoryUrl>
+		<RepositoryType>Git</RepositoryType>
+		<OutputPath>..\..\Presentation\Nop.Web\Plugins\Theme.FiluetHerbalife</OutputPath>
+		<OutDir>$(OutputPath)</OutDir>
+		<!--Set this parameter to true to get the dlls copied from the NuGet cache to the output of your project. 
+    You need to set this parameter to true if your plugin has a nuget package 
+    to ensure that the dlls copied from the NuGet cache to the output of your project-->
+		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Remove="Content\**" />
+		<EmbeddedResource Remove="Content\**" />
+		<None Remove="Content\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Remove="Areas\Admin\Views\Blog\_CreateOrUpdate.Info.cshtml" />
+		<None Remove="Areas\Admin\Views\Category\SubProgramBenefitCreatePopup.cshtml" />
+		<None Remove="Areas\Admin\Views\Category\SubProgramBenefitEditPopup.cshtml" />
+		<None Remove="Areas\Admin\Views\Category\_CreateOrUpdate.cshtml" />
+		<None Remove="Areas\Admin\Views\Category\_CreateOrUpdate.Program.Info.cshtml" />
+		<None Remove="Areas\Admin\Views\Category\_CreateOrUpdate.ProgramType.Info.cshtml" />
+		<None Remove="Areas\Admin\Views\Category\_CreateOrUpdateSubProgramBenefit.cshtml" />
+		<None Remove="Areas\Admin\Views\Category\_SubProgramBenefitsGrid.cshtml" />
+		<None Remove="Areas\Admin\Views\FiluetHerbalife\Configure.cshtml" />
+		<None Remove="Areas\Admin\Views\Product\PdfFileCreatePopup.cshtml" />
+		<None Remove="Areas\Admin\Views\Product\_CreateOrUpdate.cshtml" />
+		<None Remove="Areas\Admin\Views\Product\_CreateOrUpdate.Info.cshtml" />
+		<None Remove="Areas\Admin\Views\Product\_CreateOrUpdatePdfFile.cshtml" />
+		<None Remove="Areas\Admin\Views\Product\_PdfGrid.cshtml" />
+		<None Remove="Areas\Admin\Views\_ViewImports.cshtml" />
+		<None Remove="Areas\Admin\Views\_ViewStart.cshtml" />
+		<None Remove="Localization\ResourceString\language_en_pack.xml" />
+		<None Remove="Localization\ResourceString\language_ru_pack.xml" />
+		<None Remove="logo.png" />
+		<None Remove="plugin.json" />
+		<None Remove="Themes\FiluetHerbalife\Views\Blog\BlogPost.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\Blog\Components\BlogMonths\Default.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\Blog\Components\BlogTags\Default.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\Blog\List.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\Catalog7Spikes\_AjaxFIlters.ProductsInGridOrLines.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\Catalog\CategoryTemplate.ProductsInGridOrLines.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\Catalog\ProgramCategoryTemplate.ProductsInGridOrLines.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\Catalog\_ProgramSubCategory.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\Common\ContactUs.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\FiluetCatalog\Search.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\FiluetCatalog\_CatalogProducts.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\FiluetCatalog\_CatalogSelectors.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\FiluetCatalog\_ProductsInGridOrLines.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\FiluetCustomer\Info.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\FiluetCustomer\UserLogin.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\FiluetHerbalifeCheckout\Completed.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\FiluetHerbalifeCheckout\OnePageCheckout.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\FiluetHerbalifeCheckout\OpcConfirmOrder.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\FiluetHerbalifeCheckout\OpcPayment.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\FiluetHerbalifeCheckout\OpcPaymentInfo.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\FiluetOrder\CustomerOrders.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\FiluetOrder\Details.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\FiluetOrder\_OrderSelectors.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\FiluetShoppingCart\Cart.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\FiluetTopic\Faq.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\FiluetTopic\FaqDetails.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\FiluetTopic\_FaqMenu.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\ProductRibbons\ProductRibbonsHtml.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\Product\ProductTemplate.Simple.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\Product\_AddToWishlist.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\Product\_CompareProductsButton.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\Product\_FiluetAddProductReview.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\Product\_ProductPrice.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\Product\_ProductSpecifications.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\Product\_ShareButton.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\Shared\Components\CartRepeatOrderDialog\Default.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\Shared\Components\CartSummaryBar\Default.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\Shared\Components\CategoryNavigation\Default.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\Shared\Components\CrossSellProducts\Default.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\Shared\Components\FiluetHeaderLinks\Default.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\Shared\Components\FiluetHomepageBestSellers\Default.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\Shared\Components\FiluetOrderTotals\Default.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\Shared\Components\FlyoutShoppingCart\Default.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\Shared\Components\HerbalifeNews\HerbalifeNews.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\Shared\Components\HerbalifeNews\_Article.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\Shared\Components\HomepageProductPrograms\Default.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\Shared\Components\HomepageProducts\Default.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\Shared\Components\MobMenu\Default.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\Shared\Components\NopAjaxFiltersPriceRangeFilter\PriceRangeFilterSlider.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\Shared\Components\NopAjaxFiltersSpecificationFilters\SpecificationFilter.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\Shared\Components\NopProductRibbons\NopProductRibbons.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\Shared\Components\OrderInfo\Default.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\Shared\Components\OrderSummary\Default.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\Shared\Components\ProductReviews\Default.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\Shared\Components\SocialButtons\Default.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\Shared\Components\TopMenu\Default.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\Shared\Components\_ViewImports.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\Shared\_CartSummaryBar.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\Shared\_CheckoutSteps.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\Shared\_HomeColumns.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\Shared\_HomeRoot.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\Shared\_OrderTotalDetails.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\Shared\_PrimeReactModal.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\Shared\_ProductBox.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\SSOAuth\APFRestrictions.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\SSOAuth\CountryRestrictions.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\SSOAuth\DistributorRestrictions.cshtml" />
+		<None Remove="Themes\FiluetHerbalife\Views\_ViewImports.cshtml" />
+		<None Remove="Views\Blog\BlogPost.cshtml" />
+		<None Remove="Views\Blog\Components\BlogMonths\Default.cshtml" />
+		<None Remove="Views\Blog\Components\BlogTags\Default.cshtml" />
+		<None Remove="Views\Blog\List.cshtml" />
+		<None Remove="Views\Catalog7Spikes\_AjaxFIlters.ProductsInGridOrLines.cshtml" />
+		<None Remove="Views\Catalog\CategoryTemplate.ProductsInGridOrLines.cshtml" />
+		<None Remove="Views\Catalog\ProgramCategoryTemplate.ProductsInGridOrLines.cshtml" />
+		<None Remove="Views\Catalog\_ProgramSubCategory.cshtml" />
+		<None Remove="Views\Common\ContactUs.cshtml" />
+		<None Remove="Views\FiluetCatalog\Search.cshtml" />
+		<None Remove="Views\FiluetCatalog\_CatalogProducts.cshtml" />
+		<None Remove="Views\FiluetCatalog\_CatalogSelectors.cshtml" />
+		<None Remove="Views\FiluetCatalog\_ProductsInGridOrLines.cshtml" />
+		<None Remove="Views\FiluetCustomer\Info.cshtml" />
+		<None Remove="Views\FiluetCustomer\UserLogin.cshtml" />
+		<None Remove="Views\FiluetHerbalifeCheckout\Completed.cshtml" />
+		<None Remove="Views\FiluetHerbalifeCheckout\OnePageCheckout.cshtml" />
+		<None Remove="Views\FiluetHerbalifeCheckout\OpcConfirmOrder.cshtml" />
+		<None Remove="Views\FiluetHerbalifeCheckout\OpcPayment.cshtml" />
+		<None Remove="Views\FiluetHerbalifeCheckout\OpcPaymentInfo.cshtml" />
+		<None Remove="Views\FiluetOrder\CustomerOrders.cshtml" />
+		<None Remove="Views\FiluetOrder\Details.cshtml" />
+		<None Remove="Views\FiluetOrder\_OrderSelectors.cshtml" />
+		<None Remove="Views\FiluetShoppingCart\Cart.cshtml" />
+		<None Remove="Views\FiluetTopic\Faq.cshtml" />
+		<None Remove="Views\FiluetTopic\FaqDetails.cshtml" />
+		<None Remove="Views\FiluetTopic\_FaqMenu.cshtml" />
+		<None Remove="Views\ProductRibbons\ProductRibbonsHtml.cshtml" />
+		<None Remove="Views\Product\ProductTemplate.Simple.cshtml" />
+		<None Remove="Views\Product\_AddToWishlist.cshtml" />
+		<None Remove="Views\Product\_CompareProductsButton.cshtml" />
+		<None Remove="Views\Product\_FiluetAddProductReview.cshtml" />
+		<None Remove="Views\Product\_ProductPrice.cshtml" />
+		<None Remove="Views\Product\_ProductSpecifications.cshtml" />
+		<None Remove="Views\Product\_ShareButton.cshtml" />
+		<None Remove="Views\Shared\Components\CartRepeatOrderDialog\Default.cshtml" />
+		<None Remove="Views\Shared\Components\CartSummaryBar\Default.cshtml" />
+		<None Remove="Views\Shared\Components\CategoryNavigation\Default.cshtml" />
+		<None Remove="Views\Shared\Components\CrossSellProducts\Default.cshtml" />
+		<None Remove="Views\Shared\Components\FiluetHeaderLinks\Default.cshtml" />
+		<None Remove="Views\Shared\Components\FiluetHomepageBestSellers\Default.cshtml" />
+		<None Remove="Views\Shared\Components\FiluetOrderTotals\Default.cshtml" />
+		<None Remove="Views\Shared\Components\FlyoutShoppingCart\Default.cshtml" />
+		<None Remove="Views\Shared\Components\HerbalifeNews\Default.cshtml" />
+		<None Remove="Views\Shared\Components\HerbalifeNews\_Article.cshtml" />
+		<None Remove="Views\Shared\Components\HomepageProductPrograms\Default.cshtml" />
+		<None Remove="Views\Shared\Components\HomepageProducts\Default.cshtml" />
+		<None Remove="Views\Shared\Components\MobMenu\Default.cshtml" />
+		<None Remove="Views\Shared\Components\MobSearchBox\Default.cshtml" />
+		<None Remove="Views\Shared\Components\NopAjaxFiltersPriceRangeFilter\PriceRangeFilterSlider.cshtml" />
+		<None Remove="Views\Shared\Components\NopAjaxFiltersSpecificationFilters\SpecificationFilter.cshtml" />
+		<None Remove="Views\Shared\Components\NopProductRibbons\NopProductRibbons.cshtml" />
+		<None Remove="Views\Shared\Components\OrderInfo\Default.cshtml" />
+		<None Remove="Views\Shared\Components\OrderSummary\Default.cshtml" />
+		<None Remove="Views\Shared\Components\PaymentPayeezy\Default.cshtml" />
+		<None Remove="Views\Shared\Components\ProductReviews\Default.cshtml" />
+		<None Remove="Views\Shared\Components\SocialButtons\Default.cshtml" />
+		<None Remove="Views\Shared\Components\TopMenu\Default.cshtml" />
+		<None Remove="Views\Shared\Components\_ViewImports.cshtml" />
+		<None Remove="Views\Shared\_CartSummaryBar.cshtml" />
+		<None Remove="Views\Shared\_CheckoutSteps.cshtml" />
+		<None Remove="Views\Shared\_HomeColumns.cshtml" />
+		<None Remove="Views\Shared\_HomeRoot.cshtml" />
+		<None Remove="Views\Shared\_OrderTotalDetails.cshtml" />
+		<None Remove="Views\Shared\_PrimeReactModal.cshtml" />
+		<None Remove="Views\Shared\_ProductBox.cshtml" />
+		<None Remove="Views\SSOAuth\APFRestrictions.cshtml" />
+		<None Remove="Views\SSOAuth\CountryRestrictions.cshtml" />
+		<None Remove="Views\SSOAuth\DistributorRestrictions.cshtml" />
+		<None Remove="Views\_ViewImports.cshtml" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="Areas\Admin\Views\Blog\_CreateOrUpdate.Info.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Areas\Admin\Views\Category\SubProgramBenefitCreatePopup.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Areas\Admin\Views\Category\SubProgramBenefitEditPopup.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Areas\Admin\Views\Category\_CreateOrUpdate.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Areas\Admin\Views\Category\_CreateOrUpdate.Program.Info.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Areas\Admin\Views\Category\_CreateOrUpdate.ProgramType.Info.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Areas\Admin\Views\Category\_CreateOrUpdateSubProgramBenefit.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Areas\Admin\Views\Category\_SubProgramBenefitsGrid.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Areas\Admin\Views\FiluetHerbalife\Configure.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Areas\Admin\Views\Product\PdfFileCreatePopup.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Areas\Admin\Views\Product\_CreateOrUpdate.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Areas\Admin\Views\Product\_CreateOrUpdate.Info.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Areas\Admin\Views\Product\_CreateOrUpdatePdfFile.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Areas\Admin\Views\Product\_PdfGrid.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Areas\Admin\Views\_ViewImports.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Areas\Admin\Views\_ViewStart.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Localization\ResourceString\language_ru_pack.xml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Localization\ResourceString\language_en_pack.xml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="logo.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="plugin.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\Blog\BlogPost.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\Blog\Components\BlogMonths\Default.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\Blog\Components\BlogTags\Default.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\Blog\List.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\Catalog7Spikes\_AjaxFIlters.ProductsInGridOrLines.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\Catalog\CategoryTemplate.ProductsInGridOrLines.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\Catalog\ProgramCategoryTemplate.ProductsInGridOrLines.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\Catalog\_ProgramSubCategory.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\Common\ContactUs.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\FiluetCatalog\Search.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\FiluetCatalog\_CatalogProducts.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\FiluetCatalog\_CatalogSelectors.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\FiluetCatalog\_ProductsInGridOrLines.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\FiluetCustomer\Info.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\FiluetCustomer\UserLogin.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\FiluetHerbalifeCheckout\Completed.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\FiluetHerbalifeCheckout\OnePageCheckout.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\FiluetHerbalifeCheckout\OpcConfirmOrder.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\FiluetHerbalifeCheckout\OpcPayment.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\FiluetHerbalifeCheckout\OpcPaymentInfo.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\FiluetOrder\CustomerOrders.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\FiluetOrder\Details.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\FiluetOrder\_OrderSelectors.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\FiluetShoppingCart\Cart.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\FiluetTopic\Faq.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\FiluetTopic\FaqDetails.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\FiluetTopic\_FaqMenu.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\ProductRibbons\ProductRibbonsHtml.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\Product\ProductTemplate.Simple.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\Product\_AddToWishlist.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\Product\_CompareProductsButton.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\Product\_FiluetAddProductReview.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\Product\_ProductPrice.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\Product\_ProductSpecifications.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\Product\_ShareButton.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\Shared\Components\CartRepeatOrderDialog\Default.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\Shared\Components\CartSummaryBar\Default.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\Shared\Components\CategoryNavigation\Default.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\Shared\Components\CrossSellProducts\Default.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\Shared\Components\FiluetHeaderLinks\Default.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\Shared\Components\FiluetHomepageBestSellers\Default.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\Shared\Components\FiluetOrderTotals\Default.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\Shared\Components\FlyoutShoppingCart\Default.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\Shared\Components\HerbalifeNews\HerbalifeNews.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\Shared\Components\HerbalifeNews\_Article.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\Shared\Components\HomepageProducts\Default.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\Shared\Components\MobMenu\Default.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\Shared\Components\NopAjaxFiltersPriceRangeFilter\PriceRangeFilterSlider.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\Shared\Components\NopAjaxFiltersSpecificationFilters\SpecificationFilter.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\Shared\Components\NopProductRibbons\NopProductRibbons.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\Shared\Components\OrderInfo\Default.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\Shared\Components\OrderSummary\Default.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\Shared\Components\ProductReviews\Default.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\Shared\Components\SocialButtons\Default.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\Shared\Components\TopMenu\Default.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\Shared\_CartSummaryBar.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\Shared\_CheckoutSteps.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\Shared\_HomeColumns.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\Shared\_HomeRoot.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\Shared\_OrderTotalDetails.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\Shared\_PrimeReactModal.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\Shared\_ProductBox.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\SSOAuth\APFRestrictions.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\SSOAuth\CountryRestrictions.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\SSOAuth\DistributorRestrictions.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\FiluetHerbalife\Views\_ViewImports.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Blog\BlogPost.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Blog\Components\BlogMonths\Default.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Blog\Components\BlogTags\Default.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Blog\List.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Catalog7Spikes\_AjaxFIlters.ProductsInGridOrLines.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Catalog\CategoryTemplate.ProductsInGridOrLines.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Catalog\ProgramCategoryTemplate.ProductsInGridOrLines.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Catalog\_ProgramSubCategory.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Common\ContactUs.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\FiluetCatalog\Search.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\FiluetCatalog\_CatalogProducts.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\FiluetCatalog\_CatalogSelectors.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\FiluetCatalog\_ProductsInGridOrLines.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\FiluetCustomer\Info.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\FiluetCustomer\UserLogin.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\FiluetHerbalifeCheckout\Completed.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\FiluetHerbalifeCheckout\OnePageCheckout.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\FiluetHerbalifeCheckout\OpcConfirmOrder.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\FiluetHerbalifeCheckout\OpcPayment.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\FiluetHerbalifeCheckout\OpcPaymentInfo.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\FiluetOrder\CustomerOrders.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\FiluetOrder\Details.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\FiluetOrder\_OrderSelectors.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\FiluetShoppingCart\Cart.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\FiluetTopic\Faq.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\FiluetTopic\FaqDetails.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\FiluetTopic\_FaqMenu.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\ProductRibbons\ProductRibbonsHtml.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Product\ProductTemplate.Simple.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Product\_AddToWishlist.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Product\_CompareProductsButton.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Product\_FiluetAddProductReview.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Product\_ProductPrice.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Product\_ProductSpecifications.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Product\_ShareButton.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Shared\Components\CartRepeatOrderDialog\Default.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Shared\Components\CartSummaryBar\Default.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Shared\Components\CategoryNavigation\Default.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Shared\Components\CrossSellProducts\Default.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Shared\Components\FiluetHeaderLinks\Default.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Shared\Components\FiluetHomepageBestSellers\Default.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Shared\Components\FiluetOrderTotals\Default.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Shared\Components\FlyoutShoppingCart\Default.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Shared\Components\HerbalifeNews\Default.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Shared\Components\HerbalifeNews\_Article.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Shared\Components\HomepageProductPrograms\Default.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Shared\Components\HomepageProducts\Default.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Shared\Components\MobMenu\Default.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Shared\Components\MobSearchBox\Default.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</Content>
+		<Content Include="Views\Shared\Components\NopAjaxFiltersPriceRangeFilter\PriceRangeFilterSlider.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Shared\Components\NopAjaxFiltersSpecificationFilters\SpecificationFilter.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Shared\Components\NopProductRibbons\NopProductRibbons.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Shared\Components\OrderInfo\Default.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Shared\Components\OrderSummary\Default.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Shared\Components\PaymentPayeezy\Default.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Shared\Components\ProductReviews\Default.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Shared\Components\SocialButtons\Default.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Shared\Components\TopMenu\Default.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Shared\_CartSummaryBar.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Shared\_CheckoutSteps.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Shared\_HomeColumns.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Shared\_HomeRoot.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Shared\_OrderTotalDetails.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Shared\_PrimeReactModal.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Shared\_ProductBox.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\SSOAuth\APFRestrictions.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\SSOAuth\CountryRestrictions.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\SSOAuth\DistributorRestrictions.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\_ViewImports.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\Libraries\Nop.Core\Nop.Core.csproj">
+			<Private>False</Private>
+		</ProjectReference>
+		<ProjectReference Include="..\..\Libraries\Nop.Data\Nop.Data.csproj">
+			<Private>False</Private>
+		</ProjectReference>
+		<ProjectReference Include="..\..\Libraries\Nop.Services\Nop.Services.csproj">
+			<Private>False</Private>
+		</ProjectReference>
+		<ProjectReference Include="..\..\Presentation\Nop.Web.Framework\Nop.Web.Framework.csproj">
+			<Private>False</Private>
+		</ProjectReference>
+		<ProjectReference Include="..\..\Presentation\Nop.Web\Nop.Web.csproj">
+			<Private>False</Private>
+		</ProjectReference>
+		<ProjectReference Include="..\Filuet.OnlineOrdering.BltExtendedFunctions\Filuet.OnlineOrdering.BltExtendedFunctions.csproj">
+			<Private>False</Private>
+			<CopyLocalSatelliteAssemblies>True</CopyLocalSatelliteAssemblies>
+		</ProjectReference>
+		<ProjectReference Include="..\Filuet.Onlineordering.Shipping.Delivery\Filuet.Onlineordering.Shipping.Delivery.csproj">
+			<Private>False</Private>
+			<CopyLocalSatelliteAssemblies>True</CopyLocalSatelliteAssemblies>
+		</ProjectReference>
+		<ProjectReference Include="..\ISDK.Filuet.ExternalSSOAuthPlugin\ISDK.Filuet.ExternalSSOAuthPlugin.csproj">
+			<Private>False</Private>
+			<CopyLocalSatelliteAssemblies>True</CopyLocalSatelliteAssemblies>
+		</ProjectReference>
+		<ProjectReference Include="..\ISDK.Filuet.OnlineOrdering.CorePlugin\ISDK.Filuet.OnlineOrdering.CorePlugin.csproj">
+			<Private>False</Private>
+			<CopyLocalSatelliteAssemblies>True</CopyLocalSatelliteAssemblies>
+		</ProjectReference>
+		<ProjectReference Include="..\ISDK.Filuet.OnlineOrdering.NopFiluetCommon\ISDK.Filuet.OnlineOrdering.NopFiluetCommon.csproj">
+			<Private>False</Private>
+			<CopyLocalSatelliteAssemblies>True</CopyLocalSatelliteAssemblies>
+		</ProjectReference>
+		<ProjectReference Include="..\ISDK.Filuet.OnlineOrdering.ShippingWidgetPlugin\ISDK.Filuet.OnlineOrdering.ShippingWidgetPlugin.csproj">
+			<Private>False</Private>
+			<CopyLocalSatelliteAssemblies>True</CopyLocalSatelliteAssemblies>
+		</ProjectReference>
+		<ProjectReference Include="..\Nop.Plugin.Pickup.PickupInStore\Nop.Plugin.Pickup.PickupInStore.csproj">
+			<Private>False</Private>
+			<CopyLocalSatelliteAssemblies>True</CopyLocalSatelliteAssemblies>
+		</ProjectReference>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="Themes\FiluetHerbalife\Views\Shared\Components\HomepageProductPrograms\Default.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="AngleSharp" Version="1.0.2" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="7.0.1.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="2.2.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.9" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Page Include="Themes\FiluetHerbalife\Views\Shared\Components\_ViewImports.cshtml" />
+		<Page Include="Views\Shared\Components\_ViewImports.cshtml" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="SevenSpikes.Nop.Framework">
+			<HintPath>..\..\Presentation\Nop.Web\Plugins\SevenSpikes.Core\SevenSpikes.Nop.Framework.dll</HintPath>
+		</Reference>
+		<Reference Include="SevenSpikes.Nop.Plugins.AjaxCart">
+			<HintPath>..\..\Presentation\Nop.Web\Plugins\SevenSpikes.Nop.Plugins.AjaxCart\SevenSpikes.Nop.Plugins.AjaxCart.dll</HintPath>
+		</Reference>
+		<Reference Include="SevenSpikes.Nop.Plugins.ProductRibbons">
+			<HintPath>..\..\Presentation\Nop.Web\Plugins\SevenSpikes.Nop.Plugins.ProductRibbons\SevenSpikes.Nop.Plugins.ProductRibbons.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+	<ItemGroup>
+		<ClearPluginAssemblies Include="$(MSBuildProjectDirectory)\..\..\Build\ClearPluginAssemblies.proj" />
+	</ItemGroup>
+	<!-- This target execute after "Build" target -->
+	<Target Name="NopTarget" AfterTargets="Build">
+		<!-- Copy all dll files from refs folder -->
+		<ItemGroup>
+			<DllsToCopy Include="$(OutDir)\refs\*.dll" />
+		</ItemGroup>
+		<Copy SourceFiles="@(DllsToCopy)" DestinationFolder="$(OutDir)" />
+
+		<!-- Delete unnecessary libraries from plugins path -->
+		<MSBuild Projects="@(ClearPluginAssemblies)" Properties="PluginPath=$(MSBuildProjectDirectory)\$(OutDir)" Targets="NopClear" />
+		<Delete Files="$(OutDir)\$(AssemblyName).deps.json" />
+		<Delete Files="$(OutDir)\$(AssemblyName).runtimeconfig.json" />
+		<Delete Files="$(OutDir)\$(AssemblyName).runtime.json" />
+		<Delete Files="$(OutDir)\$(AssemblyName).pdb" />
+		<RemoveDir Directories="$(OutDir)\refs" />
+	</Target>
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+		<Exec Command="rd /s /q $(OutDir)runtimes" />
+	</Target>
+</Project>

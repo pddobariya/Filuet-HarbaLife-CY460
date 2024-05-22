@@ -1,0 +1,31 @@
+﻿.block a.clear-filter:before {
+    background-color:  #266431 !important;
+}
+.block a.clear-filter {
+    display: block;
+    padding: 9px 10px;
+    border-top: 1px solid #c9c9c9;
+    position: relative;
+    -webkit-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+.block a.clear-filter:before {
+    content: " ";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 0;
+    width: 5px;
+    background: #46c688;
+    -webkit-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+.block a.clear-filter:hover:before {
+    height: 100%;
+}
+.block-popular-tags .listbox {
+    padding: 0px;
+}
+.block .tags {
+    padding: 10px;
+}

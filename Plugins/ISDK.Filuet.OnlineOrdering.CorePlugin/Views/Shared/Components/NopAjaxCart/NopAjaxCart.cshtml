@@ -1,0 +1,64 @@
+﻿@** Copyright 2017 Seven Spikes Ltd. All rights reserved. (http://www.nop-templates.com)
+    * http://www.nop-templates.com/t/licensinginfo
+*@
+
+@{
+    var themeFolder = await ThemeHelper.GetPluginThemeAsync(SevenSpikes.Nop.Plugins.AjaxCart.Infrastructure.Constants.Plugin.FolderName);
+
+    NopHtml.AddCssFileParts($"~/Plugins/SevenSpikes.Nop.Plugins.AjaxCart/Themes/{ themeFolder }/Content/ajaxCart.css"); 
+
+    var supportRtl = (await workContext.GetWorkingLanguageAsync()).Rtl;
+    if (supportRtl)
+    {
+        NopHtml.AddCssFileParts($"~/Plugins/SevenSpikes.Nop.Plugins.AjaxCart/Themes/{ themeFolder }/Content/ajaxCart.rtl.css");
+    }
+
+    NopHtml.AddScriptParts(ResourceLocation.Footer, $"~/Plugins/SevenSpikes.Core/Scripts/sevenspikes.core.min.js");
+    NopHtml.AddScriptParts(ResourceLocation.Footer, $"~/Plugins/SevenSpikes.Core/Scripts/jquery.json-2.4.min.js");
+    NopHtml.AddScriptParts(ResourceLocation.Footer, $"~/Plugins/ISDK.Filuet.OnlineOrdering.CorePlugin/Content/js/AjaxCart.js");
+
+    var kendoVersion = "2020.1.406";
+
+    /*
+        We usually use AddScriptParts but in this case, we need to use AppendScriptParts and reverse the order of adding the kendo js files in order for other plugins such as HelpDesk,
+        which includes kendo.web.min.js to work properly.
+    */
+
+    NopHtml.AddCssFileParts($"~/Plugins/ISDK.Filuet.OnlineOrdering.CorePlugin/Content/styles.css");
+
+    NopHtml.AddScriptParts(ResourceLocation.Footer, $"~/lib/kendo/{kendoVersion}/js/kendo.core.min.js");
+    NopHtml.AddScriptParts(ResourceLocation.Footer, $"~/lib/kendo/{kendoVersion}/js/kendo.userevents.min.js");
+    NopHtml.AddScriptParts(ResourceLocation.Footer, $"~/lib/kendo/{kendoVersion}/js/kendo.draganddrop.min.js");
+    NopHtml.AddScriptParts(ResourceLocation.Footer, $"~/lib/kendo/{kendoVersion}/js/kendo.popup.min.js");
+    NopHtml.AddScriptParts(ResourceLocation.Footer, $"~/lib/kendo/{kendoVersion}/js/kendo.window.min.js");
+    NopHtml.AddScriptParts(ResourceLocation.Footer, $"~/lib/kendo/{kendoVersion}/js/kendo.dialog.min.js");
+    //Html.AddScriptParts(ResourceLocation.Footer, $"~/lib/kendo/{kendoVersion}/js/kendo.all.min.js");
+
+}
+
+<div class="ajaxCartInfo" data-getAjaxCartButtonUrl="@Url.Action("GetAjaxCartButtonsAjax", "NopAjaxCart")"
+     data-productPageAddToCartButtonSelector="@nopAjaxCartSettings.ProductPageAddToCartButtonSelector"
+     data-productBoxAddToCartButtonSelector="@nopAjaxCartSettings.ProductBoxAddToCartButtonSelector"
+     data-productBoxProductItemElementSelector="@nopAjaxCartSettings.ProductBoxProductItemElementSelector"
+     data-enableOnProductPage="@nopAjaxCartSettings.EnableOnProductPage"
+     data-enableOnCatalogPages="@nopAjaxCartSettings.EnableOnCatalogPages"
+     data-miniShoppingCartQuatityFormattingResource="@T("ShoppingCart.HeaderQuantity")"
+     data-miniWishlistQuatityFormattingResource="@T("Wishlist.HeaderQuantity")"
+     data-addToWishlistButtonSelector="@nopAjaxCartSettings.AddToWishlistButtonSelector">
+</div>
+
+@Html.Hidden("addProductVariantToCartUrl", Url.Action("FiluetAddProductFromProductDetailsPageToCartAjax", "FiluetNopAjaxCartShoppingCart"))
+@Html.Hidden("addProductToCartUrl", Url.Action("FiluetAddProductToCartAjax", "FiluetNopAjaxCartShoppingCart"))
+@Html.Hidden("clearCartAndAddProductUrl", Url.Action("ClearCartAndAddProduct", "FiluetNopAjaxCartShoppingCart"))
+@Html.Hidden("clearCartAndAddProductFromProductDetailsUrl", Url.Action("ClearCartAndAddProductFromProductDetailsPage", "FiluetNopAjaxCartShoppingCart"))
+@Html.Hidden("miniShoppingCartUrl", Url.Action("MiniShoppingCart", "NopAjaxCartShoppingCart"))
+@Html.Hidden("flyoutShoppingCartUrl", Url.Action("NopAjaxCartFlyoutShoppingCart", "NopAjaxCartShoppingCart"))
+@Html.Hidden("checkProductAttributesUrl", Url.Action("CheckIfProductOrItsAssociatedProductsHasAttributes", "NopAjaxCartCatalog"))
+@Html.Hidden("getMiniProductDetailsViewUrl", Url.Action("GetMiniProductDetailsView", "NopAjaxCartCatalog"))
+@Html.Hidden("flyoutShoppingCartPanelSelector", Html.Encode(nopAjaxCartSettings.FlyoutCartPanelSelector))
+@Html.Hidden("shoppingCartMenuLinkSelector", Html.Encode(nopAjaxCartSettings.ShoppingCartMenuLinkSelector))
+@Html.Hidden("wishlistMenuLinkSelector", Html.Encode(nopAjaxCartSettings.WishlistMenuLinkSelector))
+@Html.Hidden("addBizWorkToCart", Url.Action("AddBizWorkToCart", "FiluetNopAjaxCartShoppingCart"))
+@Html.Hidden("shoppingCart", Url.RouteUrl("ShoppingCart"))
+
+@await Component.InvokeAsync("NopAjaxCartAdditionalPanelsToUpdate")

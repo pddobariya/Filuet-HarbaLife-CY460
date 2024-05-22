@@ -1,0 +1,11 @@
+﻿@model ProductDetailsModel.AddToCartModel
+@if (!Model.DisableWishlistButton)
+{
+    <div>
+        <button type="button" id="add-to-wishlist-button-@Model.ProductId" class="favorite_btn button-2 add-to-wishlist-button" data-productid="@Model.ProductId" onclick="addproducttocart('@Url.RouteUrl("AddProductToCart-Details", new {productId = Model.ProductId, shoppingCartTypeId = (int) ShoppingCartType.Wishlist})', '#product-details-form');return false;">
+            <svg class="icon"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_favorite")"></use></svg>
+            <span>@T("Products.Wishlist.AddToWishlist")</span>
+            <span>@T("Products.Wishlist.AddToWishlistMob")</span>
+        </button>
+    </div>
+}

@@ -1,0 +1,42 @@
+<div class="form-group row" *ngIf="isShow">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <select id="selectCountry" class="form-control" [(ngModel)]="countryId"
+            (change)="changeCountry($event.target.value)">
+            <option *ngFor="let country of countries" value={{country.id}}>
+                {{country.name}}
+            </option>
+        </select>
+    </div>
+    <div class="col-md-3">
+        <button class="btn btn-outline-secondary" type="button" (click)="addCountry()">Add country</button>
+    </div>
+</div>
+
+<div class="form-group row" *ngIf="isShow">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <table class="table table-bordered table-striped p-2">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Name</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let country of selectedCountries">
+                    <td></td>
+                    <td>{{country.name}}</td>
+                    <td class="text-center">
+                        <button class="btn btn-sm btn-danger" (click)="deleteLine(country.id)">
+                            Delete
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-3">
+    </div>
+</div>

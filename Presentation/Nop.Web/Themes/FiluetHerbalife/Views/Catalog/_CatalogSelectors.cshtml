@@ -1,0 +1,77 @@
+﻿@model CatalogProductsModel
+
+<div class="block_head">
+    <div class="title">@(ViewBag.IsLastProgramm == true ? T("ISDK.Filuet.Theme.FiluetHerbalife.ProgrammContent") : T("ISDK.Filuet.Theme.FiluetHerbalife.AllProductsInCategory"))</div>
+
+    <button class="mob_filter_btn" id="mob_filter_btn">
+        <svg class="icon"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_filter")"></use></svg>
+        <span>@T("ISDK.Filuet.Theme.FiluetHerbalife.Filter")</span>
+    </button>
+     
+    <div class="grid_list_head">
+        <div class="sort">
+            <div class="name">@T("ISDK.Filuet.Theme.FiluetHerbalife.Sort")</div>
+
+            <div class="field">
+                <select id="products-orderby" class="sortOptionsDropDown">
+                    @if (Model.AvailableSortOptions != null && Model.AvailableSortOptions.Any())
+                    {
+                        foreach (var item in Model.AvailableSortOptions)
+                        {
+                            <option value="@item.Value" selected="@(item.Selected ? "selected" : string.Empty)">@item.Text</option>
+                        }
+                    }
+                </select>
+                <svg class="icon"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_arrow_down")"></use></svg>
+            </div>
+        </div>
+
+        <div class="views">
+            <button class="btn grid_btn active">
+                <svg class="icon"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_grid")"></use></svg>
+            </button>
+
+            <button class="btn list_btn">
+                <svg class="icon"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_list")"></use></svg>
+            </button>
+        </div>
+    </div>
+
+    @*<div class="filter_selected">
+        <div class="item price">
+            <div class="name">@T("ISDK.Filuet.Theme.FiluetHerbalife.PriceFilter")</div>
+
+            <div class="val range">€ <span class="from"></span>-<span class="to"></span></div>
+
+            <button class="delete_btn">
+                <svg class="icon"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_close")"></use></svg>
+            </button>
+        </div>
+    </div>*@
+    
+    
+    <div class="product-viewmode" style="display: none;">
+        <span class="viewmode-icon grid"></span>
+        <span class="viewmode-icon lst"></span>
+    </div>
+
+</div>
+
+<script asp-location="Footer">
+    $(document).ready(function () {
+
+        var $orderByEl = $('.grid_list_head .sort select');
+
+        $orderByEl.on('change', function () {
+        });
+
+        $(document).on('mouseup', '.grid_list_head .views .btn', function (e) {
+            $('.product-viewmode span').removeClass('selected');
+            if ($(this).hasClass('grid_btn')) {
+                $('.product-viewmode .grid').addClass('selected');
+            } else {
+                $('.product-viewmode .lst').addClass('selected');
+            }
+        });
+    });
+</script>

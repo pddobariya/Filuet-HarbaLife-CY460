@@ -1,0 +1,427 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<Copyright>Copyright © XcellenceIT</Copyright>
+		<Company>XcellenceIT</Company>
+		<Authors>XcellenceIT</Authors>
+		<PackageLicenseUrl></PackageLicenseUrl>
+		<PackageProjectUrl>https://www.nopcommerce.com/</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/nopSolutions/nopcommerce</RepositoryUrl>
+		<RepositoryType>Git</RepositoryType>
+		<OutputPath>..\..\Presentation\Nop.Web\Plugins\ISDK.Filuet.OnlineOrdering.ShippingWidgetPlugin</OutputPath>
+		<OutDir>$(OutputPath)</OutDir>
+		<!--Set this parameter to true to get the dlls copied from the NuGet cache to the output of your project. You need to set this parameter to true if your plugin has a nuget package to ensure that the dlls copied from the NuGet cache to the output of your project-->
+		<CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ClearPluginAssemblies Include="$(MSBuildProjectDirectory)\..\..\Build\ClearPluginAssemblies.proj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="AngularApp\dist\dev\color.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\dev\hue.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\dev\index.html">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\dev\line.gif">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\dev\loading.gif">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\dev\main-es2015.js">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\dev\main-es2015.js.map">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\dev\main-es5.js">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\dev\main-es5.js.map">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\dev\open-sans-v15-latin-300.eot">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\dev\open-sans-v15-latin-300.svg">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\dev\open-sans-v15-latin-300.ttf">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\dev\open-sans-v15-latin-300.woff">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\dev\open-sans-v15-latin-300.woff2">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\dev\open-sans-v15-latin-700.eot">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\dev\open-sans-v15-latin-700.svg">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\dev\open-sans-v15-latin-700.ttf">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\dev\open-sans-v15-latin-700.woff">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\dev\open-sans-v15-latin-700.woff2">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\dev\open-sans-v15-latin-regular.eot">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\dev\open-sans-v15-latin-regular.svg">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\dev\open-sans-v15-latin-regular.ttf">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\dev\open-sans-v15-latin-regular.woff">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\dev\open-sans-v15-latin-regular.woff2">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\dev\password-meter.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\dev\polyfills-es2015.js">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\dev\polyfills-es2015.js.map">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\dev\polyfills-es5.js">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\dev\polyfills-es5.js.map">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\dev\primeicons.eot">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\dev\primeicons.svg">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\dev\primeicons.ttf">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\dev\primeicons.woff">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\dev\runtime-es2015.js">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\dev\runtime-es2015.js.map">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\dev\runtime-es5.js">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\dev\runtime-es5.js.map">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\dev\styles.css">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\dev\styles.css.map">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\dev\vendor-es2015.js">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\dev\vendor-es2015.js.map">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\dev\vendor-es5.js">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\dev\vendor-es5.js.map">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\prod\color.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\prod\hue.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\prod\index.html">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\prod\line.gif">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\prod\loading.gif">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\prod\main-es2015.js">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\prod\main-es5.js">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\prod\open-sans-v15-latin-300.eot">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\prod\open-sans-v15-latin-300.svg">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\prod\open-sans-v15-latin-300.ttf">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\prod\open-sans-v15-latin-300.woff">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\prod\open-sans-v15-latin-300.woff2">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\prod\open-sans-v15-latin-700.eot">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\prod\open-sans-v15-latin-700.svg">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\prod\open-sans-v15-latin-700.ttf">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\prod\open-sans-v15-latin-700.woff">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\prod\open-sans-v15-latin-700.woff2">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\prod\open-sans-v15-latin-regular.eot">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\prod\open-sans-v15-latin-regular.svg">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\prod\open-sans-v15-latin-regular.ttf">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\prod\open-sans-v15-latin-regular.woff">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\prod\open-sans-v15-latin-regular.woff2">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\prod\password-meter.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\prod\polyfills-es2015.js">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\prod\polyfills-es5.js">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\prod\primeicons.eot">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\prod\primeicons.svg">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\prod\primeicons.ttf">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\prod\primeicons.woff">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\prod\runtime-es2015.js">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\prod\runtime-es5.js">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\prod\styles.css">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Content\css\shipping-widget.css">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Content\css\shipping-widget.less">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Content\css\shipping-widget.min.css">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Content\js\checkout.js">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Content\Scripts\typings\jquery\jquery.d.ts">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Localization\ResourceString\ResourceString.xml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="logo.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="plugin.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+
+		<Content Include="Views\**\*.*">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Remove="AngularApp\dist\dev\color.png" />
+		<None Remove="AngularApp\dist\dev\hue.png" />
+		<None Remove="AngularApp\dist\dev\index.html" />
+		<None Remove="AngularApp\dist\dev\line.gif" />
+		<None Remove="AngularApp\dist\dev\loading.gif" />
+		<None Remove="AngularApp\dist\dev\main-es2015.js" />
+		<None Remove="AngularApp\dist\dev\main-es2015.js.map" />
+		<None Remove="AngularApp\dist\dev\main-es5.js" />
+		<None Remove="AngularApp\dist\dev\main-es5.js.map" />
+		<None Remove="AngularApp\dist\dev\open-sans-v15-latin-300.eot" />
+		<None Remove="AngularApp\dist\dev\open-sans-v15-latin-300.svg" />
+		<None Remove="AngularApp\dist\dev\open-sans-v15-latin-300.ttf" />
+		<None Remove="AngularApp\dist\dev\open-sans-v15-latin-300.woff" />
+		<None Remove="AngularApp\dist\dev\open-sans-v15-latin-300.woff2" />
+		<None Remove="AngularApp\dist\dev\open-sans-v15-latin-700.eot" />
+		<None Remove="AngularApp\dist\dev\open-sans-v15-latin-700.svg" />
+		<None Remove="AngularApp\dist\dev\open-sans-v15-latin-700.ttf" />
+		<None Remove="AngularApp\dist\dev\open-sans-v15-latin-700.woff" />
+		<None Remove="AngularApp\dist\dev\open-sans-v15-latin-700.woff2" />
+		<None Remove="AngularApp\dist\dev\open-sans-v15-latin-regular.eot" />
+		<None Remove="AngularApp\dist\dev\open-sans-v15-latin-regular.svg" />
+		<None Remove="AngularApp\dist\dev\open-sans-v15-latin-regular.ttf" />
+		<None Remove="AngularApp\dist\dev\open-sans-v15-latin-regular.woff" />
+		<None Remove="AngularApp\dist\dev\open-sans-v15-latin-regular.woff2" />
+		<None Remove="AngularApp\dist\dev\password-meter.png" />
+		<None Remove="AngularApp\dist\dev\polyfills-es2015.js" />
+		<None Remove="AngularApp\dist\dev\polyfills-es2015.js.map" />
+		<None Remove="AngularApp\dist\dev\polyfills-es5.js" />
+		<None Remove="AngularApp\dist\dev\polyfills-es5.js.map" />
+		<None Remove="AngularApp\dist\dev\primeicons.eot" />
+		<None Remove="AngularApp\dist\dev\primeicons.svg" />
+		<None Remove="AngularApp\dist\dev\primeicons.ttf" />
+		<None Remove="AngularApp\dist\dev\primeicons.woff" />
+		<None Remove="AngularApp\dist\dev\runtime-es2015.js" />
+		<None Remove="AngularApp\dist\dev\runtime-es2015.js.map" />
+		<None Remove="AngularApp\dist\dev\runtime-es5.js" />
+		<None Remove="AngularApp\dist\dev\runtime-es5.js.map" />
+		<None Remove="AngularApp\dist\dev\styles.css" />
+		<None Remove="AngularApp\dist\dev\styles.css.map" />
+		<None Remove="AngularApp\dist\dev\vendor-es2015.js" />
+		<None Remove="AngularApp\dist\dev\vendor-es2015.js.map" />
+		<None Remove="AngularApp\dist\dev\vendor-es5.js" />
+		<None Remove="AngularApp\dist\dev\vendor-es5.js.map" />
+		<None Remove="AngularApp\dist\prod\color.png" />
+		<None Remove="AngularApp\dist\prod\hue.png" />
+		<None Remove="AngularApp\dist\prod\index.html" />
+		<None Remove="AngularApp\dist\prod\line.gif" />
+		<None Remove="AngularApp\dist\prod\loading.gif" />
+		<None Remove="AngularApp\dist\prod\main-es2015.js" />
+		<None Remove="AngularApp\dist\prod\main-es5.js" />
+		<None Remove="AngularApp\dist\prod\open-sans-v15-latin-300.eot" />
+		<None Remove="AngularApp\dist\prod\open-sans-v15-latin-300.svg" />
+		<None Remove="AngularApp\dist\prod\open-sans-v15-latin-300.ttf" />
+		<None Remove="AngularApp\dist\prod\open-sans-v15-latin-300.woff" />
+		<None Remove="AngularApp\dist\prod\open-sans-v15-latin-300.woff2" />
+		<None Remove="AngularApp\dist\prod\open-sans-v15-latin-700.eot" />
+		<None Remove="AngularApp\dist\prod\open-sans-v15-latin-700.svg" />
+		<None Remove="AngularApp\dist\prod\open-sans-v15-latin-700.ttf" />
+		<None Remove="AngularApp\dist\prod\open-sans-v15-latin-700.woff" />
+		<None Remove="AngularApp\dist\prod\open-sans-v15-latin-700.woff2" />
+		<None Remove="AngularApp\dist\prod\open-sans-v15-latin-regular.eot" />
+		<None Remove="AngularApp\dist\prod\open-sans-v15-latin-regular.svg" />
+		<None Remove="AngularApp\dist\prod\open-sans-v15-latin-regular.ttf" />
+		<None Remove="AngularApp\dist\prod\open-sans-v15-latin-regular.woff" />
+		<None Remove="AngularApp\dist\prod\open-sans-v15-latin-regular.woff2" />
+		<None Remove="AngularApp\dist\prod\password-meter.png" />
+		<None Remove="AngularApp\dist\prod\polyfills-es2015.js" />
+		<None Remove="AngularApp\dist\prod\polyfills-es5.js" />
+		<None Remove="AngularApp\dist\prod\primeicons.eot" />
+		<None Remove="AngularApp\dist\prod\primeicons.svg" />
+		<None Remove="AngularApp\dist\prod\primeicons.ttf" />
+		<None Remove="AngularApp\dist\prod\primeicons.woff" />
+		<None Remove="AngularApp\dist\prod\runtime-es2015.js" />
+		<None Remove="AngularApp\dist\prod\runtime-es5.js" />
+		<None Remove="AngularApp\dist\prod\styles.css" />
+		<None Remove="Content\css\shipping-widget.css" />
+		<None Remove="Content\css\shipping-widget.less" />
+		<None Remove="Content\css\shipping-widget.min.css" />
+		<None Remove="Content\js\checkout.js" />
+		<None Remove="Content\Scripts\typings\jqueryui\jqueryui.d.ts" />
+		<None Remove="Content\Scripts\typings\jquery\jquery.d.ts" />
+		<None Remove="logo.jpg" />
+		<None Remove="logo.png" />
+		<None Remove="Views\FiluetShippingWidgetCheckout\FiluetOpcShippingMethods.cshtml" />
+		<None Remove="Views\Shared\Components\CheckoutShippingMethodTopWidget\Default.cshtml" />
+		<None Remove="Views\Shared\Components\OrderSummaryContentBeforeWidget\Default.cshtml" />
+		<None Remove="Views\Shared\Components\WidgetHead\Default.cshtml" />
+		<None Remove="Views\Shared\_Widget.Content.cshtml" />
+		<None Remove="Views\ShippingWidgetPlugin\Configure.cshtml" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="Content\Scripts\typings\jqueryui\jqueryui.d.ts">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.2.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.9" />
+		<PackageReference Include="JetBrains.Annotations" Version="2023.2.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\Presentation\Nop.Web.Framework\Nop.Web.Framework.csproj">
+			<Private>False</Private>
+		</ProjectReference>
+		<ProjectReference Include="..\..\Presentation\Nop.Web\Nop.Web.csproj">
+			<Private>False</Private>
+		</ProjectReference>
+		<ProjectReference Include="..\ISDK.Filuet.OnlineOrdering.CorePlugin\ISDK.Filuet.OnlineOrdering.CorePlugin.csproj">
+			<Private>False</Private>
+			<CopyLocalSatelliteAssemblies>True</CopyLocalSatelliteAssemblies>
+		</ProjectReference>
+		<ProjectReference Include="..\ISDK.Filuet.OnlineOrdering.NopFiluetCommon\ISDK.Filuet.OnlineOrdering.NopFiluetCommon.csproj">
+			<Private>False</Private>
+			<CopyLocalSatelliteAssemblies>True</CopyLocalSatelliteAssemblies>
+		</ProjectReference>
+		<ProjectReference Include="..\Nop.Plugin.Pickup.PickupInStore\Nop.Plugin.Pickup.PickupInStore.csproj">
+			<Private>False</Private>
+			<CopyLocalSatelliteAssemblies>True</CopyLocalSatelliteAssemblies>
+		</ProjectReference>
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<ClearPluginAssemblies Include="$(MSBuildProjectDirectory)\..\..\Build\ClearPluginAssemblies.proj" />
+	</ItemGroup>
+	<!-- This target execute after "Build" target -->
+	<Target Name="NopTarget" AfterTargets="Build">
+		<!-- Copy all dll files from refs folder -->
+		<ItemGroup>
+			<DllsToCopy Include="$(OutDir)\refs\*.dll" />
+		</ItemGroup>
+		<Copy SourceFiles="@(DllsToCopy)" DestinationFolder="$(OutDir)" />
+
+		<!-- Delete unnecessary libraries from plugins path -->
+		<MSBuild Projects="@(ClearPluginAssemblies)" Properties="PluginPath=$(MSBuildProjectDirectory)\$(OutDir)" Targets="NopClear" />
+		<Delete Files="$(OutDir)\$(AssemblyName).deps.json" />
+		<Delete Files="$(OutDir)\$(AssemblyName).runtimeconfig.json" />
+		<Delete Files="$(OutDir)\$(AssemblyName).runtime.json" />
+		<Delete Files="$(OutDir)\$(AssemblyName).pdb" />
+		<RemoveDir Directories="$(OutDir)\refs" />
+	</Target>
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+		<Exec Command="rd /s /q $(OutDir)runtimes" />
+	</Target>
+</Project>

@@ -1,0 +1,169 @@
+@model FiluetOrderTotalsModel
+
+@{
+    string orderMonth = Model.OrderMonth;
+    string orderMonthVolume = Model.OrderMonthVolume;
+    string discountRate = Model.DiscountRate;
+    string orderVolumePoints = Model.OrderVolumePoints;
+    string productEarnbase = Model.ProductEarnBase;
+    string subTotal = Model.SubTotal;
+    string total = Model.OrderTotal;
+    string taxAmount = Model.Tax;
+    string discountedBasePrice = Model.DiscountedBasePrice;
+    string shippingCost = Model.Shipping;
+    string deliveryPrice = Model.DeliveryPrice;
+    bool showDeliveryPrice = Model.ShowDeliveryPrice;
+}
+<div class="cart-totals-container">
+    <div class="cart-total-column cart-total-order-details">
+        <div class="cart-total-column-content">
+            <table class="cart-total">
+                <tbody>
+                    <tr class="order-total">
+                        <td class="cart-total-left">
+                            <label>@T("ShoppingCart.Totals.OrderMonth"):</label>
+                        </td>
+                        <td class="cart-total-right">
+                            <span class="value-summary"><strong>@orderMonth</strong></span>
+                        </td>
+                    </tr>
+                    <tr class="order-total">
+                        <td class="cart-total-left">
+                            <label>@T("ShoppingCart.Totals.OrderMonthVolume"):</label>
+                        </td>
+                        <td class="cart-total-right">
+                            <span class="value-summary"><strong>@orderMonthVolume</strong></span>
+                        </td>
+                    </tr>
+                    <tr class="order-total">
+                        <td class="cart-total-left">
+                            <label>@T("ShoppingCart.Totals.DeliveryPrice"):</label>
+                        </td>
+                        <td class="cart-total-right">
+                            <span class="value-summary"><strong>@deliveryPrice</strong></span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="cart-total-column cart-total-totals-overview">
+        <div class="cart-total-column-content">
+            <table class="cart-total">
+                <tbody>
+                    <tr class="order-total">
+                        <td class="cart-total-left">
+                            <label>@T("ShoppingCart.Totals.OrderVolumePoints"):</label>
+                        </td>
+                        <td class="cart-total-right">
+                            <span class="value-summary"><strong>@orderVolumePoints</strong></span>
+                        </td>
+                    </tr>
+                    <tr class="order-total">
+                        <td class="cart-total-left">
+                            <label>@T("ShoppingCart.Totals.TotalDue"):</label>
+                        </td>
+                        <td class="cart-total-right">
+                            <span class="value-summary"><strong>@total</strong></span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div id="accordion">
+    <h3>
+        <label class="accordion-label">
+            @T("shoppingcart.totals.orderdetailstitle")
+        </label>
+    </h3>
+
+    <div class="cart-totals-container">
+        <div class="cart-total-column">
+            <div class="cart-total-column-content">
+                <table class="cart-total">
+                    <tbody>
+                        <tr class="order-total">
+                            <td class="cart-total-left">
+                                <label>@T("ShoppingCart.Totals.DiscountRate"):</label>
+                            </td>
+                            <td class="cart-total-right">
+                                <span class="value-summary"><strong>@discountRate</strong></span>
+                            </td>
+                        </tr>
+                        <tr class="order-total">
+                            <td class="cart-total-left">
+                                <label>@T("ShoppingCart.Totals.ProductEarnBase"):</label>
+                            </td>
+                            <td class="cart-total-right">
+                                <span class="value-summary"><strong>@productEarnbase</strong></span>
+                            </td>
+                        </tr>
+                        <tr class="order-total">
+                            <td class="cart-total-left">
+                                <label>@T("ShoppingCart.Totals.BasePrice"):</label>
+                            </td>
+                            <td class="cart-total-right">
+                                <span class="value-summary"><strong>@subTotal</strong></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="cart-total-column">
+            <div class="cart-total-column-content">
+                <table class="cart-total">
+                    <tbody>
+                        <tr class="order-total">
+                            <td class="cart-total-left">
+                                <label>@T("ShoppingCart.Totals.DiscountedBasePrice"):</label>
+                            </td>
+                            <td class="cart-total-right">
+                                <span class="value-summary"><strong>@discountedBasePrice</strong></span>
+                            </td>
+                        </tr>
+                        <tr class="order-total">
+                            <td class="cart-total-left">
+                                <label>@T("ShoppingCart.Totals.ShippingCost"):</label>
+                            </td>
+                            <td class="cart-total-right">
+                                <span class="value-summary"><strong>@shippingCost</strong></span>
+                            </td>
+                        </tr>
+                        <tr class="order-total">
+                            <td class="cart-total-left">
+                                <label>@T("ShoppingCart.Totals.TotalTaxAmount"):</label>
+                            </td>
+                            <td class="cart-total-right">
+                                <span class="value-summary"><strong>@taxAmount</strong></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        $("#accordion")
+            .accordion({
+                collapsible: true,
+                active: false,
+                heightStyle: "content"
+            });
+
+
+        $("#accordion").find('input[type="checkbox"]').on('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            setTimeout(function () {
+                this.checked = !this.checked;
+            }.bind(this), 100);
+        });
+
+
+    });
+</script>

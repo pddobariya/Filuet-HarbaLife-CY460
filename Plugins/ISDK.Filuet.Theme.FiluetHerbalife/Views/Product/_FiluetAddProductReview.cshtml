@@ -1,0 +1,105 @@
+﻿@model ProductReviewsModel
+<div class="add_review">
+
+    <div class="block_head">
+        <div class="title">@T("Reviews.Write")</div>
+    </div>
+
+    <form id="add-product-review-form" class="form" method="post" enctype="multipart/form-data">
+        
+        <input type="hidden" name="ProductId" value="@Model.ProductId"/>
+
+        <div class="line">
+            <div class="label">@T("ISDK.Filuet.Theme.FiluetHerbalife.ProductReviewTitle")</div>
+
+            <div class="field">
+                <input type="text" id="product-review-title" name="AddProductReview.Title" value="" class="input">
+            </div>
+        </div>
+
+        <div class="line">
+            <div class="label">@T("ISDK.Filuet.Theme.FiluetHerbalife.ProductReviewContent")</div>
+
+            <div class="field">
+                <textarea id="product-review-text" name="AddProductReview.ReviewText"></textarea>
+            </div>
+        </div>
+
+        <div class="line">
+            <div class="label">@T("ISDK.Filuet.Theme.FiluetHerbalife.ProductReviewRating")</div>
+
+            <div class="field">
+                <div class="stars">
+                    <input type="radio" name="AddProductReview.Rating" id="rating-5" value="5">
+                    <label for="rating-5">
+                        <svg class="icon"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_star")"></use></svg>
+                    </label>
+
+                    <input type="radio" name="AddProductReview.Rating" id="rating-4" value="4">
+                    <label for="rating-4">
+                        <svg class="icon"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_star")"></use></svg>
+                    </label>
+
+                    <input type="radio" name="AddProductReview.Rating" id="rating-3" value="3">
+                    <label for="rating-3">
+                        <svg class="icon"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_star")"></use></svg>
+                    </label>
+
+                    <input type="radio" name="AddProductReview.Rating" id="rating-2" value="2">
+                    <label for="rating-2">
+                        <svg class="icon"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_star")"></use></svg>
+                    </label>
+
+                    <input type="radio" name="AddProductReview.Rating" id="rating-1" value="1">
+                    <label for="rating-1">
+                        <svg class="icon"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_star")"></use></svg>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="submit">
+            <button type="submit" id="add-review" class="submit_btn">@T("Reviews.SubmitButton")</button>
+        </div>
+
+    </form>
+</div>
+
+<script asp-location="Footer">
+
+    $(document).ready(function () {
+
+        $(document).on('click', '#add-review', function(e) {
+            e.preventDefault();
+
+            $.ajax({
+                cache: false,
+                url: '@Html.Raw(Url.Action("ProductReviewsAdd", "FiluetHerbalifePublic"))',
+                data: $('#add-product-review-form').serialize(),
+                type: 'POST',
+                beforeSend: function () {
+                    displayAjaxLoading(true);
+                },
+                success: function (response) {
+                    if (response.AddProductReview.Result) {
+                        if (!response.AddProductReview.SuccessfullyAdded) {
+                            $('#product-review-title').val('')
+                            $('#product-review-text').val('')
+                        }
+
+                        alert(response.AddProductReview.Result);
+                    }
+                    else
+                        alert('An error has occurred');
+                },
+                complete: function () {
+                    displayAjaxLoading(false);
+                },
+                error: function () {
+                    alert('An error has occurred');
+                }
+            });
+        });
+    });
+
+</script>

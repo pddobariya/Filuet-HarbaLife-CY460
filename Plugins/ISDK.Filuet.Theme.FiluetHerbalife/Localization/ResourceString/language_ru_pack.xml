@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Language Name="RU">
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Contact">
+		<Value>Контакты</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.PhoneTitle">
+		<Value>Звоните и пишите:</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Phone">
+		<Value>+371 67376575 (76)</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Phone1">
+		<Value>8000371110</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.PhoneCountry1">
+		<Value>Эстония</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Phone2">
+		<Value>80005002</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.PhoneCountry2">
+		<Value>Латвия</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Phone3">
+		<Value>880090034</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.PhoneCountry3">
+		<Value>Литва</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.EmailName">
+		<Value>orderline</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.EmailAt">
+		<Value>@</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.EmailDomain">
+		<Value>filuet.lv</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.SocialTitle">
+		<Value>Заходите в соц. сети</Value>
+	</LocaleResource>
+	<LocaleResource Name="Account.CustomerInfo.AddAddress">
+		<Value>Добавить адрес</Value>
+	</LocaleResource>
+	<LocaleResource Name="Account.CustomerInfo.AddPhone">
+		<Value>Добавить телефон</Value>
+	</LocaleResource>
+	<LocaleResource Name="Search.OrderHistory.OrderNumber.Tooltip">
+		<Value>Поиск по номеру заказа</Value>
+	</LocaleResource>
+	<LocaleResource Name="Account.CustomerOrders.OrdersWarning">
+		<Value>Обратите внимание, здесь отражаются только заказы, сделанные через сайт! Полный перечень своих заказов Вы можете увидеть на сайте myherbalife.com</Value>
+	</LocaleResource>
+	<LocaleResource Name="Account.CustomerOrders.VolumePoints">
+		<Value>VP</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.OrderStatus">
+		<Value>Обработка заказа</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Order.FusionInformation">
+		<Value>Ваш заказ оплачен и принят в обработку. Скоро мы присвоим ему индивидуальный номер.</Value>
+	</LocaleResource>
+	<LocaleResource Name="FiluetPager.Next">
+		<Value>Дальше</Value>
+	</LocaleResource>
+	<LocaleResource Name="Bestsellers">
+		<Value>Избранные продукты</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.CategoryIdForCatalogueTitle">
+		<Value>Id категории Каталог</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.CategoryIdForProgrammTitle">
+		<Value>Id категории Продуктовые программы</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Info">
+		<Value>Информация</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Faq">
+		<Value>Вопрос - Ответ</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.ShowMoreGoods">
+		<Value>показать больше товаров</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.ShowMoreProgramms">
+		<Value>показать больше программ</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.NewsBlockTitle">
+		<Value>Новости</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.LastNews">
+		<Value>Последние новости</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.ShowMoreNews">
+		<Value>показать больше новостей</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.NewsPinned">
+		<Value>новость закреплена</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Pinned">
+		<Value>закреплено</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.ShareOnTelegram">
+		<Value>Поделиться в Telegram</Value>
+	</LocaleResource>
+	<LocaleResource Name="Products.Wishlist.AddToWishlist">
+		<Value>Добавить в избранное</Value>
+	</LocaleResource>
+	<LocaleResource Name="Products.Wishlist.AddToWishlistMob">
+		<Value>В избранное</Value>
+	</LocaleResource>
+	<LocaleResource Name="Products.Compare.AddToCompareList">
+		<Value>Сравнить с другими</Value>
+	</LocaleResource>
+	<LocaleResource Name="Products.Compare.AddToCompareListMob">
+		<Value>Сравнить</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.ProductReviewTitle">
+		<Value>Заголовок</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.ProductReviewContent">
+		<Value>Текст отзыва</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.ProductReviewRating">
+		<Value>Оценка</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.AboutFinalPrice">
+		<Value>*Указанная база для расчета цены - это цена до применения вашего уровня скидки. Финальная цена при оформлении заказа может отличаться.</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Sort">
+		<Value>Сортировать по</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.PriceFilter">
+		<Value>Цена:</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.PriceFilterFrom">
+		<Value>от</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.PriceFilterTo">
+		<Value>до</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.MoreAboutProgram">
+		<Value>Подробнее о программе</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Content">
+		<Value>Содержание</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.AllQuestions">
+		<Value>Все вопросы</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.AnswersToQuestions">
+		<Value>Ответы на часто задаваемые вопросы</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.IfYouHaveAny">
+		<Value>Если у вас остались</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.QuestionsAskUs">
+		<Value>вопросы, задайте их нам</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.AskQuestion">
+		<Value>ЗАДАТЬ ВОПРОС</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.SearchKeyword">
+		<Value>Ключевое слово</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Find">
+		<Value>Найти</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Expression">
+		<Value>*Указанная база для расчета цены - это цена до применения вашего уровня скидки. Финальная цена при оформлении заказа может отличаться.</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.AddToBasket">
+		<Value>Добавить в корзину</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.InShoppingCart">
+		<Value>В КОРЗИНЕ</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.BlogPicture">
+		<Value>Картина</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.BlogTagColor">
+		<Value>Цвет тега</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.BlogIsPinned">
+		<Value>Закрепить новость</Value>
+	</LocaleResource>
+	<LocaleResource Name="Enums.ISDK.Filuet.OnlineOrdering.CorePlugin.Constants.OrderSortingEnum.Position">
+		<Value>Позиции</Value>
+	</LocaleResource>
+	<LocaleResource Name="Enums.ISDK.Filuet.OnlineOrdering.CorePlugin.Constants.OrderSortingEnum.CreatedOnAsc">
+		<Value>Дате создания по возрастанию</Value>
+	</LocaleResource>
+	<LocaleResource Name="Enums.ISDK.Filuet.OnlineOrdering.CorePlugin.Constants.OrderSortingEnum.CreatedOnDesc">
+		<Value>Дате создания по убыванию</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.AllProductsInCategory">
+		<Value>Все продукты в категории</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.ProgrammContent">
+		<Value>Состав программы:</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Filter">
+		<Value>ФИЛЬТРОВАТЬ</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.AutoPostOfficeLanguageComment">
+		<Value>Коментарий к пакоматам</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.NoData">
+		<Value>Нет данных</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.ShoppingCart.Checkout1">
+		<Value>Оформление</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.ShoppingCart.Checkout2">
+		<Value>заказа</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.ShoppingCart.Confirmation1">
+		<Value>Подтверждение</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.ShoppingCart.Confirmation2">
+		<Value>заказа</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.ShoppingCart.Name">
+		<Value>Наименование</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.ShoppingCart.Quantity">
+		<Value>Кол.</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.ShoppingCart.TotalPrice">
+		<Value>Сумма</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.ShoppingCart.AddToOrder">
+		<Value>Добавить в заказ</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.ShoppingCart.AddBySku">
+		<Value>Добавить по SKU</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.ShoppingCart.ProductBySkuNotFound">
+		<Value>Продукт с таким SKU не найден</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.ShoppingCart.SelectOrderMonth">
+		<Value>Выберите месяц заказа</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Checkout.FillOrderDetails">
+		<Value>Заполните данные заказа</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Checkout.ShippingCountry">
+		<Value>Выберите страну доставки</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Checkout.ShippingMethod">
+		<Value>Метод доставки</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Checkout.ReceiverName">
+		<Value>ФИО получателя</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Checkout.UnableToDeliver">
+		<Value>Невозможно доставить</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Checkout.EditOrder">
+		<Value>Редактировать заказ</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Checkout.ChangeCountry">
+		<Value>Сменить страну</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Shipping.CheckYourOrder">
+		<Value>Проверьте ваш заказ</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Shipping.CarrierInfo">
+		<Value>Здесь располагается информация о</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Shipping.CarrierUrlInfo">
+		<Value>перевозчике</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Shipping.DeliveryComment">
+		<Value>Коментарий к доставке</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Settings.OmnivaCarrierUrl">
+		<Value>Ссылка на курьерскую компанию Omniva</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Settings.DPDLatviaCarrierUrl">
+		<Value>Ссылка на курьерскую компанию DPD. Латвия</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Settings.DPDLithuaniaCarrierUrl">
+		<Value>Ссылка на курьерскую компанию DPD. Литва</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Settings.DPDEstoniaCarrierUrl">
+		<Value>Ссылка на курьерскую компанию DPD. Эстония</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Contacts.OurContacts">
+		<Value>Наши контакты</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Contacts.FeedbackForm">
+		<Value>Форма обратной связи</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Contacts.YourName">
+		<Value>Ваше имя</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Contacts.YourEmail">
+		<Value>Ваш email</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Contacts.Comment">
+		<Value>Комментарий</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Account.Profile">
+		<Value>Профиль</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Account.Logout">
+		<Value>Выход</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Blog.Archive">
+		<Value>Архив публикаций</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.CartRepeatOrderDialog.Question">
+		<Value>При оплате произошла ошибка. Разместить заказ повторно?</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.CartRepeatOrderDialog.OrderNumber">
+		<Value>Номер заказа:</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.CartRepeatOrderDialog.Yes">
+		<Value>Да</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.CartRepeatOrderDialog.No">
+		<Value>Нет</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Account.Login.Title">
+		<Value>Войти на сайт</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Account.Login.RememberMe">
+		<Value>Запомнить меня?</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Reviews.NotAllowedForProduct">
+		<Value>Отзыв не разрешен для товара</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Products.Description">
+		<Value>Описание товара</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Category.DownloadProgram">
+		<Value>СКАЧАТЬ ПРОГРАММУ</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.ISDK.Filuet.Theme.FiluetHerbalife.Program.Category.Slogan">
+		<Value>Слоган программы</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.ISDK.Filuet.Theme.FiluetHerbalife.Program.Category.Description">
+		<Value>Описание программы</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.ISDK.Filuet.Theme.FiluetHerbalife.Program.Category.DownloadLink">
+		<Value>Ссылка на скачивание программы</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.ISDK.Filuet.Theme.FiluetHerbalife.Program.Category.ExpertPhotoUrl">
+		<Value>Ссылка на фото эксперта</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.ISDK.Filuet.Theme.FiluetHerbalife.Program.Category.ExpertReview">
+		<Value>Цитата эксперта</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.ISDK.Filuet.Theme.FiluetHerbalife.Program.Category.ExpertName">
+		<Value>ФИО эксперта</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.ISDK.Filuet.Theme.FiluetHerbalife.Program.Category.ExpertPost">
+		<Value>Пост эксперта</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.ISDK.Filuet.Theme.FiluetHerbalife.Program.SubCategory.Name">
+		<Value>Название</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.ISDK.Filuet.Theme.FiluetHerbalife.Program.SubCategory.Title">
+		<Value>Заголовок типа программы</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.ISDK.Filuet.Theme.FiluetHerbalife.Program.SubCategory.Slogan">
+		<Value>Слоган типа программы</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.ISDK.Filuet.Theme.FiluetHerbalife.Program.SubCategory.Description">
+		<Value>Описание типа программы</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.ISDK.Filuet.Theme.FiluetHerbalife.Program.SubCategory.DownloadLink">
+		<Value>Ссылка на скачивание типа программы</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.ISDK.Filuet.Theme.FiluetHerbalife.Program.SubCategory.ProgramTypeName">
+		<Value>Название типа программы</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.ISDK.Filuet.Theme.FiluetHerbalife.Program.SubCategory.ImageSrc">
+		<Value>Изображение типа программы</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.ISDK.Filuet.Theme.FiluetHerbalife.Program.SubCategory.SecondProgramTypeName">
+		<Value>Название второго типа программы</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.ISDK.Filuet.Theme.FiluetHerbalife.Program.SubCategory.SecondProgramTypeRef">
+		<Value>Ссылка на второй тип программы</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.ISDK.Filuet.Theme.FiluetHerbalife.Program.SubCategory.ThirdProgramTypeName">
+		<Value>Название третьего типа программы</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.ISDK.Filuet.Theme.FiluetHerbalife.Program.SubCategory.ThirdProgramTypeRef">
+		<Value>Ссылка на третий тип программы</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.ISDK.Filuet.Theme.FiluetHerbalife.Program.SubCategory.Footnote">
+		<Value>Заметки</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.ISDK.Filuet.Theme.FiluetHerbalife.Program.SubCategory.Benefits.Name">
+		<Value>Название </Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.ISDK.Filuet.Theme.FiluetHerbalife.Program.SubCategory.Benefits.Description">
+		<Value>Описание</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Program.SubCategory.ProgramBenefits">
+		<Value>Польза от программы</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.ISDK.Filuet.Theme.FiluetHerbalife.Product.ProductDescription.PdfFile.PdfRef">
+		<Value>Ссылка на pdf</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.ISDK.Filuet.Theme.FiluetHerbalife.Product.ProductDescription.PdfFile.PdfLabel">
+		<Value>Название pdf</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.ISDK.Filuet.Theme.FiluetHerbalife.Product.ProductDescription.Description">
+		<Value>Описание</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.ISDK.Filuet.Theme.FiluetHerbalife.Catalog.Products.PdfFiles.AddNew">
+		<Value>Добавить новый pdf файл</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.ISDK.Filuet.Theme.FiluetHerbalife.Catalog.Products.PdfFiles.Hint">
+		<Value>Характеристики товара. Pdf файлы</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Account.TV">
+		<Value>Незасчитанный объем</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Fields.DiscountCartBarLabel">
+		<Value>Скидка</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Fields.VPCartBarLabel">
+		<Value>VP</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Fields.TotalCartBarLabel">
+		<Value>Всего</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Messages.ShippingCountrySelectorUpdateFailed">
+		<Value>Неизвестная ошибка, повторите попытку</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Messages.ShippingCountryPopupMessage">
+		<Value>Ваша страна доставки заказа</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Fields.ShippingCountryPopupConfirmButton">
+		<Value>Да</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Fields.ShippingCountryPopupDeclineButton">
+		<Value>Изменить</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Messages.ShippingCountryPopupConfirmError">
+		<Value>Неизвестная ошибка, повторите попытку</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Fields.ShipToLabel">
+		<Value>Доставка в:</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Country.Latvia">
+		<Value>Латвия</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Country.Lithuania">
+		<Value>Литва</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Country.Estonia">
+		<Value>Эстония</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Menu">
+		<Value>МЕНЮ</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Fields.Language">
+		<Value>Язык:</Value>
+	</LocaleResource>
+</Language>

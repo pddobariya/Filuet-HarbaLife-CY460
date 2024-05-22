@@ -1,0 +1,76 @@
+﻿@model CheckoutPaymentMethodModel
+    <div class="checkout-data">
+        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.OpCheckoutPaymentMethodTop })
+        <div class="section payment-method">
+            @if (Model.DisplayRewardPoints && Model.PaymentMethods.Count > 0)
+            {
+                <div class="use-reward-points">
+                    @Html.CheckBoxFor(x => x.UseRewardPoints, Model.RewardPointsEnoughToPayForOrder ? new { @onclick = "PaymentMethod.toggleUseRewardPoints(this)" } : null)
+                    @string.Format(T("Checkout.UseRewardPoints").Text, Model.RewardPointsBalance, Model.RewardPointsToUseAmount)
+                    @if (Model.RewardPointsEnoughToPayForOrder)
+                    {
+                        <script type="text/javascript">
+                        $(document).ready(function() {
+                            PaymentMethod.toggleUseRewardPoints($('#@Html.IdFor(model => model.UseRewardPoints)'));
+                        });
+                        </script>
+                    }
+                </div>
+            }
+
+            @if (Model.PaymentMethods.Count > 0)
+            {
+                <script type="text/javascript">
+
+                    function extendSelectPaymentMethod(idPaymentMethod) {
+                        $(idPaymentMethod).prop('checked', true);
+                    }
+                </script>
+
+                <div class="extend-payment-block">
+                    @for (int i = 0; i < Model.PaymentMethods.Count; i++)
+                    {
+                        var paymentMethod = Model.PaymentMethods[i];
+                        var paymentMethodName = paymentMethod.Name;
+                        if (!String.IsNullOrEmpty(paymentMethod.Fee))
+                        {
+                            paymentMethodName = T("Checkout.SelectPaymentMethod.MethodAndFee", paymentMethodName, paymentMethod.Fee).Text;
+                        }
+                        if (i % 3 == 0)
+                        {
+                            @Html.Raw("<div class='payment-method-row'>");
+                        }
+                        <div class="payment-method-item" onclick="extendSelectPaymentMethod(paymentmethod_@(i))">
+                            <div class="payment-method-item__input">
+                                <input id="paymentmethod_@(i)" type="radio" name="paymentmethod"
+                                       value="@(paymentMethod.PaymentMethodSystemName)"
+                                       checked="@paymentMethod.Selected" />
+                            </div>
+                            @if (!String.IsNullOrEmpty(paymentMethod.LogoUrl))
+                            {
+                                <div class="payment-method-item__logo">
+                                    <div class="logo-img" style="background-image: url('@paymentMethod.LogoUrl')">
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="payment-method-item__logo">@paymentMethodName</div>
+                            }
+                        </div>
+                        if (i % 3 == 2 || (i == Model.PaymentMethods.Count - 1 && i % 3 == 1))
+                        {
+                            @Html.Raw("</div>");
+                        }
+                    }
+                </div>
+            }
+            else
+            {
+                <div class="message-error">
+                    @T("Checkout.NoPaymentMethods")
+                </div>
+            }
+        </div>
+        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.OpCheckoutPaymentMethodBottom })        
+    </div>

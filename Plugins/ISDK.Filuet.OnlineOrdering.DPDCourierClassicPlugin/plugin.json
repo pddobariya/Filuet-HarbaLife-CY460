@@ -1,0 +1,11 @@
+{
+  "Group": "Xcellence-it",
+  "FriendlyName": "DPD courier classic",
+  "SystemName": "ISDK.Filuet.OnlineOrdering.DPDCourierClassicPlugin",
+  "Version": "1.50",
+  "SupportedVersions": [ "4.60" ],
+  "Author": "Xcellence-it",
+  "DisplayOrder": 1,
+  "FileName": "ISDK.Filuet.OnlineOrdering.DPDCourierClassicPlugin.dll",
+  "Description": "DPD courier classic plugin"
+}

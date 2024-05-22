@@ -1,0 +1,293 @@
+﻿@model FiluetCategoryModel
+
+<script>
+    var programBenefitsDataSource = {}
+    var productBenefitsList = {}
+</script>
+
+<div class="card-body">
+    @(await Html.LocalizedEditorAsync<FiluetCategoryModel, FiluetCategoryLocalizedModel>("category-name-localized",
+        @<div>
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <nop-label asp-for="@Model.Locales[item].Name" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="@Model.Locales[item].Name" />
+                    <span asp-validation-for="@Model.Locales[item].Name"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <nop-label asp-for="@Model.Locales[item].ProgramSubCategoryModel.Title" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="@Model.Locales[item].ProgramSubCategoryModel.Title" />
+                    <span asp-validation-for="@Model.Locales[item].ProgramSubCategoryModel.Title"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <nop-label asp-for="@Model.Locales[item].ProgramSubCategoryModel.Slogan" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="@Model.Locales[item].ProgramSubCategoryModel.Slogan" asp-template="RichEditor"/>
+                    <span asp-validation-for="@Model.Locales[item].ProgramSubCategoryModel.Slogan"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <nop-label asp-for="@Model.Locales[item].ProgramSubCategoryModel.Description" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="@Model.Locales[item].ProgramSubCategoryModel.Description" asp-template="RichEditor"></nop-editor>
+                    <span asp-validation-for="@Model.Locales[item].ProgramSubCategoryModel.Description"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <nop-label asp-for="@Model.Locales[item].ProgramSubCategoryModel.DownloadLink" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="@Model.Locales[item].ProgramSubCategoryModel.DownloadLink" />
+                    <span asp-validation-for="@Model.Locales[item].ProgramSubCategoryModel.DownloadLink"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-9">
+                    <input type="hidden" asp-for="@Model.Locales[item].ProgramSubCategoryModel.ProgramTypeId" />
+                    <span asp-validation-for="@Model.Locales[item].ProgramSubCategoryModel.ProgramTypeId"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <nop-label asp-for="@Model.Locales[item].ProgramSubCategoryModel.ProgramTypeName" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="@Model.Locales[item].ProgramSubCategoryModel.ProgramTypeName" />
+                    <span asp-validation-for="@Model.Locales[item].ProgramSubCategoryModel.ProgramTypeName"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <nop-label asp-for="@Model.Locales[item].ProgramSubCategoryModel.ImageSrc" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="@Model.Locales[item].ProgramSubCategoryModel.ImageSrc" />
+                    <span asp-validation-for="@Model.Locales[item].ProgramSubCategoryModel.ImageSrc"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-9">
+                    <input type="hidden" asp-for="@Model.Locales[item].ProgramSubCategoryModel.SecondProgramTypeId" />
+                    <span asp-validation-for="@Model.Locales[item].ProgramSubCategoryModel.SecondProgramTypeId"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <nop-label asp-for="@Model.Locales[item].ProgramSubCategoryModel.SecondProgramTypeName" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="@Model.Locales[item].ProgramSubCategoryModel.SecondProgramTypeName" />
+                    <span asp-validation-for="@Model.Locales[item].ProgramSubCategoryModel.SecondProgramTypeName"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <nop-label asp-for="@Model.Locales[item].ProgramSubCategoryModel.SecondProgramTypeRef" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="@Model.Locales[item].ProgramSubCategoryModel.SecondProgramTypeRef" />
+                    <span asp-validation-for="@Model.Locales[item].ProgramSubCategoryModel.SecondProgramTypeRef"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-9">
+                    <input type="hidden" asp-for="@Model.Locales[item].ProgramSubCategoryModel.ThirdProgramTypeId" />
+                    <span asp-validation-for="@Model.Locales[item].ProgramSubCategoryModel.ThirdProgramTypeId"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <nop-label asp-for="@Model.Locales[item].ProgramSubCategoryModel.ThirdProgramTypeName" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="@Model.Locales[item].ProgramSubCategoryModel.ThirdProgramTypeName" />
+                    <span asp-validation-for="@Model.Locales[item].ProgramSubCategoryModel.ThirdProgramTypeName"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <nop-label asp-for="@Model.Locales[item].ProgramSubCategoryModel.ThirdProgramTypeRef" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="@Model.Locales[item].ProgramSubCategoryModel.ThirdProgramTypeRef" />
+                    <span asp-validation-for="@Model.Locales[item].ProgramSubCategoryModel.ThirdProgramTypeRef"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <nop-label asp-for="@Model.Locales[item].ProgramSubCategoryModel.Footnote" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="@Model.Locales[item].ProgramSubCategoryModel.Footnote" asp-template="RichEditor"></nop-editor>
+                    <span asp-validation-for="@Model.Locales[item].ProgramSubCategoryModel.Footnote"></span>
+                </div>
+            </div>
+
+            @await Html.PartialAsync("_SubProgramBenefitsGrid", Model.Locales[item].ProgramSubCategoryModel)
+
+            <input type="hidden" asp-for="@Model.Locales[item].LanguageId" />
+        </div>
+        ,
+        @<div>
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <nop-label asp-for="Name" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="Name" />
+                    <span asp-validation-for="Name"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <nop-label asp-for="ProgramSubCategoryModel.Title" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="ProgramSubCategoryModel.Title" />
+                    <span asp-validation-for="ProgramSubCategoryModel.Title"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <nop-label asp-for="ProgramSubCategoryModel.Slogan" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="ProgramSubCategoryModel.Slogan" asp-template="RichEditor"/>
+                    <span asp-validation-for="ProgramSubCategoryModel.Slogan"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <nop-label asp-for="ProgramSubCategoryModel.Description" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="ProgramSubCategoryModel.Description" asp-template="RichEditor"></nop-editor>
+                    <span asp-validation-for="ProgramSubCategoryModel.Description"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <nop-label asp-for="ProgramSubCategoryModel.DownloadLink" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="ProgramSubCategoryModel.DownloadLink" />
+                    <span asp-validation-for="ProgramSubCategoryModel.DownloadLink"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-9">
+                    <input type="hidden" asp-for="ProgramSubCategoryModel.ProgramTypeId" />
+                    <span asp-validation-for="ProgramSubCategoryModel.ProgramTypeId"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <nop-label asp-for="ProgramSubCategoryModel.ProgramTypeName" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="ProgramSubCategoryModel.ProgramTypeName" />
+                    <span asp-validation-for="ProgramSubCategoryModel.ProgramTypeName"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <nop-label asp-for="ProgramSubCategoryModel.ImageSrc" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="ProgramSubCategoryModel.ImageSrc" />
+                    <span asp-validation-for="ProgramSubCategoryModel.ImageSrc"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-9">
+                    <input type="hidden" asp-for="ProgramSubCategoryModel.SecondProgramTypeId" />
+                    <span asp-validation-for="ProgramSubCategoryModel.SecondProgramTypeId"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <nop-label asp-for="ProgramSubCategoryModel.SecondProgramTypeName" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="ProgramSubCategoryModel.SecondProgramTypeName" />
+                    <span asp-validation-for="ProgramSubCategoryModel.SecondProgramTypeName"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <nop-label asp-for="ProgramSubCategoryModel.SecondProgramTypeRef" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="ProgramSubCategoryModel.SecondProgramTypeRef" />
+                    <span asp-validation-for="ProgramSubCategoryModel.SecondProgramTypeRef"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-9">
+                    <input type="hidden" asp-for="ProgramSubCategoryModel.ThirdProgramTypeId" />
+                    <span asp-validation-for="ProgramSubCategoryModel.ThirdProgramTypeId"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <nop-label asp-for="ProgramSubCategoryModel.ThirdProgramTypeName" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="ProgramSubCategoryModel.ThirdProgramTypeName" />
+                    <span asp-validation-for="ProgramSubCategoryModel.ThirdProgramTypeName"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <nop-label asp-for="ProgramSubCategoryModel.ThirdProgramTypeRef" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="ProgramSubCategoryModel.ThirdProgramTypeRef" />
+                    <span asp-validation-for="ProgramSubCategoryModel.ThirdProgramTypeRef"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <nop-label asp-for="ProgramSubCategoryModel.Footnote" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="ProgramSubCategoryModel.Footnote" asp-template="RichEditor"></nop-editor>
+                    <span asp-validation-for="ProgramSubCategoryModel.Footnote"></span>
+                </div>
+            </div>
+
+            @await Html.PartialAsync("_SubProgramBenefitsGrid", Model.ProgramSubCategoryModel)
+        </div>))
+
+    <div class="form-group row">
+        <div class="col-md-3">
+            <nop-label asp-for="ParentCategoryId" />
+        </div>
+        <div class="col-md-9">
+            <nop-select asp-for="ParentCategoryId" asp-items="Model.AvailableCategories" />
+            <span asp-validation-for="ParentCategoryId"></span>
+        </div>
+    </div>
+    <div class="form-group advanced-setting row">
+        <div class="col-md-3">
+            <nop-label asp-for="PictureId" />
+        </div>
+        <div class="col-md-9">
+            <nop-editor asp-for="PictureId" />
+            <span asp-validation-for="PictureId"></span>
+        </div>
+    </div>
+</div>
+

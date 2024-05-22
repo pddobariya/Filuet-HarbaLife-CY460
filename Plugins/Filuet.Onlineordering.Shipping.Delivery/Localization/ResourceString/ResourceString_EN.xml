@@ -1,0 +1,381 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Language Name="EN">
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.City">
+		<Value>City</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.Price">
+		<Value>Price</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.VolumePoints">
+		<Value>Volume Points</Value>
+	</LocaleResource>	
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.FreightCode">
+		<Value>Freight Code</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.Name">
+		<Value>Name</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.Address">
+		<Value>Address</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.WarehouseCode">
+		<Value>Warehouse Code</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.WorkTime">
+		<Value>WorkTime</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.SalesCenter">
+		<Value>Sales centers</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Pickup">
+		<Value>Pickup</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Delivery">
+		<Value>Delivery</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.PickupCenterAddress">
+		<Value>Pickup center address</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.TheCostWillBe">
+		<Value>The cost will be</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.DeliveryCity">
+		<Value>Delivery City</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Comment">
+		<Value>Comment</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.ReceiverName">
+		<Value>Receiver name</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Phone">
+		<Value>123456789</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.EnterPhoneFormat">
+		<Value>Enter the phone in the format</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.ChoosePickupAddress">
+		<Value>Choose pickup address</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.FillIn">
+		<Value>Fill in the fields</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.DeliveryOperators">
+		<Value>Delivery Operators</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.Operator">
+		<Value>Operator</Value>
+	</LocaleResource>
+	<LocaleResource Name="Filuet.Onlineordering.Shipping.Delivery.PhonePrefix">
+		<Value>Phone Prefix</Value>
+	</LocaleResource>
+	<LocaleResource Name="Filuet.Onlineordering.Shipping.Delivery.PhonePrefix.Hint">
+		<Value>Enter a Phone Prefix</Value>
+	</LocaleResource>
+	<LocaleResource Name="Filuet.Onlineordering.Shipping.Delivery.PhoneMask">
+		<Value>Phone Mask</Value>
+	</LocaleResource>
+	<LocaleResource Name="Filuet.Onlineordering.Shipping.Delivery.PhoneMask.Hint">
+		<Value>Enter a Phone Mask</Value>
+	</LocaleResource>
+	<LocaleResource Name="Filuet.Onlineordering.Shipping.Delivery.AddAddressToComment">
+		<Value>Add Address To Comment</Value>
+	</LocaleResource>
+	<LocaleResource Name="Filuet.Onlineordering.Shipping.Delivery.AddAddressToComment.Hint">
+		<Value>Add Address To Comment</Value>
+	</LocaleResource>
+	<LocaleResource Name="Filuet.Onlineordering.Shipping.Delivery.RequirePostCode">
+		<Value>Require PostCode</Value>
+	</LocaleResource>
+	<LocaleResource Name="Filuet.Onlineordering.Shipping.Delivery.RequirePostCode.Hint">
+		<Value>Require PostCode</Value>
+	</LocaleResource>
+	<LocaleResource Name="Filuet.Onlineordering.Shipping.Delivery.ShowInvitation">
+		<Value>Show Invitation</Value>
+	</LocaleResource>
+	<LocaleResource Name="Filuet.Onlineordering.Shipping.Delivery.ShowInvitation.Hint">
+		<Value>Show Invitation</Value>
+	</LocaleResource>
+	<LocaleResource Name="Filuet.Onlineordering.Shipping.Delivery.SalesCenterElectronicQueueInvitation">
+		<Value>Sales CenterElectronic Queue Invitation</Value>
+	</LocaleResource>
+	<LocaleResource Name="Filuet.Onlineordering.Shipping.Delivery.SalesCenterElectronicQueueInvitation.Hint">
+		<Value>Sales CenterElectronic Queue Invitation</Value>
+	</LocaleResource>
+	<LocaleResource Name="Filuet.Onlineordering.Shipping.Delivery.NotificationHtmlAboveModule">
+		<Value>Notification Html AboveModule</Value>
+	</LocaleResource>
+	<LocaleResource Name="Filuet.Onlineordering.Shipping.Delivery.NotificationHtmlAboveModule.Hint">
+		<Value>Notification Html AboveModule</Value>
+	</LocaleResource>
+	<LocaleResource Name="Filuet.Onlineordering.Shipping.Delivery.SelfPickupActive">
+		<Value>SelfPickup Active</Value>
+	</LocaleResource>
+	<LocaleResource Name="Filuet.Onlineordering.Shipping.Delivery.SelfPickupActive.Hint">
+		<Value>Enter a SelfPickup Active</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.DeliveryTypes">
+		<Value>Delivery Types</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.SystemType">
+		<Value>SystemType</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.TypeName">
+		<Value>Type Name</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.IsActive">
+		<Value>IsActive</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.DeliveryCities">
+		<Value>Delivery Cities</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.CityName">
+		<Value>City Name</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Prices">
+		<Value>Prices</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.DeliveryCity">
+		<Value>Delivery City</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.DeliveryOperator">
+		<Value>Delivery Operator</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.DeliveryType">
+		<Value>Delivery Type</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.DeliveryPrise.Required">
+		<Value>Please Enter Delivery Price</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.MinCriterion">
+		<Value>MinCriterion</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.MaxCriterion">
+		<Value>MaxCriterion</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.AutoPostOffices">
+		<Value>AutoPostOffices</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.PointId">
+		<Value>PointId</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.PointId.Hint">
+		<Value>PointId</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.Blocked">
+		<Value>Blocked</Value>
+	</LocaleResource>	
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.Blocked.Hint">
+		<Value>Blocked</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.Address.Required">
+		<Value>Please enter Address</Value>
+	</LocaleResource>	
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.Address.Hint">
+		<Value>Address</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.Comment">
+		<Value>Comment</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.Comment.Hint">
+		<Value>Comment</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.PriceIsAbsent">
+		<Value>Price Is Absent</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.PriceIsAbsent.Hint">
+		<Value>Price Is Absent</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.AboveReceiverName">
+		<Value>Collected by…</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.BelowReceiverName">
+		<Value>Recipient's full name if different</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.DeliveryOperator">
+		<Value>Delivery Operator</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.PickupPointCity">
+		<Value>City</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.PickupPointOperator">
+		<Value>Operator</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.PickupPointInfo">
+		<Value>Info</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.PickupPointAddress">
+		<Value>Address</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.PostCode">
+		<Value>PostCode</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.BackToList">
+		<Value>BackToList</Value>
+	</LocaleResource>	
+	<LocaleResource Name="Admin.Common.DeleteConfirmation">
+		<Value>Are you sure you want to delete this item?</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.Common.Save">
+		<Value>Save</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.SalesCenter.AddNew">
+		<Value>Add New SalesCenter</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.DeliveryOperatorsCity.AddNew">
+		<Value>Add New City</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.DeliveryOperator.AddNew">
+		<Value>Add New Delivery Operator</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.PriceDto.AddNew">
+		<Value>Add New Price</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.AutoPostOffice.AddNew">
+		<Value>Add New AutoPostOffice</Value>
+	</LocaleResource>
+	<LocaleResource Name="Filuet.Onlineordering.Shipping.Delivery.Models.Price">
+		<Value>Price</Value>
+	</LocaleResource>
+	<LocaleResource Name="Filuet.Onlineordering.Shipping.Delivery.Models.Price.Hint">
+		<Value>Enter A Price</Value>
+	</LocaleResource>	
+	<LocaleResource Name="Filuet.Onlineordering.Shipping.Delivery.Models.WarehouseCode">
+		<Value>WarehouseCode</Value>
+	</LocaleResource>
+	<LocaleResource Name="Filuet.Onlineordering.Shipping.Delivery.Models.WarehouseCode.Hint">
+		<Value>Please Enter A WarehouseCode</Value>
+	</LocaleResource>	
+	<LocaleResource Name="Filuet.Onlineordering.Shipping.Delivery.Models.FreightCode">
+		<Value>FreightCode</Value>
+	</LocaleResource>
+	<LocaleResource Name="Filuet.Onlineordering.Shipping.Delivery.Models.FreightCode.Hint">
+		<Value>Please Enter A FreightCode</Value>
+	</LocaleResource>	
+	<LocaleResource Name="Filuet.Onlineordering.Shipping.Delivery.Models.VolumePoints">
+		<Value>Volume Points</Value>
+	</LocaleResource>
+	<LocaleResource Name="Filuet.Onlineordering.Shipping.Delivery.Models.VolumePoints.Hint">
+		<Value>Enate A Volume Points</Value>
+	</LocaleResource>	
+	<LocaleResource Name="Filuet.Onlineordering.Shipping.Delivery.Models.WorkTime">
+		<Value>WorkTime</Value>
+	</LocaleResource>
+	<LocaleResource Name="Filuet.Onlineordering.Shipping.Delivery.Models.WorkTime.Hint">
+		<Value>Enter A WorkTime</Value>
+	</LocaleResource>	
+	<LocaleResource Name="Filuet.Onlineordering.Shipping.Delivery.Models.Name">
+		<Value>Name</Value>
+	</LocaleResource>
+	<LocaleResource Name="Filuet.Onlineordering.Shipping.Delivery.Models.Name.Hint">
+		<Value>Please Enter A SaleCenter Name</Value>
+	</LocaleResource>
+	<LocaleResource Name="Filuet.Onlineordering.Shipping.Delivery.Models.City">
+		<Value>City</Value>
+	</LocaleResource>
+	<LocaleResource Name="Filuet.Onlineordering.Shipping.Delivery.Models.City.Hint">
+		<Value>Enter A City Name</Value>
+	</LocaleResource>	
+	<LocaleResource Name="Filuet.Onlineordering.Shipping.Delivery.Models.Address">
+		<Value>Address</Value>
+	</LocaleResource>
+	<LocaleResource Name="Filuet.Onlineordering.Shipping.Delivery.Models.Address.Hint">
+		<Value>Enter A Address</Value>
+	</LocaleResource>	
+	<LocaleResource Name="Shipping.Delivery.Models.Fields.Name.Required">
+		<Value>Please Enter Name is Required</Value>
+	</LocaleResource>
+	<LocaleResource Name="Shipping.Delivery.Models.Fields.FreightCode.Required">
+		<Value>Please Enter Freight Code</Value>
+	</LocaleResource>
+	<LocaleResource Name="Shipping.Delivery.Models.Fields.WarehouseCode.Required">
+		<Value>Please Enter Warehouse Code</Value>
+	</LocaleResource>
+	<LocaleResource Name="Shipping.Delivery.Models.Fields.VolumePoints.Required">
+		<Value>Please Enter Volume Points</Value>
+	</LocaleResource>
+	<LocaleResource Name="Shipping.Delivery.Models.Fields.OperatorName.Required">
+		<Value>Please Enter Operator Name</Value>
+	</LocaleResource>
+	<LocaleResource Name="Filuet.Onlineordering.Shipping.Delivery.Models.OperatorName">
+		<Value>Operator Name</Value>
+	</LocaleResource>
+	<LocaleResource Name="Filuet.Onlineordering.Shipping.Delivery.Models.OperatorName.Hint">
+		<Value>Enter A Operator Name</Value>
+	</LocaleResource>
+	<LocaleResource Name="Filuet.Onlineordering.Shipping.DeliveryOperatorsCity.Models.CityName">
+		<Value>CityName</Value>
+	</LocaleResource>
+	<LocaleResource Name="Filuet.Onlineordering.Shipping.DeliveryOperatorsCity.Models.CityName.Hint">
+		<Value>Enter A City Name</Value>
+	</LocaleResource>
+	<LocaleResource Name="Shipping.Delivery.DeliveryOperatorsCityModel.Fields.CityName.Required">
+		<Value>Please Enter A City Name</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.PriceDto.EditPriceDto">
+		<Value>Edit For Prices details</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.DeliveryCityId">
+		<Value>DeliveryCity Name</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.DeliveryCityId.Hint">
+		<Value>Please Select A Delivery City</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.DeliveryOperatorId">
+		<Value>DeliveryOperator Name</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.DeliveryOperatorId.Hint">
+		<Value>Please Select A Delivery Operator</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.DeliveryTypeId">
+		<Value>DeliveryType Name</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.DeliveryTypeId.Hint">
+		<Value>Please Select A Delivery Type</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.MinCriterionValue">
+		<Value>MinCriterionValue</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.MinCriterionValue.Hint">
+		<Value>Enter A MinCriterion Value</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.MaxCriterionValue">
+		<Value>MaxCriterion Value</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.MaxCriterionValue.Hint">
+		<Value>Enter A MaxCriterion Value</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.PriceDto.EditAutoPostOfficeDto">
+		<Value>Edit For AutoPostOffice Details </Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.DeliveryPrise">
+		<Value>Delivery Price</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.DeliveryPrise.Hint">
+		<Value>Enter A Delivery Price</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Shipping.Delivery.Fields.Price.Error">
+		<Value>Price is absent for this city</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Shipping.Delivery.Fields.DeliveryType.Error">
+		<Value>DeliveryType is not valid</Value>
+	</LocaleResource>
+	<LocaleResource Name="Filuet.Onlineordering.Shipping.Delivery.MinCriterion">
+		<Value>MinCriterion</Value>
+	</LocaleResource>
+	<LocaleResource Name="Filuet.Onlineordering.Shipping.Delivery.MinCriterion.Hint">
+		<Value> Enter A MinCriterion</Value>
+	</LocaleResource>
+	<LocaleResource Name="Filuet.Onlineordering.Shipping.Delivery.PickPoint">
+		<Value> PickPoint</Value>
+	</LocaleResource>
+	<LocaleResource Name="Filuet.Onlineordering.Shipping.Delivery.PickPoint.Hint">
+		<Value> Enter A PickPoint</Value>
+	</LocaleResource>
+	<LocaleResource Name="Filuet.Onlineordering.Shipping.Delivery.HomeDelivery">
+		<Value> HomeDelivery</Value>
+	</LocaleResource>
+	<LocaleResource Name="Filuet.Onlineordering.Shipping.Delivery.HomeDelivery.Hint">
+		<Value> Enter A HomeDelivery</Value>
+	</LocaleResource>
+</Language>

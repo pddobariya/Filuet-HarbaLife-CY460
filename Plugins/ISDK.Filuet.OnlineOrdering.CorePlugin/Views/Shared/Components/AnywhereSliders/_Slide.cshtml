@@ -1,0 +1,20 @@
+﻿@model SlidePublicModel
+
+@{
+    Layout = null;
+}
+
+@switch (Model.Type)
+{
+    case SlideType.Picture:
+
+        @await Html.PartialAsync("_Slide.Picture.cshtml", Model)
+
+        break;
+
+    case SlideType.Content:
+
+        @await Html.PartialAsync("_Slide.Content.cshtml", Model)
+
+        break;
+}

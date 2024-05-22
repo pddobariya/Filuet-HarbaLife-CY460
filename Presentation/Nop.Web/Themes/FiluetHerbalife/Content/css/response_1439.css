@@ -1,0 +1,358 @@
+@media print, (max-width: 1439px)
+{
+    /*-------------------
+        Global styles
+    -------------------*/
+    .content_flex .content
+    {
+        width: calc(100% - var(--sidebar_width) - 40px);
+    }
+
+
+
+    /*--------------
+        Carousel
+    --------------*/
+    .carousel.swiper-container .slide
+    {
+        visibility: visible;
+
+        pointer-events: auto;
+
+        opacity: 1;
+    }
+
+
+
+    /*--------------
+        Products
+    --------------*/
+    .products .product .buy .success
+    {
+        padding: 5px;
+    }
+
+
+    .products .product .buy .success .text
+    {
+        display: none;
+    }
+
+
+    .products .product .buy .amount
+    {
+        width: 100%;
+    }
+
+        .products .product .buy .amount .input {
+            width: calc(50% - 64px);
+        }
+
+            .products .product .buy .amount .input:hover {
+                background-color: #ccc;
+            }
+
+
+    /*--------------
+        Articles
+    --------------*/
+    .articles .article.big .info
+    {
+        padding: 44px 52px;
+    }
+
+
+    .articles .article .info
+    {
+        padding: 20px;
+    }
+
+
+    .content .articles .article.big .thumb
+    {
+        width: 60%;
+        padding-bottom: 48%;
+    }
+
+    .content .articles .article.big .info
+    {
+        width: 40%;
+    }
+
+
+
+    /*-------------------
+        Category info
+    -------------------*/
+    .category_info .sub_categories .row
+    {
+        margin-bottom: -20px;
+        margin-left: -20px;
+    }
+
+    .category_info .sub_categories .row > *
+    {
+        width: calc(25% - 20px);
+        margin-bottom: 20px;
+        margin-left: 20px;
+    }
+
+
+    .category_info .sub_categories .category
+    {
+        font-size: 17px;
+        line-height: 23px;
+    }
+
+
+
+    /*--------------------
+        Grid/List head
+    --------------------*/
+    .grid_list_head
+    {
+        width: 100%;
+        margin-top: 16px;
+
+        justify-content: space-between;
+    }
+
+
+
+    /*---------------------
+        Filter selected
+    ---------------------*/
+    .filter_selected
+    {
+        display: none;
+    }
+
+
+
+    /*-------------
+        LK info
+    -------------*/
+    .lk_info .form > * + *
+    {
+        margin-top: 44px;
+    }
+
+
+
+    /*---------------
+        Order info
+    ---------------*/
+    .order_info .data .col,
+    .order_info .data .col.col_right
+    {
+        width: 224px;
+    }
+
+
+    /*-----------------------
+        Program type head
+    -----------------------*/
+    .program_type_head .data
+    {
+        width: calc(100% - 576px);
+    }
+
+    .program_type_head .data .download_link
+    {
+        margin-top: 36px;
+    }
+
+
+
+    /*------------------
+        Program head
+    ------------------*/
+    .program_head .data .download_link
+    {
+        margin-top: 36px;
+    }
+
+
+    .program_head .manager
+    {
+        width: 480px;
+    }
+
+
+
+    /*-------------------
+        Program types
+    -------------------*/
+    .program_types .row
+    {
+        margin-bottom: -52px;
+        margin-left: -44px;
+        padding-top: 32px;
+    }
+
+    .program_types .row > *
+    {
+        width: calc(33.333% - 44px);
+        margin-bottom: 52px;
+        margin-left: 44px;
+    }
+
+
+    .program_types .type .head
+    {
+        padding-top: 56px;
+        padding-bottom: 32px;
+    }
+
+
+    .program_types .type .head .thumb
+    {
+        height: 164px;
+        margin-top: 20px;
+    }
+
+
+    .program_types .type1 .head .bg
+    {
+        left: -23px;
+
+        transform: scale(.9);
+    }
+
+    .program_types .type1 .head .bg + .bg
+    {
+        left: -30px;
+    }
+
+
+    .program_types .type2 .head .bg
+    {
+        left: -55px;
+
+        transform: scale(.9);
+    }
+
+    .program_types .type2 .head .bg + .bg
+    {
+        left: -65px;
+    }
+
+
+    .program_types .type3 .head .bg
+    {
+        left: -23px;
+
+        transform: scale(.9);
+    }
+
+    .program_types .type3 .head .bg + .bg
+    {
+        left: -30px;
+    }
+
+
+    .program_types .type .info
+    {
+        margin-top: 36px;
+    }
+
+
+
+    /*------------------
+        Product info
+    ------------------*/
+    .product_info .product_data .images
+    {
+        width: 504px;
+        padding-right: 112px;
+    }
+
+
+    .product_info .product_data .images .big .slide a
+    {
+        height: 380px;
+    }
+
+
+    .product_info .product_data .images .thumbs,
+    .product_info .product_data .images .thumbs .swiper-container
+    {
+        width: 92px;
+    }
+
+    .product_info .product_data .images .thumbs .slide button
+    {
+        height: 92px;
+    }
+
+
+    .product_info .product_data .data
+    {
+        width: calc(100% - 544px);
+    }
+
+
+    .product_info .product_data .data .product_name
+    {
+        font-size: 28px;
+        line-height: 34px;
+    }
+
+
+    .product_info .product_data .data .rating
+    {
+        margin-top: 16px;
+    }
+
+
+    .product_info .product_data .data .price
+    {
+        font-size: 28px;
+        line-height: 34px;
+    }
+
+
+
+    /*-------------------
+        Contacts info
+    -------------------*/
+    .contacts_info .data
+    {
+        width: calc(100% - 532px);
+    }
+
+
+    .contacts_info .feedback
+    {
+        width: 460px;
+    }
+
+
+
+    /*------------
+        Tastes
+    ------------*/
+    .tastes .carousel.swiper-container .slide
+    {
+        visibility: hidden;
+
+        pointer-events: none;
+
+        opacity: 0;
+    }
+
+    .tastes .carousel.swiper-container .slide.visible
+    {
+        visibility: visible;
+
+        pointer-events: auto;
+
+        opacity: 1;
+    }
+
+
+    .tastes .item .thumb
+    {
+        height: 144px;
+    }
+}

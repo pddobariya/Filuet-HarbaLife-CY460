@@ -1,0 +1,87 @@
+﻿@model ISDK.Filuet.Theme.FiluetHerbalife.Models.NewsBlockModel 
+@{
+    Layout = "";
+}
+
+<section class="articles block">
+    <div class="cont">
+        <div class="block_head padding_right">
+            <div class="title">@T("ISDK.Filuet.Theme.FiluetHerbalife.NewsBlockTitle")</div>
+
+            <div class="all_link visible">
+
+                <a href="@Url.RouteUrl("Blog")">@T("ISDK.Filuet.Theme.FiluetHerbalife.ShowMoreNews")</a>
+            </div>
+        </div>
+
+        <div class="swiper-container carousel" id="articles_slider1">
+            <div class="article big">
+                <a href="@Url.RouteUrl("BlogPost", new {SeName = Model.ArticleBigModel.SeName})" class="thumb">
+                    <img data-src="@Model.ArticleBigModel.PictureUrl" alt="" class="lozad">
+                </a>
+
+                <div class="info">
+                    <div class="date">
+                        <div class="day">@Model.ArticleBigModel.Day</div>
+                        <div class="month">@Model.ArticleBigModel.Month</div>
+                    </div>
+
+                    <div class="name">
+                        <a href="@Url.RouteUrl("BlogPost", new {SeName = Model.ArticleBigModel.SeName})">@Model.ArticleBigModel.Name</a>
+
+                        @if (Model.ArticleBigModel.IsPinned)
+                        {
+                            <div class="pinned">
+                                <svg class="icon"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_pin")"></use></svg>
+                                <span>@T("ISDK.Filuet.Theme.FiluetHerbalife.NewsPinned")</span>
+                            </div>
+                        }
+                    </div>
+
+                    <div class="desc">@Html.Raw(@Model.ArticleBigModel.BodyOverview)</div>
+
+                    <div class="category">
+                        <a href="@Url.RouteUrl("BlogPost", new {SeName = Model.ArticleBigModel.SeName})" style="background: @Model.ArticleBigModel.TagColor;">@Model.ArticleBigModel.Category</a>
+                    </div>
+
+                    <div class="messengers">
+                        <div>
+                            <a download href="@Model.ArticleBigModel.PictureUrl">
+                                <svg class="icon"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_download")"></use></svg>
+                                <span>@T("Common.FileUploader.DownloadUploadedFile")</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="swiper-wrapper">
+                @{
+                    @await Html.PartialAsync("_Article.cshtml", Model.ArticleModels[0])
+
+                    @await Html.PartialAsync("_Article.cshtml", Model.ArticleModels[1])
+
+                    @await Html.PartialAsync("_Article.cshtml", Model.ArticleModels[2])
+
+                    var viewData = new ViewDataDictionary(ViewData)
+                    {
+                        {"articleClass", "tablet_hide"}
+                    };
+                    @await Html.PartialAsync("_Article.cshtml", Model.ArticleModels[3], viewData)
+                }
+            </div>
+
+            <div class="swiper-button-prev">
+                <svg class="icon"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_arrow_left")"></use></svg>
+            </div>
+
+            <div class="swiper-button-next">
+                <svg class="icon"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_arrow_right")"></use></svg>
+            </div>
+        </div>
+
+        <div class="mob_all_link">
+            <a href="@Url.RouteUrl("Blog")">@T("ISDK.Filuet.Theme.FiluetHerbalife.ShowMoreNews")</a>
+        </div>
+    </div>
+</section>

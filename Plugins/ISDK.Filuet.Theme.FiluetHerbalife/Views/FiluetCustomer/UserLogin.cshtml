@@ -1,0 +1,82 @@
+﻿@model Nop.Web.Models.Customer.LoginModel
+@{
+    Layout = "_HomeColumns";
+
+    //title
+    NopHtml.AddTitleParts(T("PageTitle.Login").Text);
+    //page class
+    NopHtml.AppendPageCssClassParts("html-login-page");
+
+    int mediaWidth = 660;
+    int asidePadding = 60;
+}
+
+@section login_splash {
+
+<style>
+    .header {
+        display: none !important;
+    }
+
+    .block {
+        width: 100% !important;        
+    }
+
+    .splash.login-page {
+        margin-top: 80px;
+    }
+
+    .block .title {
+        background: none !important;
+    }
+</style>
+
+    <div class="splash login-page">
+        <div class="dots-div">
+            <div id="blackbg">
+                <img class="headerMediaDefault" src="~/Plugins/ISDK.Filuet.OnlineOrdering.CorePlugin/Content/img/backgrounds/Login-image-772x432.jpg">
+            </div>
+            <div class="header-main">
+                <div class="aside">
+                    <h3>@T("ISDK.Filuet.OnlineOrdering.ShoppingPlugin.Resources.UserLogin.Aside")</h3>
+                </div>
+                <div class="myhl-login">
+                    <div class="whitebkg">
+                        <form asp-controller="ssoauth" asp-action="login" asp-route-returnurl="@Context.Request.Query["ReturnUrl"]" method="post">
+                            <div class="title">
+                                <h3>@T("ISDK.Filuet.OnlineOrdering.ShoppingPlugin.Resources.UserLogin.LoginMember")</h3>
+                            </div>
+                            <span>
+                                @T("ISDK.Filuet.OnlineOrdering.ShoppingPlugin.Resources.UserLogin.OrderProducts")
+                            </span>
+                            <div class="btnforward">
+                                <input class="button-1 login-button" type="submit" value="@T("Account.Login.LoginButton")" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script asp-location="Footer">
+        var resizeAside = function (mw, ap) {
+            var w1 = $('.header-main').width();
+            if (w1 >= mw) {
+                var w2 = $('.splash .myhl-login').outerWidth();
+                var w3 = $('.splash .myhl-login-catalog').outerWidth();
+                $('.splash .aside').width(w1 - w2 - w3 - ap);
+            } else {
+                $('.splash .aside').css('width', 'auto');
+            }
+        }
+
+        $(function () {
+            resizeAside(@mediaWidth, @asidePadding);
+        });
+
+        $(window).resize(() => {
+            resizeAside(@mediaWidth, @asidePadding);
+        });
+    </script>
+}

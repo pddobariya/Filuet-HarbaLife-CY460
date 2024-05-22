@@ -1,0 +1,11 @@
+﻿@{
+    Layout = "";    
+}
+<div class="ssoauth-login-block">
+    <div class="buttons">
+        <a asp-controller="ssoauth" asp-action="login" asp-route-returnurl="@Context.Request.Query["ReturnUrl"]">
+            <i class="fa fa-sign-in" aria-hidden="true"></i>
+            Log in with SSO
+        </a>
+    </div>
+</div>

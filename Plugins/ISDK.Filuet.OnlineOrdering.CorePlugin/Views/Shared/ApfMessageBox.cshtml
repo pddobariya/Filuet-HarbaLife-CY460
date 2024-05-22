@@ -1,0 +1,62 @@
+﻿@model DistributorDetailedProfileResponse
+
+@{
+    var settings = await settingService.LoadSettingAsync<FiluetCorePluginSettings>(await storeContext.GetActiveStoreScopeConfigurationAsync());
+}
+<div id="apf-dialog-message">
+    <p>
+        @(Model.ApfDueDate < DateTimeOffset.UtcNow.AddHours(settings.HoursShift) ? (Model.DistributorType == DistributorTypes.Supervisor ? T("ISDK.Filuet.OnlineOrdering.CorePlugin.ApfMessageBox.Content"): T("ISDK.Filuet.OnlineOrdering.CorePlugin.ApfMessageBox.NotSupervisorContent", Model.ApfDueDate.Date.ToString("dd.MM.yyyy"))) : T("ISDK.Filuet.OnlineOrdering.CorePlugin.ApfMessageBox.ExpiringContent", Model.ApfDueDate.Date.ToString("dd.MM.yyyy")))
+    </p>
+</div>
+<script>
+    $(document).ready(function () {
+        var dialog = $("#apf-dialog-message");
+        dialog.kendoDialog({
+            width: "400px",
+            title: "Apf expired",
+            closable: false,
+            modal: true, 
+            //content: '<p>@T("ISDK.Filuet.OnlineOrdering.CorePlugin.ApfCartMessageBox.Content")</p>',
+            actions: [
+                    { text: "@(Model.ApfDueDate < DateTimeOffset.UtcNow.AddHours(settings.HoursShift) 
+                                 ? T("ISDK.Filuet.OnlineOrdering.CorePlugin.ApfMessageBox.Button") 
+                                 : T("ISDK.Filuet.OnlineOrdering.CorePlugin.ApfMessageBox.PayNowButton"))",
+                      primary: true,
+                      action: function() {
+                                        $.ajax({
+                                            method: "POST",
+                                            data: { mainUrl: document.location.pathname },
+                                            url: "@Url.Action("CloseApfMessage", "FiluetCommon")",
+                                            async: false,
+                                            success: function(response) {
+                                                document.location = response;
+                                            },
+                                            error: function(xhr, status, error) {
+                                                alert(error);
+                                            }
+                                        });
+                                    }
+                    }
+                    @if (!(Model.ApfDueDate < DateTimeOffset.UtcNow.AddHours(settings.HoursShift)))
+                    {
+                        <text>
+                            , { text: "@T("ISDK.Filuet.OnlineOrdering.CorePlugin.ApfMessageBox.RemindLaterButton")",
+                                action: function() {
+                                $.ajax({
+                                    method: "POST",
+                                    data: { mainUrl: document.location.pathname },
+                                    url: "@Url.Action("DeclineApfMessage", "FiluetCommon")",
+                                    async: false,
+                                    error: function(xhr, status, error) {
+                                            alert(error);
+                                        }
+                                    });
+                                }
+                            }
+                        </text>
+                    }
+                ]
+            });
+        dialog.data("kendoDialog").open();
+    });
+</script>

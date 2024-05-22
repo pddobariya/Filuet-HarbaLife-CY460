@@ -1,0 +1,22 @@
+﻿@model Nop.Plugin.Payments.Payeezy.Models.PaymentInfoModel
+
+@{
+    Layout = "";
+}
+
+<link rel="stylesheet" href="~/Plugins/Payments.Payeezy/Content/payeezy.min.css" />
+<div class="payment-payeezy-form form-horizontal">
+    <div class="field-row">
+        <div class="field-cell">
+            @Html.RadioButton("IsShipInvoiceWithOrder", "False", Model.IsShipInvoiceWithOrder == false) @T("Plugins.Payments.Payeezy.Fields.IsShipInvoiceWithOrder.False")
+        </div>
+        <div class="field-cell">
+            @Html.RadioButton("IsShipInvoiceWithOrder", "True", Model.IsShipInvoiceWithOrder == true) @T("Plugins.Payments.Payeezy.Fields.IsShipInvoiceWithOrder.True")
+        </div>
+    </div>
+    </div>
+<div class="payment-payeezy-tip">
+    <div class="payment-payeezy-tip-inner">
+        @T("Plugins.Payments.Payeezy.Fields.PaymentRedirectionTip")
+    </div>
+</div>

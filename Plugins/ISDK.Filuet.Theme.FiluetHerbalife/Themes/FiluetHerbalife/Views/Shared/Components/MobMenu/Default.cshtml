@@ -1,0 +1,145 @@
+﻿@model TopMenuModel
+@functions {
+    async Task CategoryLineMob(TopMenuModel.CategoryLineModel lineModel)
+    {
+        <div class="item">
+
+            @{
+                var subCategories = lineModel.Category.SubCategories;
+
+                @if (subCategories.Any())
+                {
+                    <button class="sub_btn">
+                        <svg class="icon">
+                            @if (_themeFiluetHerbalifeSettings.CategoryIdForCatalogue == lineModel.Category.Id)
+                            {
+                                <use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_menu3")"></use>
+                            }
+
+                            @if (_themeFiluetHerbalifeSettings.CategoryIdForProgramm == lineModel.Category.Id)
+                            {
+                                <use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_menu2")"></use>
+                            }
+                        </svg>
+                        <span>@lineModel.Category.Name</span>
+                    </button>
+                }
+                else
+                {
+                    <a class="sub_link" href="@Url.RouteUrl("Category", new {SeName = lineModel.Category.SeName})">
+                        <svg class="icon">
+                            <use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_menu3")"></use>
+                        </svg>
+                        <span>@lineModel.Category.Name</span>
+                    </a>
+                }
+
+                if (subCategories.Count > 0)
+                {
+                    <div class="sub_menu">
+
+                        @foreach (var subCategory in subCategories)
+                        {
+                            if (subCategory.SubCategories.Count > 0)
+                            {
+                                int counter = 0;
+
+                                <div>
+                                    <a class="sub_link" href="@Url.RouteUrl("Category", new {SeName = subCategory.SeName})">
+                                        <span>@subCategory.Name</span>
+                                    </a>
+
+                                    <div class="sub">
+
+                                        @foreach (var subSubCategory in subCategory.SubCategories)
+                                        {
+                                            counter++;
+                                            <div>
+                                                <a href="@Url.RouteUrl("Category", new {SeName = subSubCategory.SeName})">
+                                                    <svg class="icon">
+                                                        <use xlink:href="@Url.Content($"~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_categories_type{counter}")"></use>
+                                                    </svg>
+                                                    <span>@subSubCategory.Name</span>
+                                                </a>
+                                            </div>
+                                        }
+                                    </div>
+
+                                </div>
+                            }
+                            else
+                            {
+                                <div>
+                                    <a href="@Url.RouteUrl("Category", new {SeName = subCategory.SeName})">
+                                        <span>@subCategory.Name</span>
+                                    </a>
+                                </div>
+                            }
+                        }
+                    </div>
+                }
+            }
+        </div>
+    }
+}
+
+<section class="mob_menu">
+    <button class="close_btn">
+        <svg class="icon"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_close")"></use></svg>
+    </button>
+
+    <div class="scroll">
+        <div class="menu">
+
+            @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderMenuBefore })
+            @if (Model.DisplayHomepageMenuItem)
+            {
+                <div class="item">
+                    <a href="@Url.RouteUrl("Homepage")">
+                        <svg class="icon"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_menu1")"></use></svg>
+                        <span>@T("Homepage")</span>
+                    </a>
+                </div>
+
+                var rootCategories = Model.Categories.Where(x => x.IncludeInTopMenu).ToList();
+                @foreach (var category in rootCategories)
+                {
+                    var categoryLineModel = new TopMenuModel.CategoryLineModel
+                    {
+                        Category = category
+                    };
+                    await CategoryLineMob(categoryLineModel);
+                }
+
+                <div class="item">
+
+                    <button class="sub_btn">
+                        <svg class="icon"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_menu5")"></use></svg>
+                        <span>@T("ISDK.Filuet.Theme.FiluetHerbalife.Info")</span>
+                    </button>
+
+                    <div class="sub_menu">
+                        @foreach (var topic in Model.Topics)
+                        {
+                            <div>
+                                <a href="@(Url.RouteUrl<Topic>(new { SeName = topic.SeName }))">
+                                    <span>@topic.Name</span>
+                                </a>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                <div class="item">
+                    <a href="@Url.RouteUrl("Faq")">
+                        <svg class="icon"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_tooltip")"></use></svg>
+                        <span>@T("ISDK.Filuet.Theme.FiluetHerbalife.Faq")</span>
+                    </a>
+                </div>
+            }
+
+            @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderMenuAfter })
+
+        </div>
+    </div>
+</section>

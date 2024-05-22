@@ -1,0 +1,11 @@
+﻿{
+  "Group": "Xcellence-it",
+  "FriendlyName": "Worldline",
+  "SystemName": "Payments.Saferpay",
+  "Version": "1.52",
+  "SupportedVersions": [ "4.60" ],
+  "Author": "Xcellence-it",
+  "DisplayOrder": 1,
+  "FileName": "HBL.Cyprus.Onlineordering.Payments.Saferpay.dll",
+  "Description": "Filuet implementation of Saferpay service integration"
+}

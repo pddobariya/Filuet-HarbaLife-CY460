@@ -1,0 +1,89 @@
+@model List<ShippingComputationOptionModel>
+
+@{
+    var customer = await _workContext.GetCurrentCustomerAsync();
+    var IsAuthenticated = await _customerService.IsRegisteredAsync(customer);
+    var selectedCountry = Model.FirstOrDefault(c => c.IsSelected == true);
+}
+
+<style type="text/css" media="screen and (max-width: 680px)">
+    .shipping-countries.modal_cont .shipping-country-dialog-container {
+        top: 70px !important;
+        left: -246px !important;
+    }
+
+    .shipping-countries.modal_cont .shipping-country-dialog-container .rhombus {
+        position: absolute !important;
+        left: 263px !important;
+        top: -20px !important;
+    }
+</style>
+
+<div class="shipping-country-selector">
+    <div class="shipping-country-selector-label">
+        @T("ISDK.Filuet.Theme.FiluetHerbalife.Fields.ShipToLabel")
+    </div>
+    <div class="shipping-countries langs modal_cont">
+        <button class="current mini_modal_btn" data-modal-id="#ship_countries_modal">
+            <img class="lozad" data-src="@Url.Content("~/images/flags/" + selectedCountry.FlagImageFileName)" alt="@selectedCountry?.Name">
+            <svg class="icon">
+                <use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_arrow_down")">
+                </use>
+            </svg>
+        </button>
+
+        <div class="mini_modal" id="ship_countries_modal">
+            @foreach (ShippingComputationOptionModel shipCountry in Model)
+            {
+                <div>
+                    <a onclick="switchShippingCountry('@shipCountry.Id', '@shipCountry.CountryCode'); return false;"
+                       title="@shipCountry.Name">
+                        <img class="lozad"
+                             title='@shipCountry.Name'
+                             alt='@shipCountry.Name'
+                         src="@Url.Content("~/images/flags/" +  @shipCountry.FlagImageFileName) " />
+                        <span>@shipCountry.Name</span>
+                    </a>
+                </div>
+            }
+        </div>
+
+        @if (IsAuthenticated)
+        {
+            @await Component.InvokeAsync(typeof(ShippingCountryPopupViewComponent))
+        }
+    </div>
+</div>
+
+<script asp-location="Footer">
+    function switchShippingCountry(countryId, countryCode) {
+        $.ajax({
+                cache: false,
+                url: '@Url.RouteUrl("ShippingCountrySelectorUpdate")',
+                data: JSON.stringify(
+                    {
+                        id: parseInt(countryId),
+                        countryCode: countryCode
+                    }),
+                type: 'post',
+                dataType: 'json',
+                contentType: 'application/json',
+                success: onCompleteShippingCountrySelectorUpdate,
+                error: function (response) {
+                    displayBarNotification('@T("ISDK.Filuet.Theme.FiluetHerbalife.Messages.ShippingCountrySelectorUpdateFailed")', 'error', 5000);
+                }
+            });
+    }
+
+    function onCompleteShippingCountrySelectorUpdate(data) {
+        if (document.location.pathname == "/onepagecheckout" ||
+            document.location.pathname == "/checkout/opcsavepaymentinfo" ||
+            document.location.pathname == "/checkout/OpcSaveShippingMethod" ||
+            document.location.pathname == "/checkout/OpcConfirmOrderInfo")
+            setLocation('@Url.RouteUrl("ShoppingCart")');
+        else {
+            window.location.reload();
+        }
+    }
+</script>
+

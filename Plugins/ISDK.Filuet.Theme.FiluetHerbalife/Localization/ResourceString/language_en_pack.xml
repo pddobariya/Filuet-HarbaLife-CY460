@@ -1,0 +1,550 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Language Name="EN">
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Contact">
+		<Value>Contacts</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Configure">
+		<Value>Configure</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.PhoneTitle">
+		<Value>Call and write:</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Phone">
+		<Value>+357 25430404</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Phone1">
+		<Value>8000371110</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.PhoneCountry1">
+		<Value>Estonia</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Phone2">
+		<Value>80005002</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.PhoneCountry2">
+		<Value>Latvia</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Phone3">
+		<Value>880090034</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.PhoneCountry3">
+		<Value>Lithuania</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.EmailName">
+		<Value>orders</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.EmailAt">
+		<Value>@</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.EmailDomain">
+		<Value>filuet.com.cy</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.SocialTitle">
+		<Value>Go to social media networks</Value>
+	</LocaleResource>
+	<LocaleResource Name="Account.CustomerInfo.AddAddress">
+		<Value>Add address</Value>
+	</LocaleResource>
+	<LocaleResource Name="Account.CustomerInfo.AddPhone">
+		<Value>Add phone</Value>
+	</LocaleResource>
+	<LocaleResource Name="Search.OrderHistory.OrderNumber.Tooltip">
+		<Value>Search by order number</Value>
+	</LocaleResource>
+	<LocaleResource Name="Account.CustomerOrders.OrdersWarning">
+		<Value>
+			Please note that only orders made through the site are reflected here! You can see the full list of your orders on the website myherbalife.com</Value>
+	</LocaleResource>
+	<LocaleResource Name="Account.CustomerOrders.VolumePoints">
+		<Value>VP</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.OrderStatus">
+		<Value>Order Processing</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Order.FusionInformation">
+		<Value>Your order has been paid and accepted for processing. Soon we will assign him an individual number.</Value>
+	</LocaleResource>
+	<LocaleResource Name="FiluetPager.Next">
+		<Value>Next</Value>
+	</LocaleResource>
+	<LocaleResource Name="Bestsellers">
+		<Value>Bestsellers</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.CategoryIdForCatalogueTitle">
+		<Value>CategoryId For CatalogueTitle</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.CategoryIdForCatalogueTitle.Hint">
+		<Value>Enter a CategoryId For CatalogueTitle</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.CategoryIdForProgrammTitle">
+		<Value>CategoryId For ProgrammTitle</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.CategoryIdForProgrammTitle.Hint">
+		<Value>Enter a CategoryId For ProgrammTitle</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Info">
+		<Value>Library</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Faq">
+		<Value>FAQ</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.ShowMoreGoods">
+		<Value>show more products</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.ShowMoreProgramms">
+		<Value>show more programs</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.NewsBlockTitle">
+		<Value>News</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.LastNews">
+		<Value>Last news</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.ShowMoreNews">
+		<Value>show more news</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.NewsPinned">
+		<Value>the news is pinned</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Pinned">
+		<Value>pinned</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.ShareOnTelegram">
+		<Value>Share on Telegram</Value>
+	</LocaleResource>
+	<LocaleResource Name="Products.Wishlist.AddToWishlist">
+		<Value>Add to favorites</Value>
+	</LocaleResource>
+	<LocaleResource Name="Products.Wishlist.AddToWishlistMob">
+		<Value>To favorites</Value>
+	</LocaleResource>
+	<LocaleResource Name="Products.Compare.AddToCompareList">
+		<Value>Compare with others</Value>
+	</LocaleResource>
+	<LocaleResource Name="Products.Compare.AddToCompareListMob">
+		<Value>Compare</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.ProductReviewTitle">
+		<Value>Heading</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.ProductReviewContent">
+		<Value>Review text</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.ProductReviewRating">
+		<Value>Grade</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.AboutFinalPrice">
+		<Value>*Price base shown is the price before your discount level is applied. The final price at checkout may vary.</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Sort">
+		<Value>Sort by</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.PriceFilter">
+		<Value>Price:</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.PriceFilterFrom">
+		<Value>from</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.PriceFilterTo">
+		<Value>before</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.MoreAboutProgram">
+		<Value>More about the program</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Content">
+		<Value>Content</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.AllQuestions">
+		<Value>All questions</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.AnswersToQuestions">
+		<Value>Answers to frequently asked questions</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.IfYouHaveAny">
+		<Value>If you have any</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.QuestionsAskUs">
+		<Value>questions, ask us</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.AskQuestion">
+		<Value>ASK A QUESTION</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.SearchKeyword">
+		<Value>Search keyword</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Find">
+		<Value>Find</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Expression">
+		<Value>*The quoted base for calculating the price is the price before your discount level is applied. The final price at checkout may vary.</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.AddToBasket">
+		<Value>Add To Cart</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.InShoppingCart">
+		<Value>IN CART</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.BlogPicture">
+		<Value>Picture</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.BlogTagColor">
+		<Value>Tag color</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.BlogIsPinned">
+		<Value>Pin news</Value>
+	</LocaleResource>
+	<LocaleResource Name="Enums.ISDK.Filuet.OnlineOrdering.CorePlugin.Constants.OrderSortingEnum.Position">
+		<Value>Position</Value>
+	</LocaleResource>
+	<LocaleResource Name="Enums.ISDK.Filuet.OnlineOrdering.CorePlugin.Constants.OrderSortingEnum.CreatedOnAsc">
+		<Value>Created On Asc</Value>
+	</LocaleResource>
+	<LocaleResource Name="Enums.ISDK.Filuet.OnlineOrdering.CorePlugin.Constants.OrderSortingEnum.CreatedOnDesc">
+		<Value>Created On Desc</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.AllProductsInCategory">
+		<Value>All products in the category</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.ProgrammContent">
+		<Value>Program content:</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Filter">
+		<Value>FILTER</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.AutoPostOfficeLanguageComment">
+		<Value>Commentary on parcel machines</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.NoData">
+		<Value>No data</Value>
+	</LocaleResource>
+	<LocaleResource Name="Isdk.Filuet.Theme.Filuetherbalife.Shoppingcart.Updatecart">
+		<Value>Update cart</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.ShoppingCart.Checkout1">
+		<Value>Checkout</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.ShoppingCart.Checkout2">
+		<Value> </Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.ShoppingCart.Confirmation1">
+		<Value>Confirmation</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.ShoppingCart.Confirmation2">
+		<Value>of an order</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.ShoppingCart.Name">
+		<Value>Name</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.ShoppingCart.Quantity">
+		<Value>Quantity</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.ShoppingCart.TotalPrice">
+		<Value>Sum</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.ShoppingCart.AddToOrder">
+		<Value>Add to order</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.ShoppingCart.AddBySku">
+		<Value>Add by SKU</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.ShoppingCart.ProductBySkuNotFound">
+		<Value>Product with this SKU not found</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.ShoppingCart.SelectOrderMonth">
+		<Value>Select order month</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Checkout.FillOrderDetails">
+		<Value>Fill order details</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Checkout.ShippingCountry">
+		<Value>Select shipping country</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Checkout.ShippingMethod">
+		<Value>Shipping method</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Checkout.ReceiverName">
+		<Value>Receiver name</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Checkout.UnableToDeliver">
+		<Value>Unable to deliver</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Checkout.EditOrder">
+		<Value>Edit order</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Checkout.ChangeCountry">
+		<Value>Change country</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Shipping.CheckYourOrder">
+		<Value>Check your order</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Shipping.CarrierInfo">
+		<Value>Here you can find information about the</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Shipping.CarrierUrlInfo">
+		<Value>carrier</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Shipping.DeliveryComment">
+		<Value>Comment of delivery</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Settings.OmnivaCarrierUrl">
+		<Value>Url to the courier company Omniva</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Settings.OmnivaCarrierUrl.Hint">
+		<Value>Enter a Url to the courier company Omniva</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Settings.DPDLatviaCarrierUrl">
+		<Value>Url to the courier company DPD. Latvia</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Settings.DPDLatviaCarrierUrl.Hint">
+		<Value>Enter a Url to the courier company DPD. Latvia</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Settings.DPDLithuaniaCarrierUrl">
+		<Value>Url to the courier company DPD. Lithuania</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Settings.DPDLithuaniaCarrierUrl.Hint">
+		<Value>Enter a Url to the courier company DPD. Lithuania</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Settings.DPDEstoniaCarrierUrl">
+		<Value>Url to the courier company DPD. Estonia</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Settings.DPDEstoniaCarrierUrl.Hint">
+		<Value>Enter a Url to the courier company DPD. Estonia</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Contacts.OurContacts">
+		<Value>Our contacts</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Contacts.FeedbackForm">
+		<Value>Feedback form</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Contacts.YourName">
+		<Value>Your name</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Contacts.YourEmail">
+		<Value>Your email</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Contacts.Comment">
+		<Value>Comment</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Account.Profile">
+		<Value>Profile</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Account.Logout">
+		<Value>Log out</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Blog.Archive">
+		<Value>Blog archive</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.CartPrimeReactDialog.Question">
+		<Value>An error occurred while paying. Place an order again?</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.CartRepeatOrderDialog.OrderNumber">
+		<Value>Order number:</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.CartRepeatOrderDialog.Yes">
+		<Value>Yes</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.CartRepeatOrderDialog.No">
+		<Value>No</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Account.Login.Title">
+		<Value>Sign in</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Account.Login.RememberMe">
+		<Value>Remember me?</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Reviews.NotAllowedForProduct">
+		<Value>Review not allowed for product</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Products.Description">
+		<Value>Description</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.CartRepeatOrderDialog.Question">
+		<Value>An error occurred while paying. Re-order?</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.CartRepeatOrderDialog.OrderNumber">
+		<Value>Order number:</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.CartRepeatOrderDialog.Yes">
+		<Value>Yes</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.CartRepeatOrderDialog.No">
+		<Value>No</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Category.DownloadProgram">
+		<Value>DOWNLOAD PROGRAM</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.ISDK.Filuet.Theme.FiluetHerbalife.Program.Category.Slogan">
+		<Value>Program slogan</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.ISDK.Filuet.Theme.FiluetHerbalife.Program.Category.Description">
+		<Value>Program description</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.ISDK.Filuet.Theme.FiluetHerbalife.Program.Category.DownloadLink">
+		<Value>Program download link</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.ISDK.Filuet.Theme.FiluetHerbalife.Program.Category.ExpertPhotoUrl">
+		<Value>Link to expert photo</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.ISDK.Filuet.Theme.FiluetHerbalife.Program.Category.ExpertReview">
+		<Value>Expert Quote</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.ISDK.Filuet.Theme.FiluetHerbalife.Program.Category.ExpertName">
+		<Value>Expert full name</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.ISDK.Filuet.Theme.FiluetHerbalife.Program.Category.ExpertPost">
+		<Value>Expert post</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.ISDK.Filuet.Theme.FiluetHerbalife.Program.SubCategory.Name">
+		<Value>Name</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.ISDK.Filuet.Theme.FiluetHerbalife.Program.SubCategory.Title">
+		<Value>Program type title</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.ISDK.Filuet.Theme.FiluetHerbalife.Program.SubCategory.Slogan">
+		<Value>Program type slogan</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.ISDK.Filuet.Theme.FiluetHerbalife.Program.SubCategory.Description">
+		<Value>Program type description</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.ISDK.Filuet.Theme.FiluetHerbalife.Program.SubCategory.DownloadLink">
+		<Value>Program type  download link</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.ISDK.Filuet.Theme.FiluetHerbalife.Program.SubCategory.ProgramTypeName">
+		<Value>Program type name</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.ISDK.Filuet.Theme.FiluetHerbalife.Program.SubCategory.ImageSrc">
+		<Value>Program type image src</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.ISDK.Filuet.Theme.FiluetHerbalife.Program.SubCategory.SecondProgramTypeName">
+		<Value>Second program type name</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.ISDK.Filuet.Theme.FiluetHerbalife.Program.SubCategory.SecondProgramTypeRef">
+		<Value>Second program type ref</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.ISDK.Filuet.Theme.FiluetHerbalife.Program.SubCategory.ThirdProgramTypeName">
+		<Value>Third program type name</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.ISDK.Filuet.Theme.FiluetHerbalife.Program.SubCategory.ThirdProgramTypeRef">
+		<Value>Third program type ref</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.ISDK.Filuet.Theme.FiluetHerbalife.Program.SubCategory.Footnote">
+		<Value>footnote</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.ISDK.Filuet.Theme.FiluetHerbalife.Program.SubCategory.Benefits.Name">
+		<Value>Name </Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.ISDK.Filuet.Theme.FiluetHerbalife.Program.SubCategory.Benefits.Description">
+		<Value>Description</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Program.SubCategory.ProgramBenefits">
+		<Value>Program benefits</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.ISDK.Filuet.Theme.FiluetHerbalife.Product.ProductDescription.PdfFile.PdfRef">
+		<Value>Pdf ref</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.ISDK.Filuet.Theme.FiluetHerbalife.Product.ProductDescription.PdfFile.PdfLabel">
+		<Value>Pdf name</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.ISDK.Filuet.Theme.FiluetHerbalife.Product.ProductDescription.Description">
+		<Value>Description</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.ISDK.Filuet.Theme.FiluetHerbalife.Catalog.Products.PdfFiles.AddNew">
+		<Value>Add new pdf file</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.ISDK.Filuet.Theme.FiluetHerbalife.Catalog.Products.PdfFiles.Hint">
+		<Value>Product characteristics. Pdf files</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Account.TV">
+		<Value>Unaudited Volume</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Fields.DiscountCartBarLabel">
+		<Value>Discount</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Fields.VPCartBarLabel">
+		<Value>VP</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Fields.TotalCartBarLabel">
+		<Value>Total</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Messages.ShippingCountrySelectorUpdateFailed">
+		<Value>Unknown error, please retry</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Messages.ShippingCountryPopupMessage">
+		<Value>Is your delivery country</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Fields.ShippingCountryPopupConfirmButton">
+		<Value>Yes</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Fields.ShippingCountryPopupDeclineButton">
+		<Value>Change</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Messages.ShippingCountryPopupConfirmError">
+		<Value>Unknown error, please retry</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Fields.ShipToLabel">
+		<Value>Ship to:</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Country.Latvia">
+		<Value>Latvia</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Country.Lithuania">
+		<Value>Lithuania</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Country.Estonia">
+		<Value>Estonia</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Menu">
+		<Value>MENU</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Fields.Language">
+		<Value>Language:</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.ISDK.Filuet.Theme.FiluetHerbalife.Program.SubCategory.Benefits.AddNew">
+		<Value>Add New Record</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.ISDK.Filuet.Theme.FiluetHerbalife.SubProgramBenefit.AddNew">
+		<Value>Add New Record</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.ISDK.Filuet.Theme.FiluetHerbalife.Catalog.Products.SaveBeforeEdit">
+		<Value>You need to save the product before you can add pdffile for this product page</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.Catalog.Program.SubCategory.Benefits">
+		<Value>SubCategory-Benefits</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.LegalInfo.EULA.Link.Template.Start">
+		<Value>EulaTemplateStart</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.LegalInfo.EULA.Link.Template.End">
+		<Value>EulaTemplateEnd</Value>
+	</LocaleResource>	
+	<LocaleResource Name="Plugins.LegalInfo.EULA.Link.Text">
+		<Value>EulaLinkText</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.LegalInfo.EULA.Extended">
+		<Value>EulaLinkExtended</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.LegalInfo.EULA.Link.URL">
+		<Value>EulaLinkURL</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.ShoppingCart.SelectOrderMonthWarning">
+		<Value>SelectOrderMonthWarning</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Products.Information">
+		<Value>Information</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Products.Characteristics">
+		<Value>Characteristics</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Products.Reviews">
+		<Value>Reviews</Value>
+	</LocaleResource>
+	<LocaleResource Name="isdk.filuet.theme.filuetherbalife.showmoreproducts">
+		<Value>SHOW MORE PRODUCTS</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Share">
+		<Value>Share</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.SiteTitle">
+		<Value>Address</Value>
+	</LocaleResource>	
+</Language>

@@ -1,0 +1,44 @@
+﻿@** Copyright 2016 Seven Spikes Ltd. All rights reserved. (http://www.nop-templates.com)
+    * http://www.nop-templates.com/t/licensinginfo
+*@
+
+@using Nop.Web.Extensions
+
+@model SevenSpikes.Nop.Plugins.AjaxFilters.Models.ProductsModel
+
+
+@if (Model.Products.Any())
+{
+<div class="@Model.NopAjaxFiltersSettingsModel.ProductsGridPanelSelector.TrimStart(new[] {'.'}) nop7SpikesAjaxFiltersGrid @(Model.CurrentViewModeJson == "null" ? "list" : "row")">
+    @{
+        IEnumerable<Nop.Web.Models.Catalog.ProductOverviewModel> preparedProducts = null;
+
+        switch (Model.CurrentOrderByJson)
+        {
+            case "0": // by position
+                preparedProducts = Model.Products.OrderBy(p => p.Id);
+                break;
+            case "5": // by name
+                preparedProducts = Model.Products.OrderBy(p => p.Name?.Trim());
+                break;
+            case "6": // by name desc
+                preparedProducts = Model.Products.OrderByDescending(p => p.Name?.Trim());
+                break;
+            case "10": // by prod price
+                preparedProducts = Model.Products.OrderBy(p => p.ProductPrice?.PriceValue);
+                break;
+            case "11": // by prod price desc
+                preparedProducts = Model.Products.OrderByDescending(p => p.ProductPrice?.PriceValue);
+                break;
+            default:
+                preparedProducts = Model.Products.OrderBy(p => p.Id);
+                break;
+        }
+    }
+
+    @foreach (var product in preparedProducts)
+    {
+        @await Html.PartialAsync("_ProductBox", product)
+    }
+</div>
+}

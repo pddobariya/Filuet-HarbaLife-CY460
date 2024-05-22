@@ -1,0 +1,488 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<Copyright>Copyright © Nop Solutions, Ltd</Copyright>
+		<Company>Nop Solutions, Ltd</Company>
+		<Authors>Nop Solutions, Ltd</Authors>
+		<PackageLicenseUrl></PackageLicenseUrl>
+		<PackageProjectUrl>https://www.nopcommerce.com/</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/nopSolutions/nopCommerce</RepositoryUrl>
+		<RepositoryType>Git</RepositoryType>
+		<OutputPath>..\..\Presentation\Nop.Web\Plugins\ISDK.Filuet.OnlineOrdering.CorePlugin</OutputPath>
+		<OutDir>$(OutputPath)</OutDir>
+		<!--Set this parameter to true to get the dlls copied from the NuGet cache to the output of your project.
+    You need to set this parameter to true if your plugin has a nuget package 
+    to ensure that the dlls copied from the NuGet cache to the output of your project-->
+		<CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Remove="Views\Order\**" />
+		<Compile Remove="Views\Shared\Components\Footer\**" />
+		<EmbeddedResource Remove="Views\Order\**" />
+		<EmbeddedResource Remove="Views\Shared\Components\Footer\**" />
+		<None Remove="Views\Order\**" />
+		<None Remove="Views\Shared\Components\Footer\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Remove="Areas\Admin\Views\FiluetOrder\Edit.cshtml" />
+		<None Remove="Areas\Admin\Views\FiluetOrder\List.cshtml" />
+		<None Remove="Areas\Admin\Views\FiluetOrder\_OrderDetails.BillingShipping.cshtml" />
+		<None Remove="Areas\Admin\Views\FiluetOrder\_OrderDetails.Info.cshtml" />
+		<None Remove="Areas\Admin\Views\FiluetOrder\_OrderDetails.Notes.cshtml" />
+		<None Remove="Areas\Admin\Views\FiluetOrder\_OrderDetails.Products.cshtml" />
+		<None Remove="Areas\Admin\Views\Product\_CreateOrUpdate.Info.cshtml" />
+		<None Remove="Areas\Admin\Views\_ViewImports.cshtml" />
+		<None Remove="Areas\Admin\Views\_ViewStart.cshtml" />
+		<None Remove="Content\buttons.css" />
+		<None Remove="Content\buttons.less" />
+		<None Remove="Content\buttons.min.css" />
+		<None Remove="Content\cart.css" />
+		<None Remove="Content\cart.less" />
+		<None Remove="Content\cart.min.css" />
+		<None Remove="Content\checkout.css" />
+		<None Remove="Content\checkout.less" />
+		<None Remove="Content\checkout.min.css" />
+		<None Remove="Content\fonts\glyphicons-halflings-regular.ttf" />
+		<None Remove="Content\fonts\glyphicons-halflings-regular.woff" />
+		<None Remove="Content\fonts\glyphicons-halflings-regular.woff2" />
+		<None Remove="Content\hl-customer-login.css" />
+		<None Remove="Content\hl-customer-login.less" />
+		<None Remove="Content\hl-customer-login.min.css" />
+		<None Remove="Content\img\backgrounds\Login-image-772x432.jpg" />
+		<None Remove="Content\img\backgrounds\texture-dots-2.png" />
+		<None Remove="Content\img\button-close-hover.png" />
+		<None Remove="Content\img\button-close.png" />
+		<None Remove="Content\img\button1.png" />
+		<None Remove="Content\img\L.png" />
+		<None Remove="Content\img\loader.gif" />
+		<None Remove="Content\img\separator.png" />
+		<None Remove="Content\img\social-sprite.jpg" />
+		<None Remove="Content\img\X.png" />
+		<None Remove="Content\js\AjaxCart.js" />
+		<None Remove="Content\js\FiluetShopingService.js" />
+		<None Remove="Content\js\shopping-plugin.js" />
+		<None Remove="Content\localized\main-lv-LV.css" />
+		<None Remove="Content\localized\main-ru-RU.css" />
+		<None Remove="Content\main-mobile-all.css" />
+		<None Remove="Content\main-mobile-all.less" />
+		<None Remove="Content\main-mobile-all.min.css" />
+		<None Remove="Content\main.css" />
+		<None Remove="Content\main.less" />
+		<None Remove="Content\main.min.css" />
+		<None Remove="Content\styles.css" />
+		<None Remove="logo.png" />
+		<None Remove="plugin.json" />
+		<None Remove="SevenSpikes.Nop.Plugins.AjaxCart.dll" />
+		<None Remove="SevenSpikes.Nop.Plugins.AnywhereSliders.dll" />
+		<None Remove="SevenSpikes.Nop.Plugins.QuickView.dll" />
+		<None Remove="Themes\Motion\Views\Product\ProductTemplate.Simple.cshtml" />
+		<None Remove="Themes\Motion\Views\Shared\Head.cshtml" />
+		<None Remove="Themes\Motion\Views\Shared\_Root.cshtml" />
+		<None Remove="Themes\Motion\Views\_ViewImports.cshtml" />
+		<None Remove="Views\Catalog7Spikes\Search.cshtml" />
+		<None Remove="Views\Configure.cshtml" />
+		<None Remove="Views\Customer\List.cshtml" />
+		<None Remove="Views\Customer\Login.cshtml" />
+		<None Remove="Views\FiluetCheckout\Completed.cshtml" />
+		<None Remove="Views\FiluetCheckout\Confirm.cshtml" />
+		<None Remove="Views\FiluetCheckout\OpcPaymentMethods.cshtml" />
+		<None Remove="Views\FiluetCoreSettings\Configure.cshtml" />
+		<None Remove="Views\FiluetCustomer\Info.cshtml" />
+		<None Remove="Views\FiluetCustomer\UserLogin.cshtml" />
+		<None Remove="Views\FiluetOrder\CustomerOrders.cshtml" />
+		<None Remove="Views\FiluetOrder\Details.cshtml" />
+		<None Remove="Views\FiluetOrder\_OrderSelectors.cshtml" />
+		<None Remove="Views\Product\ProductTemplate.Simple.cshtml" />
+		<None Remove="Views\Product\_CreateOrUpdate.Info.cshtml" />
+		<None Remove="Views\Product\_ProductAttributes.cshtml" />
+		<None Remove="Views\Product\_ProductPrice.cshtml" />
+		<None Remove="Views\Product\_Single.cshtml" />
+		<None Remove="Views\Setting\GeneralCommon.cshtml" />
+		<None Remove="Views\Shared\ApfMessageBox.cshtml" />
+		<None Remove="Views\Shared\Components\APFDateExpired\Default.cshtml" />
+		<None Remove="Views\Shared\Components\CheckPartner\Default.cshtml" />
+		<None Remove="Views\Shared\Components\EuCookieLaw\Default.cshtml" />
+		<None Remove="Views\Shared\Components\FiluetOrderTotals\Default.cshtml" />
+		<None Remove="Views\Shared\Components\InnPaymentInfo\Default.cshtml" />
+		<None Remove="Views\Shared\Components\NopAjaxCart\NopAjaxCart.cshtml" />
+		<None Remove="Views\Shared\Components\OrderSummary\Default.cshtml" />
+		<None Remove="Views\Shared\Components\Root\Default.cshtml" />
+		<None Remove="Views\Shared\Components\ShipInvoice\Default.cshtml" />
+		<None Remove="Views\Shared\Components\SocialButtons\Default.cshtml" />
+		<None Remove="Views\Shared\EditorTemplates\Date.cshtml" />
+		<None Remove="Views\Shared\HomeHeader.cshtml" />
+		<None Remove="Views\Shared\MainConditions.cshtml" />
+		<None Remove="Views\Shared\_HomeColumns.cshtml" />
+		<None Remove="Views\Shared\_HomeRoot.cshtml" />
+		<None Remove="Views\Shared\_OrderTotalDetails.cshtml" />
+		<None Remove="Views\Shared\_ProductBox.cshtml" />
+		<None Remove="Views\Shared\_ProductBoxList.cshtml" />
+		<None Remove="Views\_ViewImports.cshtml" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="Areas\Admin\Views\FiluetOrder\Edit.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Areas\Admin\Views\FiluetOrder\List.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Areas\Admin\Views\FiluetOrder\_OrderDetails.BillingShipping.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Areas\Admin\Views\FiluetOrder\_OrderDetails.Info.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Areas\Admin\Views\FiluetOrder\_OrderDetails.Notes.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Areas\Admin\Views\FiluetOrder\_OrderDetails.Products.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Areas\Admin\Views\Product\_CreateOrUpdate.Info.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Areas\Admin\Views\_ViewImports.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Areas\Admin\Views\_ViewStart.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Content\buttons.css">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Content\buttons.less">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Content\buttons.min.css">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Content\cart.css">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Content\cart.less">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Content\cart.min.css">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Content\checkout.css">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Content\checkout.less">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Content\checkout.min.css">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Content\fonts\glyphicons-halflings-regular.ttf">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Content\fonts\glyphicons-halflings-regular.woff">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Content\fonts\glyphicons-halflings-regular.woff2">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Content\hl-customer-login.css">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Content\hl-customer-login.less">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Content\hl-customer-login.min.css">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Content\img\backgrounds\Login-image-772x432.jpg">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Content\img\backgrounds\texture-dots-2.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Content\img\button-close-hover.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Content\img\button-close.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Content\img\button1.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Content\img\L.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Content\img\loader.gif">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Content\img\separator.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Content\img\social-sprite.jpg">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Content\img\X.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Content\js\AjaxCart.js">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Content\js\FiluetShopingService.js">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Content\js\shopping-plugin.js">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Content\localized\main-lv-LV.css">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Content\localized\main-ru-RU.css">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Content\main-mobile-all.css">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Content\main-mobile-all.less">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Content\main-mobile-all.min.css">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Content\main.css">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Content\main.less">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Content\main.min.css">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Content\styles.css">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="logo.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Localization\ResourceString\language_en_pack.xml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Localization\ResourceString\language_ru_pack.xml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="SevenSpikes.Nop.Plugins.AnywhereSliders.dll">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="SevenSpikes.Nop.Plugins.QuickView.dll">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\Motion\Views\Product\ProductTemplate.Simple.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\Motion\Views\Shared\Head.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\Motion\Views\Shared\_Root.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Themes\Motion\Views\_ViewImports.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Configure.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="plugin.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Catalog7Spikes\Search.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Customer\List.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Customer\Login.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\FiluetCheckout\Completed.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\FiluetCheckout\Confirm.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\FiluetCheckout\OpcPaymentMethods.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\FiluetCoreSettings\Configure.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\FiluetCustomer\Info.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\FiluetCustomer\UserLogin.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\FiluetOrder\CustomerOrders.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\FiluetOrder\Details.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\FiluetOrder\_OrderSelectors.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Product\ProductTemplate.Simple.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Product\_CreateOrUpdate.Info.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Product\_ProductAttributes.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Product\_ProductPrice.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Product\_Single.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Setting\GeneralCommon.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Shared\ApfMessageBox.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Shared\Components\APFDateExpired\Default.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Shared\Components\CheckPartner\Default.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Shared\Components\EuCookieLaw\Default.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Shared\Components\FiluetOrderTotals\Default.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Shared\Components\InnPaymentInfo\Default.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Shared\Components\NopAjaxCart\NopAjaxCart.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Shared\Components\OrderSummary\Default.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Shared\Components\Root\Default.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Shared\Components\ShipInvoice\Default.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Shared\Components\SocialButtons\Default.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Shared\EditorTemplates\Date.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Shared\HomeHeader.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Shared\MainConditions.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Shared\_HomeColumns.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Shared\_HomeRoot.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Shared\_OrderTotalDetails.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Shared\_ProductBoxList.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\_ViewImports.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="SevenSpikes.Nop.Plugins.AjaxCart.dll">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+	<ItemGroup>
+		<!--<PackageReference Include="Filuet.Hrbl.Ordering.Abstractions" Version="0.0.96" />-->
+		<PackageReference Include="JetBrains.Annotations" Version="2023.2.0" />
+		<PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.21.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Razor" Version="2.2.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\Libraries\Nop.Core\Nop.Core.csproj">
+			<Private>False</Private>
+		</ProjectReference>
+		<ProjectReference Include="..\..\Libraries\Nop.Services\Nop.Services.csproj">
+			<Private>False</Private>
+		</ProjectReference>
+		<ProjectReference Include="..\..\Presentation\Nop.Web.Framework\Nop.Web.Framework.csproj">
+			<Private>False</Private>
+		</ProjectReference>
+		<ProjectReference Include="..\..\Presentation\Nop.Web\Nop.Web.csproj">
+			<Private>False</Private>
+		</ProjectReference>
+		<ProjectReference Include="..\ISDK.Filuet.OnlineOrdering.NopFiluetCommon\ISDK.Filuet.OnlineOrdering.NopFiluetCommon.csproj">
+			<Private>False</Private>
+			<CopyLocalSatelliteAssemblies>True</CopyLocalSatelliteAssemblies>
+		</ProjectReference>
+		<ProjectReference Include="..\Nop.Plugin.Pickup.PickupInStore\Nop.Plugin.Pickup.PickupInStore.csproj">
+			<Private>False</Private>
+			<CopyLocalSatelliteAssemblies>True</CopyLocalSatelliteAssemblies>
+		</ProjectReference>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="SevenSpikes.Nop.Framework">
+			<HintPath>..\..\Presentation\Nop.Web\Plugins\SevenSpikes.Core\SevenSpikes.Nop.Framework.dll</HintPath>
+		</Reference>
+		<Reference Include="SevenSpikes.Nop.Plugins.AjaxCart">
+			<HintPath>SevenSpikes.Nop.Plugins.AjaxCart.dll</HintPath>
+			<Private>True</Private>
+		</Reference>
+		<Reference Include="SevenSpikes.Nop.Plugins.AnywhereSliders">
+			<HintPath>..\..\Presentation\Nop.Web\Plugins\SevenSpikes.Nop.Plugins.AnywhereSliders\SevenSpikes.Nop.Plugins.AnywhereSliders.dll</HintPath>
+		</Reference>
+		<Reference Include="SevenSpikes.Nop.Plugins.QuickView">
+			<HintPath>SevenSpikes.Nop.Plugins.QuickView.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+
+	<ItemGroup>
+		<ClearPluginAssemblies Include="$(MSBuildProjectDirectory)\..\..\Build\ClearPluginAssemblies.proj" />
+	</ItemGroup>
+	<!-- This target execute after "Build" target -->
+	<Target Name="NopTarget" AfterTargets="Build">
+		<!-- Copy all dll files from refs folder -->
+		<ItemGroup>
+			<DllsToCopy Include="$(OutDir)\refs\*.dll" />
+		</ItemGroup>
+		<Copy SourceFiles="@(DllsToCopy)" DestinationFolder="$(OutDir)" />
+
+		<!-- Delete unnecessary libraries from plugins path -->
+		<MSBuild Projects="@(ClearPluginAssemblies)" Properties="PluginPath=$(MSBuildProjectDirectory)\$(OutDir)" Targets="NopClear" />
+		<Delete Files="$(OutDir)\$(AssemblyName).deps.json" />
+		<Delete Files="$(OutDir)\$(AssemblyName).runtimeconfig.json" />
+		<Delete Files="$(OutDir)\$(AssemblyName).runtime.json" />
+		<Delete Files="$(OutDir)\$(AssemblyName).pdb" />
+		<RemoveDir Directories="$(OutDir)\refs" />
+	</Target>
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+		<Exec Command="rd /s /q $(OutDir)runtimes" />
+	</Target>
+</Project>

@@ -1,0 +1,59 @@
+﻿@using Nop.Core
+@using Nop.Core.Domain.Catalog
+@using Nop.Services.Helpers
+@using Nop.Web.Framework.UI
+@inject CatalogSettings catalogSettings
+@inject IWorkContext workContext
+@inject IThemeContext themeContext
+@inject IUserAgentHelper userAgentHelper
+@{
+    Layout = "";
+    var themeName = await themeContext.GetWorkingThemeNameAsync();
+    var supportRtl = await Html.ShouldUseRtlThemeAsync();
+
+    //add swiper css file
+    if (catalogSettings.DisplayAllPicturesOnCatalogPages)
+    {
+        NopHtml.AppendCssFileParts("~/lib_npm/swiper/swiper-bundle.min.css");
+    }
+
+     NopHtml.AppendCssFileParts("~/Themes/FiluetHerbalife/Content/css/response_767.css");
+     NopHtml.AppendCssFileParts("~/Themes/FiluetHerbalife/Content/css/response_1023.css");
+     NopHtml.AppendCssFileParts("~/Themes/FiluetHerbalife/Content/css/response_1279.css");
+     NopHtml.AppendCssFileParts("~/Themes/FiluetHerbalife/Content/css/response_1439.css");
+     NopHtml.AppendCssFileParts("~/Themes/FiluetHerbalife/Content/css/response_1487.css");
+     NopHtml.AppendCssFileParts("~/Themes/FiluetHerbalife/Content/css/styles.css");
+     NopHtml.AppendCssFileParts("~/Themes/FiluetHerbalife/Content/css/extended-styles.css");
+     NopHtml.AppendCssFileParts("~/Themes/FiluetHerbalife/Content/css/kendo-redesign.css");
+     NopHtml.AppendCssFileParts("~/Themes/FiluetHerbalife/Content/css/ion.rangeSlider.css");
+     NopHtml.AppendCssFileParts("~/Themes/FiluetHerbalife/Content/css/fancybox.css");
+     NopHtml.AppendCssFileParts("~/Themes/FiluetHerbalife/Content/css/swiper.css");
+     NopHtml.AppendCssFileParts("~/Themes/FiluetHerbalife/Content/css/swiper-bundle.min.css");
+     NopHtml.AppendCssFileParts("~/Themes/FiluetHerbalife/Content/css/sevenspikes-anywhere-sliders.css");
+     NopHtml.AppendCssFileParts("~/Themes/FiluetHerbalife/Content/css/filuetherbalifestyles.css");
+
+   
+    NopHtml.AddScriptParts(ResourceLocation.Footer, "~/Themes/FiluetHerbalife/Content/js/lozad.min.js");
+    NopHtml.AddScriptParts(ResourceLocation.Footer, "~/Themes/FiluetHerbalife/Content/js/fancybox.min.js");
+    NopHtml.AddScriptParts(ResourceLocation.Footer, "~/Themes/FiluetHerbalife/Content/js/functions.js");
+    
+
+    <!-- PrimeReact -->
+     //NopHtml.AppendCssFileParts("https://unpkg.com/primeicons/primeicons.css");
+     //NopHtml.AppendCssFileParts("https://unpkg.com/primereact/resources/themes/lara-light-indigo/theme.css");
+     //NopHtml.AppendCssFileParts("https://unpkg.com/primereact/resources/primereact.min.css");
+     //NopHtml.AppendCssFileParts("https://unpkg.com/primeflex@2.0.0/primeflex.min.css");
+     //NopHtml.AppendCssFileParts("~/Themes/FiluetHerbalife/Content/css/primereact-modal.css");
+
+    <!-- Dependencies react-->
+    //NopHtml.AppendScriptParts(ResourceLocation.Footer, "https://unpkg.com/react@17/umd/react.production.min.js");
+    //NopHtml.AppendScriptParts(ResourceLocation.Footer, "https://unpkg.com/react-dom@17/umd/react-dom.production.min.js");
+
+    //NopHtml.AppendScriptParts(ResourceLocation.Footer, "https://unpkg.com/react@17/umd/react.development.js");
+    //NopHtml.AppendScriptParts(ResourceLocation.Footer, "https://unpkg.com/react-dom@17/umd/react-dom.development.js");
+
+    //NopHtml.AppendScriptParts(ResourceLocation.Footer, "https://unpkg.com/@babel/standalone/babel.min.js");
+    //NopHtml.AppendScriptParts(ResourceLocation.Footer, "https://unpkg.com/react-transition-group@4.4.2/dist/react-transition-group.js");
+    //NopHtml.AppendScriptParts(ResourceLocation.Footer, "https://unpkg.com/primereact/core/core.min.js");
+
+}

@@ -1,0 +1,53 @@
+﻿@inherits Nop.Web.Framework.Mvc.Razor.NopRazorPage<TModel>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@*we remove the default InputTagHelper to prevent the checkbox duplicating: https://stackoverflow.com/questions/42544961/asp-net-core-custom-input-tag-helper-rendering-duplicate-checkboxes*@
+@removeTagHelper Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, Nop.Web.Framework
+@addTagHelper *, MiniProfiler.AspNetCore.Mvc
+
+@inject IWebHelper webHelper
+@inject SeoSettings seoSettings
+@inject CatalogSettings catalogSettings
+@inject INopHtmlHelper NopHtml
+@inject IHtmlFormatter HtmlHelper
+@inject IWorkContext workContext
+
+@using Microsoft.AspNetCore.Mvc.ViewFeatures
+@using Nop.Web.Extensions
+@using Nop.Web.Framework
+@using Nop.Web.Framework.Extensions
+@using Nop.Web.Framework.Infrastructure
+@using Nop.Web.Framework.Models
+@using Nop.Web.Framework.Security.Captcha
+@using Nop.Web.Framework.Security.Honeypot
+@using Nop.Web.Framework.Themes
+@using Nop.Web.Framework.UI
+@using Nop.Web.Models.Blogs
+@using Nop.Web.Models.Boards
+@using Nop.Web.Models.Catalog
+@using Nop.Web.Models.Checkout
+@using Nop.Web.Models.Cms
+@using Nop.Web.Models.Common
+@using Nop.Web.Models.Customer
+@using Nop.Web.Models.Media
+@using Nop.Web.Models.News
+@using Nop.Web.Models.Newsletter
+@using Nop.Web.Models.Order
+@using Nop.Web.Models.Polls
+@using Nop.Web.Models.PrivateMessages
+@using Nop.Web.Models.Profile
+@using Nop.Web.Models.ShoppingCart
+@using Nop.Web.Models.Topics
+@using Nop.Web.Models.Vendors
+@using Nop.Core
+@using Nop.Core.Infrastructure
+@using Nop.Core.Domain.Seo;
+@using Nop.Core.Domain.Catalog
+@using Nop.Services.Html;
+@using Microsoft.AspNetCore.Mvc.Localization
+@using ISDK.Filuet.OnlineOrdering.CorePlugin.Extensions
+@using ISDK.Filuet.OnlineOrdering.NopFiluetCommon.Extensions
+@using ISDK.Filuet.OnlineOrdering.CorePlugin.Models.Catalog
+
+
+

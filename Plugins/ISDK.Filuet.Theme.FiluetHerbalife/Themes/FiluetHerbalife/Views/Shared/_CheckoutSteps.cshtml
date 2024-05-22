@@ -1,0 +1,16 @@
+﻿@{
+    var checkoutActive = ViewData["checkoutActiveClass"]?.ToString() ?? "";
+    var confirmationActive = ViewData["confirmationActiveClass"]?.ToString() ?? "";
+    if (!string.IsNullOrEmpty(confirmationActive))
+        checkoutActive = "active";
+}
+
+<section class="checkout_steps">
+    <div class="cont">
+        <div class="row">
+            <div class="step active">1. @T("ShoppingCart")</div>
+            <div class="step @checkoutActive">2. @T("ISDK.Filuet.Theme.FiluetHerbalife.ShoppingCart.Checkout1")<span> @T("ISDK.Filuet.Theme.FiluetHerbalife.ShoppingCart.Checkout2")</span></div>
+            <div class="step @confirmationActive">3. @T("ISDK.Filuet.Theme.FiluetHerbalife.ShoppingCart.Confirmation1")<span> @T("ISDK.Filuet.Theme.FiluetHerbalife.ShoppingCart.Confirmation2")</span></div>
+        </div>
+    </div>
+</section>

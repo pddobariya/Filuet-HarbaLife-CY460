@@ -1,0 +1,30 @@
+@model ProductDetailsModel.ProductBreadcrumbModel
+@using Nop.Core.Domain.Catalog
+@using Nop.Core.Domain.Common
+@inject CommonSettings commonSettings
+@{
+    var breadcrumbDelimiter = commonSettings.BreadcrumbDelimiter;
+}
+@if (Model.Enabled)
+{
+    <section class="page_head">
+        <div class="cont">
+            <div class="breadcrumbs">
+                @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.ProductBreadcrumbBefore, additionalData = Model })
+                <div class="points">...</div>
+
+                <a href="@Url.RouteUrl("Homepage")">@T("Products.Breadcrumb.Top")</a>
+                <svg class="sep"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_arrow_right")"></use></svg>
+                
+                @{ int position = 1; }
+                @foreach (var category in Model.CategoryBreadcrumb)
+                {
+                    <a href="@(Url.RouteUrl<Category>(new { SeName = category.SeName }))">@category.Name</a>
+                    <svg class="sep"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_arrow_right")"></use></svg>
+                }
+
+                <span class="current">@Model.ProductName</span>
+            </div>
+        </div>
+    </section>
+}

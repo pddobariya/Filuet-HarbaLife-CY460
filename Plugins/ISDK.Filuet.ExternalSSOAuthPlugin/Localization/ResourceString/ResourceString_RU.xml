@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Language Name="RU">
+	<LocaleResource Name="Plugins.ExternalAuth.SSO.ClientId">
+		<Value>ID клиента</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ExternalAuth.SSO.ClientId.Hint">
+		<Value>Введите здесь свой идентификатор клиента.</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ExternalAuth.SSO.ClientSecret">
+		<Value>Секрет клиента</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ExternalAuth.SSO.ClientSecret.Hint">
+		<Value>Введите здесь свой секрет клиента.</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ExternalAuth.SSO.AuthorizationEndpoint">
+		<Value>Конечная точка авторизации</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ExternalAuth.SSO.AuthorizationEndpoint.Hint">
+		<Value>Введите здесь свою конечную точку авторизации.</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ExternalAuth.SSO.TokenEndpoint">
+		<Value>Конечная точка токена</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ExternalAuth.SSO.TokenEndpoint.Hint">
+		<Value>Введите здесь свою конечную точку токена.</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ExternalAuth.SSO.ApiUrl">
+		<Value>URL-адрес API</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ExternalAuth.SSO.ApiUrl.Hint">
+		<Value>Введите здесь свой URL-адрес API .</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ExternalAuth.SSO.WhitelistedCountries">
+		<Value>Страны из белого списка</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ExternalAuth.SSO.WhitelistedCountries.Hint">
+		<Value>Введите страны из белого списка</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ExternalAuth.SSO.IsEnableCountryRestrictions">
+		<Value>Включить ограничения по странам</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ExternalAuth.SSO.IsEnableCountryRestrictions.Hint">
+		<Value>Включить ограничения по странам</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ExternalAuth.SSO.NotAuthorized">
+		<Value>You are not authorized to use this website based on your country of residence.</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ExternalAuth.SSO.AllowedDsTypes">
+		<Value>Разрешенный дистрибьютор</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ExternalAuth.SSO.AllowedDsTypes.Hint">
+		<Value>Дистрибьюторы данного типа разрешены для последующих стран</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ExternalAuth.SSO.AllowedResidenceCountry">
+		<Value>Разрешенные страны</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ExternalAuth.SSO.AllowedResidenceCountry.Hint">
+		<Value>Эти страны разрешены для разрешенных дистрибьюторов</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ExternalAuth.SSO.DeniedDsTypes">
+		<Value>Запрещенный дистрибьютор</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ExternalAuth.SSO.DeniedDsTypes.Hint">
+		<Value>Дистрибьюторы данного типа запрещены для последующих стран</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ExternalAuth.SSO.DeniedResidenceCountry">
+		<Value>Запрещенные страны</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ExternalAuth.SSO.DeniedResidenceCountry.Hint">
+		<Value>Эти страны запрещены для запрещенных дистрибьюторов</Value>
+	</LocaleResource>
+</Language>

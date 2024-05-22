@@ -1,0 +1,12 @@
+﻿@{
+    var url = T("Filuet.OnlineOrdering.BltExtendedFunctions.AfterTotalInfoOrderDetailsMessageHref").Text.ToLower();
+}
+
+@if (!url.StartsWith("Filuet"))
+{
+    <p style="margin: 10px;">
+        <a target="_blank" href="@url" style="color: blue;">
+            @T("Filuet.OnlineOrdering.BltExtendedFunctions.AfterTotalInfoOrderDetailsMessage")
+        </a>
+    </p>
+}

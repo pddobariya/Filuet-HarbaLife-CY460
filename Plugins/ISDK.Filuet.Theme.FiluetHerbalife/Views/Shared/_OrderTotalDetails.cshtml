@@ -1,0 +1,53 @@
+@model FiluetOrderTotalsModel
+
+@using ISDK.Filuet.OnlineOrdering.CorePlugin.Models.ShoppingCart
+
+@{
+    string orderMonth = Model.OrderMonth ?? "---";
+    if (Model?.OrderMonth != null && Model?.OrderMonth.Split('.').Length != 2 && Model?.OrderMonth.Length == 4)
+    {
+        orderMonth = $"{Model.OrderMonth.Substring(2)}.{Model.OrderMonth.Substring(1, 2)}";
+    }
+    string orderMonthVolume = Model.OrderMonthVolume;
+    string discountRate = Model.DiscountRate;
+    string orderVolumePoints = Model.OrderVolumePoints;
+    string orderFlatFee = Model.FlatFee;
+    string productEarnbase = Model.ProductEarnBase;
+    string subTotal = Model.SubTotal;
+    string total = Model.OrderTotal;
+    string taxAmount = Model.Tax;
+    string discountedBasePrice = Model.DiscountedBasePrice;
+    string shippingCost = Model.Shipping;
+    string deliveryPrice = Model.DeliveryPrice ?? "---";
+    bool showDeliveryPrice = Model.ShowDeliveryPrice;
+}
+<div class="totals">
+    <div class="item">
+        <div class="name">@T("ShoppingCart.Totals.OrderMonth")</div>
+        <div class="val">@orderMonth</div>
+    </div>
+
+    <div class="item">
+        <div class="name">@T("ShoppingCart.Totals.DeliveryPrice")</div>
+        <div class="val">@deliveryPrice</div>
+    </div>
+
+    @if (!string.IsNullOrEmpty(orderFlatFee))
+    {
+        <div class="item">
+            <div class="name">@T("ShoppingCart.Totals.FlatFee")</div>
+            <div class="val">@orderFlatFee</div>
+        </div>
+    }
+
+
+    <div class="item">
+        <div class="name">@T("ShoppingCart.Totals.OrderVolumePoints")</div>
+        <div class="val">@orderVolumePoints</div>
+    </div>
+
+    <div class="item">
+        <div class="name">@T("ShoppingCart.Totals.TotalDue")</div>
+        <div class="val">@total</div>
+    </div>
+</div>

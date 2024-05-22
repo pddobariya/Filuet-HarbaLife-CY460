@@ -1,0 +1,57 @@
+﻿@model ProductOverviewModel
+@{
+    //prepare "Add to cart" AJAX link
+    string addtocartlink = "";
+    var shoppingCartTypeId = (int)ShoppingCartType.ShoppingCart;
+    var quantity = 1;
+    if (Model.ProductPrice.ForceRedirectionAfterAddingToCart)
+    {
+        addtocartlink = Url.RouteUrl("AddProductToCart-Catalog", new { productId = Model.Id, shoppingCartTypeId = shoppingCartTypeId, quantity = quantity, forceredirection = Model.ProductPrice.ForceRedirectionAfterAddingToCart });
+    }
+    else
+    {
+        addtocartlink = Url.RouteUrl("AddProductToCart-Catalog", new { productId = Model.Id, shoppingCartTypeId = shoppingCartTypeId, quantity = quantity });
+    }
+
+    var addtowishlistlink = Url.RouteUrl("AddProductToCart-Catalog", new { productId = Model.Id, shoppingCartTypeId = (int)ShoppingCartType.Wishlist, quantity = quantity });
+    var addtocomparelink = Url.RouteUrl("AddProductToCompare", new { productId = Model.Id });
+
+    bool hasVp = Model.CustomProperties.ContainsKey(NopFiluetCommonDefaults.VolumePoints);
+}
+<div class="product-item" data-productid="@Model.Id">
+    <div class="product-list-details">
+        <a class="product-list-link" href="@Url.RouteUrl("Product", new { SeName = Model.SeName })">
+            <div class="product-list-sku">
+                <span>@T("HBL.Baltic.OnlineOrdering.ShoppingPlugin.Resources.SKU", Model.Sku)</span>
+            </div>
+            <div class="product-list-title">
+                <span>@Model.Name</span>
+            </div>
+        </a>
+        <div class="product-list-button">
+            <div class="add-info">
+                @if (!string.IsNullOrEmpty(Model.ProductPrice.Price))
+                {
+                    <div class="prices">
+                        <span class="price actual-price @(hasVp ? "price-small" : "")">
+                            @Model.ProductPrice.Price
+
+                            @if (hasVp)
+                            {
+                                <br />
+                                @T("HBL.Baltic.OnlineOrdering.ShoppingPlugin.Resources.VolumePoints", Model.CustomProperties[NopFiluetCommonDefaults.VolumePoints])
+                            }
+                        </span>
+                    </div>
+                }
+                <div class="buttons">
+                    @if (!Model.ProductPrice.DisableBuyButton)
+                    {
+                        var addToCartText = T("ShoppingCart.AddToCart").Text;
+                        <input type="button" value="@(addToCartText)" class="button-2 product-box-add-to-cart-button" onclick="AjaxCart.addproducttocart_catalog('@addtocartlink    ');return false;" />
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

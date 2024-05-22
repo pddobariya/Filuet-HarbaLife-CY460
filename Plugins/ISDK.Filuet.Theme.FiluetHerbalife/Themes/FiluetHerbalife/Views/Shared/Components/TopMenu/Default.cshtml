@@ -1,0 +1,151 @@
+﻿@model TopMenuModel
+@{
+    NopHtml.AddScriptParts(ResourceLocation.Footer, "~/Themes/FiluetHerbalife/Content/js/activetopmenumaker.js");
+}
+
+@functions {
+
+    async Task CategoryLine(TopMenuModel.CategoryLineModel lineModel)
+    {
+        var pageclass = _themeFiluetHerbalifeSettings.CategoryIdForCatalogue == lineModel.Category.Id ? "catalog-page-menu-item" : (_themeFiluetHerbalifeSettings.CategoryIdForProgramm == lineModel.Category.Id ? "programm-page-menu-item" : "");
+
+        <div class="item @pageclass">
+
+            @{
+                var subCategories = lineModel.Category.SubCategories;
+
+                <a href="@Url.RouteUrl("Category", new {SeName = lineModel.Category.SeName})" class="@(subCategories.Count > 0 ? "sub_link" : "")">
+                    <svg class="icon">
+
+                        @*@if (_themeFiluetHerbalifeSettings.CategoryIdForCatalogue == lineModel.Category.Id)
+            {
+                            <use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_menu3")"></use>
+                        }*@
+
+                        @if (_themeFiluetHerbalifeSettings.CategoryIdForProgramm == lineModel.Category.Id)
+                        {
+                            <use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_menu2")"></use>
+                        }
+                        else
+                        {
+                            @*DEFAULT*@
+                            <use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_menu3")"></use>
+                        }
+
+
+                    </svg>
+                    <span>@lineModel.Category.Name</span>
+                </a>
+
+                var levelClass = "";
+                if (lineModel.Level == 0)
+                {
+                    levelClass = "first-level";
+                }
+                if (subCategories.Count > 0)
+                {
+                    <div class="sub_menu sublist @levelClass">
+
+                        @foreach (var subCategory in subCategories)
+                        {
+                            <div>
+                                <a href="@Url.RouteUrl("Category", new {SeName = subCategory.SeName})" class="@(subCategory.SubCategories.Count > 0 ? "sub_link" : "")">
+                                    <span>@subCategory.Name</span>
+                                    @if (subCategory.SubCategories.Count > 0)
+                                    {
+                                        <svg class="arrow">
+                                            <use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_arrow_right")"></use>
+                                        </svg>
+                                    }
+                                </a>
+
+                                @if (subCategory.SubCategories.Count > 0)
+                                {
+                                    int counter = 0;
+
+                                    <div class="sub">
+
+                                        @foreach (var subSubCategory in subCategory.SubCategories)
+                                        {
+                                            counter++;
+                                            <div>
+                                                <a href="@Url.RouteUrl("Category", new {SeName = subSubCategory.SeName})">
+                                                    <svg class="icon">
+                                                        <use xlink:href="@Url.Content($"~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_categories_type{counter}")"></use>
+                                                    </svg>
+                                                    <span>@subSubCategory.Name</span>
+                                                </a>
+                                            </div>
+                                        }
+                                    </div>
+                                }
+
+                            </div>
+                        }
+
+                    </div>
+                }
+            }
+        </div>
+    }
+}
+
+<div class="bottom row">
+    <nav class="menu row">
+        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderMenuBefore })
+        @if (Model.DisplayHomepageMenuItem)
+        {
+            <div class="item home-page-menu-item">
+                <a href="@Url.RouteUrl("Homepage")">
+                    <svg class="icon"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_menu1")"></use></svg>
+                    <span>@T("Homepage")</span>
+                </a>
+            </div>
+
+            var rootCategories = Model.Categories.Where(x => x.IncludeInTopMenu).ToList();
+            @foreach (var category in rootCategories)
+            {
+                var categoryLineModel = new TopMenuModel.CategoryLineModel
+                {
+                    Category = category
+                };
+                await CategoryLine(categoryLineModel);
+            }
+
+            <div class="item topic-page-menu-item">
+                <a href="#" class="sub_link">
+                    <svg class="icon">
+                        <use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_menu5")"></use>
+                    </svg>
+                    <span>@T("ISDK.Filuet.Theme.FiluetHerbalife.Info")</span>
+                </a>
+                <div class="sub_menu sublist">
+                    @foreach (var topic in Model.Topics)
+                    {
+                        <div>
+                           <a href="@(Url.RouteUrl<Topic>(new { SeName = topic.SeName }))">@topic.Name</a>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <div class="item faq-page-menu-item">
+                <a href="@Url.RouteUrl("Faq")">
+                    <svg class="icon"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_tooltip")"></use></svg>
+                    <span>@T("ISDK.Filuet.Theme.FiluetHerbalife.Faq")</span>
+                </a>
+            </div>
+        }
+
+        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderMenuAfter })
+    </nav>
+</div>
+
+<div class="mob_bottom row">
+    <button class="menu_btn">
+        <svg class="icon"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_menu")"></use></svg>
+        <span>@T("ISDK.Filuet.Theme.FiluetHerbalife.Menu")</span>
+    </button>
+
+    @await Component.InvokeAsync("MobSearchBox")
+</div>

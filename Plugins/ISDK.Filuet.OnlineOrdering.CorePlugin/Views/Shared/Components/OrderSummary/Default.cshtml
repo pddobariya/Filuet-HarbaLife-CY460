@@ -1,0 +1,748 @@
+﻿@model ShoppingCartModel
+
+@{
+    bool isDebtor = Model.CustomProperties.ContainsKey(NopFiluetCommonDefaults.IsDebtor)
+        ? Convert.ToBoolean(Model.CustomProperties[NopFiluetCommonDefaults.IsDebtor])
+        : false;
+    FiluetShoppingCartModel extendedModel = Model as FiluetShoppingCartModel;
+    NopHtml.AppendCssFileParts("~/lib/jquery-ui/jquery-ui-1.10.3/jquery-ui-themes/smoothness/jquery-ui-1.10.3.custom.min.css");
+}
+<style type="text/css">
+    input[type=checkbox].select-all {
+        margin: 0 5px;
+        cursor: pointer;
+    }
+
+    .nopAjaxCartPanelAjaxBusy {
+        display: none;
+        width: 100%;
+        height: 100%;
+    }
+
+    .quantity {
+        text-align: center;
+    }
+
+    .limits-exceed-message-outer {
+        width: 100%;
+        background-color: #e86974;
+        color: #ffffff;
+        text-align: center;
+        padding: 16px 0 16px 0;
+        box-sizing: border-box;
+        position: relative;
+    }
+
+    div#apf-section {
+        display: none;
+        font-size: 14px;
+        background-color: #FFF2DE;
+        padding: 5px;
+        border: 1px solid #FFCA78;
+    }
+
+    #apf-section.apf-item-in-cart {
+        background-color: #DBF5C8;
+        border-color: #A3E572;
+    }
+
+    div#apf-section.visible {
+        display: inline-block;
+    }
+
+    .apf-message, .apf-item-in-cart .apf-pay-block {
+        display: none;
+    }
+
+    .apf-item-in-cart .apf-message {
+        display: block;
+    }
+
+    a#apf-pay-button {
+        color: #0000ff;
+    }
+</style>
+
+<script type="text/javascript">
+    function ConfirmRedirect() {
+        $( "#dialog-confirm-redirect" ).dialog({
+            resizable: false,
+            height: "auto",
+            width: 400,
+            modal: true,
+            buttons: {
+                "@T("Admin.Common.Go")": function () {
+                    $(this).dialog("close");
+                    var cookies = document.cookie;
+                    var win = window.open("", 'TheWindow');
+                    var theForm = document.getElementById('TheForm');
+                    //theForm.addEventListener('submit', function() {
+                    //    win.document.cookie = cookies;
+                    //});
+                    theForm.submit();
+
+                    win.focus();
+                    document.location = "@Url.Action("ClearCart", "FiluetShoppingCart")";
+                },
+                "@T("Common.Cancel")": function() {
+                    $( this ).dialog( "close" );
+                }
+            }
+        });
+    };
+
+    var isCartUpdating = false;
+    var oldValData = 'oldValue';
+
+    function updateCart(cartData) {
+        if (!cartData) {
+            return;
+        }
+
+        isCartUpdating = true;
+
+        for (let i = 0; i < cartData.cart.length; i++) {
+            const item = cartData.cart[i];
+            const $row = $('tr[data-id=${item.item_id}]');
+            const $subTotal = $row.find('.product-subtotal');
+            $subTotal.text(item.sub_total);
+            const $inp = $row.find('input.qty-input');
+            if ($inp.length > 0) {
+                $inp.val(item.quantity);
+                $inp.data(oldValData, item.quantity);
+
+                continue;
+            }
+
+            const $span = $row.find('span.product-quantity');
+            if ($span.length === 0) {
+                continue;
+            }
+
+            $span.text(item.quantity);
+        }
+
+        var totals = $('.value-summary').find('strong');
+        totals.eq(0).text(cartData.totals.order_total_string);
+        totals.eq(1).text(cartData.totals.volume_points_string);
+
+        isCartUpdating = false;
+        $('.nopAjaxCartPanelAjaxBusy').hide();
+    }
+
+    $(document).ready(function () {
+        var updateTimer;
+
+        //http://jsfiddle.net/laelitenetwork/puJ6G/
+        $('.btn-bs-number')
+            .click(function (e) {
+                e.preventDefault();
+
+                var $btn = $(this);
+                const $parents = $btn.parents('.input-group-bs');
+                var $inp = $parents.find('input');
+                const $buttons = $parents.find('.btn-bs-number');
+
+                var currentVal = +$inp.val();
+                var oldValue = $inp.data(oldValData);
+                if (isNaN(oldValue)) {
+                    $inp.data(oldValData, currentVal);
+                }
+
+                if (isNaN(currentVal)) {
+                    $inp.val(1);
+
+                    return;
+                }
+
+                var type = $btn.attr('data-type');
+                var value = currentVal;
+                var minValue = $inp.attr('min');
+                var maxValue = $inp.attr('max');
+                switch (type) {
+                case 'minus':
+                    if (currentVal > minValue) {
+                        value--;
+                    }
+                    break;
+                case 'plus':
+                    if (currentVal < maxValue) {
+                        value++;
+                    }
+                    break;
+                default:
+                    return;
+                }
+
+                $inp.val(value).change();
+
+                $buttons.eq(0).prop('disabled', value <= minValue);
+                $buttons.eq(1).prop('disabled', value >= maxValue);
+            });
+
+        $('.qty-input')
+            .focusin(function () {
+                var $inp = $(this);
+                $inp.data(oldValData, $inp.val());
+            })
+            .change(function () {
+
+                if (isCartUpdating) {
+                    return;
+                }
+
+                var $inp = $(this);
+                var minValue = +$inp.attr('min');
+                var maxValue = +$inp.attr('max');
+                var valueCurrent = +$inp.val();
+                var $buttons = $inp.parent().find('.btn-bs-number');
+                var oldValue = $inp.data(oldValData);
+
+                if (valueCurrent < minValue || valueCurrent > maxValue) {
+                    $inp.val(oldValue);
+
+                    return;
+                }
+
+                if (valueCurrent != oldValue) {
+                    $("#cart-need-to-update-message").show();
+                } else {
+                    $("#cart-need-to-update-message").hide();
+                }
+
+                if (valueCurrent >= minValue) {
+                    $buttons.find("[data-type='minus']").removeAttr('disabled');
+                }
+
+                if (valueCurrent <= maxValue) {
+                    $buttons.find("[data-type='plus']").removeAttr('disabled');
+                }
+
+                if (oldValue === valueCurrent) {
+                    return;
+                }
+
+                var id = $inp.parents('[data-id]').data('id');
+
+                clearTimeout(updateTimer);
+                updateTimer = setTimeout(function () {
+                    // TODO: nasa - ShoppingPlugin api
+                    //$('.nopAjaxCartPanelAjaxBusy').show();
+                    //const cart = await ShoppingPlugin.api.cart.updateQuantity(id, valueCurrent);
+
+                    //updateCart(cart);
+                }, 500);
+            })
+            .keydown(function (e) {
+                // Allow: backspace, delete, tab, escape, enter and .
+                if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 190]) !== -1 ||
+                    // Allow: Ctrl+A
+                    (e.keyCode == 65 && e.ctrlKey === true) ||
+                    // Allow: home, end, left, right
+                    (e.keyCode >= 35 && e.keyCode <= 39)) {
+                    // let it happen, don't do anything
+                    return;
+                }
+                // Ensure that it is a number and stop the keypress
+                if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                    e.preventDefault();
+                }
+            });
+
+        $('input[type=checkbox].select-all')
+            .on('click',
+                function (e) {
+                    var state = e.target.checked;
+                    $('.cart').find('td.remove-from-cart input[name=removefromcart]')
+                        .prop('checked', state ? 'checked' : '');
+                });
+    });
+</script>
+
+@if (extendedModel != null && extendedModel.ShowApfPayMessage)
+{
+    <style>
+        .ui-front {
+            z-index: 2000;
+        }
+
+        .ui-dialog {
+            z-index: 2001;
+            width: 600px !important;
+        }
+
+        #apf-dialog-message a {
+            color: -webkit-link;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+    </style>
+    <div id="apf-dialog-message" title="Apf expired" style="display: none;">
+        <p>
+            @T("ISDK.Filuet.OnlineOrdering.CorePlugin.ApfCartMessageBox.Content")
+        </p>
+    </div>
+    <script>
+        $(function () {
+            $("#apf-dialog-message").dialog({
+                closeOnEscape: false,
+                open: function (event, ui) {
+                    if (event.target.id === "apf-dialog-message")
+                        $(".ui-dialog-titlebar-close").hide();
+                },
+                resizable: false,
+                height: "auto",
+                width: 400,
+                modal: true,
+                buttons: {
+                    "Ok": function () {
+                        $(this).dialog("destroy").remove();
+                    }
+                }
+            });
+        });
+    </script>
+    
+}
+
+<div id="dialog-confirm-redirect" title="@T("Checkout.TermsOfService.PleaseAccept")" style="display: none">
+    <p>@T("ISDK.Filuet.OnlineOrderring.CorePlugin.PayYouNeedGoToPaymentSite")</p>
+</div>
+<div id="cart-need-to-update-message" style="display: none">
+    <p>@T("ISDK.Filuet.OnlineOrdering.CorePlugin.UpdateCard")</p>
+</div>
+<div class="order-summary-content">
+    @if (Model.IsEditable)
+    {
+        @*<div class="apf-section" id="apf-section">
+                <div class="apf-pay-block">
+                    @{
+                        string messageTitle = "";
+
+                        if (extendedModel != null && extendedModel.ApfDueDate != null)
+                        {
+                            messageTitle = string.Format(
+                                T("HBL.Baltic.APFDueDateWarningPeriodDays.MessageTemplate").Text,
+                                extendedModel.ApfDueDate);
+                        }
+                    }
+                    <span>@messageTitle</span>
+                    <a id="apf-pay-button" href="#">@T("HBL.Baltic.APFDueDateWarningPeriodDays.PayNowButton")</a>
+                </div>
+                <div class="apf-message">
+                    @T("HBL.Baltic.APFDueDateWarningPeriodDays.APFPaymentCompleteMessage")
+                </div>
+            </div>*@
+        <script src="Plugins/ISDK.Filuet.OnlineOrdering.CorePlugin/Content/js/FiluetShopingService.js"></script>
+
+        <div id="dialog-iscartvalid" title="Info" data-cartIsValid="@(extendedModel?.CartIsValid)" data-monthIsSelected="@(await _dualMonthsService.GetDualMonthAllowedAsync())" data-template="@T("Cart.Dialogiscartvalid")" data-close_button="@T("Cart.Dialogiscartvalid.CloseButton")">
+            <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span></p>
+        </div>
+
+        if (Model is FiluetShoppingCartModel model)
+        {
+            var skuStr = string.Join(", ", model.IsCartValid);
+            <script>
+                FiluetShopingService.ShowMessage(@((!model.IsCartValid.Any()).ToString().ToLowerInvariant()), "@(skuStr)");
+            </script>
+        }
+        @(await Component.InvokeAsync("Widget", new {widgetZone = PublicWidgetZones.OrderSummaryContentBefore}))
+    }
+    @await Html.PartialAsync("_OrderReviewData", Model.OrderReviewData)
+    @if (Model.Items.Count > 0)
+    {
+        if (Model.Warnings.Count > 0)
+        {
+            <div class="message-error message-warning-container">
+                <ul>
+                    @foreach (var warning in Model.Warnings)
+                    {
+                        <li>@Html.Raw(warning)</li>
+                    }
+                </ul>
+            </div>
+        }
+        if (extendedModel != null && extendedModel.Errors != null && extendedModel.Errors.Count > 0)
+        {
+            <div class="message-error message-error-container">
+                <ul>
+                    @foreach (var error in extendedModel.Errors)
+                    {
+                        <li>@error</li>
+                    }
+                </ul>
+            </div>
+        }
+        @*we add enctype = "multipart/form-data" because "File upload" attribute control type requires it*@
+        <form asp-route="ShoppingCart" method="post" enctype="multipart/form-data" id="shopping-cart-form">
+            <div class="table-wrapper">
+                <table class="cart">
+                    <colgroup>
+                        @if (Model.IsEditable)
+                        {
+                            <col width="1" />
+                        }
+                        @if (Model.ShowSku)
+                        {
+                            <col width="1" />
+                        }
+                        @if (Model.ShowProductImages)
+                        {
+                            <col width="1" />
+                        }
+                        <col />
+                        <col width="1" />
+                        <col width="1" />
+                        <col width="1" />
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            @if (Model.IsEditable)
+                            {
+                                <th class="remove-from-cart">
+                                    <label class="remove-header-label">@T("ShoppingCart.Remove")</label>
+                                    <input type="checkbox" class="select-all" data-index="1">
+                                </th>
+                            }
+                            @if (Model.ShowSku)
+                            {
+                                <th class="sku">
+                                    <label class="remove-header-label">@T("ShoppingCart.SKU")</label>
+                                </th>
+                            }
+                            @if (Model.ShowProductImages)
+                            {
+                                <th class="product-picture">
+                                    <label class="remove-header-label">@T("ShoppingCart.Image")</label>
+                                </th>
+                            }
+                            <th class="product">
+                                @T("ShoppingCart.Product(s)")
+                            </th>
+                            <th class="unit-price">
+                                @T("ShoppingCart.UnitPrice")
+                            </th>
+                            <th class="quantity">
+                                <label class="remove-header-label">@T("ShoppingCart.Quantity")</label>
+                            </th>
+                            <th class="subtotal">
+                                <label class="remove-header-label">@T("ShoppingCart.ItemTotal")</label>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Items)
+                        {
+                            <tr data-id="@item.ProductId">
+                                @if (Model.IsEditable)
+                                {
+                                    <td class="remove-from-cart">
+                                        @if (item.DisableRemoval)
+                                        {
+                                            <text>&nbsp;</text>
+                                        }
+                                        else
+                                        {
+                                            <label class="td-title">@T("ShoppingCart.Remove"):</label>
+                                            <input type="checkbox" name="removefromcart" value="@(item.Id)" />
+                                        }
+                                    </td>
+                                }
+                                @if (Model.ShowSku)
+                                {
+                                    <td class="sku">
+                                        <label class="td-title">@T("ShoppingCart.SKU"):</label>
+                                        <span class="sku-number">@item.Sku</span>
+                                    </td>
+                                }
+                                @if (Model.ShowProductImages)
+                                {
+                                    <td class="product-picture">
+                                        <a href="@Url.RouteUrl("Product", new {SeName = item.ProductSeName})"><img alt="@item.Picture.AlternateText" src="@item.Picture.ImageUrl" title="@item.Picture.Title" /></a>
+                                    </td>
+                                }
+                                <td class="product">
+                                    <a href="@Url.RouteUrl("Product", new {SeName = item.ProductSeName})" class="product-name">@item.ProductName</a>
+                                    @if (!string.IsNullOrEmpty(item.AttributeInfo))
+                                    {
+                                        <div class="attributes">
+                                            @Html.Raw(item.AttributeInfo)
+                                        </div>
+                                    }
+                                    @if (!string.IsNullOrEmpty(item.RecurringInfo))
+                                    {
+                                        <div class="recurring-info">
+                                            @Html.Raw(item.RecurringInfo)
+                                        </div>
+                                    }
+                                    @if (!string.IsNullOrEmpty(item.RentalInfo))
+                                    {
+                                        <div class="rental-info">
+                                            @Html.Raw(item.RentalInfo)
+                                        </div>
+                                    }
+                                    @if (Model.IsEditable && item.AllowItemEditing)
+                                    {
+                                        var editCartItemUrl = Url.RouteUrl("Product", new { SeName = item.ProductSeName }, webHelper.GetCurrentRequestProtocol());
+                                        editCartItemUrl = webHelper.ModifyQueryString(editCartItemUrl, "updatecartitemid", item.Id.ToString());
+                                        <div class="edit-item">
+                                            <a href="@editCartItemUrl">@T("Common.Edit")</a>
+                                        </div>
+                                    }
+                                    @if (item.Warnings.Count > 0)
+                                    {
+                                        <div class="message-error">
+                                            <ul>
+                                                @foreach (var warning in item.Warnings)
+                                                {
+                                                    <li>@Html.Raw(warning)</li>
+                                                }
+                                            </ul>
+                                        </div>
+                                    }
+                                </td>
+                                <td class="unit-price">
+                                    <label class="td-title">@T("ShoppingCart.UnitPrice"):</label>
+                                    <span class="product-unit-price">@item.UnitPrice</span>
+                                </td>
+                                <td class="quantity">
+                                    <label class="td-title" for="itemquantity@(item.Id)">@T("ShoppingCart.Quantity"):</label>
+                                    @if (!item.DisableRemoval && !isDebtor && Model.IsEditable)
+                                    {
+                                        if (item.AllowedQuantities.Count > 0)
+                                        {
+                                            <select name="itemquantity@(item.Id)" class="qty-dropdown">
+                                                @foreach (var qty in item.AllowedQuantities)
+                                                {
+                                                    <option selected="@qty.Selected" value="@qty.Value">@qty.Value</option>
+                                                }
+                                            </select>
+                                        }
+                                        else
+                                        {
+                                            <div class="input-group-bs">
+                                                <span class="input-group-bs-btn">
+                                                    <button type="button" class="btn-bs btn-bs-danger btn-bs-number" data-type="minus" data-field="itemquantity@(item.Id)" @(item.Quantity == 1 ? "disabled" : "")>
+                                                        <span class="glyphicon glyphicon-minus"></span>
+                                                    </button>
+                                                </span>
+                                                <input name="itemquantity@(item.Id)" type="text" value="@(item.Quantity)" class="qty-input" min="1" max="@Int32.MaxValue" />
+                                                <span class="input-group-bs-btn">
+                                                    <button type="button" class="btn-bs btn-bs-success btn-bs-number" data-type="plus" data-field="itemquantity@(item.Id)">
+                                                        <span class="glyphicon glyphicon-plus"></span>
+                                                    </button>
+                                                </span>
+                                            </div>
+                                        }
+
+                                    }
+                                    else
+                                    {
+                                        <span class="product-quantity">@item.Quantity</span>
+                                    }
+                                </td>
+                                <td class="subtotal">
+                                    <label class="td-title">@T("ShoppingCart.ItemTotal"):</label>
+                                    <span class="product-subtotal">@item.SubTotal</span>
+                                    @if (!string.IsNullOrEmpty(item.Discount))
+                                    {
+                                        <div class="discount">
+                                            @T("ShoppingCart.ItemYouSave", item.Discount)
+                                        </div>
+                                        if (item.MaximumDiscountedQty.HasValue)
+                                        {
+                                            <div class="discount-additional-info">
+                                                @T("ShoppingCart.MaximumDiscountedQty", item.MaximumDiscountedQty.Value)
+                                            </div>
+                                        }
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            @if (Model.IsEditable && Model.Items.Count > 0 && Model.DisplayTaxShippingInfo)
+            {
+                var inclTax =await workContext.GetTaxDisplayTypeAsync() == TaxDisplayType.IncludingTax;
+                //tax info is already included in the price (incl/excl tax). that's why we display only shipping info here
+                //of course, you can modify appropriate locales to include VAT info there
+                <div class="tax-shipping-info">
+                    @T(inclTax ? "ShoppingCart.TaxShipping.InclTax" : "ShoppingCart.TaxShipping.ExclTax", Url.RouteUrl("Topic", new { SeName =await CustomExtensions.GetTopicSeNameAsync("shippinginfo") }))
+                </div>
+            }
+            <div class="cart-options">
+                @if (Model.IsEditable)
+                {
+                    <div class="common-buttons">
+                        @if (!isDebtor)
+                        {
+                            <input type="submit" name="updatecart" value="@T(" ShoppingCart.UpdateCart")" class="button-2 update-cart-button" />
+                        }
+                        <input type="submit" name="continueshopping" value="@T(" ShoppingCart.ContinueShopping")" class="button-2 continue-shopping-button" />
+                    </div>
+                }
+                @if (Model.IsEditable)
+                {
+                    @await Html.PartialAsync("_CheckoutAttributes", Model)
+                }
+                @await Component.InvokeAsync("SelectedCheckoutAttributes")
+            </div>
+            @await Component.InvokeAsync("Widget", new { widgetZone = FiluetPublicWidgetZones.BeforeOrderSummaryCartFooter })
+            <div class="cart-footer">
+                @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.OrderSummaryCartFooter })
+                @if (Model.IsEditable)
+                {
+                    <div class="cart-collaterals">
+                        <div class="deals">
+                            @await Html.PartialAsync("_DiscountBox", Model.DiscountBox)
+                            @await Html.PartialAsync("_GiftCardBox", Model.GiftCardBox)
+                            @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.OrderSummaryContentDeals })
+                        </div>
+                        @await Component.InvokeAsync("ShoppingCartEstimateShipping")
+                    </div>
+                }
+                <div class="totals">
+                    @await Component.InvokeAsync("FiluetOrderTotals", new { isEditable = Model.IsEditable })
+                    @if (Model.IsEditable)
+                    {
+                        if (!string.IsNullOrEmpty(Model.MinOrderSubtotalWarning))
+                        {
+                            <div class="min-amount-warning">
+                                @Model.MinOrderSubtotalWarning
+                            </div>
+                        }
+                    }
+                    @if (Model.IsEditable)
+                    {
+                        if (Model.TermsOfServiceOnShoppingCartPage)
+                        {
+                            <div id="terms-of-service-warning-box" title="@T(" Checkout.TermsOfService")" style="display: none;">
+                                <p>@T("Checkout.TermsOfService.PleaseAccept")</p>
+                            </div>
+                            <div class="terms-of-service">
+                                <input id="termsofservice" type="checkbox" name="termsofservice" />
+                                <label for="termsofservice">@T("Checkout.TermsOfService.IAccept")</label>
+                                @if (Model.TermsOfServicePopup)
+                                {
+                                    <a class="read" id="read-terms">@T("Checkout.TermsOfService.Read")</a>
+                                    <script asp-location="Footer">
+                                        $(document).ready(function() {
+                                            $('#read-terms').on('click',
+                                                function(e) {
+                                                    e.preventDefault();
+                                                    displayPopupContentFromUrl(
+                                                        '@Url.RouteUrl("TopicPopup", new {SystemName = "conditionsofuse"})',
+                                                        '@T("Checkout.TermsOfService")');
+                                                });
+                                        });
+                                    </script>
+                                }
+                                else
+                                {
+                                    <a class="read" id="read-terms" href="@Url.RouteUrl("Topic", new {SeName =await CustomExtensions.GetTopicSeNameAsync("conditionsofuse")})">@T("Checkout.TermsOfService.Read")</a>
+                                }
+                            </div>
+                        }
+                        <div class="checkout-buttons">
+                            @if (string.IsNullOrEmpty(Model.MinOrderSubtotalWarning) && !Model.HideCheckoutButton)
+                            {
+                                <script asp-location="Footer">
+                                    $(document).ready(function() {
+                                        $('#checkout').click(function() {
+                                            //terms of service
+                                            var termOfServiceOk = true;
+                                            if ($('#termsofservice').length > 0) {
+                                                //terms of service element exists
+                                                if (!$('#termsofservice').is(':checked')) {
+                                                    $("#terms-of-service-warning-box").dialog();
+                                                    termOfServiceOk = false;
+                                                } else {
+                                                    termOfServiceOk = true;
+                                                }
+                                            }
+
+                                            if (termOfServiceOk) {
+                                                var cantBuy = @(await workContext.GetCurrentCustomerAsync()).GetCantBuyFlag().ToString().ToLower();
+                                                if (cantBuy === true) {
+                                                    ShoppingPlugin.ui.messageBox({
+                                                        content:
+                                                            '@T("HBL.Baltic.OnlineOrdering.ShoppingPlugin.Resources.CantBuy")',
+                                                        css: 'limits-exceed-message-outer',
+                                                        id: 'cant-buy-message',
+                                                        parentSelector: '.header'
+                                                    });
+                                                    $('body,html').animate({
+                                                            scrollTop: 0
+                                                        },
+                                                        400);
+                                                    return false;
+                                                }
+                                            }
+
+                                            return termOfServiceOk;
+                                        });
+                                    });
+                                </script>
+                                var cartIsValid = extendedModel?.CartIsValid ?? false;
+                                if (extendedModel?.IsNotResident == true)
+                                {
+                                    <button type="button" id="checkout" name="checkout" value="checkout" class="button-1 checkout-button" onclick="ConfirmRedirect()" @((!cartIsValid ||await _dualMonthsService.GetDualMonthAllowedAsync()) ? "disabled=disabled style=opacity:0.5" : "")>
+                                        @T("Checkout.Button")
+                                    </button>
+                                }
+                                else
+                                {
+                                    <button type="submit" id="checkout" name="checkout" value="checkout" class="button-1 checkout-button" @((!cartIsValid ||await _dualMonthsService.GetDualMonthAllowedAsync()) ? "disabled=disabled style=opacity:0.5" : "")>
+                                        @T("Checkout.Button")
+                                    </button>
+                                }
+                            }
+                        </div>
+                        <div class="addon-buttons">
+                            @*Payment method buttons (e.g. GoogleCheckoutButton, Paypal Express)*@
+                            @foreach (var pm in Model.ButtonPaymentMethodViewComponents)
+                            {
+                                @await Component.InvokeAsync(pm)
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+            @if (Model.IsEditable)
+            {
+                @await Component.InvokeAsync("CrossSellProducts")
+            }
+        </form>
+    }
+    else
+    {
+        <div class="no-data">
+            @T("ShoppingCart.CartIsEmpty")
+        </div>
+        if (extendedModel != null && extendedModel.Errors != null && extendedModel.Errors.Count > 0)
+        {
+            <div class="message-error message-error-container">
+                <ul>
+                    @foreach (var error in extendedModel.Errors)
+                    {
+                        <li>@error</li>
+                    }
+                </ul>
+            </div>
+        }
+    }
+    @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.OrderSummaryContentAfter })
+</div>
+<form id="TheForm" method="post" action="@(_filuetConfig.LandingConnectionAddress)" target="TheWindow">
+    <input type="hidden" name="dsId" value="@(await workContext.GetCurrentCustomerAsync()).GetDistributorId()" />
+    <input type="hidden" name="dsEmail" value="@(await workContext.GetCurrentCustomerAsync()).Email" />
+    @foreach (var item in Model.Items)
+    {
+        <input type="hidden" name="items[@Model.Items.IndexOf(item)].sku" value="@item.Sku" />
+        <input type="hidden" name="items[@Model.Items.IndexOf(item)].name" value="@item.ProductName" />
+        <input type="hidden" name="items[@Model.Items.IndexOf(item)].quantity" value="@item.Quantity" />
+    }
+
+    <input type="hidden" name="landingToken" value="@extendedModel?.LandingToken" />
+</form>

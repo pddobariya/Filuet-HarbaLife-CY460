@@ -1,0 +1,11 @@
+﻿{
+  "Group": "Xcellence-it",
+  "FriendlyName": "Theme FiluetHerbalife",
+  "SystemName": "ISDK.Filuet.Theme.FiluetHerbalife",
+  "Version": "1.00",
+  "SupportedVersions": [ "4.60" ],
+  "Author": "Xcellence-it",
+  "DisplayOrder": 1,
+  "FileName": "ISDK.Filuet.Theme.FiluetHerbalife.dll",
+  "Description": "Theme FiluetHerbalife"
+}

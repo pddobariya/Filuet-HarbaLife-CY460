@@ -1,0 +1,176 @@
+﻿@model CategoryModel
+@{
+    Layout = "_ColumnsTwo";
+
+    //title
+    NopHtml.AddTitleParts(!string.IsNullOrEmpty(Model.MetaTitle) ? Model.MetaTitle : Model.Name);
+    //meta
+    NopHtml.AddMetaDescriptionParts(Model.MetaDescription);
+    NopHtml.AddMetaKeywordParts(Model.MetaKeywords);
+    //page class
+    NopHtml.AppendPageCssClassParts("html-category-page");
+
+    if (seoSettings.CanonicalUrlsEnabled)
+    {
+        var categoryUrl = Url.RouteUrl("Category", new { SeName = Model.SeName }, webHelper.GetCurrentRequestProtocol()).ToLowerInvariant();
+        NopHtml.AddCanonicalUrlParts(categoryUrl, seoSettings.QueryStringInCanonicalUrlsEnabled);
+    }
+
+    int indexSubCategory = 0;
+
+    bool isProgramm = false;
+
+    if (Model.CategoryBreadcrumb != null && Model.CategoryBreadcrumb.Any())
+    {
+        @foreach (var cat in Model.CategoryBreadcrumb)
+        {
+            if (cat.Id == _themeFiluetHerbalifeSettings.CategoryIdForProgramm)
+            {
+                isProgramm = true;
+                break;
+            }
+        }
+    }
+
+    var programSlogan = "";
+    var programDescription = "";
+    var programDownloadLink = "";
+    var programExpertPhotoUrl = "";
+    var programExpertReview = "";
+    var programExpertName = "";
+    var programExpertPost = "";
+    if (Model is FiluetCategoryModel)
+    {
+        var filuetCategoryModel = Model as FiluetCategoryModel;
+        programSlogan = filuetCategoryModel.ProgramCategoryModel.Slogan;
+        programDescription = filuetCategoryModel.ProgramCategoryModel.Description;
+        programDownloadLink = filuetCategoryModel.ProgramCategoryModel.DownloadLink;
+        programExpertPhotoUrl = filuetCategoryModel.ProgramCategoryModel.ExpertPhotoUrl;
+        programExpertReview = filuetCategoryModel.ProgramCategoryModel.ExpertReview;
+        programExpertName = filuetCategoryModel.ProgramCategoryModel.ExpertName;
+        programExpertPost = filuetCategoryModel.ProgramCategoryModel.ExpertPost;
+    }
+}
+
+<style>
+    li.price-range-selected-ranges {
+        display: none;
+    }
+</style>
+
+<section class="page_head @(isProgramm ? "programm" : "catalog")">
+    @*category breadcrumb*@
+    @if (Model.DisplayCategoryBreadcrumb)
+    {
+        <div class="breadcrumbs">
+            <a href="@Url.RouteUrl("Homepage")" title="@T("Categories.Breadcrumb.Top")">@T("Categories.Breadcrumb.Top")</a>
+            <svg class="sep"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_arrow_right")"></use></svg>
+            @{ int position = 1; }
+            @foreach (var cat in Model.CategoryBreadcrumb)
+            {
+                var isLastCategory = cat.Id == Model.Id;
+                @if (isLastCategory)
+                {
+                    <span class="current">@cat.Name</span>
+                }
+                else
+                {
+                    <a href="@Url.RouteUrl("Category", new { SeName = cat.SeName })" title="@cat.Name" itemprop="item">
+                        <span itemprop="name">@cat.Name</span>
+                    </a>
+                    <svg class="sep"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_arrow_right")"></use></svg>
+                }
+                position++;
+            }
+        </div>
+    }
+
+    <h1 class="page_title">@Model.Name</h1>
+</section>
+
+@section CatalogFilters {
+    @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.CategoryDetailsBeforeFilters, additionalData = Model })
+    @await Html.PartialAsync("_CatalogFilters", Model.CatalogProductsModel)
+}
+
+@await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.CategoryDetailsTop, additionalData = Model })
+
+
+@if (!string.IsNullOrEmpty(programSlogan) || !string.IsNullOrEmpty(programDescription) || !string.IsNullOrEmpty(programDownloadLink)
+|| (!string.IsNullOrEmpty(programExpertReview) && (!string.IsNullOrEmpty(programExpertPhotoUrl)
+|| !string.IsNullOrEmpty(programExpertName) || !string.IsNullOrEmpty(programExpertPost))))
+{
+    <section class="program_head">
+        <div class="data">
+            <div class="slogan">@Html.Raw(programSlogan)</div>
+
+            <div class="desc">@Html.Raw(programDescription)</div>
+
+            @if (!string.IsNullOrEmpty(programDownloadLink))
+            {
+                <div class="download_link">
+                    <a href="@programDownloadLink" target="_blank">
+                        <svg class="icon"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_download")"></use></svg>
+                        <span>@T("ISDK.Filuet.Theme.FiluetHerbalife.Category.DownloadProgram")</span>
+                    </a>
+                </div>
+            }
+        </div>
+
+        <div class="manager">
+            @if (!string.IsNullOrEmpty(programExpertPhotoUrl))
+            {
+                <div class="photo">
+                    <img data-src="@programExpertPhotoUrl" alt="" class="lozad">
+                </div>
+            }
+
+            <div class="text">
+                <svg class="icon"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_quote")"></use></svg>
+
+                @Html.Raw(programExpertReview)
+            </div>
+
+            <div class="author">
+                <div class="name">@Html.Raw(programExpertName)</div>
+
+                <div class="post">@Html.Raw(programExpertPost)</div>
+            </div>
+
+        </div>
+    </section>
+}
+@await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.CategoryDetailsBeforeSubcategories, additionalData = Model })
+
+@if (Model.SubCategories.Count > 0)
+{
+    <section class="program_types">
+        <div class="row">
+            @foreach (var item in Model.SubCategories.Take(3))
+            {
+                indexSubCategory++;
+                <div class="type type@(indexSubCategory)">
+                    <a href="@Url.RouteUrl("Category", new { SeName = item.SeName })" class="head">
+                        <div class="name">@item.Name</div>
+
+                        <div class="thumb">
+                            <img data-src="@item.PictureModel.ImageUrl" alt="" class="lozad">
+                        </div>
+
+                        <img src="@Url.Content("~/Themes/FiluetHerbalife/Content/images/bg_type"+indexSubCategory+".png")" alt="" class="bg">
+                        <img src="@Url.Content("~/Themes/FiluetHerbalife/Content/images/bg_type"+indexSubCategory+"_hover.png")" alt="" class="bg">
+                        <img src="@Url.Content("~/Themes/FiluetHerbalife/Content/images/mob_bg_type"+indexSubCategory+".png")" alt="" class="mob_bg">
+                    </a>
+
+                    <div class="info">
+                        <div class="details_link">
+                            <a href="@Url.RouteUrl("Category", new { SeName = item.SeName })">@T("ISDK.Filuet.Theme.FiluetHerbalife.MoreAboutProgram")</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
+}
+
+@await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.CategoryDetailsBottom, additionalData = Model })

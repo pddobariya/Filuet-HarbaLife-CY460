@@ -1,0 +1,85 @@
+@model ISDK.Filuet.OnlineOrdering.CorePlugin.Models.Order.FiluetOrderDetailsModel
+@{ 
+    var carrier = Model.DeliveryOperator ?? "---";
+    var carrierUrl = ViewBag.ShipToCarrierUrl;
+    var zip = Model.ShipToZipcode ?? "N/A";
+    var country = Model.ShipToCountryCode;
+    var city = Model.ShipToCity;
+    var address = Model.ShipToAddress;
+    var postamatId = Model.ShipToPostamatId;
+    var fullName = Model.ShipToFullname;
+    var phoneNumber = Model.ShipToPhone;
+    var invoiceShippingInfo = Model.IsShipInvoiceWithOrder ? T("Order.IsShipInvoiceWithOrderYes") : T("Order.IsShipInvoiceWithOrderNo");
+    var comment = Model.Comment;
+
+    var autoPostOfficeLanguageComment = ViewBag.autoPostOfficeLanguageComment;
+}
+
+<div class="block_head">
+    <div class="title">@T("ISDK.Filuet.Theme.FiluetHerbalife.Shipping.CheckYourOrder")</div>
+</div>
+
+<div class="order_info">
+    <div class="data">
+        <div class="col">
+            <div class="item">
+                <div class="name">@T("Order.Shipping.Carrier"):</div>
+                <div class="val">
+                    <span>@carrier</span>
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="name">@T("Order.Shipping.ZipCode"):</div>
+                <div class="val">@zip</div>
+            </div>
+
+            <div class="item">
+                <div class="name">@T("Order.Shipping.CountryCode")</div>
+                <div class="val">@country</div>
+            </div>
+
+            <div class="item">
+                <div class="name">@T("Order.Shipping.City")</div>
+                <div class="val">@city</div>
+            </div>
+
+            <div class="item">
+                <div class="name">@T("Order.Shipments.ShippingAddress")</div>
+                <div class="val">@address</div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="item">
+                <div class="name">@T("order.shipping.fullname")</div>
+                <div class="val">@fullName</div>
+            </div>
+
+            <div class="item">
+                <div class="name">@T("Order.Shipping.PhoneNumber")</div>
+                <div class="val">@phoneNumber</div>
+            </div>
+
+            <div class="item">
+                <div class="name">@T("Order.InvoiceShippingInformation")</div>
+                <div class="val">@invoiceShippingInfo</div>
+            </div>
+        </div>
+
+        <div class="col col_right">
+            <div class="item">
+                <div class="name">@T("ISDK.Filuet.Theme.FiluetHerbalife.Shipping.DeliveryComment")</div>
+                <div class="val">@comment</div>
+            </div>
+
+            @if (!string.IsNullOrEmpty(autoPostOfficeLanguageComment))
+            {
+                <div class="item">
+                    <div class="name">@T("ISDK.Filuet.Theme.FiluetHerbalife.AutoPostOfficeLanguageComment")</div>
+                    <div class="val">@autoPostOfficeLanguageComment</div>
+                </div>
+            }
+        </div>
+    </div>
+        </div>

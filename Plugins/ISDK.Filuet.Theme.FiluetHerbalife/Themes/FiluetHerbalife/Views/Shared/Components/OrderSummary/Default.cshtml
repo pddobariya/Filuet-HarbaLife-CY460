@@ -1,0 +1,698 @@
+﻿@model ShoppingCartModel
+@{
+    var storeLocation = webHelper.GetStoreLocation();
+    FiluetShoppingCartModel extendedModel = Model as FiluetShoppingCartModel;
+
+    NopHtml.AddScriptParts(ResourceLocation.Footer, $"~/js/public.common.js");
+
+    var eulaTemplateStart = @T("Plugins.LegalInfo.EULA.Link.Template.Start");
+    var eulaTemplateEnd = @T("Plugins.LegalInfo.EULA.Link.Template.End");
+    var eulaLinkURL = @T("Plugins.LegalInfo.EULA.Link.URL");
+    var eulaLinkText = @T("Plugins.LegalInfo.EULA.Link.Text");
+
+    var eulaExtTemplateStart = @T("Plugins.LegalInfo.EULA.Extended");
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('body').on('click', '.amount .minus', function (e) {
+            if ($('.ajax-loading-block-window').is(':visible')) {
+                return;
+            }
+            //for this code minus quantity button disabled
+            $('.minus').prop('disabled', true);
+            e.preventDefault();
+
+
+
+            const $parent = $(this).closest('.amount'),
+                $input = $parent.find('.input'),
+                inputVal = parseFloat($input.val()),
+                minimum = parseFloat($input.data('minimum')),
+                step = parseFloat($input.data('step')),
+                $root = $(this).closest('.product');
+
+            if (inputVal - step > minimum) {
+                displayAjaxLoading(true);
+                let oldquantity = inputVal;
+                let newquantity = inputVal - step;
+                updateproductincart(oldquantity, newquantity, $root, $input);
+                if (newquantity === 0) {
+                    removefromcart($root)
+                }
+            }
+            else {
+                removefromcart($root)
+            }
+
+        });
+
+        $('body').on('click', '.amount .plus', function (e) {
+            if ($('.ajax-loading-block-window').is(':visible')) {
+                return;
+            }
+            //for this code plus quantity button disabled
+            $('.plus').prop('disabled', true);
+            e.preventDefault();
+
+
+
+            const $parent = $(this).closest('.amount'),
+                $input = $parent.find('.input'),
+                inputVal = parseFloat($input.val()),
+                maximum = parseFloat($input.data('maximum')),
+                step = parseFloat($input.data('step')),
+                $root = $(this).closest('.product');
+
+            if (inputVal < maximum) {
+                displayAjaxLoading(true);
+                let oldquantity = inputVal;
+                let newquantity = inputVal + step;
+                updateproductincart(oldquantity, newquantity, $root, $input);
+            }
+        });
+
+
+        $('body').on('change', '.amount .input', function (e) {
+            if ($('.ajax-loading-block-window').is(':visible')) {
+                return;
+            }
+
+            e.preventDefault();
+
+
+            const $parent = $(this).closest('.amount'),
+                $input = $parent.find('.input'),
+                inputVal = parseFloat($input.val()),
+                minimum = parseFloat($input.data('minimum')),
+                step = parseFloat($input.data('step')),
+                unit = $input.data('unit'),
+                $root = $(this).closest('.product');
+
+            if (inputVal > minimum) {
+                displayAjaxLoading(true);
+                let oldquantity = inputVal - step;
+                let newquantity = inputVal;
+                updateproductincart(oldquantity, newquantity, $root, $input, unit);
+            }
+            else {
+                if (inputVal === 0) {
+                    removefromcart($root);
+                }
+            }
+        });
+
+
+
+        $('body').on('click', '.col_delete .delete_btn', function (e) {
+            e.preventDefault();
+
+            const $root = $(this).closest('.product'),
+                $input = $root.find('.amount .input'),
+                inputVal = parseFloat($input.val());
+            if (inputVal > 0) {
+                removefromcart($root);
+            }
+
+        });
+
+        $(document).on('click', '.add_product .submit_btn', function (e) {
+            e.preventDefault();
+
+            const $root = $(this).closest('.add_product'),
+                $input = $root.find('#product_sku_form').find('.input'),
+                inputVal = $input.val();
+
+            if (inputVal) {
+                let searchproductbysku = 'FiluetHerbalifePublic/GetProductBySku?sku=' + inputVal;
+                displayAjaxLoading(true);
+                $.ajax({
+                    cache: false,
+                    url: searchproductbysku,
+                    type: 'GET',
+                    data: {},
+                    contentType: false,
+                    processData: false,
+                    success: function (data, textStatus, jqXHR) {
+                        displayAjaxLoading(false);
+                        const $not_found_product = $root.find('.not_found');
+                        const $success_product = $root.find('.success');
+                        if (data.success) {
+                            $root.find('.btn').prop('disabled', false)
+
+                            $not_found_product.css('display', 'none');
+
+                            $success_product.css('display', '');
+                            $success_product.find('.name').text('' + data.productName)
+                            $success_product.find('#productId').text('' + data.productId);
+                        }
+                        else {
+                            $root.find('.btn').prop('disabled', true)
+
+                            $success_product.css('display', 'none');
+                            $success_product.find('.name').text('')
+                            $success_product.find('#productId').text('');
+
+                            $not_found_product.css('display', '');
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        displayAjaxLoading(false);
+                        alert('@T("Common.Error")');
+                    }
+                });
+            }
+        });
+
+        $(document).on('click', '.add_product .btn', function (e) {
+            e.preventDefault();
+
+            const $root = $(this).closest('.add_product'),
+                inputVal = $root.find('.success').find('#productId').text();
+
+            if (inputVal) {
+                addproducttocart('/addproducttocart/catalog/' + inputVal + '/1/1/?forceredirection=True', inputVal, null)
+            }
+        });
+
+        if ($("#month").length) {
+            var checkout = $("[name='checkout']")
+            checkout.prop('disabled', true);
+            $(document).on('change', '#month', function (e) {
+                e.preventDefault();
+                $('.btn.back_btn').replaceWith('<button name="checkout" class="btn checkout_btn">@T("Checkout.Button")</button>');
+                checkout.prop('disabled', !$('#month').val());
+            });
+        }
+    });
+
+
+    function removefromcart(root) {
+
+        displayAjaxLoading(true);
+        root.find('.removefromcart').prop('checked', true);
+
+        let form = root.find('.shopping-cart-form');
+        let data = new FormData(form[0]);
+
+        $.ajax({
+            cache: false,
+            url: "cart",
+            type: "POST",
+            data: data,
+            contentType: false,
+            processData: false,
+            success: function (data, textStatus, jqXHR) {
+                displayAjaxLoading(false);
+                window.location.reload();
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                displayAjaxLoading(false);
+                root.find('.removefromcart').prop('checked', false);
+                alert('@T("Common.Error")');
+            }
+        });
+    }
+
+    function addproducttocart(addtocartlink, productId, buyBtn) {
+        displayAjaxLoading(true);
+        var postData = {};
+        addAntiForgeryToken(postData);
+        $.ajax({
+            cache: false,
+            url: addtocartlink,
+            type: "POST",
+            dataType: "json",
+            data: postData,
+            success: function (data, textStatus, jqXHR) {
+                if (data.success) {
+                    $.ajax({
+                        cache: false,
+                        url: '@Html.Raw(Url.Action("GetUserCart", "FiluetHerbalifePublic"))',
+                        type: "POST",
+                        data: {
+                            ProductId: productId
+                        },
+                        contentType: false,
+                        processData: false,
+                        success: function (data, textStatus, jqXHR) {
+
+                            displayAjaxLoading(false);
+                            if (data.length) {
+                                for (let item of data) {
+                                    if (item.ProductId === productId) {
+                                        $(buyBtn).closest('.buy').find('.removefromcart').val(item.Id);
+                                        let $itemquantity = $(buyBtn).closest('.buy').find('.itemquantity');
+                                        if (!$itemquantity.length) {
+                                            $(buyBtn).closest('.buy').find('.shopping-cart-form').append('<input class="itemquantity" name="itemquantity' + item.Id + '" value="' + item.Quantity + '">');
+                                        }
+                                        break;
+                                    }
+                                }
+                                $(buyBtn).addClass('active');
+                            }
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            displayAjaxLoading(false);
+                            alert('@T("Common.Error")');
+                        }
+                    });
+                } else if (data.redirect) {
+                    displayAjaxLoading(false);
+                    window.location.replace(data.redirect);
+                } else if (data.message) {
+                    displayAjaxLoading(false);
+                    displayPopupNotificationwarning(data.message, 'warning', true);
+                } else {
+                    displayAjaxLoading(false);
+                    alert('@T("Common.Error")');
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                displayAjaxLoading(false);
+                alert('@T("Common.Error")');
+            }
+        });
+    }
+
+    function displayPopupNotificationwarning(message, messagetype, modal) {
+        //types: success, error, warning
+        var container;
+        if (messagetype == 'success') {
+            //success
+            container = $('#dialog-notifications-success');
+        }
+        else if (messagetype == 'error') {
+            //error
+            container = $('#dialog-notifications-error');
+        }
+        else if (messagetype == 'warning') {
+            //warning
+            container = $('#dialog-notifications-warning');
+        }
+        else {
+            //other
+            container = $('#dialog-notifications-success');
+        }
+
+        //we do not encode displayed message
+        var htmlcode = '';
+        if ((typeof message) == 'string') {
+            htmlcode = '<p>' + message + '</p>';
+        } else {
+            for (var i = 0; i < message.length; i++) {
+                htmlcode = htmlcode + '<p>' + message[i] + '</p>';
+            }
+        }
+
+        container.html(htmlcode);
+
+        var isModal = (modal ? true : false);
+        var dialog = container.kendoDialog({
+            width: "400px",
+            title: container.attr('title'),
+            closable: false,
+            modal: isModal,
+            content: htmlcode,
+            actions: [
+                { text: 'OK', primary: true, action: () => { container.hide(); } }
+            ]
+        });
+        container.show();
+        dialog.data("kendoDialog").open();
+    }
+
+
+    function updateproductincart(oldquantity, newquantity, $root, $input) {
+
+        $root.find('.itemquantity').val(newquantity);
+        var form = $root.find('.shopping-cart-form');
+        var formData = new FormData(form[0]);
+
+        $.ajax({
+            cache: false,
+            url: "cart",
+            type: "POST",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (data, textStatus, jqXHR) {
+                $input.val(newquantity);
+                let productId = $root.data('productid');
+                let formatedSubTotal = data.Items.find(({ ProductId }) => ProductId == productId).SubTotal;
+                $root.find('.col_total_price').text(`${formatedSubTotal}`);
+                $('.btn.back_btn').replaceWith('<button name="checkout" class="btn checkout_btn">@T("Checkout.Button")</button>');
+                UpdateOrderTotals();
+                updateshoppingcartitems();
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                displayAjaxLoading(false);
+                $root.find('.itemquantity').val(oldquantity);
+                alert('@T("Common.Error")');
+            }
+        });
+    }
+
+    function updateflyoutcart() {
+        $.ajax({
+            url: "FiluetHerbalifePublic/GetFlyoutShoppingCart",
+            type: "GET",
+            success: function (data, textStatus, jqXHR) {
+                $('#flyout_cart_root').html('' + data);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert('@T("Common.Error")');
+            }
+        });
+    }
+
+    function updateshoppingcartitems() {
+        $.ajax({
+            url: "FiluetHerbalifePublic/GetShoppingCartItems",
+            type: "GET",
+            success: function (data, textStatus, jqXHR) {
+                //for this code plus minus quantity button enable
+                $('.minus').prop('disabled', false);
+                $('.plus').prop('disabled', false);
+                $('#shopping_cart_quantity').html('(' + data.quantity + ')');
+                updateflyoutcart();
+                if ($('.minus1').length) {
+                    location.reload();
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert('@T("Common.Error")');
+            }
+        });
+    }
+
+    function UpdateOrderTotals() {
+        $.ajax({
+            cache: false,
+            url: '@Html.Raw(Url.Action("GetOrderTotals", "FiluetHerbalifePublic"))',
+            type: "GET",
+            data: null,
+            contentType: false,
+            processData: false,
+            success: function (data, textStatus, jqXHR) {
+                displayAjaxLoading(false);
+                if (data.success) {
+                    $("#order_totals_price").text(data.orderTotal);
+                    $("#order_volume_points").text(data.orderVolumePoints);
+                }
+                else {
+                    alert('@T("Common.Error")');
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                displayAjaxLoading(false);
+                alert('@T("Common.Error")');
+            }
+        });
+    }
+</script>
+
+@if (Model.IsEditable)
+{
+    if (extendedModel != null)
+    {
+        if (extendedModel.IsCartValid.Any())
+        {
+            <div id="dialog-iscartvalid"></div>
+            var messages = string.Join("; ", extendedModel.IsCartValid);
+            <script asp-location="Footer">
+                $(document).ready(function () {
+                    var dialog = $("#dialog-iscartvalid");
+                    dialog.kendoDialog({
+                        width: "400px",
+                        title: "Info",
+                        closable: false,
+                        modal: true,
+                        content: '@messages',
+                        actions: [
+                            { text: '@T("Cart.Dialogiscartvalid.CloseButton")', primary: true }
+                        ]
+                    });
+                    dialog.data("kendoDialog").open();
+                });
+            </script>
+        }
+        if (extendedModel.ShowApfPayMessage)
+        {
+            <div id="apf-dialog-message">
+                <p>
+                    @T("ISDK.Filuet.OnlineOrdering.CorePlugin.ApfCartMessageBox.Content")
+                </p>
+            </div>
+            <script asp-location="Footer">
+                $(document).ready(function () {
+                    var dialog = $("#apf-dialog-message");
+                    dialog.kendoDialog({
+                        width: "400px",
+                        title: "Apf expired",
+                        closable: false,
+                        modal: true,
+                        //content: '<p>@T("ISDK.Filuet.OnlineOrdering.CorePlugin.ApfCartMessageBox.Content")</p>',
+                        actions: [
+                            { text: '@T("Cart.Dialogiscartvalid.CloseButton")', primary: true }
+                        ]
+                    });
+                    dialog.data("kendoDialog").open();
+                });
+            </script>
+        }
+    }
+    <section class="cart_info block border">
+        <div class="cont">
+            @if (Model.Items.Count > 0)
+            {
+                <div class="titles">
+                    <div class="col_info">@T("ISDK.Filuet.Theme.FiluetHerbalife.ShoppingCart.Name")</div>
+                    <div class="col_price">@T("ShoppingCart.UnitPrice")</div>
+                    <div class="col_amount">@T("ISDK.Filuet.Theme.FiluetHerbalife.ShoppingCart.Quantity")</div>
+                    <div class="col_total_price">@T("ISDK.Filuet.Theme.FiluetHerbalife.ShoppingCart.TotalPrice")</div>
+                    <div class="col_delete"></div>
+                </div>
+
+                <div class="products not_transform">
+                    <div class="list">
+                        @foreach (var item in Model.Items)
+                        {
+                            <div class="product" data-productId="@item.ProductId">
+                                <a href="@(Url.RouteUrl<Product>(new { SeName = item.ProductSeName }))" class="thumb">
+                                    <div><img data-src="@item.Picture.ImageUrl" alt="@item.Picture.AlternateText" class="lozad"></div>
+                                </a>
+
+                                <div class="col_info info">
+                                    @if (item.Warnings != null && item.Warnings.Count > 0)
+                                    {
+                                        <div class="product_info"><span class="articul">@item.Sku</span><span class="product_info_status" warningMessage="@T("shoppingcart.IncorrectitemsIntoCart")">@T("shoppingcart.outofstock")</span></div>
+                                    }
+                                    else
+                                    {
+                                        <div class="product_info"><span class="articul">@item.Sku</span></div>
+                                    }
+
+                                    <div class="name">
+                                        <a href="@(Url.RouteUrl<Product>(new { SeName = item.ProductSeName }))"> @item.ProductName</a>
+                                    </div>
+
+                                    @{
+                                        var product = await _productService.GetProductByIdAsync(item.ProductId);
+                                        var description = await _localizationService.GetLocalizedAsync(product, x => x.ShortDescription);
+                                    }
+                                    <div class="desc">@description</div>
+                                </div>
+
+                                <div class="col_price" data-column="@T("ShoppingCart.UnitPrice")">@item.UnitPrice</div>
+
+                                <div class="col_amount" data-column="@T("ISDK.Filuet.Theme.FiluetHerbalife.ShoppingCart.Quantity")">
+                                    <div class="amount">
+                                        @if (!item.DisableRemoval)
+                                        {
+                                            <button type="button" class="minus">
+                                                <svg class="icon"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_minus")"></use></svg>
+                                            </button>
+
+                                            <input type="text" value="@(item.Quantity)" class="input"
+                                                   data-minimum="0" data-maximum="99" data-step="1" maxlength="2">
+
+                                            <button type="button" class="plus">
+                                                <svg class="icon"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_plus")"></use></svg>
+                                            </button>
+                                        }
+                                        else
+                                        {
+                                            <button type="button" class="minus1" disabled>
+                                                <svg class="icon"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_minus")"></use></svg>
+                                            </button>
+
+                                            <input type="text" value="@(item.Quantity)" class="input"
+                                                   data-minimum="0" data-maximum="99" data-step="1" maxlength="2" disabled>
+
+                                            <button type="button" class="plus1" disabled>
+                                                <svg class="icon"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_plus")"></use></svg>
+                                            </button>
+                                        }
+                                    </div>
+                                </div>
+
+                                <div class="col_total_price" data-column="@T("ISDK.Filuet.Theme.FiluetHerbalife.ShoppingCart.TotalPrice")">@item.SubTotal</div>
+
+                                <div class="col_delete">
+                                    @if (!item.DisableRemoval)
+                                    {
+                                        <button class="delete_btn">
+                                            <svg class="icon"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_delete")"></use></svg>
+                                        </button>
+                                    }
+                                </div>
+                                <form class="shopping-cart-form" method="post" enctype="multipart/form-data" style="display: none;">
+                                    <input class="removefromcart" type="checkbox" name="removefromcart" value="@(item?.Id)">
+                                    @if (item != null)
+                                    {
+                                        <input class="itemquantity" name="itemquantity@(item.Id)" value="@(item.Quantity)">
+                                    }
+                                    <input name="updatecart" value="@T("ISDK.Filuet.Theme.FiluetHerbalife.ShoppingCart.UpdateCart")">
+                                </form>
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+
+            <div class="add_product">
+                <form action="" id="product_sku_form">
+                    <input type="text" name="" value="" class="input" placeholder="@T("ISDK.Filuet.Theme.FiluetHerbalife.ShoppingCart.AddBySku")">
+
+                    <button type="submit" class="submit_btn">
+                        <svg class="icon"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_search")"></use></svg>
+                    </button>
+                </form>
+
+                <div class="product success" style="display: none;">
+                    <svg class="icon"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_success")"></use></svg>
+                    <div class="name"></div>
+                    <div id="productId" style="display: none;"></div>
+                </div>
+
+                <div class="product not_found" style="display: none;">
+                    <svg class="icon"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_close")"></use></svg>
+                    <div class="name">@T("ISDK.Filuet.Theme.FiluetHerbalife.ShoppingCart.ProductBySkuNotFound")</div>
+                </div>
+
+                <button class="btn" disabled>
+                    <svg class="icon"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_add")"></use></svg>
+                    <span>@T("ISDK.Filuet.Theme.FiluetHerbalife.ShoppingCart.AddToOrder")</span>
+                </button>
+            </div>
+
+            <form asp-route="ShoppingCart" method="post" enctype="multipart/form-data" id="shopping-cart-form">
+                @await Component.InvokeAsync("FiluetOrderTotals", new { isEditable = Model.IsEditable })
+                <div class="btns">
+                    <button name="continueshopping" class="btn continue_btn">@T("ShoppingCart.ContinueShopping")</button>
+
+                    @if (extendedModel?.IsNotResident == true)
+                    {
+                        <button id="checkoutBtnId" name="checkout" class="btn checkout_btn" onclick="ConfirmRedirect()">@T("Checkout.Button")</button>
+                    }
+                    else if (extendedModel?.IsCartValid.Any() == true)
+                    {
+                        <div class="btn back_btn">@T("Checkout.Button")</div>
+                    }
+                    else
+                    {
+                        <button id="checkoutBtnId" name="checkout" class="btn checkout_btn">@T("Checkout.Button")</button>
+                    }
+                </div>
+            </form>
+        </div>
+    </section>
+}
+else
+{
+    <div class="products order_products not_transform">
+        <div class="block_head">
+            <div class="title">@T("ShoppingCart.Product(s)")</div>
+        </div>
+
+        <div class="titles">
+            <div class="col_info">@T("ISDK.Filuet.Theme.FiluetHerbalife.ShoppingCart.Name")</div>
+            <div class="col_price">@T("ShoppingCart.UnitPrice")</div>
+            <div class="col_amount">@T("ISDK.Filuet.Theme.FiluetHerbalife.ShoppingCart.Quantity")</div>
+            <div class="col_total_price">@T("ISDK.Filuet.Theme.FiluetHerbalife.ShoppingCart.TotalPrice")</div>
+        </div>
+
+        <div class="list">
+            @foreach (var item in Model.Items)
+            {
+                <div class="product" data-productId="@item.ProductId">
+                    <a href="@(Url.RouteUrl<Product>(new { SeName = item.ProductSeName }))" class="thumb">
+                        <div><img data-src="@item.Picture.ImageUrl" alt="@item.Picture.AlternateText" class="lozad"></div>
+                    </a>
+
+                    <div class="col_info info">
+                        <div class="name">
+                            <a href="@(Url.RouteUrl<Product>(new { SeName = item.ProductSeName }))">@item.ProductName</a>
+                        </div>
+                        @{
+                            var product = await _productService.GetProductByIdAsync(item.ProductId);
+                            var description = await _localizationService.GetLocalizedAsync(product, x => x.ShortDescription);
+                        }
+                        <div class="desc">@description</div>
+                    </div>
+
+                    <div class="col_price" data-column="@T("ShoppingCart.UnitPrice")">@item.UnitPrice</div>
+                    <div class="col_amount" data-column="@T("ISDK.Filuet.Theme.FiluetHerbalife.ShoppingCart.Quantity")">@item.Quantity</div>
+                    <div class="col_total_price" data-column="@T("ISDK.Filuet.Theme.FiluetHerbalife.ShoppingCart.TotalPrice")">@item.SubTotal</div>
+                </div>
+            }
+        </div>
+
+
+        <div class="totals_wrap">
+            @await Component.InvokeAsync("FiluetOrderTotals", new { isEditable = Model.IsEditable })
+        </div>
+    </div>
+
+    <script asp-location="Footer">
+        ConfirmOrder.init('@(storeLocation)checkout/OpcConfirmOrder/', '@Url.RouteUrl("CheckoutCompleted")');
+    </script>
+
+    <div class="cart_info">
+        @if (Model.TermsOfServiceOnOrderConfirmPage)
+        {
+            <div id="opc-confirm_order" class="btns">
+                <a href="@Url.RouteUrl("CheckoutOnePage")" class="btn back_btn">@T("Common.Back")</a>
+                <button type="button" id="btn-checkout-complete-id" class="btn checkout_btn" onclick="ConfirmOrder.save()">@T("Checkout.ConfirmButton")</button>
+            </div>
+            <div id="legalInfoHead" style=" display: flex; justify-content: flex-end; margin-top: 20px;">
+                <input type="checkbox" id="legalInfoId" onchange="ConfirmEULA()">
+                <label for="legalInfoId" id="legalInfoLabel" class="label">@eulaTemplateStart&nbsp;</label>
+                <a href=@eulaLinkURL>@eulaLinkText</a>
+            </div>
+            <div style=" display: flex; justify-content: flex-end;">@eulaTemplateEnd</div>
+        }
+        else
+        {
+            <div class="cart_info">
+                <div id="opc-confirm_order" class="btns">
+                    <a href="@Url.RouteUrl("CheckoutOnePage")" class="btn back_btn">@T("Common.Back")</a>
+                    <button id="btn-checkout-complete-id" class="btn checkout_btn" onclick=" ConfirmOrder.save() ">@T("Checkout.ConfirmButton")</button>
+                </div>
+            </div>
+        }
+    </div>
+}
+
+@if (extendedModel != null && extendedModel.ShowRepeatOrderDialog)
+{
+    @await Component.InvokeAsync("CartRepeatOrderDialog", new { orderId = extendedModel.LastOrderId })
+}
+
+@await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.OrderSummaryContentAfter })
+
+@if (Model.IsEditable)
+{
+    @await Component.InvokeAsync("CrossSellProducts")
+}

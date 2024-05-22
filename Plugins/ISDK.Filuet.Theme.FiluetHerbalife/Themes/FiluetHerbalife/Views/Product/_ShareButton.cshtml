@@ -1,0 +1,25 @@
+﻿@model ProductDetailsModel
+@if (!string.IsNullOrWhiteSpace(Model.PageShareCode))
+{
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6187cd65d9e2db74"></script>
+
+    <div class="addthis_inline_share_toolbox" style="display: none;"></div>
+
+    <script>
+        $.fn.ready(function() {
+            $(document).on('click',
+                '#share_btn_6187cd65d9e2db74',
+                function(e) {
+                    e.preventDefault();
+                    $('.at-icon-wrapper.at-share-btn.at-svc-compact')[0].click();
+                });
+        });
+    </script>
+
+    <div>
+        <button id="share_btn_6187cd65d9e2db74" class="share_btn">
+            <svg class="icon"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_share")"></use></svg>
+            <span>@T("ISDK.Filuet.Theme.FiluetHerbalife.Share")</span>
+        </button>
+    </div>
+}

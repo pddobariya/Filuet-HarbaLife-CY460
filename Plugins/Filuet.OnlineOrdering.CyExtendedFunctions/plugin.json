@@ -1,0 +1,11 @@
+﻿{
+  "Group": "Xcellence-it",
+  "FriendlyName": "Filuet.OnlineOrdering.CyExtendedFunctions",
+  "SystemName": "Filuet.OnlineOrdering.CyExtendedFunctions",
+  "Version": "1.0",
+  "SupportedVersions": [ "4.60" ],
+  "Author": "Xcellence-it",
+  "DisplayOrder": 3,
+  "FileName": "Filuet.OnlineOrdering.CyExtendedFunctions.dll",
+  "Description": "CyExtendedFunctions"
+}

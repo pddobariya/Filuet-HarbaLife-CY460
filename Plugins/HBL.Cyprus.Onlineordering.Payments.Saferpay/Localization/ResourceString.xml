@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Language Name="English" SupportedVersion="4.00">
+	<LocaleResource Name="Plugins.Payments.Saferpay.Fields.RedirectionTip">
+		<Value>You will be redirected to Saferpay site to complete the order.</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Saferpay.Fields.Configure">
+		<Value>Configure</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Saferpay.PaymentMethodDescription">
+		<Value>You will be redirected to Saferpay site to complete the payment</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Saferpay.Fields.Bypass">
+		<Value>Bypass payment.</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Saferpay.Fields.Bypass.Hint">
+		<Value>Enter a Bypass payment</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Saferpay.Fields.APIUrl">
+		<Value>Saferpay JSON API address.</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Saferpay.Fields.APIUrl.Hint">
+		<Value>Enter a Saferpay JSON API address</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Saferpay.Fields.APIUsername">
+		<Value>Merchant username for Saferpay API.</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Saferpay.Fields.APIUsername.Hint">
+		<Value>Enter a Merchant username for Saferpay API.</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Saferpay.Fields.APIPassword">
+		<Value>Merchant password for Saferpay API.</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Saferpay.Fields.APIPassword.Hint">
+		<Value>Enter a Merchant password for Saferpay API.</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Saferpay.Fields.APISpecVersion">
+		<Value>Saferpay JSON API spec version https://saferpay.github.io/sndbx/index.html#version.</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Saferpay.Fields.APISpecVersion.Hint">
+		<Value>Enter a Saferpay JSON API spec version </Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Saferpay.Fields.CustomerId">
+		<Value>Merchant Customer ID for Saferpay API.</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Saferpay.Fields.CustomerId.Hint">
+		<Value>Enter a Merchant Customer ID for Saferpay API.</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Saferpay.Fields.TerminalId">
+		<Value>Merchant Terminal ID for Saferpay API.</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Saferpay.Fields.TerminalId.Hint">
+		<Value>Enter a Merchant Terminal ID for Saferpay API.</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Saferpay.Fields.CurrencyCode">
+		<Value>ISO 4217 3-letter currency code (CHF, USD, EUR,...)</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Saferpay.Fields.CurrencyCode.Hint">
+		<Value>Enter a ISO 4217 3-letter currency code (CHF, USD, EUR,...)</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payment.PayByCard.PaymentMethodDescription">
+		<Value>Pay By Card</Value>
+	</LocaleResource>
+	
+</Language>
+
+

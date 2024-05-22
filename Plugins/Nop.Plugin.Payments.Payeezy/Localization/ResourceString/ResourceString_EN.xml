@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Language Name="EN">
+	<LocaleResource Name="Plugins.Payments.Payeezy.Fields.APIProductionEndpoint">
+		<Value>Production endpoint</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Payeezy.Fields.APIProductionEndpoint.Hint">
+		<Value>Production endpoint for Payeezy API calls</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Payeezy.Fields.APIProductionMobilePaymentAction">
+		<Value>Production mobile payment action</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Payeezy.Fields.APIProductionMobilePaymentAction.Hint">
+		<Value>Action of mobile payment page URL in production</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Payeezy.Fields.APIProductionReturnFailAction">
+		<Value>Production return fail URL</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Payeezy.Fields.APIProductionReturnFailAction.Hint">
+		<Value>Production URL where user is redirected to if technical errors occurred</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Payeezy.Fields.APIProductionReturnFailUrl">
+		<Value>Production return fail URL</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Payeezy.Fields.APIProductionReturnFailUrl.Hint">
+		<Value>Production URL where user is redirected to if technical errors occurred</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Payeezy.Fields.APIProductionReturnOkAction">
+		<Value>Production return ok URL</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Payeezy.Fields.APIProductionReturnOkAction.Hint">
+		<Value>Production URL where user is redirected to after successful transaction</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Payeezy.Fields.APIProductionReturnOkUrl">
+		<Value>Production return ok URL</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Payeezy.Fields.APIProductionReturnOkUrl.Hint">
+		<Value>Production URL where user is redirected to after successful transaction</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Payeezy.Fields.APISandboxEndpoint">
+		<Value>Sandbox endpoint</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Payeezy.Fields.APISandboxEndpoint.Hint">
+		<Value>Sandbox endpoint for Payeezy API calls</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Payeezy.Fields.APISandboxMobilePaymentAction">
+		<Value>Sandbox mobile payment action</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Payeezy.Fields.APISandboxMobilePaymentAction.Hint">
+		<Value>Action of mobile payment page URL in sandbox</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Payeezy.Fields.APISandboxReturnFailAction">
+		<Value>Sandbox return fail URL</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Payeezy.Fields.APISandboxReturnFailAction.Hint">
+		<Value>Sandbox URL where user is redirected to if technical errors occurred</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Payeezy.Fields.APISandboxReturnFailUrl">
+		<Value>Sandbox return fail URL</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Payeezy.Fields.APISandboxReturnFailUrl.Hint">
+		<Value>Sandbox URL where user is redirected to if technical errors occurred</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Payeezy.Fields.APISandboxReturnOkAction">
+		<Value>Sandbox return ok URL</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Payeezy.Fields.APISandboxReturnOkAction.Hint">
+		<Value>Sandbox URL where user is redirected to after successful transaction</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Payeezy.Fields.DefaultPaymentError">
+		<Value>Error occurred during processing your payment. You will be redirected to the order page shortly to retry payment...</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Payeezy.Fields.DefaultPaymentError.Hint">
+		<Value>Default error message displayed to user after failed checkout before redirecting to order details</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Payeezy.Fields.DefaultPaymentErrorNoRedirect">
+		<Value>Unknown error occurred during processing your payment</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Payeezy.Fields.DefaultPaymentErrorNoRedirect.Hint">
+		<Value>Default error message displayed to user after failed checkout when no redirect happens afterwards</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Payeezy.Fields.InvoiceEmail">
+		<Value>Email</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Payeezy.Fields.InvoiceEmail.AlreadyExists">
+		<Value>This email is already in use.</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Payeezy.Fields.InvoiceEmail.Hint">
+		<Value>We'll send invoice to this email</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Payeezy.Fields.InvoiceEmail.Required">
+		<Value>Email is required</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Payeezy.Fields.InvoiceEmail.Wrong">
+		<Value>Email is not valid</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Payeezy.Fields.IsSandbox">
+		<Value>Is sandbox mode</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Payeezy.Fields.IsSandbox.Hint">
+		<Value>Whether Payeezy API is in sandbox mode or not</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Payeezy.Fields.IsShipInvoiceWithOrder.False">
+		<Value>Send invoice to DS</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Payeezy.Fields.IsShipInvoiceWithOrder.NotSelected">
+		<Value>Please select how you'd like to receive invoice</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Payeezy.Fields.IsShipInvoiceWithOrder.True">
+		<Value>Send invoice with shipment</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Payeezy.Fields.MobilePaymentQuerystring">
+		<Value>URL query string for mobile payments</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Payeezy.Fields.MobilePaymentQuerystring.Hint">
+		<Value>URL query string indicating that payment page is intended for payments in mobile app</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Payeezy.Fields.OrderNotFoundError">
+		<Value>Error occurred during processing your payment. Your order is not found. Please contact our support.</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Payeezy.Fields.OrderNotFoundError.Hint">
+		<Value>Error message displayed to user after failed checkout due to case of missing order</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Payeezy.Fields.PaymentRedirectionTip">
+		<Value>By clicking confirm button at the end of the checkout you will be redirected to a secure Payeezy payment gateway to complete your order.</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Payeezy.Fields.PaymentRedirectionTip.Hint">
+		<Value>Message displayed to user along the checkout redirection button</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Payeezy.Fields.TestPayeezyyReversal">
+		<Value>Test Payeezyy Reversal</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Payeezy.Fields.PluginControllerName">
+		<Value>Name of plugin controller</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Payeezy.Fields.PluginControllerName.Hint">
+		<Value>Name of plugin controller displayed in payment URLs</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Payeezy.Fields.ProductionClientCertificateThumbprint">
+		<Value>Production thumbprint of client certificate</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Payeezy.Fields.ProductionClientCertificateThumbprint.Hint">
+		<Value>Thumbprint of client certificate in Windows store used to sign API calls in production</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Payeezy.Fields.ProductionPaymentRedirectUrl">
+		<Value>Production URL address of payment page</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Payeezy.Fields.ProductionPaymentRedirectUrl.Hint">
+		<Value>Production URL address of payment page user is redirected to</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Payeezy.Fields.PurchaseDescription">
+		<Value>Order payment at Herbalife Online Ordering - Baltics</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Payeezy.Fields.PurchaseDescription.Hint">
+		<Value>Description of purchase displayed to user on Payeezy payment page</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Payeezy.Fields.SandboxClientCertificateThumbprint">
+		<Value>Sandbox thumbprint of client certificate</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Payeezy.Fields.SandboxClientCertificateThumbprint.Hint">
+		<Value>Thumbprint of client certificate in Windows store used to sign API calls in sandbox mode</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Payeezy.Fields.SandboxPaymentRedirectUrl">
+		<Value>Sandbox URL address of payment page</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Payeezy.Fields.SandboxPaymentRedirectUrl.Hint">
+		<Value>Sandbox URL address of payment page user is redirected to</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Payeezy.Fields.SuccessPurchaseHeader">
+		<Value>Thank you!</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Payeezy.Fields.SuccessPurchaseMessage">
+		<Value>Your order has been successfully processed!</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.Payments.Payeezy.Fields.Configure">
+		<Value>Configure</Value>
+	</LocaleResource>
+	<LocaleResource Name="plugin.payments.payeezy.paymentmethoddescription">
+		<Value>Pay by payeezy paymentmethod</Value>
+	</LocaleResource>
+</Language>

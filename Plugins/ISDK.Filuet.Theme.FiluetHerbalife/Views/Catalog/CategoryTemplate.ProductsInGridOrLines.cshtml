@@ -1,0 +1,211 @@
+﻿@model CategoryModel
+
+@{
+    Layout = "_ColumnsTwo";
+
+    //title
+    NopHtml.AddTitleParts(!string.IsNullOrEmpty(Model.MetaTitle) ? Model.MetaTitle : Model.Name);
+    //meta
+    NopHtml.AddMetaDescriptionParts(Model.MetaDescription);
+    NopHtml.AddMetaKeywordParts(Model.MetaKeywords);
+    //page class
+    NopHtml.AppendPageCssClassParts("html-category-page");
+
+    NopHtml.AddScriptParts(ResourceLocation.Footer, $"~/Themes/FiluetHerbalife/Content/js/basketutils.js");
+    NopHtml.AddScriptParts(ResourceLocation.Footer, $"~/Themes/FiluetHerbalife/Content/js/filters.js");
+
+    if (seoSettings.CanonicalUrlsEnabled)
+    {
+        var categoryUrl = Url.RouteUrl<Category>(new { SeName = Model.SeName }, webHelper.GetCurrentRequestProtocol()).ToLowerInvariant();
+        NopHtml.AddCanonicalUrlParts(categoryUrl, seoSettings.QueryStringInCanonicalUrlsEnabled);
+    }
+
+    ViewBag.IsLastProgramm = false;
+    bool isProgramm = false;
+    int counter = 0;
+
+    if (Model.CategoryBreadcrumb != null && Model.CategoryBreadcrumb.Any())
+    {
+        @foreach (var cat in Model.CategoryBreadcrumb)
+        {
+            counter++;
+            if (cat.Id == _themeFiluetHerbalifeSettings.CategoryIdForProgramm)
+            {
+                isProgramm = true;
+            }
+
+            if (isProgramm && counter == 3)
+            {
+                ViewBag.IsLastProgramm = true;
+            }
+        }
+    }
+}
+
+<style>
+    li.price-range-selected-ranges {
+        display: none;
+    }
+</style>
+
+
+@section mob_filter {
+    <section class="mob_filter" id="mob_filter">
+        <button class="close_btn">
+            <svg class="icon"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_close")"></use></svg>
+        </button>
+
+        <div class="scroll">
+            @*await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.LeftSideColumnBefore })*@
+        </div>
+    </section>
+}
+
+<section class="page_head @(isProgramm ? "programm" : "catalog")">
+    @*category breadcrumb*@
+    @if (Model.DisplayCategoryBreadcrumb)
+    {
+        <div class="breadcrumbs">
+            <a href="@Url.RouteUrl("Homepage")" title="@T("Categories.Breadcrumb.Top")">@T("Categories.Breadcrumb.Top")</a>
+            <svg class="sep"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_arrow_right")"></use></svg>
+            @{
+                int position = 1;
+            }
+            @foreach (var cat in Model.CategoryBreadcrumb)
+            {
+                var title = cat.Name;
+                if (position == 1)
+                {
+                    title = title.ToUpper()[0] + title.Substring(1).ToLower();
+                }
+
+                var isLastCategory = cat.Id == Model.Id;
+                @if (isLastCategory)
+                {
+                    <span class="current">@title</span>
+                }
+                else
+                {
+                    <a href="@(Url.RouteUrl<Category>(new { SeName = cat.SeName }))" title="@title" itemprop="item">
+                        <span itemprop="name">@title</span>
+                    </a>
+                    <svg class="sep"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_arrow_right")"></use></svg>
+                }
+                position++;
+            }
+        </div>
+    }
+
+</section>
+
+@section CatalogFilters {
+    @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.CategoryDetailsBeforeFilters, additionalData = Model })
+    @await Html.PartialAsync("_CatalogFilters", Model.CatalogProductsModel)
+}
+
+<section class="category_info block">
+    @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.CategoryDetailsTop, additionalData = Model })
+
+    @* Description *@
+    @if (!string.IsNullOrWhiteSpace(Model.Description))
+    {
+        @if (isProgramm && counter == 3 && Model is FiluetCategoryModel)
+        {
+            var programSubCategoryModel = (Model as FiluetCategoryModel).ProgramSubCategoryModel;
+            @await Html.PartialAsync("_ProgramSubCategory", programSubCategoryModel)
+            ;
+        }
+        else
+        {
+            <div class="category-description">
+                @Html.Raw(Model.Description)
+            </div>
+        }
+    }
+    @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.CategoryDetailsBeforeSubcategories, additionalData = Model })
+
+    @* Subcategories *@
+    @if (Model.SubCategories.Count > 0)
+    {
+        <div class="sub_categories">
+            <div class="row">
+                @foreach (var item in Model.SubCategories)
+                {
+                    <a href="@(Url.RouteUrl<Category>(new { SeName = item.SeName }))" class="category">
+                        <div class="thumb">
+                            <img data-src="@item.PictureModel.ImageUrl" class="lozad" alt="@item.PictureModel.AlternateText">
+                        </div>
+
+                        <div class="name">@item.Name</div>
+                    </a>
+                }
+            </div>
+        </div>
+    }
+    @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.CategoryDetailsBeforeFeaturedProducts, additionalData = Model })
+</section>
+
+@await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.CategoryDetailsBeforeProductList, additionalData = Model })
+
+<section class="products block">
+
+    @await Html.PartialAsync("_CatalogSelectors", Model.CatalogProductsModel)
+
+    <div class="product-grid product-list">
+        @await Html.PartialAsync("~/Plugins/Theme.FiluetHerbalife/Views/FiluetCatalog/_ProductsInGridOrLines.cshtml", Model.CatalogProductsModel)
+    </div>
+</section>
+
+@await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.CategoryDetailsBottom, additionalData = Model })
+
+<script asp-location="Footer">
+    // Кастомный select
+    $('select').niceSelect();
+    if ($('#slider').length > 0) {
+        // Your slider-related code here
+        $(document).ready(function () {
+
+            $priceRange.update({
+                min: $('#slider').data('sliderminvalue'),
+                max: $('#slider').data('slidermaxvalue'),
+                from: $('#slider').data('selectedfromvalue'),
+                to: $('#slider').data('selectedtovalue'),
+
+                onFinish: data => {
+                    $(".priceRangeFilterPanel7Spikes .priceRangeCurrentPricesPanel .currentMinPrice").html(data.from.toLocaleString());
+                    $(".priceRangeFilterPanel7Spikes .priceRangeCurrentPricesPanel .currentMaxPrice").html(data.to.toLocaleString());
+
+                    $("#slider").data('selectedfromvalue', data.from.toLocaleString());
+                    $("#slider").data('selectedtovalue', data.to.toLocaleString());
+
+                    window.FiltersManager.prototype.buildPriceRangeFilterModel = function (e, r, i, l) {
+
+                        var a = parseFloat($("#slider").data("sliderminvalue")),
+                            t = parseFloat($("#slider").data("slidermaxvalue")),
+                            n = parseFloat($("#slider").data("selectedfromvalue")),
+                            c = parseFloat($("#slider").data("selectedtovalue")),
+                            d = new Object();
+
+                        (d.CategoryId = e), (d.ManufacturerId = r), (d.VendorId = i), null != l &&
+                            l.get(0) === $(".priceRangeFilterPanel7Spikes").get(0) &&
+                            (d.Priority = 1);
+                        var s = new Object();
+
+                        return null != n && n !== a && (s.From = n.toString()), null != c &&
+                            c !== t &&
+                            (s.To = c.toString()), (
+                                d.SelectedPriceRange = s), (d.MinPrice = a.toString()), (d.MaxPrice = t.toString()), d;
+                    };
+
+                    window.filterManager.requestProductsForSelectedFilters($(".priceRangeFilterPanel7Spikes"));
+                }
+            });
+
+            $('.filter_selected .price .from').text($('#slider').data('selectedfromvalue'));
+            $('.filter_selected .price .to').text($('#slider').data('selectedtovalue'));
+
+            $('.sort .list_item.option:first').click();
+            $('.sort .list_item.option:first').click();
+        });
+    }
+</script>

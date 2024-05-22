@@ -1,0 +1,35 @@
+﻿@model LanguageSelectorModel
+@inject Nop.Core.IWebHelper webHelper
+
+@{
+    var returnUrl = webHelper.GetRawUrl(Context.Request);
+    var availableLanguages = Model.AvailableLanguages.Reverse();
+    var currentLanguage = availableLanguages.FirstOrDefault(p => p.Id == Model.CurrentLanguageId);
+}
+
+<div class="langs modal_cont">
+    <div class="langs-selector-label">@T("ISDK.Filuet.Theme.FiluetHerbalife.Fields.Language")</div>
+    <button class="current mini_modal_btn" data-modal-id="#langs_modal">
+        <img class="lozad" data-src="@Url.Content("~/images/flags/" + @currentLanguage.FlagImageFileName)" alt="@@currentLanguage.Name">
+        <svg class="icon">
+            <use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_arrow_down")">
+            </use>
+        </svg>
+    </button>
+
+    <div class="mini_modal" id="langs_modal">
+        @foreach (var lang in availableLanguages)
+        {
+            <div>
+                <a href="@Url.RouteUrl("ChangeLanguage", new { langid = lang.Id, returnUrl }, webHelper.GetCurrentRequestProtocol())"
+                   title="@lang.Name">
+                    <img class="lozad"
+                         title='@lang.Name'
+                         alt='@lang.Name'
+                         src="@Url.Content("~/images/flags/" + @lang.FlagImageFileName) " />
+                    <span>@lang.Name</span>
+                </a>
+            </div>
+        }
+    </div>
+</div>

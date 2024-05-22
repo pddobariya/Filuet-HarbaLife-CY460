@@ -1,0 +1,26 @@
+﻿@model ProductRibbonsPublicModel
+@if (Model.ProductRibbonModels.Count > 0)
+{
+    foreach (var productRibbon in Model.ProductRibbonModels)
+    {
+        if (productRibbon.CategoryPageRibbon != null && productRibbon.CategoryPageRibbon.Enabled)
+        {
+            <div class="products-product-sticker @productRibbon.CategoryPageRibbon.Position"
+                 style="@productRibbon.CategoryPageRibbon.ContainerStyle"
+                 data-productribbonid="@productRibbon.CategoryPageRibbon.ProductRibbonId"
+                 data-productid="@productRibbon.CategoryPageRibbon.ProductId">
+                @Html.Raw(@productRibbon.CategoryPageRibbon.Text)
+            </div>
+        }
+
+        if (productRibbon.ProductPageRibbon != null && productRibbon.ProductPageRibbon.Enabled)
+        {
+            <div class="products-product-sticker @productRibbon.ProductPageRibbon.Position"
+                 style="@productRibbon.ProductPageRibbon.ContainerStyle"
+                 data-productribbonid="@productRibbon.ProductPageRibbon.ProductRibbonId"
+                 data-productid="@productRibbon.ProductPageRibbon.ProductId">
+                @Html.Raw(@productRibbon.ProductPageRibbon.Text)
+            </div>
+        }
+    }
+}

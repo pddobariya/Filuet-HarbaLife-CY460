@@ -1,0 +1,11 @@
+﻿{
+  "Group": "Xcellence-it",
+  "FriendlyName": "Shipping Widget",
+  "SystemName": "ISDK.Filuet.OnlineOrdering.ShippingWidgetPlugin",
+  "Version": "1.0",
+  "SupportedVersions": [ "4.60" ],
+  "Author": "Xcellence-it",
+  "DisplayOrder": 1,
+  "FileName": "ISDK.Filuet.OnlineOrdering.ShippingWidgetPlugin.dll",
+  "Description": "This plugin allows you to select shipping method"
+}

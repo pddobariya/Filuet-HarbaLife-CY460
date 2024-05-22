@@ -1,0 +1,168 @@
+﻿@model FiluetBlogPostListModel
+@{
+    Layout = "_ColumnsTwo";
+
+    //title
+    NopHtml.AddTitleParts(T("PageTitle.Blog").Text);
+    //page class
+    NopHtml.AppendPageCssClassParts("html-blog-page");
+}
+
+@using ISDK.Filuet.Theme.FiluetHerbalife.Infrastructure
+
+@section left {
+    @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.LeftSideColumnBlogBefore })
+    @await Component.InvokeAsync("BlogMonths")
+    @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.LeftSideColumnAfterBlogArchive })
+    @await Component.InvokeAsync("BlogTags")
+    @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.LeftSideColumnBlogAfter })
+}
+
+@section mob_filter {
+    <section class="mob_filter">
+        <button class="close_btn">
+            <svg class="icon"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_close")"></use></svg>
+        </button>
+
+        <div class="scroll">
+            @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.LeftSideColumnBlogBefore })
+            @await Component.InvokeAsync("BlogMonths")
+            @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.LeftSideColumnAfterBlogArchive })
+            @await Component.InvokeAsync("BlogTags")
+            @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.LeftSideColumnBlogAfter })
+        </div>
+    </section>
+}
+
+<section class="breadcrumbs">
+    <a href="@Url.RouteUrl("Homepage")">@T("Homepage")</a>
+    <svg class="sep"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_arrow_right")"></use></svg>
+
+    @if (string.IsNullOrEmpty(Model.PagingFilteringContext.Tag))
+    {
+        if (Model.PagingFilteringContext.GetParsedMonth().HasValue)
+        {
+            <a href="@Url.RouteUrl("Blog")">@T("Blog")</a>
+            <svg class="sep"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_arrow_right")"></use></svg>
+            <span class="current">
+                @string.Format(T("Blog.FilteredByMonth").Text, Model.PagingFilteringContext.GetParsedMonth().Value.Year, Model.PagingFilteringContext.GetParsedMonth().Value.ToString("MMMM"))
+            </span>
+        }
+        else
+        {
+            <span class="current">@T("Blog")</span>
+        }
+    }
+    else
+    {
+        <a href="@Url.RouteUrl("Blog")">@T("Blog")</a>
+        <svg class="sep"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_arrow_right")"></use></svg>
+        <span class="current">@string.Format(T("Blog.TaggedWith").Text, Model.PagingFilteringContext.Tag)</span>
+    }
+</section>
+
+<section class="articles">
+    <div class="block_head">
+        <div class="title">@T("Blog")</div>
+
+        <button class="mob_filter_btn">
+            <svg class="icon"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_filter")"></use></svg>
+            <span>@T("ISDK.Filuet.Theme.FiluetHerbalife.Filter")</span>
+        </button>
+    </div>
+
+    @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.BlogListPageBeforePosts })
+
+    @if (Model.ArticleBigModel != null)
+    {
+        <div class="article big">
+            <a href="@Url.RouteUrl("BlogPost", new {SeName = Model.ArticleBigModel.SeName})" class="thumb">
+                <img data-src="@Model.ArticleBigModel.PictureUrl" alt="" class="lozad">
+            </a>
+
+            <div class="info">
+                <div class="date">
+                    <div class="day">@Model.ArticleBigModel.Day</div>
+                    <div class="month">@Model.ArticleBigModel.Month</div>
+                </div>
+
+                <div class="name">
+                    <a href="@Url.RouteUrl("BlogPost", new {SeName = Model.ArticleBigModel.SeName})">@Model.ArticleBigModel.Name</a>
+
+                    @if (Model.ArticleBigModel.IsPinned)
+                    {
+                        <div class="pinned">
+                            <svg class="icon"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_pin")"></use></svg>
+                            <span>@T("ISDK.Filuet.Theme.FiluetHerbalife.NewsPinned")</span>
+                        </div>
+                    }
+                </div>
+
+                <div class="desc">@Html.Raw(@Model.ArticleBigModel.BodyOverview)</div>
+
+                <div class="category">
+                    <a href="@Url.RouteUrl("BlogPost", new {SeName = Model.ArticleBigModel.SeName})" style="background: @Model.ArticleBigModel.TagColor;">@Model.ArticleBigModel.Category</a>
+                </div>
+
+                <div class="messengers">
+                    <div>
+                        <a download href="@Model.ArticleBigModel.PictureUrl">
+                            <svg class="icon"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_download")"></use></svg>
+                            <span>@T("Common.FileUploader.DownloadUploadedFile")</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="row">
+        @foreach (var item in Model.ArticleModels)
+        {
+            <div class="article">
+                <a href="@Url.RouteUrl("BlogPost", new {SeName = item.SeName})" class="thumb">
+                    <img data-src="@item.PictureUrl" alt="" class="lozad">
+                </a>
+
+                <div class="info">
+                    <div class="date">
+                        <div class="day">@item.Day</div>
+                        <div class="month">@item.Month</div>
+                    </div>
+
+                    <div class="name">
+                        <a href="@Url.RouteUrl("BlogPost", new {SeName = item.SeName})">@item.Name</a>
+                    </div>
+
+                    <div class="category">
+                        <a href="@Url.RouteUrl("BlogPost", new {SeName = item.SeName})" style="background: @item.TagColor" >@item.Category</a>
+                    </div>
+
+                    <div class="messengers">
+                        <div>
+                            <a download href="@item.PictureUrl">
+                                <svg class="icon"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_download")"></use></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    @{
+        var pager = new FiluetPager(Model.PagingFilteringContext, Html.ViewContext)
+                    .MainUlCssClass("pagination").CurrentPageCssClass("active")
+                    .PreviousPageCssClass("next")
+                    .NextPageCssClass("next").NextPageLocalization("FiluetPager.Next")
+                    .ShowFirst(false).ShowPrevious(false).ShowLast(false)
+                    .IndividualPagesDisplayedCount(8)
+                    .QueryParam("pagenumber").RenderEmptyParameters(true);
+    }
+    @if (!(await pager.IsEmpty()))
+    {
+        @pager
+    }
+
+    @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.BlogListPageAfterPosts })
+</section>

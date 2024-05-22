@@ -1,0 +1,11 @@
+﻿{
+  "Group": "Xcellence-it",
+  "FriendlyName": "NopFiluetCommon",
+  "SystemName": "OnlineOrdering.NopFiluetCommon",
+  "Version": "1.0.4",
+  "SupportedVersions": [ "4.60" ],
+  "Author": "Xcellence-it",
+  "DisplayOrder": 1,
+  "FileName": "ISDK.Filuet.OnlineOrdering.NopFiluetCommon.dll",
+  "Description": ""
+}

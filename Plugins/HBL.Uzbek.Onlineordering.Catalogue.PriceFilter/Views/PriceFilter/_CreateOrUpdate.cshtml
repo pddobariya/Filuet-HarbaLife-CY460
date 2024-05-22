@@ -1,0 +1,41 @@
+﻿@model HBL.Uzbek.Onlineordering.Catalogue.PriceFilter.Models.PriceRangeModel
+<input asp-for="Id" type="hidden" />
+<div class="card-body">
+    <div class="form-group row">
+        <div class="col-md-3">
+            <nop-label asp-for="Name" />
+        </div>
+        <div class="col-md-9">
+            <nop-editor asp-for="Name" asp-required="true" />
+            <span asp-validation-for="Name"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-3">
+            <nop-label asp-for="MinPrice" />
+        </div>
+        <div class="col-md-9">
+            <nop-editor asp-for="MinPrice" asp-required="true" />
+            <span asp-validation-for="MinPrice"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-3">
+            <nop-label asp-for="MaxPrice" />
+        </div>
+        <div class="col-md-9">
+            <nop-editor asp-for="MaxPrice" asp-required="true" />
+            <span asp-validation-for="MaxPrice"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-3">
+            <nop-label asp-for="OrderNumber" />
+        </div>
+        <div class="col-md-9">
+            <nop-editor asp-for="OrderNumber" asp-required="true" />
+            <span asp-validation-for="OrderNumber"></span>
+        </div>
+    </div>
+</div>
+

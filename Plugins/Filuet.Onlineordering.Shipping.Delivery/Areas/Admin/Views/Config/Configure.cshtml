@@ -1,0 +1,234 @@
+﻿@model ConfigurationModel
+
+@{
+    Layout = "_ConfigurePlugin";
+    var languageattributes = _languageService.GetAllLanguages().FirstOrDefault()?.Id;
+    var showTour = ViewBag.ShowTour ?? false;
+
+    const string hideConfigureDeliveryCityUpdate = "DeliveryCityUpdate.Configure";
+    var customer = await workContext.GetCurrentCustomerAsync();
+    var hideConfigureDeliveryCityUpdateBlock = showTour ? false : await genericAttributeService.GetAttributeAsync<bool>(customer, hideConfigureDeliveryCityUpdate);
+
+    const string hideSalesCenter = "SalesCenter";
+    var hideSalesCenterBlock = showTour ? false : await genericAttributeService.GetAttributeAsync<bool>(customer, hideSalesCenter);
+
+    const string hideDeliveryTypes = "DeliveryTypes";
+    var hideDeliveryTypesBlock = showTour ? false : await genericAttributeService.GetAttributeAsync<bool>(customer, hideDeliveryTypes);
+
+    const string hideDeliveryOperators = "DeliveryOperators";
+    var hideDeliveryOperatorsBlock = showTour ? false : await genericAttributeService.GetAttributeAsync<bool>(customer, hideDeliveryOperators);
+
+    const string hideDeliveryCities = "DeliveryCities";
+    var hideDeliveryCitiesBlock = showTour ? false : await genericAttributeService.GetAttributeAsync<bool>(customer, hideDeliveryCities);
+
+    const string hidePrices = "Prices";
+    var hidePricesBlock = showTour ? false : await genericAttributeService.GetAttributeAsync<bool>(customer, hidePrices);
+
+    const string hideAutoPostOffices = "AutoPostOffices";
+    var hideAutoPostOfficesBlock = showTour ? false : await genericAttributeService.GetAttributeAsync<bool>(customer, hideAutoPostOffices);
+}
+
+@await Component.InvokeAsync("StoreScopeConfiguration")
+<form asp-controller="Config" asp-action="Configure" asp-area="Admin" method="post" id="delivery-form">
+
+    <nop-cards id="product-cards">
+        <nop-card asp-name="product-info" asp-icon="fas fa-info" asp-title="DeliveryCityUpdate" asp-hide-block-attribute-name="@hideConfigureDeliveryCityUpdate" asp-hide="@hideConfigureDeliveryCityUpdateBlock" asp-advanced="false">
+            <div class="card-body">
+                <div class="form-group row">
+                    <div class="col-md-3">
+                        <nop-label asp-for="SelfPickupActive" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="SelfPickupActive" />
+                        <span asp-validation-for="SelfPickupActive"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-3">
+                        <nop-label asp-for="PhonePrefix" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="PhonePrefix" />
+                        <span asp-validation-for="PhonePrefix"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-3">
+                        <nop-label asp-for="PhoneMask" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="PhoneMask" />
+                        <span asp-validation-for="PhoneMask"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-3">
+                        <nop-label asp-for="AddAddressToComment" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="AddAddressToComment" />
+                        <span asp-validation-for="AddAddressToComment"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-3">
+                        <nop-label asp-for="RequirePostCode" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="RequirePostCode" />
+                        <span asp-validation-for="RequirePostCode"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-3">
+                        <nop-label asp-for="ShowInvitation" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="ShowInvitation" />
+                        <span asp-validation-for="ShowInvitation"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-3">
+                        <nop-label asp-for="SalesCenterElectronicQueueInvitation" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-textarea asp-for="SalesCenterElectronicQueueInvitation" />
+                        <span asp-validation-for="SalesCenterElectronicQueueInvitation"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-3">
+                        <nop-label asp-for="NotificationHtmlAboveModule" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-textarea asp-for="NotificationHtmlAboveModule" />
+                        <span asp-validation-for="NotificationHtmlAboveModule"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-3">
+                        <nop-label asp-for="MinCriterion" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="MinCriterion" />
+                        <span asp-validation-for="MinCriterion"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-3">
+                        <nop-label asp-for="PickPoint" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="PickPoint" />
+                        <span asp-validation-for="PickPoint"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-3">
+                        <nop-label asp-for="HomeDelivery" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="HomeDelivery" />
+                        <span asp-validation-for="HomeDelivery"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-9 offset-md-3">
+                        <input type="submit" name="save" class="btn bg-primary" value="@T("Admin.Common.Save")" />
+                    </div>
+                </div>
+
+            </div>
+        </nop-card>
+        <nop-card asp-name="product-info" asp-icon="fas fa-info" asp-title="@T("Plugins.ShippingMethods.Delivery.SalesCenter")" asp-hide-block-attribute-name="@hideSalesCenter" asp-hide="@hideSalesCenterBlock" asp-advanced="false">
+            <div class="card-body">
+                <nop-tabs id="sales-center" asp-tab-name-to-select="tab-attributes-@languageattributes" asp-render-selected-tab-input="false">
+                    @foreach (var language in Model.Languages)
+                    {
+                        Model.SalesCenterSearchModel.LanguageId = language.Id;
+                        <nop-tab asp-name="tab-attributes-@language.Id" asp-title="@language.Name" asp-default="true">
+                            @await Html.PartialAsync("SalesCenter_info",Model)
+                        </nop-tab>
+                    }
+                </nop-tabs>
+            </div>
+        </nop-card>
+        <nop-card asp-name="product-info" asp-icon="fas fa-info" asp-title="@T("Plugins.ShippingMethods.Delivery.DeliveryTypes")" asp-hide-block-attribute-name="@hideDeliveryTypes" asp-hide="@hideDeliveryTypesBlock" asp-advanced="false">
+            <div class="card-body">
+                <nop-tabs id="delivery-types" asp-tab-name-to-select="tab-attributes1-@languageattributes" asp-render-selected-tab-input="false">
+                    @foreach (var language in Model.Languages)
+                    {
+
+                        Model.DeliveryTypeDtoSearchModel.LanguageId = language.Id;
+                        <nop-tab asp-name="tab-attributes1-@language.Id" asp-title="@language.Name" asp-default="true">
+                            @await Html.PartialAsync("DeliveryType",Model)
+                        </nop-tab>
+                    }
+                </nop-tabs>
+            </div>
+        </nop-card>
+        <nop-card asp-name="product-info" asp-icon="fas fa-info" asp-title="@T("Plugins.ShippingMethods.Delivery.DeliveryOperators")" asp-hide-block-attribute-name="@hideDeliveryOperators" asp-hide="@hideDeliveryOperatorsBlock" asp-advanced="false">
+            <div class="card-body">
+                <nop-tabs id="delivery-operators" asp-tab-name-to-select="tab-attributes5-@languageattributes" asp-render-selected-tab-input="false">
+                    @foreach (var language in Model.Languages)
+                    {
+
+                        Model.DeliveryOperatorDtoSearchModel.LanguageId = language.Id;
+                        <nop-tab asp-name="tab-attributes5-@language.Id" asp-title="@language.Name" asp-default="true">
+                            @await Html.PartialAsync("DeliveryOperators",Model)
+                        </nop-tab>
+                    }
+                </nop-tabs>
+            </div>
+        </nop-card>
+        <nop-card asp-name="product-info" asp-icon="fas fa-info" asp-title="@T("Plugins.ShippingMethods.Delivery.DeliveryCities")" asp-hide-block-attribute-name="@hideDeliveryCities" asp-hide="@hideDeliveryCitiesBlock" asp-advanced="false">
+            <div class="card-body">
+                <nop-tabs id="delivery-Cities" asp-tab-name-to-select="tab-attributes2-@languageattributes" asp-render-selected-tab-input="false">
+                    @foreach (var language in Model.Languages)
+                    {
+
+                        Model.DeliveryOperatorsCitySearchModel.LanguageId = language.Id;
+                        <nop-tab asp-name="tab-attributes2-@language.Id" asp-title="@language.Name" asp-default="true">
+                            @await Html.PartialAsync("DeliveryCities",Model)
+                        </nop-tab>
+                    }
+                </nop-tabs>
+            </div>
+        </nop-card>
+        <nop-card asp-name="product-info" asp-icon="fas fa-info" asp-title="@T("Plugins.ShippingMethods.Delivery.Prices")" asp-hide-block-attribute-name="@hidePrices" asp-hide="@hidePricesBlock" asp-advanced="false">
+            <div class="card-body">
+                <nop-tabs id="price-delivery" asp-tab-name-to-select="tab-attributes3-@languageattributes" asp-render-selected-tab-input="false">
+                    @foreach (var language in Model.Languages)
+                    {
+
+                        Model.PriceDtoSearchModel.LanguageId = language.Id;
+                        <nop-tab asp-name="tab-attributes3-@language.Id" asp-title="@language.Name" asp-default="true">
+                            @await Html.PartialAsync("PriceDelivery",Model)
+                        </nop-tab>
+                    }
+                </nop-tabs>
+            </div>
+        </nop-card>
+        <nop-card asp-name="product-info" asp-icon="fas fa-info" asp-title="@T("Plugins.ShippingMethods.Delivery.AutoPostOffices")" asp-hide-block-attribute-name="@hideAutoPostOffices" asp-hide="@hideAutoPostOfficesBlock" asp-advanced="false">
+            <div class="card-body">
+                <nop-tabs id="autopostoffice-delivery" asp-tab-name-to-select="tab-attributes4-@languageattributes" asp-render-selected-tab-input="false">
+                    @foreach (var language in Model.Languages)
+                    {
+
+                        Model.AutoPostOfficeDtoSearchModel.LanguageId = language.Id;
+                        <nop-tab asp-name="tab-attributes4-@language.Id" asp-title="@language.Name" asp-default="true">
+                            @await Html.PartialAsync("Autopostoffice_delivery",Model)
+                        </nop-tab>
+                    }
+                </nop-tabs>
+            </div>
+        </nop-card>
+    </nop-cards>
+</form>

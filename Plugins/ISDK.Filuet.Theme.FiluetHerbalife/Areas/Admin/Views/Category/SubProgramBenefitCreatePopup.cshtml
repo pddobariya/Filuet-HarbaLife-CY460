@@ -1,0 +1,22 @@
+@model SubProgramBenefitModel
+
+@{
+    Layout = "_AdminPopupLayout";
+    ViewBag.PageTitle = T("Admin.ISDK.Filuet.Theme.FiluetHerbalife.SubProgramBenefit.AddNew").Text;
+}
+
+<form asp-controller="Category" asp-action="SubProgramBenefitCreatePopup"
+      asp-route-categoryId="@Context.Request.Query["categoryId"]"
+      asp-route-languageId="@Context.Request.Query["languageId"]"
+      asp-route-btnId="@Context.Request.Query["btnId"]"
+      asp-route-formId="@Context.Request.Query["formId"]">
+    <div class="content-header clearfix">
+        <h1 class="float-left">
+            @T("Admin.ISDK.Filuet.Theme.FiluetHerbalife.SubProgramBenefit.AddNew")
+        </h1>
+        <div class="pull-right">
+            &nbsp;
+        </div>
+    </div>
+    @await Html.PartialAsync("_CreateOrUpdateSubProgramBenefit", Model)
+</form>

@@ -1,0 +1,90 @@
+﻿@model ISDK.Filuet.Theme.FiluetHerbalife.Models.Checkout.CustomOnePageCheckoutModel
+@{
+    Layout = "_ColumnsOne";
+
+    NopHtml.AddScriptParts(ResourceLocation.Footer, "~/js/public.onepagecheckout.js");
+    NopHtml.AddScriptParts(ResourceLocation.Footer, "~/Themes/FiluetHerbalife/Content/js/processorder.js");
+
+    NopHtml.AddCssFileParts("~/lib_npm/jquery-ui-dist/jquery-ui.min.css");
+
+    //title
+    NopHtml.AddTitleParts(T("PageTitle.Checkout").Text);
+    //page class
+    NopHtml.AppendPageCssClassParts("html-checkout-page");
+    var storeLocation = webHelper.GetStoreLocation();
+}
+
+@{
+    var viewData = new ViewDataDictionary(ViewData)
+{
+        {"checkoutActiveClass", "active"}
+    };
+}
+@await Html.PartialAsync("_CheckoutSteps", viewData)
+
+
+<section class="checkout_info block">
+    <div class="cont">
+        <div class="block_head">
+            <div class="title">@T("ISDK.Filuet.Theme.FiluetHerbalife.Checkout.FillOrderDetails")</div>
+        </div>
+
+        <form asp-controller="FiluetHerbalifeCheckout" asp-action="OpcSavePaymentInfo" method="post" id="co-shipping-method-and-payment-info-form" class="form">
+        <script asp-location="Footer">
+                        var localized_data = {
+                            SpecifyMethodError: "@T("Plugins.ShippingMethods.Delivery.FillIn")",
+                        };
+        
+                        var phoneMask = "@(!string.IsNullOrEmpty(Model.PhoneMask) ? Model.PhoneMask : "")";
+        
+                        HerbalifeOnePageCheckout.init('#co-shipping-method-and-payment-info-form',
+                            '@(storeLocation)checkout/OpcSavePaymentInfo/',
+                            localized_data, phoneMask);
+                    </script>
+            <div class="col">
+            </div>
+        <div class="col">
+            @if (Model.PaymentMethods.Count > 0)
+            {
+                @for (var i = 0; i < Model.PaymentMethods.Count; i++)
+                {
+                    var paymentMethod = Model.PaymentMethods[i];
+                    var paymentMethodName = paymentMethod.Name;
+                    if (!string.IsNullOrEmpty(paymentMethod.Fee))
+                    {
+                        paymentMethodName = T("Checkout.SelectPaymentMethod.MethodAndFee", paymentMethodName, paymentMethod.Fee).Text;
+                    }
+                    <div class="line">
+                        <div class="method-name">
+                            @if (!string.IsNullOrEmpty(paymentMethod.LogoUrl))
+                            {
+                                <div class="payment-logo">
+                                    <label for="paymentmethod_@(i)">
+                                        <img src="@paymentMethod.LogoUrl" alt="@paymentMethodName" height="64" />
+                                    </label>
+                                </div>
+                            }
+                            <div class="payment-details">
+                                <input id="paymentmethod_@(i)" type="radio" name="paymentmethod" value="@(paymentMethod.PaymentMethodSystemName)" checked="@paymentMethod.Selected"/>
+                                <label for="paymentmethod_@(i)">@paymentMethodName</label>
+                                @if (!string.IsNullOrEmpty(paymentMethod.Description))
+                                {
+                                    <div class="payment-description">@paymentMethod.Description</div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+        <div class="col">
+        </div>
+            
+        </form>
+        <div class="btns">
+              <a href="@Url.RouteUrl("ShoppingCart")" class="btn back_btn">@T("Common.Back")</a>
+              <button onclick="HerbalifeOnePageCheckout.savePayment()" class="btn next_btn">@T("Common.Continue")</button>
+        </div>
+        
+    </div>
+</section>

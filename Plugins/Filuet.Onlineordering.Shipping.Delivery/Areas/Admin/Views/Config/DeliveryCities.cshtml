@@ -1,0 +1,54 @@
+﻿@model ConfigurationModel
+
+
+<div class="cards-group">
+    <div class="card card-default">
+        <div class="card-body">
+
+            @await Html.PartialAsync("Table", new DataTablesModel
+            {
+            Name = "delivery-cities-grid" + Model.DeliveryOperatorsCitySearchModel.LanguageId,
+            UrlRead = new DataUrl("GetDeliveryCities", "DeliveryAdmin", new RouteValueDictionary{[nameof(Model.DeliveryOperatorsCitySearchModel.LanguageId)]=  Model.DeliveryOperatorsCitySearchModel.LanguageId}),
+            UrlUpdate = new DataUrl("DeliveryCityUpdate", "DeliveryAdmin", new RouteValueDictionary{[nameof(Model.DeliveryOperatorsCitySearchModel.LanguageId)]=  Model.DeliveryOperatorsCitySearchModel.LanguageId}),
+            UrlDelete = new DataUrl("DeliveryCityDelete", "DeliveryAdmin", new RouteValueDictionary{[nameof(Model.DeliveryOperatorsCitySearchModel.LanguageId)]=  Model.DeliveryOperatorsCitySearchModel.LanguageId}),
+            Length = Model.DeliveryOperatorsCitySearchModel.PageSize,
+            LengthMenu = Model.DeliveryOperatorsCitySearchModel.AvailablePageSizes,
+            ColumnCollection = new List<ColumnProperty>
+            {
+            new ColumnProperty(nameof(DeliveryOperatorsCityModel.CityName))
+            {
+            Title = T("Plugins.ShippingMethods.Delivery.Fields.CityName").Text,
+            Width = "200",
+            Editable = true,
+            EditType = EditType.String,
+            },
+            new ColumnProperty(nameof(DeliveryOperatorsCityModel.Id))
+            {
+            Title = T("Admin.Common.Edit").Text,
+            Width = "100",
+            ClassName =  NopColumnClassDefaults.Button,
+            Render = new RenderButtonsInlineEdit()
+            },
+            new ColumnProperty(nameof(DeliveryOperatorsCityModel.Id))
+            {
+            Title = T("Admin.Common.Delete").Text,
+            Width = "100",
+            ClassName =  NopColumnClassDefaults.Button,
+            Render = new RenderButtonRemove(T("Admin.Common.Delete").Text)
+            }
+            }
+            })
+        </div>
+    </div>
+</div>
+<div class="float-left">
+    <a href="@Url.Action("DeliveryCityCreate", "DeliveryAdmin", new { languageId = Model.DeliveryOperatorsCitySearchModel.LanguageId })" class="btn btn-primary">
+        <i class="fas fa-plus-square"></i>
+        @T("Admin.Common.AddNew")
+    </a>
+</div>
+
+
+
+
+

@@ -1,0 +1,72 @@
+﻿@model ISDK.Filuet.OnlineOrdering.CorePlugin.Models.Order.FiluetCustomerOrderListModel
+@{
+    Layout = "_ColumnsTwo";
+
+    //title
+    NopHtml.AddTitleParts(T("PageTitle.Account").Text);
+    //page class
+    NopHtml.AppendPageCssClassParts("html-account-page");
+    NopHtml.AppendPageCssClassParts("html-order-list-page");
+
+
+}
+@section left
+{
+    @await Component.InvokeAsync("CustomerNavigation", new { selectedTabId = CustomerNavigationEnum.Orders })
+}
+<section class="orders">
+    @await Html.PartialAsync("_OrderSelectors", Model.PagingFilteringContext)
+    @if (Model.Orders.Count > 0)
+    {
+        <div class="list">
+            <div class="titles">
+                <div class="col_number">@T("Order.Order#")</div>
+                <div class="col_date">@T("Order.OrderDate")</div>
+                <div class="col_price">@T("Order.Product(s).Total")</div>
+                <div class="col_vp">@T("Account.CustomerOrders.VolumePoints")</div>
+                <div class="col_status">@T("Order.OrderStatus")</div>
+            </div>
+            @foreach (var order in Model.Orders)
+            {
+                <a class="order" href="@Url.RouteUrl("OrderDetails", new { orderId = order.Id })">
+                    <div class="col_number" data-column="@T("Order.Order#")">@order.FusionOrderNumber</div>
+                    @{
+                        var createDate = order.CreatedOn.ToString();
+                        var language = await workContext.GetWorkingLanguageAsync();
+                        if (language.LanguageCulture == "en-US")
+                            createDate = order.CreatedOn.ToString("MM/dd/yyyy HH:mm:ss");
+                    }
+                    <div class="col_date" data-column="@T("Order.OrderDate")">@createDate</div>
+                    <div class="col_price" data-column="@T("Order.Product(s).Total")">@order.OrderTotal</div>
+                    <div class="col_vp" data-column="@T("Account.CustomerOrders.VolumePoints")">@order.VolumePoints</div>
+                    <div class="col_status">
+                        <span class="@order.OrderStatusClass">@order.OrderStatus</span>
+                    </div>
+                </a>
+            }
+            
+            @{
+                var pager = new FiluetPager(Model.PagingFilteringContext, Html.ViewContext)
+                    .MainUlCssClass("pagination").CurrentPageCssClass("active")
+                    //.PreviousPageCssClass("next")
+                    .NextPageCssClass("next").NextPageLocalization("FiluetPager.Next")
+                    .ShowFirst(false).ShowPrevious(false).ShowLast(false).IndividualPagesDisplayedCount(8)
+                    .QueryParam("pagenumber").BooleanParameterName("advs").BooleanParameterName("isc").BooleanParameterName("sid")
+                    .RenderEmptyParameters(true);
+            }
+            @if (!await pager.IsEmpty())
+            {
+                @pager
+            }
+        </div>
+    }
+    else
+    {
+        <div class="no-data">
+            @T("Account.CustomerOrders.NoOrders")
+        </div>
+    }
+    <div class="exp">
+        @T("Account.CustomerOrders.OrdersWarning")
+    </div>
+</section>

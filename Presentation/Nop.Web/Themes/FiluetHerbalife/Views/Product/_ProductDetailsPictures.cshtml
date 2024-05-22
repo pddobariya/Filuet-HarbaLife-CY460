@@ -1,0 +1,47 @@
+﻿@model ProductDetailsModel
+@*<div class="image">
+        <a href="@Model.DefaultPictureModel.FullSizeImageUrl" class="fancy_img">
+            <img data-src="@Model.DefaultPictureModel.ImageUrl" alt="@Model.DefaultPictureModel.AlternateText" title="@Model.DefaultPictureModel.Title" id="main-product-img-@Model.Id" class="lozad">
+        </a>
+    </div>*@
+
+<div class="images">
+    @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.ProductDetailsBeforePictures, additionalData = Model })
+    <div class="big">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                @foreach (var picture in Model.PictureModels)
+                {
+                    <div class="slide swiper-slide">
+                        <a href="@picture.FullSizeImageUrl" class="fancy_img" data-fancybox="gallery">
+                            <img data-src="@picture.ImageUrl" alt="@picture.AlternateText" title="@picture.Title" id="main-product-img-@picture.GetHashCode()" class="lozad">
+                        </a>
+                    </div>
+                }
+            </div>
+
+            <div class="swiper-button-prev">
+                <svg class="icon"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_arrow_left")"></use></svg>
+            </div>
+
+            <div class="swiper-button-next">
+                <svg class="icon"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_arrow_right")"></use></svg>
+            </div>
+        </div>
+    </div>
+
+    <div class="thumbs">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                @foreach (var picture in Model.PictureModels)
+                {
+                    <div class="slide swiper-slide">
+                        <button>
+                            <img data-src="@picture.ThumbImageUrl" alt="@picture.AlternateText" title="@picture.Title" id="main-product-img-@picture.GetHashCode()" class="lozad">
+                        </button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

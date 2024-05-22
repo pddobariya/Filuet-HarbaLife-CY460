@@ -1,0 +1,37 @@
+﻿@{
+    Layout = "_HomeColumns";
+    NopHtml.AppendCssFileParts("~/Themes/FiluetHerbalife/Content/css/distributor-restrictions.css");
+    var errors = new Dictionary<string, string>
+    {
+        { "WithoutEmail", "Plugins.ExternalAuth.SSO.DistributorRestrictions.WithoutEmail" },
+        { "UnCompleted", "Plugins.ExternalAuth.SSO.DistributorRestrictions.UnCompleted" },
+        { "CantBuy", "Plugins.ExternalAuth.SSO.DistributorRestrictions.CantBuy" },
+        { "DsTypeCountry", "Plugins.ExternalAuth.SSO.DistributorRestrictions.CantBuy" }
+    };
+
+    var errorMessage = errors["WithoutEmail"];
+    foreach (var key in errors.Keys)
+    {
+        if (TempData[key] as bool? == true)
+        {
+            errorMessage = errors[key];
+        }
+    }
+}
+
+@section login_splash
+{
+    <form asp-action="login"
+          class="message-block"
+          asp-controller="ssoauth"
+          asp-route-returnurl="@Context.Request.Query["ReturnUrl"]"
+          method="post">
+        <div class="message-body">
+            <h1>@T("Plugins.ExternalAuth.SSO.NotAllow")</h1>
+            <span>@T(errorMessage)</span>
+            <input class="login-button"
+                   type="submit"
+                   value="@T("Account.Login.LoginButton")" />
+        </div>
+    </form>
+}

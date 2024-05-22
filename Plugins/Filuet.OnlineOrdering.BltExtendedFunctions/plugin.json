@@ -1,0 +1,11 @@
+﻿{
+  "Group": "Xcellence-it",
+  "FriendlyName": "Filuet.OnlineOrdering.BltExtendedFunctions",
+  "SystemName": "Filuet.OnlineOrdering.BltExtendedFunctions",
+  "Version": "1.50",
+  "SupportedVersions": [ "4.60" ],
+  "Author": "Xcellence-it",
+  "DisplayOrder": 3,
+  "FileName": "Filuet.OnlineOrdering.BltExtendedFunctions.dll",
+  "Description": "BltExtendedFunctions"
+}

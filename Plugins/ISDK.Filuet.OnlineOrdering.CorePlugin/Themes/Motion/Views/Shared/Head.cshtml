@@ -1,0 +1,59 @@
+﻿@{
+    var supportRtl = (await workContext.GetWorkingLanguageAsync()).Rtl;
+
+    var userAgent = Url.ActionContext.HttpContext.Request.Headers["User-Agent"];
+
+    bool isIeEightOrLess = !string.IsNullOrEmpty(userAgent) && userAgent.ToString().IndexOf("MSIE 8.0", StringComparison.InvariantCultureIgnoreCase) > 0;
+
+    if (isIeEightOrLess)
+    {
+       NopHtml.AppendCssFileParts("~/Themes/Motion/Content/css/ie8-fix.css");
+    }
+
+    NopHtml.AppendCssFileParts("~/Plugins/SevenSpikes.Core/Styles/perfect-scrollbar.min.css");
+
+    if (supportRtl)
+    {
+        NopHtml.AppendCssFileParts("~/Themes/Motion/Content/CSS/forum.rtl.css");
+        NopHtml.AppendCssFileParts("~/Themes/Motion/Content/CSS/1280.rtl.css");
+        NopHtml.AppendCssFileParts("~/Themes/Motion/Content/CSS/1024.rtl.css");
+        NopHtml.AppendCssFileParts("~/Themes/Motion/Content/CSS/768.rtl.css");
+        NopHtml.AppendCssFileParts("~/Themes/Motion/Content/CSS/480.rtl.css");
+        NopHtml.AppendCssFileParts("~/Themes/Motion/Content/CSS/mobile-only.rtl.css");
+        NopHtml.AppendCssFileParts("~/Themes/Motion/Content/CSS/tables.rtl.css");
+    }
+
+    NopHtml.AppendCssFileParts("~/Themes/Motion/Content/CSS/forum.css");
+    NopHtml.AppendCssFileParts("~/Themes/Motion/Content/CSS/1280.css");
+    NopHtml.AppendCssFileParts("~/Themes/Motion/Content/CSS/1024.css");
+    NopHtml.AppendCssFileParts("~/Themes/Motion/Content/CSS/768.css");
+    NopHtml.AppendCssFileParts("~/Themes/Motion/Content/CSS/480.css");
+    NopHtml.AppendCssFileParts("~/Themes/Motion/Content/CSS/mobile-only.css");
+    NopHtml.AppendCssFileParts("~/Themes/Motion/Content/CSS/tables.css");
+
+    if (supportRtl)
+    {
+        NopHtml.AppendCssFileParts("~/Themes/Motion/Content/CSS/styles.rtl.css");
+    }
+
+    NopHtml.AppendCssFileParts("~/Themes/Motion/Content/CSS/styles.css");
+
+    NopHtml.AddScriptParts(ResourceLocation.Footer, "~/Plugins/SevenSpikes.Core/Scripts/sevenspikes.core.min.js");
+    NopHtml.AddScriptParts(ResourceLocation.Footer, "~/Plugins/SevenSpikes.Core/Scripts/sevenspikes.theme.ex.min.js");
+    NopHtml.AddScriptParts(ResourceLocation.Footer, "~/Plugins/SevenSpikes.Core/Scripts/footable.min.js");
+    NopHtml.AddScriptParts(ResourceLocation.Footer, "~/Plugins/SevenSpikes.Core/Scripts/perfect-scrollbar.min.js");
+
+    if (isIeEightOrLess)
+    {
+        NopHtml.AddScriptParts(ResourceLocation.Footer, "~/Plugins/SevenSpikes.Core/Scripts/selectivizr.min.js");
+        NopHtml.AddScriptParts(ResourceLocation.Footer, "~/Plugins/SevenSpikes.Core/Scripts/respond.min.js");
+    }
+
+    NopHtml.AddScriptParts(ResourceLocation.Footer, "~/Themes/Motion/Content/scripts/Motion.js");
+
+    /* custom styles */
+    NopHtml.AddCssFileParts("~/Plugins/ISDK.Filuet.OnlineOrdering.CorePlugin/Content/main.min.css");
+    NopHtml.AddCssFileParts("~/Plugins/ISDK.Filuet.OnlineOrdering.CorePlugin/Content/main-mobile-all.min.css");
+    NopHtml.AddCssFileParts("~/Plugins/ISDK.Filuet.OnlineOrdering.CorePlugin/Content/buttons.min.css");
+    NopHtml.AddCssFileParts("~/Plugins/ISDK.Filuet.OnlineOrdering.CorePlugin/Content/checkout.min.css");
+}

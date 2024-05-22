@@ -1,0 +1,112 @@
+﻿@model CatalogProductsModel
+@if (Model.Products.Count <= 0 &&
+    !Model.PriceRangeFilter.Enabled &&
+    !Model.SpecificationFilter.Enabled &&
+    !Model.ManufacturerFilter.Enabled)
+{
+    return;
+}
+
+<div class="block_head">
+    <div class="title"></div>
+
+    <div class="grid_list_head">
+
+        @if (Model.AllowProductSorting)
+        {
+            <div class="sort">
+                <div class="name">@T("Catalog.OrderBy")</div>
+
+                <div class="field">
+                    @Html.DropDownList("products-orderby", Model.AvailableSortOptions, new { aria_label = T("Catalog.OrderBy.Label") })
+                </div>
+            </div>
+            <script asp-location="Footer">
+                $(document).ready(function () {
+                    var $orderByEl = $('#products-orderby');
+                    $orderByEl.on('change', function () {
+                        CatalogProducts.getProducts();
+                    });
+
+                    $(CatalogProducts).on('before', function (e) {
+                        e.payload.urlBuilder
+                            .addParameter('orderby', $orderByEl.val());
+                    });
+                });
+            </script>
+        }
+
+        @if (Model.AllowCustomersToSelectPageSize)
+        {
+            <div class="limit">
+                <div class="name">@T("Catalog.PageSize")</div>
+
+                <div class="field">
+                    @Html.DropDownList("products-pagesize", Model.PageSizeOptions, new { aria_label = T("Catalog.PageSize.Label") })
+                </div>
+
+                <div class="name">@T("Catalog.PageSize.PerPage")</div>
+            </div>
+
+            <script asp-location="Footer">
+                $(document).ready(function () {
+                    var $pageSizeEl = $('#products-pagesize');
+                    $pageSizeEl.on('change', function () {
+                        CatalogProducts.getProducts();
+                    });
+
+                    $(CatalogProducts).on('before', function (e) {
+                        e.payload.urlBuilder
+                            .addParameter('pagesize', $pageSizeEl.val());
+                    });
+                });
+            </script>
+        }
+
+        @*view mode*@
+        @if (Model.AllowProductViewModeChanging)
+        {
+            @if (Model.AvailableViewModes.Count > 1)
+             {
+                 var gridMode = Model.AvailableViewModes[0];
+                 var listMode = Model.AvailableViewModes[1];
+
+                 <div class="views">
+                     <button class="btn grid_btn active @if (gridMode.Selected){<text>selected</text>}" data-viewmode="@gridMode.Value">
+                         <svg class="icon"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_grid")"></use></svg>
+                     </button>
+
+                     <button class="btn list_btn @if (listMode.Selected){<text>selected</text>}" data-viewmode="@listMode.Value">
+                         <svg class="icon"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_list")"></use></svg>
+                     </button>
+                 </div>
+             }
+
+            <script asp-location="Footer">
+                $(document).ready(function () {
+                    var $viewModeEls = $('[data-viewmode]');
+                    $viewModeEls.on('click', function () {
+                        if (!$(this).hasClass('selected')) {
+                            $viewModeEls.toggleClass('selected');
+                            CatalogProducts.getProducts();
+                            var fromPrice = @(Model.PriceRangeFilter.SelectedPriceRange.From == null ? 0 : Model.PriceRangeFilter.SelectedPriceRange.From); // Replace with the actual property from your model
+                            var toPrice = @(Model.PriceRangeFilter.SelectedPriceRange.To == null ? 0 : Model.PriceRangeFilter.SelectedPriceRange.To);
+                        }
+                        return false;
+                    });
+
+                    $(CatalogProducts).on('before', function (e) {
+                        var $viewModeEl = $('[data-viewmode].selected');
+                        if ($viewModeEl) {
+                            e.payload.urlBuilder
+                                .addParameter('viewmode', $viewModeEl.data('viewmode'));
+                            e.payload.urlBuilder
+                                .addParameter('SearchPriceRangeFrom', @Model.PriceRangeFilter.SelectedPriceRange.From)
+                                .addParameter('SearchPriceRangeTo', @Model.PriceRangeFilter.SelectedPriceRange.To);
+                        }
+                    });
+                });
+            </script>
+        }
+    </div>
+</div>

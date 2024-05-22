@@ -1,0 +1,11 @@
+﻿@model ShoppingCartModel
+@{
+    Layout = "_ColumnsOne";
+
+    //title
+    NopHtml.AddTitleParts(T("PageTitle.ShoppingCart").Text);
+}
+
+@await Html.PartialAsync("_CheckoutSteps")
+
+@await Component.InvokeAsync("OrderSummary", new { overriddenModel = Model })

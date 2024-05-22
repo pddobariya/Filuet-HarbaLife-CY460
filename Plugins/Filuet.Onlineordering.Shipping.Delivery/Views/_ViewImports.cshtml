@@ -1,0 +1,26 @@
+﻿@inherits Nop.Web.Framework.Mvc.Razor.NopRazorPage<TModel>
+
+@inject INopHtmlHelper NopHtml
+@inject IWebHelper _webHelper
+@inject IWorkContext _workContext
+
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, Nop.Web.Framework
+@addTagHelper *, MiniProfiler.AspNetCore.Mvc
+@addTagHelper *, Nop.Web.Framework
+
+
+@using Nop.Core
+@using System.Web
+@using System.Linq
+@using System.IO
+@using System.Reflection
+@using Nop.Web.Framework.Extensions
+@using Nop.Web.Framework.UI;
+@using Newtonsoft.Json
+@using Filuet.Onlineordering.Shipping.Delivery.Constants
+@using ISDK.Filuet.OnlineOrdering.CorePlugin.Extensions
+@using Nop.Web.Models.Customer
+@using Nop.Web.Models.Catalog
+@using Nop.Web.Models.Common

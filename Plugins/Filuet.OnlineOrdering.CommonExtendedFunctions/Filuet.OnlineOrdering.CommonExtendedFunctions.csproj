@@ -1,0 +1,107 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<Platforms>AnyCPU;x86;x64</Platforms>
+		<OutputPath>..\..\Presentation\Nop.Web\Plugins\Filuet.OnlineOrdering.CommonExtendedFunctions\</OutputPath>
+		<OutDir>$(OutputPath)</OutDir>
+		<Configurations>Debug;Release;Prod CY;Debug CY;Debug BLT;Prod am;Prod-az;Prod-uz;Debug uz;Debug am;Prod BLT;Debug Az</Configurations>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Remove="logo.png" />
+		<None Remove="plugin.json" />
+		<None Remove="Views\CommonExtendedFunctions\Index.cshtml" />
+		<None Remove="Views\Shared\Components\AuthenticationError\Default.cshtml" />
+		<None Remove="Views\UserLogin.cshtml" />
+		<None Remove="Views\_ViewImports.cshtml" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="logo.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="plugin.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\CommonExtendedFunctions\Index.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\Shared\Components\AuthenticationError\Default.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\UserLogin.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\_ViewImports.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Razor" Version="2.2.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Routing" Version="2.2.0" />
+		<PackageReference Include="Autofac" Version="7.0.1" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.9" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="7.0.0" />
+		<!--<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />-->
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\Presentation\Nop.Web.Framework\Nop.Web.Framework.csproj">
+			<Private>false</Private>
+			<CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+			<EmbedInteropTypes>false</EmbedInteropTypes>
+			<IncludeAssets>None</IncludeAssets>
+		</ProjectReference>
+		<ProjectReference Include="..\..\Presentation\Nop.Web\Nop.Web.csproj">
+			<Private>false</Private>
+			<CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+			<EmbedInteropTypes>false</EmbedInteropTypes>
+			<IncludeAssets>None</IncludeAssets>
+		</ProjectReference>
+		<ProjectReference Include="..\ISDK.Filuet.OnlineOrdering.CorePlugin\ISDK.Filuet.OnlineOrdering.CorePlugin.csproj">
+			<Private>False</Private>
+			<CopyLocalSatelliteAssemblies>True</CopyLocalSatelliteAssemblies>
+		</ProjectReference>
+		<ProjectReference Include="..\ISDK.Filuet.OnlineOrdering.NopFiluetCommon\ISDK.Filuet.OnlineOrdering.NopFiluetCommon.csproj">
+			<Private>False</Private>
+			<CopyLocalSatelliteAssemblies>True</CopyLocalSatelliteAssemblies>
+		</ProjectReference>
+		<ProjectReference Include="..\Nop.Plugin.Pickup.PickupInStore\Nop.Plugin.Pickup.PickupInStore.csproj">
+			<Private>False</Private>
+			<CopyLocalSatelliteAssemblies>True</CopyLocalSatelliteAssemblies>
+		</ProjectReference>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="SevenSpikes.Nop.Plugins.AjaxCart">
+			<HintPath>..\..\Presentation\Nop.Web\Plugins\SevenSpikes.Nop.Plugins.AjaxCart\SevenSpikes.Nop.Plugins.AjaxCart.dll</HintPath>
+			<Private>False</Private>
+			<EmbedInteropTypes>false</EmbedInteropTypes>
+		</Reference>
+	</ItemGroup>
+	<ItemGroup>
+		<ClearPluginAssemblies Include="$(MSBuildProjectDirectory)\..\..\Build\ClearPluginAssemblies.proj" />
+	</ItemGroup>
+	<!-- This target execute after "Build" target -->
+	<Target Name="NopTarget" AfterTargets="Build">
+		<!-- Copy all dll files from refs folder -->
+		<ItemGroup>
+			<DllsToCopy Include="$(OutDir)\refs\*.dll" />
+		</ItemGroup>
+		<Copy SourceFiles="@(DllsToCopy)" DestinationFolder="$(OutDir)" />
+
+		<!-- Delete unnecessary libraries from plugins path -->
+		<MSBuild Projects="@(ClearPluginAssemblies)" Properties="PluginPath=$(MSBuildProjectDirectory)\$(OutDir)" Targets="NopClear" />
+		<Delete Files="$(OutDir)\$(AssemblyName).deps.json" />
+		<Delete Files="$(OutDir)\$(AssemblyName).runtimeconfig.json" />
+		<Delete Files="$(OutDir)\$(AssemblyName).runtime.json" />
+		<Delete Files="$(OutDir)\$(AssemblyName).pdb" />
+		<RemoveDir Directories="$(OutDir)\refs" />
+	</Target>
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+		<Exec Command="rd /s /q $(OutDir)runtimes" />
+	</Target>
+</Project>

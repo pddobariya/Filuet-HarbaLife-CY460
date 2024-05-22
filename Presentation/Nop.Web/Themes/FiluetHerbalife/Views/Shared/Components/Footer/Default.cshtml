@@ -1,0 +1,118 @@
+﻿@model Nop.Web.Models.Common.FooterModel
+
+@using System.ComponentModel
+@using Nop.Core
+@using Nop.Core.Domain.Tax
+@using Nop.Core.Domain.Topics
+@using Nop.Core.Infrastructure
+@using Nop.Web.Extensions
+@using Nop.Services.Configuration
+@using Nop.Web.Framework.Infrastructure
+
+@inject IStoreContext storeContext
+@inject IWorkContext workContext
+@inject ISettingService settingService
+
+@{
+    var storeId = (await storeContext.GetCurrentStoreAsync()).Id;
+    var removeDesignedBy = await settingService.GetSettingByKeyAsync("motionthemesettings.removedesignedby", false, storeId, true);
+    var removeCopyright = await settingService.GetSettingByKeyAsync("motionthemesettings.removecopyright", false, storeId, true);
+}
+
+<footer>
+    <div class="cont">
+        <div class="data">
+            <div class="row">
+                <div class="links">
+                    <div class="title">
+                        <svg class="icon"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_footer_links1")"></use></svg>
+                        <span>@T("SevenSpikes.Themes.Motion.Common.CompanyInfo")</span>
+                    </div>
+
+                    <div class="items">
+                        @foreach (var topic in Model.Topics.Where(x => x.IncludeInFooterColumn1).ToList())
+                        {
+                            var topicName = @topic.Name.Trim();
+                            if(topicName.Contains(" "))
+                                topicName = topicName.Insert(topicName.LastIndexOf(" "), "<br>");
+                            else
+                                topicName = topicName.Insert(topicName.Length, "<br>");
+                            <div>
+                                <a href="@(Url.RouteUrl<Topic>(new { SeName = topic.SeName }))">@Html.Raw(topicName)</a>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                <div class="links">
+                    <div class="title">
+                        <svg class="icon"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_footer_links2")"></use></svg>
+                        <span>@T("SevenSpikes.Themes.Motion.Common.CustomerServices")</span>
+                    </div>
+
+                    <div class="items">
+                        <div><a href="@Url.RouteUrl("ContactUs")">@T("ContactUs")</a> </div>
+
+                        <div><a href="@Url.RouteUrl("Faq")">@T("ISDK.Filuet.Theme.FiluetHerbalife.Faq")</a></div>
+
+                        @foreach (var topic in Model.Topics.Where(x => x.IncludeInFooterColumn2).ToList())
+                        {
+                            <ldivi><a href="@(Url.RouteUrl<Topic>(new { SeName = topic.SeName }))">@topic.Name</a></ldivi>
+                        }
+                        @if (Model.SitemapEnabled)
+                        {
+                            <div><a href="@Url.RouteUrl("Sitemap")">@T("Sitemap")</a></div>
+                        }
+                    </div>
+                </div>
+
+                <div class="links">
+                    <div class="title">
+                        <svg class="icon"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_footer_links3")"></use></svg>
+                        <span>@T("Account.MyAccount")</span>
+                    </div>
+
+                    <div class="items">
+                        <div><a href="@Url.RouteUrl("CustomerInfo")">@T("Account.CustomerInfo")</a></div>
+                        @if (Model.WishlistEnabled)
+                        {
+                            <div><a href="@Url.RouteUrl("Wishlist")">@T("Wishlist")</a></div>
+                        }
+                        @if (Model.AllowCustomersToApplyForVendorAccount)
+                        {
+                            <div><a href="@Url.RouteUrl("ApplyVendorAccount")">@T("Vendors.ApplyAccount")</a></div>
+                        }
+                        @foreach (var topic in Model.Topics.Where(x => x.IncludeInFooterColumn3).ToList())
+                        {
+                            <div><a href="@(Url.RouteUrl<Topic>(new { SeName = topic.SeName }))">@topic.Name</a></div>
+                        }
+                    </div>
+                </div>
+
+                <div class="links">
+                    <div class="title">
+                        <svg class="icon"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_footer_links4")"></use></svg>
+                        <span>@T("SevenSpikes.Themes.Motion.Common.OurOffers")</span>
+                    </div>
+
+                    <div class="items">
+                        <div><a href="@Url.RouteUrl("RecentlyViewedProducts")">@T("Products.RecentlyViewedProducts")</a></div>
+                        <div><a href="@Url.RouteUrl("ProductSearch")">@T("Search")</a></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="copyright">
+                    @T("Content.CopyrightNotice", DateTime.Now.Year, Model.StoreName)
+                </div>
+
+                <div class="payments">
+                    <img data-src="@Url.Content("~/Themes/FiluetHerbalife/Content/images/ic_payment1.png")" alt="" class="lozad">
+                    <img data-src="@Url.Content("~/Themes/FiluetHerbalife/Content/images/ic_payment2.png")" alt="" class="lozad">
+                    <img data-src="@Url.Content("~/Themes/FiluetHerbalife/Content/images/ic_payment3.png")" alt="" class="lozad">
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

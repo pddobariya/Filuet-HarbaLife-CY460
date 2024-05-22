@@ -1,0 +1,56 @@
+﻿@{
+    Layout = "";
+}
+@model ISDK.Filuet.OnlineOrdering.NopFiluetCommon.Models.Shipping.ShipInvoiceModel
+@*<link rel = "stylesheet" href = "~/Plugins/Payments.Payeezy/Content/payeezy.min.css?v=4" />*@
+<div class="ship-invoice-form form-horizontal">
+    @*<div class="field-row">
+        <div class="col-md-3">
+            <div class="label-wrapper">
+                <label class="control-label">@T("Plugins.Payments.Payeezy.Fields.InvoiceEmail")</label>
+            </div>
+        </div>
+        <div class="col-md-9">
+            @Html.TextBox("InvoiceEmail", Model.InvoiceEmail, new { placeholder = T("Plugins.Payments.Payeezy.Fields.InvoiceEmail.Hint") })
+
+            @Html.ValidationMessageFor(model => model.InvoiceEmail)
+        </div>
+    </div>*@
+    <div class="field-row">
+        <div class="field-cell">
+            @Html.RadioButton("IsShipInvoiceWithOrder", "False", Model.IsShipInvoiceWithOrder == false) @T("ISDK.Filuet.OnlineOrdering.CorePlugin.IsShipInvoiceWithOrder.False")
+        </div>
+        <div class="field-cell">
+            @Html.RadioButton("IsShipInvoiceWithOrder", "True", Model.IsShipInvoiceWithOrder == true) @T("ISDK.Filuet.OnlineOrdering.CorePlugin.IsShipInvoiceWithOrder.True")
+        </div>
+    </div>
+</div>
+
+<style type="text/css">
+    
+    .ship-invoice-form {
+        margin-bottom: 24px;
+        overflow: hidden;
+    }
+    .ship-invoice-form .col-md-3,
+    .ship-invoice-form .col-md-9 {
+        float: left;
+    }
+    .ship-invoice-form .col-md-3 {
+        font-size: 14px;
+        padding: 8px 8px 0 0;
+    }
+    .ship-invoice-form .col-md-9 {
+        width: 280px;
+    }
+    .ship-invoice-form .col-md-9 #InvoiceEmail {
+        width: 100% !important;
+    }
+    .ship-invoice-form .field-row {
+        overflow: hidden;
+        margin-bottom: 24px;
+    }
+    .ship-invoice-form .field-row .field-cell {
+        margin-bottom: 12px;
+    }
+</style>

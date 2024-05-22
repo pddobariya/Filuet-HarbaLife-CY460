@@ -1,0 +1,42 @@
+﻿@{
+    Layout = "_HomeRoot";
+}
+
+<style>
+    header .langs {
+        margin-left: 32px !important;
+        margin-right: auto !important;
+    }
+</style>
+
+@section login_splash
+{
+    <header>
+        <div class="info">
+            @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderBefore })
+
+            <div class="cont row">
+                <div class="logo">
+                    <a href="@Url.RouteUrl("Homepage")">
+                        <img src="@Url.Content("~/Themes/FiluetHerbalife/Content/images/logo.svg")" alt="">
+                    </a>
+                </div>
+
+                <div class="mob logo">
+                    <a href="@Url.RouteUrl("Homepage")">
+                        <img src="@Url.Content("~/Themes/FiluetHerbalife/Content/images/mob_logo.jpg")" alt="">
+                    </a>
+                </div>
+
+                @await Component.InvokeAsync("LanguageSelector")
+            </div>
+            @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderAfter })
+        </div>
+    </header>
+
+    @RenderSection("login_splash", false)
+
+    @await Html.PartialAsync("_Contacts")
+}
+
+@RenderBody()

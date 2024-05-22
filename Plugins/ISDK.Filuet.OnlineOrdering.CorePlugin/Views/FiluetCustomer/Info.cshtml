@@ -1,0 +1,264 @@
+﻿@model CorePluginCustomer.FiluetCustomerInfoModel
+
+@{
+    Layout = "~/Views/Shared/_ColumnsTwo.cshtml";
+
+    //title
+    NopHtml.AddTitleParts(T("PageTitle.Account").Text);
+    //page class
+    NopHtml.AppendPageCssClassParts("html-account-page");
+    NopHtml.AppendPageCssClassParts("html-customer-info-page");
+}
+
+@section left
+    {
+    @await Component.InvokeAsync("CustomerNavigation", new { selectedTabId = CustomerNavigationEnum.Info })
+}
+
+<div class="page account-page customer-info-page">
+    <div class="page-title">
+        <h1>@T("Account.MyAccount") - @T("Account.CustomerInfo")</h1>
+    </div>
+    <div class="page-body">
+        <form asp-route="CustomerInfo" method="post">
+            <div asp-validation-summary="ModelOnly" class="message-error"></div>
+            <div class="fieldset">
+                <div class="title">
+                    <strong>@T("Account.YourPersonalDetails")</strong>
+                </div>
+                <div class="form-fields">
+                    <div class="inputs">
+                        <label asp-for="DistributorId" asp-postfix=":"></label>
+                        <input asp-for="DistributorId" disabled="disabled" />
+                    </div>
+                    <div class="inputs">
+                        <label asp-for="FirstName" asp-postfix=":"></label>
+                        <input asp-for="FirstName" disabled="disabled" />
+                    </div>
+                    <div class="inputs">
+                        <label asp-for="LastName" asp-postfix=":"></label>
+                        <input asp-for="LastName" disabled="disabled" />
+                    </div>
+                    <div class="inputs">
+                        <label asp-for="Email" asp-postfix=":"></label>
+                        <input asp-for="Email" disabled="disabled" />
+                    </div>
+                    <div class="inputs">
+                        <label asp-for="Ppv" asp-postfix=":"></label>
+                        <input asp-for="Ppv" disabled="disabled" />
+                    </div>
+                    <div class="inputs">
+                        <label asp-for="Pv" asp-postfix=":"></label>
+                        <input asp-for="Pv" disabled="disabled" />
+                    </div>
+                    <div class="inputs">
+                        <label asp-for="Tv" asp-postfix=":"></label>
+                        <input asp-for="Tv" disabled="disabled" />
+                    </div>
+                    <div class="caption">@T("Account.CustomerInfo.ShippingInformation")</div>
+                    <div class="inputs">
+                        <label asp-for="Country" asp-postfix=":"></label>
+                        <input asp-for="Country" disabled="disabled" />
+                    </div>
+                    <div class="inputs">
+                        <label asp-for="StreetAddress" asp-postfix=":"></label>
+                        <input asp-for="StreetAddress" disabled="disabled" />
+                    </div>
+                    @{
+                        int counter = 0;
+                    }
+                    @foreach (var streetAddress in Model.AdditionalStreetAddresses)
+                    {
+                        <div class="inputs">
+                            <label asp-for="AdditionalStreetAddresses" asp-postfix=":"></label>
+                            @Html.TextBox("streetAddress" + counter, streetAddress, new { disabled = "disabled" });
+                            <a onclick="DeleteAddress(@counter, this)" class="cancel"></a>
+                        </div>
+                        counter++;
+                    }
+                    <div id="templateAddress" class="inputs" style="display: none">
+                        <label asp-for="AdditionalStreetAddresses" asp-postfix=":"></label>
+                        <input type="text" />
+                        <a class="commit"></a>
+                        <a class="cancel"></a>
+                    </div>
+                    <div id="addAddress" class="button-1 add">
+                        <a onclick="Add(this)">Add address</a>
+                    </div>
+                    <div class="inputs">
+                        <label asp-for="Phone" asp-postfix=":"></label>
+                        <input asp-for="Phone" disabled="disabled" />
+                    </div>
+                    @{
+                        counter = 0;
+                    }
+                    @foreach (var phone in Model.AdditionalPhones)
+                    {
+                        <div class="inputs">
+                            <label asp-for="AdditionalPhones" asp-postfix=":"></label>
+                            @Html.TextBox("phone" + counter, phone, new { disabled = "disabled" });
+                            <a onclick="DeletePhone(@counter, this)" class="cancel"></a>
+                        </div>
+                        counter++;
+                    }
+                    <div id="templatePhone" class="inputs" style="display: none">
+                        <label asp-for="AdditionalPhones" asp-postfix=":"></label>
+                        <input type="text" />
+                        <a class="commit"></a>
+                        <a class="cancel"></a>
+                    </div>
+                    <div id="addPhone" class="button-1 add">
+                        <a onclick="Add(this)">Add phone</a>
+                    </div>
+                    <div class="info-text">@T("Account.CustomerInfo.CallToChangePersonalDetails")</div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    function DeleteAddress(counter, node) {
+        var content = node.previousElementSibling.value;
+
+        var postData = {
+            streetAddress: content
+        };
+        addAntiForgeryToken(postData);
+
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("DeleteStreetAddress")",
+            data: postData,
+            error: function(str) {
+                alert(str.responseText);
+            },
+            success: function () {
+                $("#streetAddress" + counter).parent().remove();
+            }
+        });
+    };
+
+    function DeletePhone(counter, node) {
+        var content = node.previousElementSibling.value;
+
+        var postData = {
+            phone: content
+        };
+        addAntiForgeryToken(postData);
+
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("DeletePhone")",
+            data: postData,
+            error: function(str) {
+                alert(str.responseText);
+            },
+            success: function () {
+                $("#phone" + counter).parent().remove();
+            }
+        });
+    };
+
+    function Add(node) {
+        var addNode = node.parentElement;
+        var template = addNode.previousElementSibling;
+        var newElement = template.cloneNode(true);
+        newElement.removeAttribute("id");
+        newElement.removeAttribute("style");
+        newElement = addNode.parentElement.insertBefore(newElement, template);
+        var Commit;
+        if (addNode.getAttribute("id") === "addAddress")
+            Commit = CommitAddress;
+        else
+            Commit = CommitPhone;
+        newElement.getElementsByTagName('a')[0].onclick = function () { Commit(newElement); };
+        newElement.getElementsByTagName('a')[1].onclick = function () { Cancel(newElement); };
+        node.className = "disabled";
+    }
+
+    function CommitAddress(node) {
+        var child = node.getElementsByTagName("input")[0];
+        var content = child.value;
+        if (!content) {
+            alert("The field must be filled");
+            return;
+        }
+        var previousId = node.previousElementSibling.getElementsByTagName("input")[0].id;
+        var match = previousId.match("^streetAddress([0-9]*)$");
+        var number = "0";
+        if (match != null)
+            number = parseInt(match[1]) + 1;
+
+        var postData = {
+            streetAddress: content
+        };
+        addAntiForgeryToken(postData);
+
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("AddStreetAddress")",
+            data: postData,
+            error: function(str) {
+                alert(str.responseText);
+            },
+            success: function () {
+                child.id = "streetAddress" + number;
+                child.disabled = "disabled";
+                node.getElementsByTagName('a')[1].remove();
+                child = node.getElementsByTagName('a')[0];
+                child.setAttribute("class", "cancel");
+                child.onclick = function () { DeleteAddress(number, child) };
+                EnableAdd(node);
+            }
+        });
+    }
+
+    function CommitPhone(node) {
+        var child = node.getElementsByTagName("input")[0];
+        var content = child.value;
+        if (!content) {
+            alert("The field must be filled");
+            return;
+        }
+        var previousId = node.previousElementSibling.getElementsByTagName("input")[0].id;
+        var match = previousId.match("^phone([0-9]*)$");
+        var number = "0";
+        if (match != null)
+            number = parseInt(match[1]) + 1;
+
+        var postData = {
+            phone: content
+        };
+        addAntiForgeryToken(postData);
+
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("AddPhone")",
+            data: postData,
+            error: function(str) {
+                alert(str.responseText);
+            },
+            success: function () {
+                child.id = "phone" + number;
+                child.disabled = "disabled";
+                node.getElementsByTagName('a')[1].remove();
+                child = node.getElementsByTagName('a')[0];
+                child.setAttribute("class", "cancel");
+                child.onclick = function () { DeletePhone(number, child) };
+            },
+            complete: function() {
+                EnableAdd(node);
+            }
+        });
+    }
+
+    function Cancel(node) {
+        EnableAdd(node);
+        node.remove();
+    }
+
+    function EnableAdd(node) {
+        node.nextElementSibling.nextElementSibling.getElementsByTagName("a")[0].classList.remove("disabled");
+    }
+</script>

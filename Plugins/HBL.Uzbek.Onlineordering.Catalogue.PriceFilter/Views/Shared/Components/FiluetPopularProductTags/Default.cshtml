@@ -1,0 +1,30 @@
+﻿@model Nop.Web.Models.Catalog.PopularProductTagsModel
+@if (Model.Tags.Count > 0)
+{
+    NopHtml.AddCssFileParts("~/Plugins/HBL.Uzbek.Onlineordering.Catalogue.PriceFilter/Content/styles.css");
+    <div class="block block-popular-tags">
+        <div class="title">
+            <strong>@T("Products.Tags.Popular")</strong>
+        </div>
+        <div class="listbox">
+            <div class="tags">
+                <ul>
+                    @foreach (var item in Model.Tags)
+                    {
+                        <li><a href="@Url.RouteUrl("ProductsByTag", new { item.SeName })" style="font-size:@(Model.GetFontSize(item))%;">@item.Name</a></li>
+                    }
+                </ul>
+            </div>
+            @if (Model.TotalTags > Model.Tags.Count)
+            {
+                <div class="view-all">
+                    <a href="@Url.RouteUrl("ProductTagsAll")">@T("Products.Tags.Popular.ViewAll")</a>
+                </div>
+            }
+            @if (ViewData.ContainsKey("TagId") && ViewBag.TagId != 0)
+            {
+                <a class="clear-filter" href="@Url.RouteUrl("GenericUrl", new {GenericSeName = "core-products"})">@T("Plugins.PriceFilter.Clear")</a>
+            }
+        </div>
+    </div>
+}

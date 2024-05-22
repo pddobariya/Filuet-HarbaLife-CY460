@@ -1,0 +1,16 @@
+﻿@model ISDK.Filuet.Theme.FiluetHerbalife.Models.FaqListModel
+
+<aside class="devices_show">
+    <div class="categories">
+        <div class="title">@T("ISDK.Filuet.Theme.FiluetHerbalife.Content")</div>
+
+        <div class="items">
+            <div><a class="@if(Model.AllQuestionsActive){<text>active</text>}" href="@Url.RouteUrl("Faq")">@T("ISDK.Filuet.Theme.FiluetHerbalife.AllQuestions")</a></div>
+
+            @foreach (var topic in Model.FaqModels)
+            {
+                <div><a class="@if (topic.IsActive){<text>active</text>}" href="@Url.Action("FaqDetails", "FiluetTopic", new { topicId = topic.Faq.Id })">@topic.Faq.Title</a></div>
+            }
+        </div>
+    </div>
+</aside>

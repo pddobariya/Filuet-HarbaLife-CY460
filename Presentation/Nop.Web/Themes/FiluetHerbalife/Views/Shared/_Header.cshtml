@@ -1,0 +1,25 @@
+﻿<header>
+    <div class="info">
+        @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.HeaderBefore })
+        <div class="cont row">
+            <div class="logo">
+                <a href="@Url.RouteUrl("Homepage")">
+                    <img src="@Url.Content("~/Themes/FiluetHerbalife/Content/images/logo.svg")" alt="">
+                </a>
+            </div>
+            <div class="mob logo">
+                <a href="@Url.RouteUrl("Homepage")">
+                    <img src="@Url.Content("~/Themes/FiluetHerbalife/Content/images/mob_logo.jpg")" alt="">
+                </a>
+            </div>
+            @await Component.InvokeAsync(typeof(LanguageSelectorViewComponent))
+            @await Component.InvokeAsync(typeof(SearchBoxViewComponent))
+            @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.HeaderSelectors })
+            @await Component.InvokeAsync("FiluetHeaderLinks")
+        </div>
+        @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.HeaderAfter })
+    </div>
+    <div class="cont">
+        @await Component.InvokeAsync("TopMenu")
+    </div>
+</header>

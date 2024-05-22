@@ -1,0 +1,14 @@
+﻿@model ProductDetailsModel
+@{
+    var addtocomparelink = Url.RouteUrl("AddProductToCompare", new { productId = Model.Id });
+}
+@if (Model.CompareProductsEnabled)
+{
+    <div class="compare-products">
+        <button type="button" class="compare_btn button-2 add-to-compare-list-button" onclick="AjaxCart.addproducttocomparelist('@addtocomparelink');return false;">
+            <svg class="icon"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_compare")"></use></svg>
+            <span>@T("Products.Compare.AddToCompareList")</span>
+            <span>@T("Products.Compare.AddToCompareListMob")</span>
+        </button>
+    </div>
+}

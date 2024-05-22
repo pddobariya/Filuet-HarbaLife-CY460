@@ -1,0 +1,64 @@
+﻿@model DeliveryOperatorDtoModel
+
+@{
+    var showTour = ViewBag.ShowTour ?? false;
+    var customer = await workContext.GetCurrentCustomerAsync();
+    const string hideDeliveryOperators = "DeliveryOperators";
+    var hideDeliveryOperatorsBlock = showTour ? false : await genericAttributeService.GetAttributeAsync<bool>(customer, hideDeliveryOperators);
+}
+
+<form asp-controller="DeliveryAdmin" asp-action="DeliveryOperatorCreate" method="post">
+    <input type="hidden" asp-for="@Model.LanguageId" />
+    <div class="content-header clearfix">
+        <h1 class="float-left">
+            @T("Plugins.ShippingMethods.Delivery.DeliveryOperator.AddNew")
+            <small>
+                <i class="fas fa-arrow-circle-left"></i>
+                <a asp-controller="Config" asp-action="Configure">@T("Plugins.ShippingMethods.Delivery.BackToList")</a>
+            </small>
+        </h1>
+        <div class="float-right">
+            <button type="submit" name="save" class="btn btn-primary">
+                <i class="far fa-save"></i>
+                @T("Admin.Common.Save")
+            </button>
+        </div>
+    </div>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="form-horizontal">
+                <nop-card asp-name="DeliveryOperators-info" asp-icon="fas fa-info" asp-title="@T("Plugins.ShippingMethods.Delivery.DeliveryOperators")" asp-hide-block-attribute-name="@hideDeliveryOperators" asp-hide="@hideDeliveryOperatorsBlock" asp-advanced="false">
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="@Model.OperatorName" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="@Model.OperatorName" />
+                                <span asp-validation-for="@Model.OperatorName"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="@Model.FreightCode" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="@Model.FreightCode" />
+                                <span asp-validation-for="@Model.FreightCode"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="@Model.WarehouseCode" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="@Model.WarehouseCode" />
+                                <span asp-validation-for="@Model.WarehouseCode"></span>
+                            </div>
+                        </div>
+                    </div>
+                </nop-card>
+            </div>
+        </div>
+    </section>
+</form>

@@ -1,0 +1,56 @@
+﻿<style>
+    .ui-front {
+        z-index: 2000;
+    }
+
+    .ui-dialog {
+        position: absolute !important;
+        background: #fff;
+        z-index: 2001;
+        width: 600px !important;
+    }
+
+    #mainConditions-dialog-message a {
+        color: -webkit-link;
+        cursor: pointer;
+        text-decoration: underline;
+    }
+</style>
+<div id="mainConditions-dialog-message" title="Welcome">
+    <p style="color: rgb(190, 58, 52);">
+        @T("MainConditionsViewComponent.Message")
+    </p>
+</div>
+<script>
+    $(document).ready(function () {
+        $("#mainConditions-dialog-message").dialog({
+            closeOnEscape: false,
+            open: function(event, ui) {
+                if (event.target.id === "mainConditions-dialog-message")
+                    $(".ui-dialog-titlebar-close").hide();
+            },
+            resizable: false,
+            height: "auto",
+            width: 800,
+            modal: true,
+            buttons: {
+                "@T("MainConditionsViewComponent.Confirm")": function () {
+                    $.ajax({
+                        method: "POST",
+                        data: { mainUrl: document.location.pathname },
+                        url: "@Url.Action("CloseMainCondition", "FiluetCommon")",
+                        async: false,
+                        success: function (result) {
+                            $("#mainConditions-dialog-message").dialog("destroy").remove();
+                            BodyEndHtmlTagBeforeRoot.LoadMessageBox(result);
+                        },
+                        error: function (xhr, status, error) {
+                            alert(error);
+                        }
+                        });
+
+                }
+            }
+        });
+    });
+</script>

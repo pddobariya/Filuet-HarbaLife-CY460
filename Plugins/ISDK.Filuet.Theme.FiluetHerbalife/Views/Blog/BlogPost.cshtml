@@ -1,0 +1,110 @@
+﻿@model FiluetBlogPostModel
+@{
+    Layout = "_ColumnsOne";
+
+    //title
+    NopHtml.AddTitleParts(!string.IsNullOrEmpty(Model.MetaTitle) ? Model.MetaTitle : Model.Title);
+    //meta
+    NopHtml.AddMetaDescriptionParts(Model.MetaDescription);
+    NopHtml.AddMetaKeywordParts(Model.MetaKeywords);
+}
+
+@{
+    Model.TagColor = Model.TagColor ?? "#387C2B";
+}
+
+<section class="page_head">
+    <div class="cont">
+        <div class="breadcrumbs">
+            <a href="@Url.RouteUrl("Homepage")">@T("Homepage")</a>
+            <svg class="sep"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_arrow_right")"></use></svg>
+            <a href="@Url.RouteUrl("Blog")">@T("Blog")</a>
+            <svg class="sep"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_arrow_right")"></use></svg>
+            <span class="current">@Model.Title</span>
+        </div>
+    </div>
+</section>
+
+
+<section class="content_flex block">
+    <div class="cont row">
+        <aside>
+            <div class="last_articles">
+                <div class="title">@T("ISDK.Filuet.Theme.FiluetHerbalife.LastNews")</div>
+
+                <div class="items">
+                    <div><a class="active">@Model.Title</a></div>
+                    @foreach (var news in Model.LastNews)
+                    {
+                        <div><a href="@Url.RouteUrl("BlogPost", new {SeName = news.SeName})">@news.Title</a></div>
+                    }
+                </div>
+            </div>
+        </aside>
+
+        <section class="content">
+            @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.BlogPostPageTop, additionalData = Model })
+            <section class="article_info">
+                <div class="head">
+                    <div class="date">
+                        <div class="day">@Model.Day</div>
+                        <div class="month">@Model.Month</div>
+                    </div>
+
+                    <div>
+                        <h1 class="article_title">@Model.Title</h1>
+
+                        <div class="category" style="background: @Model.TagColor">
+                            <a href="@Url.RouteUrl("BlogByTag", new { tag = Model.Category })">
+                                @Model.Category
+                            </a>
+                        </div>
+
+                        @if (Model.IsPinned)
+                        {
+                            <div class="pinned">
+                                <svg class="icon"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_pin")"></use></svg>
+                                <span>@T("ISDK.Filuet.Theme.FiluetHerbalife.NewsPinned")</span>
+                                <span>@T("ISDK.Filuet.Theme.FiluetHerbalife.Pinned")</span>
+                            </div>
+                        }
+                        <div class="messengers">
+                            <div>
+                                <a download href="@Model.PictureUrl">
+                                    <svg class="icon"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_download")"></use></svg>
+                                    <span>@T("Common.FileUploader.DownloadUploadedFile")</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="image">
+                    <img data-src="@Model.PictureUrl" alt="" class="lozad">
+                </div>
+
+                <div class="text_block">
+                    <p><b>@Model.Title</b></p>
+
+                    @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.BlogPostPageBeforeBody, additionalData = Model })
+
+                    <p>@Html.Raw(@Model.Body)</p>
+
+
+                    @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.BlogPostPageBeforeComments, additionalData = Model })
+                    @if (Model.Comments.Count > 0)
+                    {
+                        @foreach (var comment in Model.Comments)
+                        {
+                            <p><b>@comment.CustomerName:</b></p>
+
+                            <p><em>@Html.Raw(htmlFormatter.FormatText(comment.CommentText, false, true, false, false, false, false))</em></p>
+                        }
+                    }
+                    @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.BlogPostPageAfterComments, additionalData = Model })
+                </div>
+            </section>
+            @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.BlogPostPageBottom, additionalData = Model })
+        </section>
+    </div>
+</section>

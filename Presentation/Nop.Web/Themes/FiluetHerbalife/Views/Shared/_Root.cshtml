@@ -1,0 +1,56 @@
+﻿@{
+    Layout = "_Root.Head";
+
+    var controllerName = Url.ActionContext.RouteData.Values["controller"].ToString();
+    var isHomePage = controllerName.Equals("home", StringComparison.InvariantCultureIgnoreCase);
+}
+
+@inject IViewComponentSelector viewComponentSelector
+@await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.BodyStartHtmlTagAfter })
+@{await Html.RenderPartialAsync("_Notifications");}
+@{await Html.RenderPartialAsync("_JavaScriptDisabledWarning");}
+@{await Html.RenderPartialAsync("_OldInternetExplorerWarning");}
+
+<div class="wrap">
+    <div class="main">
+        @await Component.InvokeAsync(typeof(AdminHeaderLinksViewComponent))
+        @{await Html.RenderPartialAsync("_Header");}
+
+        @if (viewComponentSelector.SelectComponent("MobMenu") != null)
+            @await Component.InvokeAsync("MobMenu")
+
+        @if (isHomePage)
+        {
+            <section class="main_slider block">
+                <div class="cont">
+                    @await Component.InvokeAsync("Widget", new { widgetZone = "home_page_main_slider" })
+                </div>
+            </section>
+        }
+
+        <script asp-location="Footer">
+            var localized_data = {
+                AjaxCartFailure: "@T("AjaxCart.Failure")"
+            };
+            AjaxCart.init(false, '.header-links .cart-qty', '.header-links .wishlist-qty', '#flyout-cart', localized_data);
+        </script>
+
+        <div class="master-wrapper-content">
+            @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.ContentBefore })
+
+            @if (IsSectionDefined("Breadcrumb"))
+            {
+                @RenderSection("Breadcrumb")
+            }
+
+            @RenderBody()
+
+            @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.ContentAfter })
+        </div>
+    </div>
+
+    @await Component.InvokeAsync(typeof(FooterViewComponent))
+    @await Component.InvokeAsync("CartSummaryBar") 
+</div>
+@await Component.InvokeAsync(typeof(EuCookieLawViewComponent))
+@await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.BodyEndHtmlTagBefore })

@@ -1,0 +1,306 @@
+﻿@model OrderDetailsModel
+@{
+    if (!Model.PrintMode)
+    {
+        Layout = "_ColumnsTwo";
+    }
+    else
+    {
+        Layout = "_Print";
+    }
+    //title
+    NopHtml.AddTitleParts(T("PageTitle.OrderDetails").Text);
+    //page class
+    NopHtml.AppendPageCssClassParts("html-order-details-page");
+
+    string fusionOrderNumber = NopFiluetCommonDefaults.EmptyDisplayPlaceholder;
+    string customerName = NopFiluetCommonDefaults.EmptyDisplayPlaceholder;
+    string carrier = NopFiluetCommonDefaults.EmptyDisplayPlaceholder;
+    string zip = NopFiluetCommonDefaults.EmptyDisplayPlaceholder;
+    string country = NopFiluetCommonDefaults.EmptyDisplayPlaceholder;
+    string city = NopFiluetCommonDefaults.EmptyDisplayPlaceholder;
+    string address = NopFiluetCommonDefaults.EmptyDisplayPlaceholder;
+    string postamatId = NopFiluetCommonDefaults.EmptyDisplayPlaceholder;
+    string fullName = NopFiluetCommonDefaults.EmptyDisplayPlaceholder;
+    string phoneNumber = NopFiluetCommonDefaults.EmptyDisplayPlaceholder;
+    string timeSlot = NopFiluetCommonDefaults.EmptyDisplayPlaceholder;
+    var comment = "";
+    var autoPostOfficeLanguageComment = "";
+    OrderStatusDto[] orderStatusDtos = null;
+
+    IStoreContext storeContext = EngineContext.Current.Resolve<IStoreContext>();
+    var currentStore = await storeContext.GetCurrentStoreAsync();
+
+    string invoiceShippingInfo = NopFiluetCommonDefaults.EmptyDisplayPlaceholder;
+    FiluetOrderTotalsModel totals = null;
+    FiluetOrderDetailsModel extendedModel = Model as FiluetOrderDetailsModel;
+    if (extendedModel != null)
+    {
+        totals = extendedModel.OrderTotals;
+        customerName = extendedModel.CustomerName; 
+        fusionOrderNumber = extendedModel.FusionOrderId;
+        carrier = extendedModel.DeliveryOperator;
+        zip = extendedModel.BillingAddress?.ZipPostalCode; 
+        country = extendedModel.BillingAddress?.CountryName; 
+        city = extendedModel.BillingAddress?.City; 
+
+        if(string.IsNullOrWhiteSpace(extendedModel.BillingAddress?.Address1))        
+            address = extendedModel.BillingAddress?.Address2;        
+        else
+            address = extendedModel.BillingAddress?.Address1;
+        
+        postamatId = extendedModel.ShipToPostamatId;
+        fullName = $"{extendedModel.BillingAddress?.FirstName} {extendedModel.BillingAddress?.LastName}"; 
+        phoneNumber = extendedModel.BillingAddress?.PhoneNumber; 
+        timeSlot = extendedModel.ShipToTimeslot;
+        invoiceShippingInfo = extendedModel.IsShipInvoiceWithOrder ? T("Order.IsShipInvoiceWithOrderYes").ToHtmlString() : T("Order.IsShipInvoiceWithOrderNo").ToHtmlString();
+        comment = extendedModel.Comment;
+        orderStatusDtos = extendedModel.OrderStatusDtos?.ToArray();
+
+        IOrderService orderService = EngineContext.Current.Resolve<IOrderService>();
+        IGenericAttributeService genericAttributeService = EngineContext.Current.Resolve<IGenericAttributeService>();
+
+        var order = await orderService.GetOrderByIdAsync(extendedModel.Id);
+        var shippingDetailsComment = await genericAttributeService.GetAttributeAsync<string>(order, ShippingDetailsAttributes.ShippingDetailsCommentAttribute, currentStore.Id);
+
+        if(!string.IsNullOrEmpty(shippingDetailsComment))
+        {
+            try
+            {
+                var dictionary = JsonConvert.DeserializeObject<Dictionary<int, string>>(shippingDetailsComment);
+
+                IWorkContext workContext = EngineContext.Current.Resolve<IWorkContext>();
+                var language = await workContext.GetWorkingLanguageAsync();
+                autoPostOfficeLanguageComment = dictionary[language.Id];
+            }
+            catch { }
+        }
+    }
+
+    string welcomeMessage = string.Format(T("Order.DetailsWelcomeTemplate").ToHtmlString(), customerName);
+    string thankYouMessage = string.Format(T("Order.DetailsThankYouTemplate").ToHtmlString(), currentStore.Name);
+}
+@if (Model.PrintMode)
+{
+    <script asp-location="Footer">
+        $(document).ready(function () {
+            window.print();
+        });
+    </script>
+}
+
+@section left
+{
+    @await Component.InvokeAsync("CustomerNavigation", new { selectedTabId = CustomerNavigationEnum.Orders })
+}
+<section class="order_info">
+    <div class="head">
+        <div class="block_head">
+            @if (!Model.PrintMode)
+            {
+                <div class="title">@T("Order.OrderInformation")</div>
+            }
+            <div class="desc">@welcomeMessage<br> @thankYouMessage</div>
+        </div>
+    </div>
+    <div class="data">
+        <div class="col col_left">
+            <div class="item">
+                <div class="name">@T("Order.FusionOrder#"):</div>
+                <div class="val green">@fusionOrderNumber</div>
+            </div>
+
+            <div class="item">
+                <div class="name">@T("Order.OrderDate"):</div>
+                <div class="val green">@Model.CreatedOn.ToString("dd.MM.yyyy HH:mm")</div>
+            </div>
+
+            @if(fusionOrderNumber == "--"){
+                <div class="item">
+                    <div class="val">@T("ISDK.Filuet.Theme.FiluetHerbalife.Order.FusionInformation")</div>
+                </div>
+            }
+        </div>
+
+        <div class="col">
+            <div class="item">
+                <div class="name">@T("Order.Shipping.Carrier"):</div>
+                <div class="val">
+                    <span>@carrier</span>                    
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="name">@T("Order.Shipping.ZipCode"):</div>
+                <div class="val">@zip</div>
+            </div>
+
+            <div class="item">
+                <div class="name">@T("Order.Shipping.CountryCode")</div>
+                <div class="val">@country</div>
+            </div>
+
+            <div class="item">
+                <div class="name">@T("Order.Shipping.City")</div>
+                <div class="val">@city</div>
+            </div>
+
+            <div class="item">
+                <div class="name">@T("Order.Shipping.Address")</div>
+                <div class="val">@address</div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="item">
+                <div class="name">@T("Order.Shipping.FullName")</div>
+                <div class="val">@fullName</div>
+            </div>
+
+            <div class="item">
+                <div class="name">@T("Order.Shipping.PhoneNumber")</div>
+                <div class="val">@phoneNumber</div>
+            </div>
+
+            @if (!string.IsNullOrEmpty(timeSlot))
+            {
+                <div class="item">
+                    <div class="name">@T("Order.Shipping.TimeSlot")</div>
+                    <div class="val">@timeSlot</div>
+                </div>
+            }
+
+            <div class="item">
+                <div class="name">@T("Order.Shipping.PostamatId")</div>
+                <div class="val">@postamatId</div>
+            </div>
+
+            <div class="item">
+                <div class="name">@T("Order.InvoiceShippingInformation")</div>
+                <div class="val">@invoiceShippingInfo</div>
+            </div>
+        </div>
+
+        <div class="col col_right">
+            <div class="item">
+                <div class="name">@T("HBL.Baltic.OnlineOrdering.DeliveryWidgetPlugin.Labels.Comment")</div>
+                <div class="val">@comment</div>
+            </div>
+
+            @if (!string.IsNullOrEmpty(autoPostOfficeLanguageComment))
+            {
+                <div class="item">
+                    <div class="name">@T("ISDK.Filuet.Theme.FiluetHerbalife.AutoPostOfficeLanguageComment")</div>
+                    <div class="val">@autoPostOfficeLanguageComment</div>
+                </div>
+            }
+        </div>
+    </div>
+
+    
+    <div class="processing">
+        @if (orderStatusDtos?.Any() == true)
+        {
+            <div class="block_head">
+                <div class="title">@T("ISDK.Filuet.Theme.FiluetHerbalife.OrderStatus")</div>
+            </div>
+
+            <div class="row">
+                @foreach (var orderStatusDto in orderStatusDtos)
+                {
+                    <div class="item">
+                        <div class="status @(orderStatusDto.StatusDate == null ? "" : orderStatusDto.OrderStatusClass)">@orderStatusDto.Status</div>
+                        <div class="date">@(orderStatusDto.StatusDate == null ? "--" : orderStatusDto.StatusDate)</div>
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            <div class="block_head">
+                <div class="title">@T("ISDK.Filuet.Theme.FiluetHerbalife.NoData")</div>
+            </div>
+        }
+    </div>
+
+    <div class="products order_products">
+        <div class="block_head">
+            <div class="title">@T("Order.Product(s)")</div>
+        </div>
+
+        <div class="titles">
+            <div class="col_info">@T("Order.Product(s).Name")</div>
+            <div class="col_price">@T("Order.Product(s).Price")</div>
+            <div class="col_amount">@T("Order.Product(s).Quantity")</div>
+            <div class="col_total_price">@T("Order.Product(s).Total")</div>
+        </div>
+
+        <div class="list">
+            @foreach (var item in extendedModel?.Items)
+            {
+            <div class="product">
+                @if (!Model.PrintMode)
+                {
+                    <a href="@(Url.RouteUrl<Product>(new { SeName = item.ProductSeName }))" class="thumb">
+                        <div>
+                            <img data-src="@item.PictureModel.ImageUrl" class="lozad" alt="@item.PictureModel.AlternateText">
+                        </div>
+                    </a>
+                }
+            <div class="col_info info">
+                <div class="name">
+                    @if (!Model.PrintMode)
+                    {
+                        <a href="@(Url.RouteUrl<Product>(new { SeName = item.ProductSeName }))">
+                            @item.ProductName
+                        </a>
+                    }
+                    else
+                    {
+                        @item.ProductName
+                    }
+                </div>
+
+                @if (!string.IsNullOrEmpty(item.ShortDescription))
+                {
+                    <div class="desc">
+                        @Html.Raw(item.ShortDescription)
+                    </div>
+                }
+                @if (item.DownloadId > 0)
+                {
+                    <div class="download">
+                        <a href="@Url.RouteUrl("GetDownload", new { orderItemId = item.OrderItemGuid })">@T("DownloadableProducts.Fields.Download")</a>
+                    </div>
+                }
+                @if (item.LicenseId > 0)
+                {
+                    <div class="download license">
+                        <a href="@Url.RouteUrl("GetLicense", new { orderItemId = item.OrderItemGuid })">@T("DownloadableProducts.Fields.DownloadLicense")</a>
+                    </div>
+                }
+                @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.OrderDetailsProductLine, additionalData = item.Id })
+            </div>
+                <div class="col_price" data-column="@T("Order.Product(s).Price")">@item.UnitPrice</div>
+                <div class="col_amount" data-column="@T("Order.Product(s).Quantity")">@item.Quantity</div>
+                <div class="col_total_price" data-column="@T("Order.Product(s).Total")">@item.SubTotal</div>
+            </div>
+            }
+        </div>
+
+        @await Html.PartialAsync("_OrderTotalDetails", totals)
+        @if (!Model.PrintMode)
+        {
+            <div class="actions">
+                @if (Model.IsReOrderAllowed)
+                {
+                    <button type="button" class="order_again_btn" onclick="setLocation('@Url.RouteUrl("ReOrder", new { orderId = Model.Id })')">@T("Order.Reorder")</button>
+                }
+                @if (Model.IsReturnRequestAllowed)
+                {
+                    <button type="button" class="order_again_btn" onclick="setLocation('@Url.RouteUrl("ReturnRequest", new { orderId = Model.Id })')">@T("Order.ReturnItems")</button>
+                }
+            </div>
+        }
+    </div>
+</section>

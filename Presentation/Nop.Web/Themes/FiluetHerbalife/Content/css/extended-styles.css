@@ -1,0 +1,1041 @@
+/*------------
+    Header
+------------*/
+.admin-header-links {
+    text-align: center !important;
+}
+
+.admin-header-links a {
+	display: inline-block;
+	margin-top: 10px;
+	line-height: 20px;
+	font-weight: bold;
+    color: #979b9b;
+    text-decoration: none;
+    padding: 0px 15px;
+}
+
+header .account {
+    margin-left: auto !important;
+}
+
+header .mob.logo {
+    color: currentColor !important;
+    display: none !important;
+    text-decoration: none !important;
+}
+
+header .mob.logo img {
+    display: block !important;
+}
+
+header .langs {
+    margin-left: auto !important;
+}
+
+header .langs.modal_cont .mini_modal.active {
+    min-width: 64px!important;
+}
+
+header .langs.modal_cont .langs-selector-label {
+    display: none !important;
+
+    text-align: center !important;
+    font-family: 'Helvetica Neue LT W1G', Helvetica, Arial !important;
+    color: #979b9b !important;
+    font-size: 14px !important;
+}
+
+header .account .user .name {
+    max-width: 200px !important;
+}
+
+header .info .search {
+    width: calc(100% - 890px) !important;
+    margin-left: auto !important;
+}
+
+header .search form .tips .ui-autocomplete {
+    top: 0 !important;
+}
+
+header .account-pv-info-desktop {
+    position: relative;
+    display: inline-block;
+    margin-left: auto !important;
+}
+
+header .account-pv-info-desktop .text {
+    color: #646868;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 26px;
+
+    position: absolute;
+    z-index: 9;
+    top: calc(100% + 24px);
+
+    visibility: hidden;
+
+    width: auto;
+    min-width: 160px;
+    max-width: 172px;
+    margin-top: 8px;
+    margin-left: -52px;
+    padding: 8px 14px 8px 14px;
+
+    text-align: center;
+    
+    transition: .2s linear;
+    pointer-events: auto;
+
+    opacity: 0;
+    border-radius: 4px;
+    background: #e5e6e6;
+    box-shadow: 0 0 6px rgba(0, 0, 0, .04);
+}
+
+header .account-pv-info-desktop:hover .text {
+    top: calc(100% + 8px);
+
+    visibility: visible;
+
+    opacity: 1;
+}
+
+.mob_menu .menu .sub_menu {
+    width: 100% !important;
+}
+
+
+
+/*------------------
+    Form elements
+------------------*/
+.form .stars > label:before {
+    display: none !important;
+}
+
+.form .stars > label:after {
+    display: none !important;
+}
+
+.form .field + .field {
+    margin-top: unset !important;
+}
+
+.form .prefix ~ .input {
+    padding-left: 53px !important;
+}
+
+
+
+/*----------------------
+    Program type
+----------------------*/
+.program_type.footnote {
+    margin: 40px 10px 0px 0px;  
+    text-align: right; 
+    
+    font-family: arial, helvetica, sans-serif; 
+    font-size: 8pt; 
+    line-height: 1.5;
+
+    color: rgb(128, 128, 128); 
+
+    --darkreader-inline-color: #988f81;
+}
+
+
+
+/*--------------
+    Articles
+--------------*/
+.articles .article .thumb img
+{
+    object-position: 50% 0;
+}
+
+
+
+/*-------------
+    LK info
+-------------*/
+.lk_info .info-text {
+    margin-top: 40px;
+}
+
+
+
+/*--------------------------
+    SpecificationFilters
+--------------------------*/
+.filtersGroupPanel .checkbox-item.checked {
+    position: relative !important;
+}
+
+.filtersGroupPanel .checkbox-item.checked::marker {
+    position: absolute !important;
+    top: 25px !important;
+    left: 5px !important;
+
+    display: block !important;
+
+    width: 10px !important;
+    height: 6px !important;
+    content: '' !important;
+    transition: opacity .2s linear !important;
+    transform: rotate(-45deg) !important;
+
+    opacity: 0 !important;
+    border-bottom: 1px solid  #266431 !important;
+    border-left: 1px solid  #266431 !important;
+    visibility: visible !important;
+}
+
+.filtersGroupPanel input[type=checkbox] + label
+{
+    color: #646868 !important;
+    font-size: 15px !important;
+    line-height: 18px !important;
+
+    position: relative !important;
+
+    display: table-cell !important;
+
+    height: 20px !important;
+    padding-left: 34px !important;
+
+    cursor: pointer !important;
+    transition: color .2s linear !important;
+    text-align: left !important;
+    vertical-align: middle !important;
+}
+
+.filtersGroupPanel input[type=checkbox] + label:before
+{ 
+    position: absolute !important;
+    top: 18px !important;
+    left: 0 !important;
+    
+    display: block !important;
+
+    width: 20px !important;
+    height: 20px !important;
+
+    content: '' !important;
+    transition: border-color .2s linear !important;
+
+    border: 1px solid #cbcdcd !important;
+    border-radius: 2px !important;
+    background: unset !important;
+}
+
+.filtersGroupPanel input[type=checkbox] + label:after
+{
+    visibility: hidden !important;
+}
+
+
+.filtersGroupPanel input[type=checkbox] + label:hover
+{
+    color: #323434;
+}
+
+.filtersGroupPanel input[type=checkbox] + label:hover:before
+{
+    border-color: #323434;
+}
+
+.filtersGroupPanel input[type=checkbox]:checked + label
+{
+    color:  #266431 !important;
+}
+
+.filtersGroupPanel input[type=checkbox]:checked + label:before
+{
+    border-color:  #266431 !important;
+}
+
+.filtersGroupPanel input[type=checkbox]:checked + label:after
+{
+}
+
+.filtersGroupPanel .checkbox-item
+{
+    position: relative !important;
+}
+
+.filtersGroupPanel .filter-item-check
+{
+    position: absolute !important;
+    top: 15px !important;
+    left: 5px !important;
+
+    display: block !important;
+
+    width: 10px !important;
+    height: 6px !important;
+
+    content: circle !important;
+    transition: opacity .2s linear !important;
+    transform: rotate(-45deg) !important;
+
+    opacity: 0 !important;
+    border-bottom: 1px solid  #266431 !important;
+    border-left: 1px solid  #266431 !important;
+}
+
+.filtersGroupPanel input[type=checkbox]:checked ~ .filter-item-check
+{
+    opacity: 1 !important;
+    color:  #266431 !important;
+}
+
+
+
+/*---------------
+    Cart info
+---------------*/
+header .cart_link {
+    display: flex !important;
+    width: auto !important;
+}
+
+header .links {
+    position: relative;
+    margin-right: -15px !important;
+    margin-left: auto !important;
+}
+
+header .links .mini_modal {
+    color: #646868;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 18px;
+    text-align: left;
+
+    min-width: 309px;
+    max-width: 400px;
+    left: -250px;
+    padding: 15px;
+
+    transition: .2s linear;
+    pointer-events: auto;
+
+    overflow: hidden;
+    border-radius: 4px;
+    background: #e5e6e6;
+    box-shadow: 0 4px 6px 1px rgba(0, 0, 0, .3);
+}
+
+header .links:hover .mini_modal {
+    top: calc(100% + 8px);
+
+    visibility: visible;
+
+    opacity: 1;
+}
+
+header .links .mini_modal .count {
+    text-align: center;
+}
+
+header .links .mini_modal .count a {
+    color: #646868;
+    font-weight:bold;
+    text-decoration: none;
+}
+
+header .links .mini_modal .items {
+    padding-top: 10px;
+}
+
+header .links .mini_modal .item {
+    position: relative;
+    padding-top: 10px;
+
+    display: flex;
+    flex-direction: row;
+
+    transition: background .2s linear;
+
+    border-radius: 6px;
+}
+
+header .links .mini_modal .item .name {
+    color: #323434;
+    padding-bottom: 5px;
+}
+
+header .links .mini_modal .item a {
+    color: #646868;
+    text-decoration: none;
+
+    left: 0;
+}
+
+header .links .mini_modal .item .product {
+    padding-left: 5px;
+}
+
+header .links .mini_modal .item .quantity, .price {
+    line-height: 18px !important;
+    font-size: 14px;
+}
+
+
+header .links .mini_modal .picture {
+    display: block;
+    
+    margin-right: 6px;
+}
+
+header .links .mini_modal .picture img {
+    width: auto;
+    max-width: 46px;
+    height: auto;
+    max-height: 70px;
+    
+    display: table-cell;
+    vertical-align: middle;
+}
+
+
+header .links .mini_modal a:hover {
+    background: #cbcdcd;
+}
+
+header .links .mini_modal .totals {
+    padding: 10px 0 10px 0;
+    text-align: center;
+}
+
+
+header .links .mini_modal .buttons
+{
+    color: #fff;
+    display: block;
+    text-align: center;
+
+    width: 100%;
+    height: 44px;
+    padding-top: 13px;
+
+    transition: background .2s linear;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+
+    border-radius: 4px;
+    background:  #266431;
+}
+
+header .links .mini_modal .buttons:hover {
+    background: #387C2B;
+}
+
+
+
+/*--------------
+    Products
+--------------*/
+
+.sku {
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+div .list > div .sku {
+    text-align: left;
+}
+
+div .row > div .sku {
+    text-align: center;
+}
+
+div .swiper-wrapper > div .sku {
+    text-align: center;
+}
+
+/*------------
+    Tastes
+------------*/
+.tabs_container .tastes.block {
+    margin-top: 40px !important;
+}
+
+
+/*----------------
+    Block head
+----------------*/
+.block_head {
+    margin-bottom: 20px !important;
+}
+
+.block_head .desc
+{
+    margin-top: 15px !important;
+}
+
+
+/*---------------
+    Order info
+---------------*/
+.order_info .head {
+    margin-bottom: 25px !important;
+}
+
+.order_info .data {
+    margin-bottom: 25px !important;
+    padding-bottom: 25px !important;
+}
+
+.order_info .data .item + .item
+{
+    margin-top: 12px !important;
+}
+
+.order_info .data .item .val
+{
+    margin-top: 6px !important;
+}
+
+.order_info .processing {
+    margin-bottom: 25px !important;
+    padding-bottom: 25px !important;
+}
+
+
+
+/*--------------------
+    Checkout steps
+--------------------*/
+.checkout_steps {
+    margin-bottom: 25px !important;
+}
+
+.check_order .order_products .totals_wrap {
+    margin-top: 40px !important;
+    padding: 25px 0 !important;
+}
+
+
+
+/*--------------------
+    Shipping country selector
+--------------------*/
+header .shipping-country-selector {
+    position: relative !important;
+    margin-left: auto !important;
+}
+
+header .shipping-country-selector .shipping-country-selector-label {
+    display: inline-block !important;
+
+    text-align: center !important;
+    font-family: 'Helvetica Neue LT W1G', Helvetica, Arial !important;
+    color: #979b9b !important;
+    font-size: 14px !important;
+}
+
+header .shipping-country-selector .shipping-countries {
+    display: inline-block !important;
+}
+
+header .shipping-country-selector .mini_modal {
+    width: 110px !important;
+    cursor: pointer;
+}
+
+
+
+/*--------------------
+    Shipping country dialog popup
+--------------------*/
+.shipping-country-dialog-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px;
+    position: absolute;
+    width: 419px;
+    height: 97px;
+    left: -180px;
+    top: 47px;
+    z-index: 100 !important;
+}
+
+.shipping-country-dialog-container .rhombus {
+    position: static;
+    width: 20px;
+    height: 20px;
+    left: 195.36px;
+    top: 10px;
+
+    background: #F2F3F3;
+    transform: rotate(-45deg);
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 10px 0px -10px 0px;
+}
+
+.shipping-country-dialog-container .popup {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 24px;
+
+    position: static;
+    width: 419px;
+    height: 83px;
+    left: 0px;
+    top: 14px;
+
+    background: #F2F3F3;
+    
+    box-shadow: 0px 4px 6px 1px rgba(0, 0, 0, 0.3);
+    border-radius: 3px;
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    margin: 0px 0px;
+}
+
+.shipping-country-dialog-container .message {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+
+    position: static;
+    width: 108px;
+    height: 48px;
+    left: 24px;
+    top: 17.5px;
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 0px 15px 0px 2px;
+}
+
+.shipping-country-dialog-container .message .text {
+    position: static;
+    width: 128px;
+    height: 20px;
+    left: 0px;
+    top: 0px;
+
+    font-family: 'Helvetica Neue LT W1G', Helvetica, Arial !important;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    
+    display: flex;
+    align-items: center;
+
+    color: #7D8282;
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    padding: 12px 0px 17px 0px;
+}
+
+.shipping-country-dialog-container .message .country-name {
+    position: static !important;
+    width: 83px !important;
+    height: 24px !important;
+    left: 0px !important;
+    top: 24px !important;
+
+    font-family: 'Helvetica Neue LT W1G', Helvetica, Arial !important;
+    font-style: normal !important;
+    font-weight: 500 !important;
+    font-size: 18px !important;
+    line-height: 24px !important;
+
+    display: flex !important;
+    align-items: center !important;
+
+    color: #323434 !important;
+
+    flex: none !important;
+    order: 1 !important;
+    flex-grow: 0 !important;
+    margin: 4px 0px !important;
+}
+
+.shipping-country-dialog-container .buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+
+    position: static;
+    width: 243px;
+    height: 36px;
+    left: 162px;
+    top: 23.5px;
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    margin: 0px 10px 0px 10px;
+}
+
+.shipping-country-dialog-container .buttons .confirm-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 0px;
+
+    position: static;
+    width: 109px;
+    height: 36px;
+    left: 0px;
+    top: 0px;
+    cursor: pointer;
+
+    background:  #266431;
+    border-radius: 4px;
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 0px 10px 0px auto;
+}
+
+.shipping-country-dialog-container .buttons .confirm-button .name {
+    font-family: 'Helvetica Neue LT W1G', Helvetica, Arial !important;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 20px;
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    cursor: pointer;
+
+    color: #FFFFFF;
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 0px 10px;
+}
+
+.shipping-country-dialog-container .buttons .decline-button .name {
+    font-family: 'Helvetica Neue LT W1G', Helvetica, Arial !important;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 20px;
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    cursor: pointer;
+
+    color:  #266431;
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 0px 10px;
+}
+
+.shipping-country-dialog-container .buttons .decline-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 0px;
+
+    position: static;
+    width: 109px;
+    height: 36px;
+    left: 124px;
+    top: 0px;
+    cursor: pointer;
+
+    background: #FFFFFF;
+    border-radius: 4px;
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    margin: 0px 5px 0px auto !important;
+}
+
+
+
+/*--------------------
+    Selectize-widget
+--------------------*/
+.form .selectize-control
+{
+    position: relative;
+
+    display: block;
+}
+
+
+.form .selectize-control .selectize-input
+{
+    color: var(--form_placeholder_color);
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 42px;
+
+    position: relative;
+
+    display: block;
+    overflow: hidden;
+
+    box-sizing: border-box;
+    height: 44px;
+    padding: 0 32px 0 15px;
+
+    cursor: pointer;
+    transition: .2s linear;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    border: 1px solid #cbcdcd;
+    border-radius: 4px;
+}
+
+.form .selectize-control .selectize-input .item
+{
+    overflow: hidden; 
+    color: #646868;
+    max-width: 100% !important;
+}
+
+.form .selectize-control .selectize-input input 
+{
+    overflow: hidden; 
+    color: #646868;
+    border: none;
+    font-size: 15px;
+    line-height: 42px;
+}
+
+.form .selectize-control .selectize-input .item,
+.form .selectize-control .option
+{
+    border-color: #323434;
+}
+
+.form .selectize-control .selectize-input.input-active .item
+{
+    float: left !important;
+    cursor:text !important;
+}
+
+.form .selectize-control .selectize-input.input-active input
+{
+    margin-right: 10px !important;
+}
+
+.form .selectize-control .selectize-dropdown.single
+{
+    position: absolute;
+    z-index: 10;
+    top: calc(100% + 30px);
+    left: 0;
+
+    visibility: hidden;
+    overflow: hidden;
+
+    min-width: 100%;
+
+    transition: .2s linear;
+
+    opacity: 0;
+    border-radius: 4px;
+    background: #e5e6e6;
+    box-shadow: 0 4px 6px 1px rgba(0, 0, 0, .3);
+}
+
+.form .selectize-control div[style*="display: block"].selectize-dropdown.single
+{
+    top: calc(100% + 4px) !important;
+
+    visibility: visible !important;
+
+    opacity: 1 !important;
+}
+
+.form .selectize-control .selectize-dropdown.single .selectize-dropdown-content
+{
+    overflow: auto;
+
+    max-height: 240px;
+}
+
+.form .selectize-control .selectize-dropdown.single .option
+{
+    color: #646868;
+    font-size: 15px;
+    line-height: 18px;
+
+    display: block;
+
+    padding: 8px 16px;
+
+    cursor: pointer;
+    transition: background .2s linear;
+}
+
+.form .selectize-control .selectize-dropdown.single .option:empty
+{
+    display: none;
+}
+
+.form .selectize-control .selectize-dropdown.single .option:hover,
+.form .selectize-control .selectize-dropdown.single .option.selected
+{
+    background: #cbcdcd;
+}
+
+.selectize-control.single .selectize-input:after {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: calc(0.75rem + 9px);
+    margin-top: -5px;
+
+    width: 6px;
+    height: 6px;
+    transition: opacity .2s linear;
+    transform: rotate(-45deg);
+    border-bottom: 2px solid;
+    border-left: 2px solid;
+}
+
+.selectize-control.single .selectize-input.input-active:after {
+    margin-top: -2px;
+    transform: rotate(135deg);
+}
+
+
+
+@media print, (max-width: 1123px) {
+    header .search,
+    header .bottom {
+        display: none !important;
+    }
+    
+    header .mob_bottom {
+        display: flex !important;
+    }
+
+    header .mob_bottom .search {
+        display: block !important;
+    }
+
+    header .langs {
+        margin-left: auto !important;
+        margin-right: unset !important;
+    }
+    
+    header .shipping-country-selector {
+        margin-right: auto !important;
+    }
+
+    header .links {
+        margin-left: auto !important;
+        margin-right: -15px !important;
+    }
+}
+
+@media print, (max-width: 1023px) {
+    .products .list .product .col_info.info {
+        grid-template-areas:
+            'row'
+            'col2' !important;
+    }
+}
+
+@media print, (max-width: 937px) {
+    header .account .user {
+        display: none !important;
+    }
+
+    header .account .mob_user {
+        display: flex !important;
+    }
+
+    header .links {
+        margin-left: auto !important;
+    }
+}
+
+@media print, (max-width: 767px) {
+
+    header .langs {
+        display: block !important;
+    }
+
+    header .langs .current {
+    }
+    
+    header .langs.modal_cont .langs-selector-label {
+        margin-bottom: 10px !important;
+        display: block !important;
+    }
+
+    header .shipping-country-selector {
+        margin-right: unset !important;
+    }
+
+    header .shipping-country-selector .shipping-country-selector-label {
+        margin-bottom: 10px !important;
+        display: block !important;
+    }
+
+    header .shipping-country-selector .shipping-countries {
+        display: block !important;
+    }
+}
+
+@media print, (max-width: 667px) {
+    header .logo {
+        display: none !important;
+    }
+
+    header .mob.logo {
+        display: block !important;
+        min-width: 150px !important;
+        max-width: 150px !important;
+        min-height: 65px !important;
+        max-height: 65px !important;
+    }
+    header .mob.logo img {
+        width: 130px !important;
+    }
+    header .info .cont{
+        align-items:end !important;
+    }
+}
+
+@media print, (max-width: 557px) {
+    header .account-pv-info-desktop {
+        display: none !important;
+        margin: 0px !important;
+    }
+}

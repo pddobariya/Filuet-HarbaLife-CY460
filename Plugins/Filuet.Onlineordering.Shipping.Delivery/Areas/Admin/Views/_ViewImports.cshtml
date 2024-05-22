@@ -1,0 +1,41 @@
+﻿@inherits Nop.Web.Framework.Mvc.Razor.NopRazorPage<TModel>
+
+@inject INopHtmlHelper NopHtml
+@inject IWebHelper _webHelper
+@inject IWorkContext _workContext
+@inject IWorkContext workContext
+@inject IGenericAttributeService genericAttributeService
+
+
+@inject ILanguageService _languageService
+@inject IDeliveryOperator_DeliveryType_DeliveryCity_DependenciesService _deliveryOperatorDeliveryTypeDeliveryCityDependenciesService
+@inject IAutoPostOfficeService _autoPostOfficeService
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, Nop.Web.Framework
+@addTagHelper *, MiniProfiler.AspNetCore.Mvc
+@addTagHelper *, Nop.Web.Framework
+
+
+@using ISDK.Filuet.OnlineOrdering.NopFiluetCommon.Extensions
+@using Newtonsoft.Json
+@using Nop.Core
+@using Nop.Web.Framework.Extensions
+@using Filuet.Onlineordering.Shipping.Delivery.Extensions
+@using System.Web
+@using System.Linq
+@using System.IO
+@using System.Reflection
+@using Nop.Web.Framework.UI;
+@using Nop.Core.Domain.Localization
+@using Filuet.Onlineordering.Shipping.Delivery.Services;
+@using Filuet.Onlineordering.Shipping.Delivery.Components
+@using Filuet.Onlineordering.Shipping.Delivery.Constants
+@using Filuet.Onlineordering.Shipping.Delivery.Domain
+@using ISDK.Filuet.OnlineOrdering.CorePlugin.Extensions
+@using Filuet.Onlineordering.Shipping.Delivery.Models;
+@using Microsoft.AspNetCore.Routing;
+@using Nop.Web.Framework.Models.DataTables;
+@using Nop.Services.Common;
+@using Nop.Services.Localization
+

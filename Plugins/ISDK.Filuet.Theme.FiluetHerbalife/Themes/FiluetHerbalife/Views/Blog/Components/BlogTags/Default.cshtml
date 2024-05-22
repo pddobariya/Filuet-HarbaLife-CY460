@@ -1,0 +1,20 @@
+﻿@model BlogPostTagListModel
+@if (Model.Tags.Count > 0)
+{
+    <div class="categories" @*blog_tags*@>
+        <div class="title">@T("Blog.Tags")</div>
+
+        <div class="items">
+            @foreach (var item in Model.Tags)
+            {
+                <div class="sub">
+                    <div>
+                        <a href="@Url.RouteUrl("BlogByTag", new { tag = item.Name })">
+                            @item.Name
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}

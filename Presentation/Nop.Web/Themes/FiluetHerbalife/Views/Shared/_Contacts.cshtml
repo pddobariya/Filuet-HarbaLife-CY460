@@ -1,0 +1,63 @@
+﻿@using Nop.Services.Localization
+
+@inject ILocalizationService _localizationService
+
+<section class="contacts_info block">
+    <div class="cont">
+        <div class="block_head">
+            <div class="title">@T("ISDK.Filuet.Theme.FiluetHerbalife.Contact")</div>
+        </div>
+
+        <div class="row">
+            <div class="col_left">
+                @*<div class="filuet_logo">
+                        <img data-src="@Url.Content("~/Themes/FiluetHerbalife/Content/images/filuet_logo.svg")" alt="" class="lozad">
+                    </div>*@
+
+                <div class="desc">@await Component.InvokeAsync("TopicBlock", new { systemName = "HomePageText" })</div>
+
+                <div class="logos">
+                    <div>
+                        <img data-src="@Url.Content("~/Themes/FiluetHerbalife/Content/images/ltpa_logo.png")" alt="" class="lozad">
+                    </div>
+
+                    <div>
+                        <img data-src="@Url.Content("~/Themes/FiluetHerbalife/Content/images/ltta_logo.png")" alt="" class="lozad">
+                    </div>
+
+                    <div>
+                        <img data-src="@Url.Content("~/Themes/FiluetHerbalife/Content/images/dsa_logo.png")" alt="" class="lozad">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="title">@T("ISDK.Filuet.Theme.FiluetHerbalife.PhoneTitle")</div>
+
+                <div class="phone">
+                    <svg class="icon"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_phone")"></use></svg>
+                    <a href="tel:@T("ISDK.Filuet.Theme.FiluetHerbalife.Phone")">@T("ISDK.Filuet.Theme.FiluetHerbalife.Phone")</a>
+                </div>
+
+                <div class="email">
+                    <svg class="icon"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_email")"></use></svg>
+                    <a href="@string.Format("mailto:{0}{1}{2}", @T("ISDK.Filuet.Theme.FiluetHerbalife.EmailName"), @T("ISDK.Filuet.Theme.FiluetHerbalife.EmailAt"), @T("ISDK.Filuet.Theme.FiluetHerbalife.EmailDomain"))">
+                        @T("ISDK.Filuet.Theme.FiluetHerbalife.EmailName")@T("ISDK.Filuet.Theme.FiluetHerbalife.EmailAt")@T("ISDK.Filuet.Theme.FiluetHerbalife.EmailDomain")
+                    </a>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="title">@T("ISDK.Filuet.Theme.FiluetHerbalife.SiteTitle")</div>
+
+                <div class="requisites">
+                    @T("hbl.baltic.onlineordering.shoppingplugin.address")
+                </div>
+            </div>
+            <div class="col">
+                <div class="title">@T("ISDK.Filuet.Theme.FiluetHerbalife.SocialTitle")</div>
+                @await Component.InvokeAsync("SocialButtons")
+            </div>
+        </div>
+    </div>
+</section>

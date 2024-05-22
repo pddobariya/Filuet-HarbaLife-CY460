@@ -1,0 +1,31 @@
+﻿@{
+    var devPath = "Plugins/ISDK.Filuet.OnlineOrdering.ShippingWidgetPlugin/AngularApp/dist/dev";
+    var prodPath = "Plugins/ISDK.Filuet.OnlineOrdering.ShippingWidgetPlugin/AngularApp/dist/prod";
+
+    if (Html.IsDebug())
+    {
+        <link href="@devPath/styles.css" rel="stylesheet" type="text/css"/>
+
+        if (Html.FileExists("~" + @devPath + "/main.js"))
+        {
+            <script src="@devPath/main.js" type="module"></script>
+            <script src="@devPath/runtime.js" type="module"></script>
+            <script src="@devPath/polyfills.js" type="module"></script>
+            <script src="@devPath/vendor.js" type="module"></script>
+        }
+        else
+        {
+            <script src="@devPath/runtime-es5.js"></script>
+            <script src="@devPath/polyfills-es5.js"></script>
+            <script src="@devPath/vendor-es5.js"></script>
+            <script src="@devPath/main-es5.js"></script>
+        }
+    }
+    else
+    {
+        <link href="@prodPath/styles.css" rel="stylesheet" type="text/css"/>
+        <script src="@prodPath/runtime-es5.js"></script>
+        <script src="@prodPath/polyfills-es5.js"></script>
+        <script src="@prodPath/main-es5.js"></script>
+    }
+}

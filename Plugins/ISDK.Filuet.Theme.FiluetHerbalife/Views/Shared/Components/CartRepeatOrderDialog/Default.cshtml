@@ -1,0 +1,66 @@
+﻿@model CartRepeatOrderDialogModel
+@if (Model.OrderId.HasValue)
+{
+    <div id="cartRepeatOrderDialog"></div>
+
+    <script asp-location="Footer" type="text/babel">
+    const { useEffect, useState } = React;
+    const { Dialog } = primereact.dialog;
+    const { Button } = primereact.button;
+
+    const CartRepeatOrderDialog = () => {
+        const [displayBasic, setDisplayBasic] = useState(false);
+        const [displayModal, setDisplayModal] = useState(false);
+        const [displayMaximizable, setDisplayMaximizable] = useState(false);
+        const [displayPosition, setDisplayPosition] = useState(false);
+        const [displayResponsive, setDisplayResponsive] = useState(false);
+        const [position, setPosition] = useState('center');
+
+        const dialogFuncMap = {
+            'displayBasic': setDisplayBasic,
+            'displayModal': setDisplayModal,
+            'displayMaximizable': setDisplayMaximizable,
+            'displayPosition': setDisplayPosition,
+            'displayResponsive': setDisplayResponsive
+        }
+
+        const reOrderUrl = '@Url.RouteUrl("ReOrder", new { orderId = Model.OrderId.Value })'
+
+        useEffect(() => {
+            dialogFuncMap['displayBasic'](true);
+        }, []);
+
+        const onYesBtn = (name) => {
+            dialogFuncMap[`${name}`](false);            
+            window.location.href = reOrderUrl;
+        }
+
+        const onNoBtn = (name) => {
+            dialogFuncMap[`${name}`](false);
+        }
+
+        const renderFooter = (name) => {
+            return (
+                <div className="btns">
+                    <Button label='@T("ISDK.Filuet.Theme.FiluetHerbalife.CartRepeatOrderDialog.Yes")' onClick={() => onYesBtn(name)} className="btn green small_w" />
+                    <Button label='@T("ISDK.Filuet.Theme.FiluetHerbalife.CartRepeatOrderDialog.No")' onClick={() => onNoBtn(name)} className="btn small_w"/>
+                </div>
+            );
+        }
+
+        return (
+            <div>
+                <Dialog header="Header" visible={displayBasic} footer={renderFooter('displayBasic')} onHide={() => onNoBtn('displayBasic')}>
+                    <div className="modal_desc">
+                        @T("ISDK.Filuet.Theme.FiluetHerbalife.CartRepeatOrderDialog.Question")
+                    </div>
+                </Dialog>
+            </div>
+        )
+    }
+
+    const cartRepeatOrderDialogElement = document.getElementById("cartRepeatOrderDialog");
+    ReactDOM.render(<CartRepeatOrderDialog />, cartRepeatOrderDialogElement);
+
+    </script>
+}

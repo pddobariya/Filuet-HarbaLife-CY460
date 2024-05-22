@@ -1,0 +1,105 @@
+﻿@model ConfigurationModel
+
+@{
+    Layout = "_ConfigurePlugin";
+    var showTour = ViewBag.ShowTour ?? false;
+    const string hideConfigure = "Configure";
+    var customer = await workContext.GetCurrentCustomerAsync();
+    var hideConfigureBlock = showTour ? false : await genericAttributeService.GetAttributeAsync<bool>(customer, hideConfigure);
+}
+
+@await Component.InvokeAsync("StoreScopeConfiguration")
+<form asp-controller="Configuration" asp-action="Configure" asp-area="Admin" method="post">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="form-horizontal">
+                <nop-cards id="product-cards">
+                    <nop-card asp-name="product-info" asp-icon="fas fa-info" asp-title="@T("Plugins.Payments.Saferpay.Fields.Configure")" asp-hide-block-attribute-name="@hideConfigure" asp-hide="@hideConfigureBlock" asp-advanced="false">
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <nop-label asp-for="@Model.Bypass" />
+                                </div>
+                                <div class="col-md-9">
+                                    <nop-editor asp-for="@Model.Bypass" />
+                                    <span asp-validation-for="@Model.Bypass"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <nop-label asp-for="@Model.APIUrl" />
+                                </div>
+                                <div class="col-md-9">
+                                    <nop-editor asp-for="@Model.APIUrl" />
+                                    <span asp-validation-for="@Model.APIUrl"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <nop-label asp-for="@Model.APIUsername" />
+                                </div>
+                                <div class="col-md-9">
+                                    <nop-editor asp-for="@Model.APIUsername" />
+                                    <span asp-validation-for="@Model.APIUsername"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <nop-label asp-for="@Model.APIPassword" />
+                                </div>
+                                <div class="col-md-9">
+                                    <nop-editor asp-for="@Model.APIPassword" />
+                                    <span asp-validation-for="@Model.APIPassword"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <nop-label asp-for="@Model.APISpecVersion" />
+                                </div>
+                                <div class="col-md-9">
+                                    <nop-editor asp-for="@Model.APISpecVersion" />
+                                    <span asp-validation-for="@Model.APISpecVersion"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <nop-label asp-for="@Model.CustomerId" />
+                                </div>
+                                <div class="col-md-9">
+                                    <nop-editor asp-for="@Model.CustomerId" />
+                                    <span asp-validation-for="@Model.CustomerId"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <nop-label asp-for="@Model.TerminalId" />
+                                </div>
+                                <div class="col-md-9">
+                                    <nop-editor asp-for="@Model.TerminalId" />
+                                    <span asp-validation-for="@Model.TerminalId"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <nop-label asp-for="@Model.CurrencyCode" />
+                                </div>
+                                <div class="col-md-9">
+                                    <nop-editor asp-for="@Model.CurrencyCode" />
+                                    <span asp-validation-for="@Model.CurrencyCode"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    &nbsp;
+                                </div>
+                                <div class="col-md-9">
+                                    <input type="submit" name="save" class="btn bg-blue" value="@T("Admin.Common.Save")" />
+                                </div>
+                            </div>
+                        </div>
+                    </nop-card>
+                </nop-cards>
+            </div>
+        </div>
+    </section>
+</form>

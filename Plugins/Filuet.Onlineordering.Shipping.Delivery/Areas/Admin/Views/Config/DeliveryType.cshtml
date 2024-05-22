@@ -1,0 +1,52 @@
+﻿@model ConfigurationModel
+
+
+<div class="cards-group">
+    <div class="card card-default">
+        <div class="card-body">
+            @await Html.PartialAsync("Table", new DataTablesModel
+            {
+            Name = "delivery-types-grid" + Model.DeliveryTypeDtoSearchModel.LanguageId,
+            UrlRead = new DataUrl("GetDeliveryTypes", "DeliveryAdmin", new RouteValueDictionary{[nameof(Model.DeliveryTypeDtoSearchModel.LanguageId)]=  Model.DeliveryTypeDtoSearchModel.LanguageId}),
+            UrlUpdate = new DataUrl("DeliveryTypeUpdate", "DeliveryAdmin", new RouteValueDictionary{[nameof(Model.DeliveryTypeDtoSearchModel.LanguageId)]=  Model.DeliveryTypeDtoSearchModel.LanguageId}),
+            Length = Model.DeliveryTypeDtoSearchModel.PageSize,
+            LengthMenu = Model.DeliveryTypeDtoSearchModel.AvailablePageSizes,
+            ColumnCollection = new List<ColumnProperty>
+            {
+            new ColumnProperty(nameof(DeliveryTypeDto.SystemType))
+            {
+            Title = T("Plugins.ShippingMethods.Delivery.Fields.SystemType").Text,
+            Encode = false
+            },
+            new ColumnProperty(nameof(DeliveryTypeDto.TypeName))
+            {
+            Title = T("Plugins.ShippingMethods.Delivery.Fields.TypeName").Text,
+            Width = "200",
+            Editable = true,
+            EditType = EditType.String,
+            ClassName =  NopColumnClassDefaults.Button,
+            },
+            new ColumnProperty(nameof(DeliveryTypeDto.IsActive))
+            {
+            Title = T("Plugins.ShippingMethods.Delivery.Fields.IsActive").Text,
+            Width = "150",
+            Editable = true,
+            EditType = EditType.Checkbox,
+            ClassName =  NopColumnClassDefaults.CenterAll,
+            Render = new RenderBoolean()
+            },
+            new ColumnProperty(nameof(DeliveryTypeDto.Id))
+            {
+            Title = T("Admin.Common.Edit").Text,
+            Width = "100",
+            ClassName =  NopColumnClassDefaults.Button,
+            Render = new RenderButtonsInlineEdit()
+            },
+            }
+            })
+        </div>
+    </div>
+</div>
+
+
+

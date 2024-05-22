@@ -1,0 +1,95 @@
+﻿@model Nop.Web.Models.Catalog.SearchModel
+
+@{
+    Layout = "~/Views/Shared/_ColumnsTwo.cshtml";
+
+    //title
+    NopHtml.AddTitleParts(T("PageTitle.Search").Text);
+    //page class
+    NopHtml.AppendPageCssClassParts("html-search-page");
+}
+
+<div class="page search-page">
+    <div class="page-title">
+        <h1>@T("Search")</h1>
+    </div>
+    <div class="page-body">
+        <div class="search-input">
+            <form asp-route="ProductSearch" method="get">
+                <div class="fieldset">
+                    <div class="form-fields">
+                        <div class="basic-search">
+                            <div class="inputs">
+                                <label asp-for="q">@T("Search.SearchTerm"):</label>
+                                <input asp-for="q" class="search-text" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="buttons">
+                    <input type="submit" class="button-1 search-button" value="@T("Search.Button")" />
+                </div>
+            </form>
+        </div>
+        @if (Model.CatalogProductsModel.Products.Count > 0)
+        {
+            @await Html.PartialAsync("_CatalogSelectors", Model.CatalogProductsModel)
+        }
+        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductSearchPageBeforeResults })
+        <div class="search-results">
+            @if (!string.IsNullOrEmpty(Model.Warning))
+            {
+                <div class="warning">
+                    @Model.Warning
+                </div>
+            }
+            @if (!string.IsNullOrEmpty(Model.CatalogProductsModel.NoResultMessage))
+            {
+        <div class="no-result">
+            @Model.CatalogProductsModel.NoResultMessage
+            @*@T("Search.NoResultsText")*@
+        </div>
+            }
+
+            @if (Model.CatalogProductsModel.Products.Count > 0)
+            {
+                if (Model.PagingFilteringContext.ViewMode == "list")
+                {
+                    <div class="product-list">
+                        <div class="item-grid">
+                            @foreach (var product in Model.Products)
+                            {
+                                <div class="item-box">
+                                    @await Html.PartialAsync("_ProductBoxList", product)
+                                </div>
+                            }
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="product-grid">
+                        <div class="item-grid">
+                            @foreach (var product in Model.Products)
+                            {
+                                <div class="item-box">
+                                    @await Html.PartialAsync("_ProductBox", product)
+                                </div>
+                            }
+                        </div>
+                    </div>
+                }
+            }
+            @{
+                var pager = Html.Pager(Model.PagingFilteringContext).QueryParam("pagenumber").BooleanParameterName("adv").BooleanParameterName("isc").BooleanParameterName("sid").RenderEmptyParameters(true);
+            }
+            @if (!pager.IsEmpty())
+            {
+                <div class="pager">
+                    @pager
+                </div>
+            }
+        </div>
+        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductSearchPageAfterResults })
+    </div>
+</div>

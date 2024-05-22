@@ -1,0 +1,120 @@
+﻿@model ISDK.Filuet.Theme.FiluetHerbalife.Models.Common.FiluetHeaderLinksModel
+@{
+    var customer = await workContext.GetCurrentCustomerAsync();
+    var userName = customer.FirstName + " " + customer.LastName;
+}
+
+@await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderLinksBefore })
+
+<div class="account-pv-info-desktop">
+    <span>TV @Model.TV</span>
+    <div class="text">
+        @T("ISDK.Filuet.Theme.FiluetHerbalife.Account.TV")
+    </div>
+</div>
+
+@if (Model.IsAuthenticated)
+{
+    <div class="account modal_cont">
+        <button class="user mini_modal_btn" data-modal-id="#account_modal">
+            <div class="name">@userName</div>
+            <div class="icon"></div>
+        </button>
+
+        <button class="mob_user">
+            <svg class="icon">
+                <use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_user")"></use>
+            </svg>
+        </button>
+
+        <div class="mini_modal" id="account_modal">
+            <div>
+                <a href="@Url.RouteUrl("CustomerInfo")">
+                    <span>@T("ISDK.Filuet.Theme.FiluetHerbalife.Account.Profile")</span>
+                </a>
+            </div>
+
+            <div>
+                <a href="@Url.RouteUrl("CustomerOrders")">
+                    <span>@T("Account.CustomerOrders")</span>
+                </a>
+            </div>
+
+            <div>
+                <a href="@Model.LogoutLink">
+                    <svg class="icon">
+                        <use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_logout")"></use>
+                    </svg>
+                    <span>@T("ISDK.Filuet.Theme.FiluetHerbalife.Account.Logout")</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <section class="mob_account">
+        <button class="close_btn">
+            <svg class="icon">
+                <use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_close")"></use>
+            </svg>
+        </button>
+
+        <div class="scroll">
+            <div class="user">@userName</div>
+
+            <div class="menu">
+                <div class="item" style="margin-left: 0px;">
+                    <a href="@Url.RouteUrl("CustomerInfo")">
+                        <span>@T("ISDK.Filuet.Theme.FiluetHerbalife.Account.Profile")</span>
+                    </a>
+                </div>
+
+                <div class="item" style="margin-left: 0px;">
+                    <a href="@Url.RouteUrl("CustomerOrders")">
+                        <span>@T("Account.CustomerOrders")</span>
+                    </a>
+                </div>
+
+                <div class="item" style="margin-left: 0px;">
+                    <a href="@Url.RouteUrl("Logout")">
+                        <svg class="icon">
+                            <use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_logout")"></use>
+                        </svg>
+                        <span>@T("ISDK.Filuet.Theme.FiluetHerbalife.Account.Logout")</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+else
+{
+    <div class="account modal_cont" style="width: calc(100% - 1190px);"></div>
+}
+
+@if (Model.WishlistEnabled)
+{
+    <a href="@Url.RouteUrl("Wishlist")" class="ico-wishlist">
+        <span class="wishlist-label">@T("Wishlist")</span>
+        <span class="wishlist-qty">@T("Wishlist.HeaderQuantity", Model.WishlistItems)</span>
+    </a>
+}
+
+@if (Model.ShoppingCartEnabled)
+{
+    <div class="links">
+        <div id="top_cart_link">
+            <a href="@Url.RouteUrl("ShoppingCart")" class="cart_link">
+                <svg class="icon">
+                    <use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_cart")">
+                    </use>
+                </svg>
+                <span id="shopping_cart_quantity">(@Model.ShoppingCartItems)</span>
+            </a>
+        </div>
+        <div id="flyout_cart_root">
+            @await Component.InvokeAsync("FlyoutShoppingCart")
+        </div>
+    </div>
+}
+
+@await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderLinksAfter })

@@ -1,0 +1,92 @@
+@model ShippingCountryPopupModel
+
+<div class="shipping-country-dialog-container" style="display:none;">
+    <div class="rhombus"></div>
+    <div class="popup">
+        <div class="message">
+            <div class="text">
+                @T("ISDK.Filuet.Theme.FiluetHerbalife.Messages.ShippingCountryPopupMessage")
+            </div>
+            <span style="display:none;" id="shipping-country-dialog-countrycode"></span>
+            <span class="country-name" id="shipping-country-dialog-countryname"></span>
+        </div>
+        <div class="buttons">
+            <div class="confirm-button">
+                <div class="name">@T("ISDK.Filuet.Theme.FiluetHerbalife.Fields.ShippingCountryPopupConfirmButton")</div>
+            </div>
+            <div class="decline-button">
+                <div class="name">@T("ISDK.Filuet.Theme.FiluetHerbalife.Fields.ShippingCountryPopupDeclineButton")</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script asp-location="Footer">
+    function onCompleteShippingCountryPopupConfirm(data) {
+            if (document.location.pathname == "/onepagecheckout" ||
+                document.location.pathname == "/checkout/opcsavepaymentinfo" ||
+                document.location.pathname == "/checkout/OpcSaveShippingMethod" ||
+                document.location.pathname == "/checkout/OpcConfirmOrderInfo")
+                setLocation('@Url.RouteUrl("ShoppingCart")');
+            else {
+                window.location.reload();
+            }
+        }
+    function submitCountrySelection(confirmed) {
+         $.ajax({
+            cache: false,
+            url: '@Url.RouteUrl("ShippingCountryPopupConfirm")',
+            data: JSON.stringify(
+                {
+                    IsConfirmed: confirmed,
+                    Country: $('#shipping-country-dialog-countrycode').html()
+                }),
+            type: 'post',
+            dataType: 'json',
+            contentType: 'application/json',
+            success: function () {
+                        if (confirmed){
+                                         if (document.location.pathname == "/onepagecheckout" ||
+                                             document.location.pathname == "/checkout/opcsavepaymentinfo" ||
+                                             document.location.pathname == "/checkout/OpcSaveShippingMethod" ||
+                                             document.location.pathname == "/checkout/OpcConfirmOrderInfo")
+                                             setLocation('@Url.RouteUrl("ShoppingCart")');
+                                         else {
+                                             window.location.reload();
+                                         }
+                             }
+                        },
+            error: function (response) {
+                displayBarNotification('@T("ISDK.Filuet.Theme.FiluetHerbalife.Messages.ShippingCountryPopupConfirmError")', 'error', 5000);
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        var isShowDialog = '@(Model.IsShowShippingCountryPopup)' === '@true';
+        if (isShowDialog) {
+            var url = "FiluetShippingCountrySelector/DefaultCountry?clientTimeZone=" + Intl.DateTimeFormat().resolvedOptions().timeZone ?? '';
+            $.get(url, function (data, status) {
+                $('#shipping-country-dialog-countrycode').html(data.CountryCode);
+                $('#shipping-country-dialog-countryname').html(data.CountryName + '?');
+
+                $('.shipping-country-dialog-container').css('display', '');
+            });
+        }
+
+        $('.shipping-country-dialog-container .confirm-button')
+            .click(function () {
+                submitCountrySelection(true);
+                $('.shipping-country-dialog-container').css('display', 'none');
+            });
+
+        $('.shipping-country-dialog-container .decline-button')
+            .click(function () {
+                submitCountrySelection(false);
+                $('.shipping-country-dialog-container').css('display', 'none');
+                $('.shipping-country-selector .current.mini_modal_btn').addClass('active');
+                $('.shipping-country-selector .mini_modal').addClass('active');
+            });
+    });
+</script>
+

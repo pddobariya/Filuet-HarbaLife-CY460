@@ -1,0 +1,93 @@
+﻿@model CheckoutCompletedModel
+
+@{
+    Layout = "~/Views/Shared/_ColumnsOne.cshtml";
+
+    //title
+    NopHtml.AddTitleParts(T("PageTitle.Checkout").Text);
+    //page class
+    NopHtml.AppendPageCssClassParts("html-checkout-page");
+    NopHtml.AppendPageCssClassParts("html-order-completed-page");
+    //Html.AddCssFileParts("~/lib/jquery-ui/jquery-ui-1.12.1.custom/jquery-ui.min.css");
+
+    string fusionOrderNumber = "--";
+    bool apfCompleted = false;
+    if ((Model as FiluetCheckoutCompleteModel) != null)
+    {
+        fusionOrderNumber = ((FiluetCheckoutCompleteModel)Model).FusionOrderId;
+        apfCompleted = ((FiluetCheckoutCompleteModel)Model).ApfCompleted;
+    }
+}
+<div class="page checkout-page order-completed-page">
+    @if (!Model.OnePageCheckoutEnabled)
+    {
+        @await Component.InvokeAsync("CheckoutProgress", new { step = CheckoutProgressStep.Complete })
+    }
+    <div class="page-title">
+        <h1>@T("Checkout.ThankYou")</h1>
+    </div>
+    <div class="page-body checkout-data">
+        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.CheckoutCompletedTop, additionalData = Model })
+        <div class="section order-completed">
+            <div class="title" @(ViewBag.HideDetails ? "style=display:none" : string.Empty)>
+                <strong>@T("Checkout.YourOrderHasBeenSuccessfullyProcessed")</strong>
+            </div>
+            <div class="details" @(ViewBag.HideDetails ? "style=display: none" : string.Empty)>
+                <div class="order-number">
+                    <strong>@T("Order.FusionOrder#"): @fusionOrderNumber</strong>
+                </div>
+                <div class="details-link">
+                    <a href="@Url.RouteUrl("OrderDetails", new { orderID = Model.OrderId })">@T("Checkout.PlacedOrderDetails")</a>
+                </div>
+            </div>
+            <div class="buttons">
+                <input type="button" value="@T("Checkout.ThankYou.Continue")" class="button-1 order-completed-continue-button" onclick="setLocation('@Url.RouteUrl("HomePage")')" />
+            </div>
+        </div>
+        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.CheckoutCompletedBottom, additionalData = Model.OrderId })
+    </div>
+</div>
+@if (apfCompleted)
+{
+    <style>
+        .ui-front {
+            z-index: 2000;
+        }
+
+        .ui-dialog {
+            z-index: 2001;
+            width: 600px !important;
+        }
+
+        #apf-dialog-message a {
+            color: -webkit-link;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+    </style>
+    <div id="apf-dialog-message" title="Apf expired" style="display: none;">
+        <p>
+            @T("ISDK.Filuet.OnlineOrdering.CorePlugin.ApfCompletedMessageBox.Content")
+        </p>
+    </div>
+    <script>
+        $(function () {
+            $("#apf-dialog-message").dialog({
+                closeOnEscape: false,
+                open: function (event, ui) {
+                    if (event.target.id === "apf-dialog-message")
+                        $(".ui-dialog-titlebar-close").hide();
+                },
+                resizable: false,
+                height: "auto",
+                width: 400,
+                modal: true,
+                buttons: {
+                    "Ok": function () {
+                        $(this).dialog("destroy").remove();
+                    }
+                }
+            });
+        });
+    </script>
+}

@@ -1,0 +1,21 @@
+﻿@model bool
+@if (Model != true)
+{
+    <style type="text/css">
+        .botmessage {
+            font-size: 14px;
+            margin-left: 2%;
+        }
+        .botmessage a {
+            color: blue;
+        }
+    </style>
+
+    <p class="botmessage">@(Html.Raw(T("ISDK.Filuet.OnlineOrdering.CorePlugin.BotMessage")))</p>
+
+
+    <script>
+        $(".payment-info-next-step-button").attr("disabled", true);
+    </script>
+
+}

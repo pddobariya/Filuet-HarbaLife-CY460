@@ -1,0 +1,46 @@
+﻿@model Nop.Web.Models.Catalog.CategoryModel
+@if (Model.SubCategories.Count > 0)
+{
+    <section class="programs block">
+        <div class="cont">
+            <div class="block_head padding_right">
+                <div class="title">@Model.Name</div>
+
+                <div class="all_link">
+                    <a href="@Url.RouteUrl("Category", new { SeName = $"{Model.SeName}" })">@T("ISDK.Filuet.Theme.FiluetHerbalife.ShowMoreProgramms")</a>
+                </div>
+            </div>
+
+            <div class="swiper-container carousel" id="programs_slider1">
+                <div class="swiper-wrapper">
+
+                    @foreach (var item in Model.SubCategories)
+                    {
+                        <div class="slide swiper-slide">
+                            <a href="@Url.RouteUrl("Category", new {SeName = item.SeName})" class="program">
+                                <div class="thumb">
+                                    <img data-src="@item.PictureModel.ImageUrl" alt="@item.PictureModel.AlternateText" class="lozad">
+                                </div>
+
+                                <div class="name">@item.Name</div>
+                            </a>
+                        </div>
+                    }
+
+                </div>
+
+                <div class="swiper-button-prev">
+                    <svg class="icon"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_arrow_left")"></use></svg>
+                </div>
+
+                <div class="swiper-button-next">
+                    <svg class="icon"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_arrow_right")"></use></svg>
+                </div>
+            </div>
+
+            <div class="mob_all_link">
+                <a href="@Url.RouteUrl("Category", new { SeName = $"{Model.SeName}" })">@T("ISDK.Filuet.Theme.FiluetHerbalife.ShowMoreProgramms")</a>
+            </div>
+        </div>
+    </section>
+}

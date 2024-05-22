@@ -1,0 +1,25 @@
+﻿@{
+    //Html.AddCssFileParts("~/lib/jquery-ui/jquery-ui-1.12.1.custom/jquery-ui.min.css");
+}
+<div id="BodyEndHtmlTagBeforeRoot">
+</div>
+<nop-antiforgery-token />
+<script asp-location="Footer">
+    var BodyEndHtmlTagBeforeRoot = {
+        LoadMessageBox: function(response) {
+            $('#BodyEndHtmlTagBeforeRoot').html(response.html);
+        }
+    }
+$(document).ready(function () {
+    $.ajax({
+        method: "POST",
+        data: addAntiForgeryToken({ mainUrl: document.location.pathname }),
+        url: "@Url.Action("LoadFirst", "FiluetCommon")",
+        async: false,
+        success: BodyEndHtmlTagBeforeRoot.LoadMessageBox,
+        error: function (xhr, status, error) {
+            //alert(error);
+        }
+    });
+});
+</script>

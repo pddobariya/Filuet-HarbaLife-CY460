@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Language Name="EN">
+  <LocaleResource Name="ISDK.Filuet.OnlineOrdering.ShippingWidgetPlugin.Fields.OmnivaUrl">
+    <Value>OmnivaUrl</Value>
+  </LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.OnlineOrdering.ShippingWidgetPlugin.Configure">
+    <Value>Configure</Value>
+  </LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.OnlineOrdering.ShippingWidgetPlugin.Fields.OmnivaUrl.Hint">
+		<Value>Enter a OmnivaUrl</Value>
+	</LocaleResource>
+  <LocaleResource Name="ISDK.Filuet.OnlineOrdering.ShippingWidgetPlugin.Fields.DpdFtpUrl">
+    <Value>DpdFtpUrl</Value>
+  </LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.OnlineOrdering.ShippingWidgetPlugin.Fields.DpdFtpUrl.Hint">
+    <Value>Enter a DpdFtpUrl</Value>
+  </LocaleResource>
+  <LocaleResource Name="ISDK.Filuet.OnlineOrdering.ShippingWidgetPlugin.Fields.DpdFtpLogin">
+    <Value>Ftp Login PVZ DPD</Value>
+  </LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.OnlineOrdering.ShippingWidgetPlugin.Fields.DpdFtpLogin.Hint">
+    <Value>Enter a Ftp Login PVZ DPD</Value>
+  </LocaleResource>
+  <LocaleResource Name="ISDK.Filuet.OnlineOrdering.ShippingWidgetPlugin.Fields.DpdFtpPwd">
+    <Value>Ftp Password PVZ DPD</Value>
+  </LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.OnlineOrdering.ShippingWidgetPlugin.Fields.DpdFtpPwd.Hint">
+    <Value>Enter a Ftp Password PVZ DPD</Value>
+  </LocaleResource>
+  <LocaleResource Name="ISDK.Filuet.OnlineOrdering.ShippingWidgetPlugin.ShippingFormHeader">
+    <Value>Shipping</Value>
+  </LocaleResource>
+  <LocaleResource Name="ISDK.Filuet.OnlineOrdering.ShippingWidgetPlugin.ShippingForm.OmnivaTabHeader">
+    <Value>Omniva: Pickup point</Value>
+  </LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.OnlineOrdering.ShippingWidgetPlugin.ShippingForm.DPDClassic.TabHeader">
+		<Value>DPD: Courier Classic</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.OnlineOrdering.ShippingWidgetPlugin.ShippingForm.DPDPickupPoint.TabHeader">
+		<Value>DPD: Pickup point and Parcelshop</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.OnlineOrdering.ShippingWidgetPlugin.ShippingForm.DPDPickupPoint.TabHeader.TimeSlot">
+		<Value>DPD: Courier time slot (B2C)</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.OnlineOrdering.ShippingWidgetPlugin.ShippingForm.Save.ButtonCaption">
+		<Value>Save</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.OnlineOrdering.ShippingWidgetPlugin.ShippingForm.Cancel.ButtonCaption">
+		<Value>Cancel</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.OnlineOrdering.ShippingWidgetPlugin.ShippingForm.ChooseDelivery.ButtonCaption">
+		<Value>Choose/change delivery option</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.OnlineOrdering.ShippingWidgetPlugin.ShippingForm.FirstName.Caption">
+		<Value>First name</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.OnlineOrdering.ShippingWidgetPlugin.ShippingForm.LastName.Caption">
+		<Value>Last name</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.OnlineOrdering.ShippingWidgetPlugin.ShippingForm.PhoneNumber.Caption">
+		<Value>Phone number</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.OnlineOrdering.ShippingWidgetPlugin.ShippingForm.PostalCode.Caption">
+		<Value>Postal code</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.OnlineOrdering.ShippingWidgetPlugin.ShippingForm.City.Caption">
+		<Value>City</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.OnlineOrdering.ShippingWidgetPlugin.ShippingForm.Country.Caption">
+		<Value>Country</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.OnlineOrdering.ShippingWidgetPlugin.ShippingForm.Address.Caption">
+		<Value>Address</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.OnlineOrdering.ShippingWidgetPlugin.ShippingForm.DeliveryTime.Caption">
+		<Value>DeliveryTime</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.OnlineOrdering.ShippingWidgetPlugin.ShippingForm.Required.Caption">
+		<Value>Required</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.OnlineOrdering.ShippingWidgetPlugin.OrderMonthSelect.Label">
+		<Value>Choose order month.</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.OnlineOrdering.ShippingWidgetPlugin.OrderMonthSelect.Hint">
+		<Value>Today is a Dual end of month. Please choose order month.</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.OnlineOrdering.ShippingWidgetPlugin.ShippingCountrySelect.Label">
+		<Value>Options of receiving shipping</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.OnlineOrdering.ShippingWidgetPlugin.ShippingForm.Shipping">
+		<Value>Shipping</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.OnlineOrdering.ShippingWidgetPlugin.ShippingForm.Carrier">
+		<Value>Carrier</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.OnlineOrdering.ShippingWidgetPlugin.Comment">
+		<Value>Comment: (200 characters max)</Value>
+	</LocaleResource>
+</Language>

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Language Name="EN">
+	<LocaleResource Name="Cart.MonthVpLimit">
+		<Value>This month you can buy no more than</Value>
+	</LocaleResource>
+	<LocaleResource Name="Cart.OneOrderVpLimit">
+		<Value>In this order you can buy no more than</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.Catalog.Products.Fields.ProductForOrderCategory">
+		<Value>Product For OrderCategory</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.Orders.List.CustomOrderNumber">
+		<Value>Custom OrderNumber</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.Orders.List.CustomOrderNumber.Hint">
+		<Value>Filter by Custom Order Number.</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.OnlineOrdering.CorePlugin.StartDate">
+		<Value>DualMonth StartDate</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.OnlineOrdering.CorePlugin.StartDate.Hint">
+		<Value>Enter a DualMonth StartDate</Value>
+	</LocaleResource>
+	<LocaleResource Name="Isdk.Filuet.OnlineOrdering.CorePlugin.EndDate.Hint">
+		<Value>Enter a DualMonth EndDate</Value>
+	</LocaleResource>
+	<LocaleResource Name="Isdk.Filuet.OnlineOrdering.CorePlugin.EndDate">
+		<Value>DualMonth EndDate</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.OnlineOrdering.CorePlugin.HoursShift">
+		<Value>HoursShift</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.OnlineOrdering.CorePlugin.HoursShift.Hint">
+		<Value>Enter a HoursShift</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.OnlineOrdering.CorePlugin.CountryCode">
+		<Value>CountryCode</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.OnlineOrdering.CorePlugin.CountryCode.Hint">
+		<Value>Enter a CountryCode</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.OnlineOrdering.CorePlugin.DefaultWarehouse.Hint">
+		<Value>Enter a Default Warehouse</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.OnlineOrdering.CorePlugin.DefaultWarehouse">
+		<Value>Default Warehouse</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.OnlineOrdering.CorePlugin.ProcessingLocationCode.Hint">
+		<Value>Enter a Processing LocationCode</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.OnlineOrdering.CorePlugin.ProcessingLocationCode">
+		<Value>Processing LocationCode</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.OnlineOrdering.CorePlugin.CurrencyCode.Hint">
+		<Value>Enter a CurrencyCode</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.OnlineOrdering.CorePlugin.CurrencyCode">
+		<Value>CurrencyCode</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.OnlineOrdering.CorePlugin.HerbalifeEnvironment.Hint">
+		<Value>Enter a Herbalife Environment</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.OnlineOrdering.CorePlugin.HerbalifeEnvironment">
+		<Value>Herbalife Environment</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.OnlineOrdering.CorePlugin.NumberOfDigitsInn.Hint">
+		<Value>Enter a Number Of DigitsInn</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.OnlineOrdering.CorePlugin.NumberOfDigitsInn">
+		<Value>Number Of DigitsInn</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.OnlineOrdering.CorePlugin.OrderInfoDeliveryEmail.Hint">
+		<Value>Enter a Order Info DeliveryEmail</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.OnlineOrdering.CorePlugin.OrderInfoDeliveryEmail">
+		<Value>Order Info DeliveryEmail</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.OnlineOrdering.CorePlugin.CheckPartnerUrlAddress.Hint">
+		<Value>Enter a Check PartnerUrl Address</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.OnlineOrdering.CorePlugin.CheckPartnerUrlAddress">
+		<Value>Check PartnerUrl Address</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.OnlineOrdering.CorePlugin.MainConditionMessageBoxEnabled.Hint">
+		<Value>Enter a MainCondition MessageBox Enabled</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.OnlineOrdering.CorePlugin.MainConditionMessageBoxEnabled">
+		<Value>MainCondition MessageBox Enabled</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.OnlineOrdering.CorePlugin.IsDeptorEnabled.Hint">
+		<Value>Enter a IsDeptor Enabled</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.OnlineOrdering.CorePlugin.IsDeptorEnabled">
+		<Value>IsDeptor Enabled</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.OnlineOrdering.CorePlugin.IsCheckPartnerContract.Hint">
+		<Value>Enter a IsCheck Partner Contract</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.OnlineOrdering.CorePlugin.IsCheckPartnerContract">
+		<Value>IsCheck Partner Contract</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.OnlineOrdering.CorePlugin.ShowOrderStatuses.Hint">
+		<Value>Enter a ShowOrder Statuses</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.OnlineOrdering.CorePlugin.ShowOrderStatuses">
+		<Value>ShowOrder Statuses</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.OnlineOrdering.CorePlugin.Check1SStockBalance.Hint">
+		<Value>Enter a Check 1SStockBalance</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.OnlineOrdering.CorePlugin.Check1SStockBalance">
+		<Value>Check 1SStockBalance</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.OnlineOrdering.CorePlugin.MonthVpLimit.Hint">
+		<Value>Enter a Month VpLimit</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.OnlineOrdering.CorePlugin.MonthVpLimit">
+		<Value>Month VpLimit</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.OnlineOrdering.CorePlugin.OneOrderVpLimit.Hint">
+		<Value>Enter a OneOrder VpLimit</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.OnlineOrdering.CorePlugin.OneOrderVpLimit">
+		<Value>One Order VpLimit</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Settings.VipCustomers.Hint">
+		<Value>Enter a Vip Customers</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.Theme.FiluetHerbalife.Settings.VipCustomers">
+		<Value>Vip Customers</Value>
+	</LocaleResource>
+	<LocaleResource Name="ISDK.Filuet.OnlineOrdering.CorePlugin.Configure">
+		<Value>Configure</Value>
+	</LocaleResource>
+	<LocaleResource Name="FiluetAdmin.Common.ReSubmitToOracle">
+		<Value>ReSubmit Order</Value>
+	</LocaleResource>
+	<LocaleResource Name="ShoppingCartController.AddToShoppingCart.Warnings">
+		<Value>Warnings</Value>
+	</LocaleResource>
+	<LocaleResource Name="ShoppingCart.Currency">
+		<Value>Currency</Value>
+	</LocaleResource>
+	<LocaleResource Name="Filuet.DistributorDetailed.Exception">
+		<Value>DistributorDetailed error</Value>
+	</LocaleResource>
+	<LocaleResource Name="Filuet.Middleware.Exception">
+		<Value>Unknown error</Value>
+	</LocaleResource>
+	<LocaleResource Name="Account.Fields.volumeLimits">
+		<Value>volumeLimits</Value>
+	</LocaleResource>
+	<LocaleResource Name="Account.Fields.NoVolumelimitsFound">
+		<Value>No Volumelimits Found</Value>
+	</LocaleResource>
+	<LocaleResource Name="cart.dialogiscartvalid.closebutton">
+		<Value>close</Value>
+	</LocaleResource>	
+	<LocaleResource Name="cart.dialogiscartvalid">
+		<Value>dialog is cart valid</Value>
+	</LocaleResource>
+	<LocaleResource Name="admin.customers.customers.fields.externalidentifier">
+		<Value>Externalidentifier</Value>
+	</LocaleResource>
+	<LocaleResource Name="admin.catalog.products.pictures">
+		<Value>Pictures</Value>
+	</LocaleResource>
+</Language>

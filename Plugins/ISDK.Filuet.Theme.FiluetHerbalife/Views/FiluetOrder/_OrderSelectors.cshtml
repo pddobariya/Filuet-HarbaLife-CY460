@@ -1,0 +1,42 @@
+﻿@model ISDK.Filuet.OnlineOrdering.CorePlugin.Models.Order.OrderPagingFilteringModel
+    <div class="block_head border">
+        <div class="title">@T("Account.CustomerOrders")</div>
+
+        <div class="grid_list_head">
+            @*sorting*@
+            <div class="sort">
+                <div class="name">@T("Catalog.OrderBy")</div>
+
+                <div class="field">
+                    @Html.DropDownList("products-orderby", Model.AvailableSortOptions, new { onchange = "setLocation(this.value);", aria_label = T("Catalog.OrderBy.Label") })
+                </div>
+            </div>
+
+            @*page size*@
+            @if (Model.AllowCustomersToSelectPageSize)
+            {
+                <div class="limit">
+                    <div class="name">@T("Catalog.PageSize")</div>
+
+                    <div class="field">
+                        @Html.DropDownList("products-pagesize", Model.PageSizeOptions, new { onchange = "setLocation(this.value);", aria_label = T("Catalog.PageSize.Label") })
+                    </div>
+
+                    <div class="name">@T("Catalog.PageSize.PerPage")</div>
+                </div>
+            }
+
+
+            <div class="search">
+                <form action="">
+                    <input type="text" class="input" id="order-number" autocomplete="off" name="q" placeholder="@T("Search.OrderHistory.OrderNumber.Tooltip")" value="@Model.q">
+
+                    <button type="submit" class="submit_btn" value="@Model.SearchButtonLocation" onclick="setLocation(this.value + $('#order-number').val())">
+                        <svg class="icon">
+                            <use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_search")"></use>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,159 @@
+﻿@inherits Nop.Web.Framework.Mvc.Razor.NopRazorPage<TModel>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@*we remove the default InputTagHelper to prevent the checkbox duplicating: https://stackoverflow.com/questions/42544961/asp-net-core-custom-input-tag-helper-rendering-duplicate-checkboxes*@
+@removeTagHelper Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, Nop.Web.Framework
+@addTagHelper *, MiniProfiler.AspNetCore.Mvc
+
+
+@using ISDK.Filuet.OnlineOrdering.CorePlugin.Extensions;
+@using Nop.Services.Forums;
+@using Nop.Web.Extensions
+@using Nop.Web.Framework
+@using Nop.Web.Framework.Extensions
+@using Nop.Web.Framework.Infrastructure
+@using Nop.Web.Framework.Models
+@using Nop.Web.Framework.Security.Captcha
+@using Nop.Web.Framework.Security.Honeypot
+@using Nop.Web.Framework.Themes
+@using Nop.Web.Framework.UI
+@using Nop.Web.Models.Blogs
+@using Nop.Web.Models.Boards
+@using Nop.Web.Models.Catalog
+@using Nop.Web.Models.Checkout
+@using Nop.Web.Models.Cms
+@using Nop.Web.Models.Common
+@using Nop.Web.Models.Customer
+@using Nop.Web.Models.Media
+@using Nop.Web.Models.News
+@using Nop.Web.Models.Newsletter
+@using Nop.Web.Models.Order
+@using Nop.Web.Models.Polls
+@using Nop.Web.Models.PrivateMessages
+@using Nop.Web.Models.Profile
+@using Nop.Web.Models.ShoppingCart
+@using Nop.Web.Models.Topics
+@using Nop.Web.Models.Vendors
+
+@inject IGenericAttributeService genericAttributeService
+@inject IWorkContext workContext
+@inject INopHtmlHelper NopHtml
+@inject MediaSettings _mediaSettings
+@inject IWebHelper webHelper
+@inject IStoreService storeService
+@inject IProductTagService productTagService
+@inject IDownloadService downloadService
+@inject CatalogSettings catalogSettings
+@inject QuickViewSettings quickViewSettings
+@inject IHtmlFormatter htmlFormatter
+@inject SeoSettings seoSettings
+@inject IStoreContext storeContext
+@inject ISettingService settingService
+@inject ILocalizationService _localizationService
+@inject NopAjaxCartSettings nopAjaxCartSettings
+@inject IDualMonthsService _dualMonthsService
+@inject FiluetConfig _filuetConfig
+@inject IViewComponentSelector viewComponentSelector
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, Nop.Web.Framework
+@addTagHelper *, ISDK.Filuet.OnlineOrdering.CorePlugin.Extensions
+
+@using System.Text.Encodings.Web
+@using Microsoft.AspNetCore.Mvc.ViewFeatures
+@using Microsoft.AspNetCore.Routing
+@using Microsoft.Extensions.Primitives
+@using Newtonsoft.Json
+@using Nop.Core
+@using Nop.Core.Domain.Common
+@using Nop.Core.Events
+@using Nop.Core.Infrastructure
+@using Nop.Services.Common
+@using Nop.Services.Configuration
+@using static Nop.Services.Common.NopLinksDefaults
+@using Nop.Web.Areas.Admin.Models.Affiliates
+@using Nop.Web.Areas.Admin.Models.Blogs
+@using Nop.Web.Areas.Admin.Models.Catalog
+@using Nop.Web.Areas.Admin.Models.Cms
+@using Nop.Web.Areas.Admin.Models.Common
+@using Nop.Web.Areas.Admin.Models.Customers
+@using Nop.Web.Areas.Admin.Models.Directory
+@using Nop.Web.Areas.Admin.Models.Discounts
+@using Nop.Web.Areas.Admin.Models.ExternalAuthentication
+@using Nop.Web.Areas.Admin.Models.Forums
+@using Nop.Web.Areas.Admin.Models.Home
+@using Nop.Web.Areas.Admin.Models.Localization
+@using Nop.Web.Areas.Admin.Models.Logging
+@using Nop.Web.Areas.Admin.Models.Messages
+@using Nop.Web.Areas.Admin.Models.MultiFactorAuthentication
+@using Nop.Web.Areas.Admin.Models.News
+@using Nop.Web.Areas.Admin.Models.Orders
+@using Nop.Web.Areas.Admin.Models.Payments
+@using Nop.Web.Areas.Admin.Models.Plugins
+@using Nop.Web.Areas.Admin.Models.Plugins.Marketplace
+@using Nop.Web.Areas.Admin.Models.Polls
+@using Nop.Web.Areas.Admin.Models.Reports
+@using Nop.Web.Areas.Admin.Models.Security
+@using Nop.Web.Areas.Admin.Models.Settings
+@using Nop.Web.Areas.Admin.Models.Shipping
+@*@using AdminShoppingCart = Nop.Web.Areas.Admin.Models.ShoppingCart*@
+@using Nop.Web.Areas.Admin.Models.Stores
+@using Nop.Web.Areas.Admin.Models.Tasks
+@using Nop.Web.Areas.Admin.Models.Tax
+@using Nop.Web.Areas.Admin.Models.Templates
+@using Nop.Web.Areas.Admin.Models.Topics
+@using Nop.Web.Areas.Admin.Models.Vendors
+@using Nop.Web.Framework.Menu
+@using Nop.Web.Framework.Events
+@using Nop.Web.Framework.Models.DataTables
+
+@using SevenSpikes.Nop.Plugins.AnywhereSliders.Models
+@using SevenSpikes.Nop.Plugins.AnywhereSliders.Models.Sliders
+@using SevenSpikes.Nop.Plugins.AnywhereSliders.Domain
+@using SevenSpikes.Nop.Plugins.AnywhereSliders.Domain.Enums
+
+
+@using System.Globalization;
+@using ISDK.Filuet.OnlineOrdering.CorePlugin.Models.Customer
+@using Nop.Core.Domain.Media
+@using ISDK.Filuet.OnlineOrdering.NopFiluetCommon.Models.Checkout
+@using ISDK.Filuet.OnlineOrdering.CorePlugin.Models
+@using CorePluginCustomer = ISDK.Filuet.OnlineOrdering.CorePlugin.Models.Customer
+@using ISDK.Filuet.OnlineOrdering.CorePlugin.Models.Order
+@using ISDK.Filuet.OnlineOrdering.NopFiluetCommon.Constants
+@using ISDK.Filuet.OnlineOrdering.CorePlugin.Models.ShoppingCart
+@using System.Collections
+@using ISDK.Filuet.OnlineOrdering.CorePlugin.Constants
+@using ISDK.Filuet.OnlineOrdering.NopFiluetCommon.Constants.AttributeNames
+@using ISDK.Filuet.OnlineOrdering.NopFiluetCommon.Extensions
+@using Nop.Core.Domain.Catalog;
+@using Nop.Services.Catalog;
+@using System.Text;
+@using ISDK.Filuet.OnlineOrdering.CorePlugin.Models.Catalog
+@using Nop.Services
+@using Nop.Services.Stores
+@using Nop.Services.Media
+@using Nop.Core.Domain.Tax
+@using Nop.Core.Domain.Orders
+@using SevenSpikes.Nop.Plugins.QuickView.Domain
+@using Microsoft.AspNetCore.Mvc.Rendering
+@using Nop.Core.Domain.Seo
+@using Nop.Services.Html
+@using Nop.Web.Components
+@using Nop.Web.Framework.Mvc.Routing
+@using Nop.Web.Framework.Models.AdminAreaTour
+@using SevenSpikes.Nop.Plugins.AnywhereSliders.Infrastructure.Constants
+@using Nop.Services.Localization
+@using SevenSpikes.Nop.Framework.Theme
+@using SevenSpikes.Nop.Plugins.AjaxCart.Domain
+@using SevenSpikes.Nop.Plugins.AjaxCart.Infrastructure.Constants
+@using ISDK.Filuet.OnlineOrdering.NopFiluetCommon.Configuration;
+@using ISDK.Filuet.OnlineOrdering.NopFiluetCommon.Contracts
+@using ISDK.Filuet.OnlineOrdering.NopFiluetCommon.Services.DualMonth;
+@using ISDK.Filuet.OnlineOrdering.CorePlugin.Infrastructure
+@using Microsoft.AspNetCore.Mvc.ViewComponents
+
+@using ISDK.Filuet.OnlineOrdering.NopFiluetCommon.Enums.HerbalifeRESTServicesSDK;
+@using ISDK.Filuet.OnlineOrdering.NopFiluetCommon.Models
+@using ISDK.Filuet.OnlineOrdering.NopFiluetCommon;
+@using ISDK.Filuet.OnlineOrdering.NopFiluetCommon.Dtos.Distributor;

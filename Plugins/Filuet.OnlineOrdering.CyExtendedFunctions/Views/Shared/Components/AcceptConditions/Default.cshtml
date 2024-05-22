@@ -1,0 +1,30 @@
+﻿<style type="text/css">
+    .accept-conditions {
+        font-size: 14px;
+        margin-left: 10px;
+        display: inline;
+        margin-right: 10px;
+    }
+
+        .accept-conditions a {
+            color: blue;
+        }
+
+    .payment-info-next-step-button[disabled] {
+        opacity: 0.5;
+    }
+</style>
+
+<input type="checkbox" id="accept-conditions-checkbox"><p class="accept-conditions">@(Html.Raw(T("Filuet.OnlineOrdering.CyExtendedFunctions.AcceptConditions", $"{_webHelper.GetStoreLocation()}conditions-of-use-2")))</p>
+
+<script>
+    $(".payment-info-next-step-button").attr("disabled", 'disabled');
+
+    $('#accept-conditions-checkbox').click(function () {
+        if ($(this).is(':checked')) {
+            $('.payment-info-next-step-button').removeAttr('disabled');
+        } else {
+            $('.payment-info-next-step-button').attr('disabled', 'disabled');
+        }
+    });
+</script>

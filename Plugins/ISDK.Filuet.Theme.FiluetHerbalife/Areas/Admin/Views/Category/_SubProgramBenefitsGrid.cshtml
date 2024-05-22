@@ -1,0 +1,84 @@
+@model ProgramSubCategoryModel
+
+<div class="card card-default">
+    <div class="card-header">
+        @T("Admin.Catalog.Program.SubCategory.Benefits")
+    </div>
+    <div class="card-body">
+        @await Html.PartialAsync("Table", new DataTablesModel
+   {
+       Name = "subprogram-benefits-grid-" + Model.ProgramBenefitSearchModel.LanguageId,
+       UrlRead = new DataUrl("SubProgramBenefitList", "Category",
+                new RouteValueDictionary
+                {
+                    [nameof(Model.ProgramBenefitSearchModel.CategoryId)] = Model.ProgramBenefitSearchModel.CategoryId,
+                    [nameof(Model.ProgramBenefitSearchModel.LanguageId)] = Model.ProgramBenefitSearchModel.LanguageId
+                }),
+       UrlDelete = new DataUrl("SubProgramBenefitDelete", "Category",
+                new RouteValueDictionary
+                {
+                    [nameof(Model.ProgramBenefitSearchModel.CategoryId)] = Model.ProgramBenefitSearchModel.CategoryId,
+                    [nameof(Model.ProgramBenefitSearchModel.LanguageId)] = Model.ProgramBenefitSearchModel.LanguageId
+                }),
+       Length = Model.ProgramBenefitSearchModel.PageSize,
+       LengthMenu = Model.ProgramBenefitSearchModel.AvailablePageSizes,
+       ColumnCollection = new List<ColumnProperty>
+            {
+                new ColumnProperty(nameof(SubProgramBenefitModel.Name))
+                {
+                    Title = T("Admin.ISDK.Filuet.Theme.FiluetHerbalife.Program.SubCategory.Benefits.Name").Text,
+                    Width = "300",
+                },
+                new ColumnProperty(nameof(SubProgramBenefitModel.Description))
+                {
+                    Title = T("Admin.ISDK.Filuet.Theme.FiluetHerbalife.Program.SubCategory.Benefits.Description").Text
+                },
+                new ColumnProperty(nameof(SubProgramBenefitModel.Uid))
+                {
+                    Title = T("Admin.Common.Edit").Text,
+                    Width = "100",
+                    ClassName =  NopColumnClassDefaults.Button,
+                    Render = new RenderCustom("renderBenefitColumnEdit" + Model.ProgramBenefitSearchModel.LanguageId)
+                },
+                new ColumnProperty(nameof(SubProgramBenefitModel.Uid))
+                {
+                    Title = T("Admin.Common.Delete").Text,
+                    Width = "100",
+                    Render = new RenderButtonRemove(T("Admin.Common.Delete").Text),
+                    ClassName =  NopColumnClassDefaults.Button
+                }
+            }
+   })
+
+    <script>
+        function renderBenefitColumnEdit@(Model.ProgramBenefitSearchModel.LanguageId)(data, type, row, meta) {
+                return '<button onclick=\"javascript:OpenWindow(\'@Url.Content("~/Admin/Category/SubProgramBenefitEditPopup/")'
+                    + '?subProgramBenefitUid=' + data + '&categoryId=@(Model.ProgramBenefitSearchModel.CategoryId)&languageId=@(Model.ProgramBenefitSearchModel.LanguageId)&btnId=btnRefreshSubProgramBenefits@(Model.ProgramBenefitSearchModel.LanguageId)&formId=category-form\', 800, 600, true); return false;\" class="btn btn-default">'
+                    + '<i class="fas fa-pencil-alt"></i>@T("Admin.Common.Edit").Text</button>';
+            }
+    </script>
+    </div>
+    <div class="card-footer">
+        <button type="submit"
+                id="btnAddNewSubProgramBenefits"
+                onclick="javascript: OpenWindow('@(Url.Action("SubProgramBenefitCreatePopup", "Category",
+                                                 new { 
+                                                     categoryId = Model.ProgramBenefitSearchModel.CategoryId, 
+                                                     languageId = Model.ProgramBenefitSearchModel.LanguageId, 
+                                                     btnId = "btnRefreshSubProgramBenefits" + Model.ProgramBenefitSearchModel.LanguageId, 
+                                                     formId = "category-form"}))',
+                        800, 600, true); return false;"
+                class="btn btn-primary">
+            @T("Admin.ISDK.Filuet.Theme.FiluetHerbalife.Program.SubCategory.Benefits.AddNew")
+        </button>
+        <button type="submit" id="btnRefreshSubProgramBenefits@(Model.ProgramBenefitSearchModel.LanguageId)" style="display: none"></button>
+        <script>
+            $(document).ready(function () {
+                $('#btnRefreshSubProgramBenefits@(Model.ProgramBenefitSearchModel.LanguageId)').click(function () {                    
+                    updateTable('#subprogram-benefits-grid-@Model.ProgramBenefitSearchModel.LanguageId');
+                    return false;
+                });
+            });
+    </script>
+    </div>
+</div>

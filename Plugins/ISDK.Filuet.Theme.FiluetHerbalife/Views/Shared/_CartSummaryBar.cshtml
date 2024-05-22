@@ -1,0 +1,13 @@
+@model CartSummaryBarModel
+
+<div class="cart-summary-bar-inner">
+    <div class="cart-summary-item cart-summary-item-discount">
+        <div class="discount-amount">@T("ISDK.Filuet.Theme.FiluetHerbalife.Fields.DiscountCartBarLabel") @(Model.Discount)%</div>
+    </div>
+    <div class="cart-summary-item">
+        <div class="total-vp">@T("ISDK.Filuet.Theme.FiluetHerbalife.Fields.VPCartBarLabel") @Model.TotalVPs </div>
+    </div>
+    <div class="cart-summary-item">
+        <div class="total-amount">@Model.TotalDue</div>
+    </div>
+</div>

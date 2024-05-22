@@ -1,0 +1,190 @@
+﻿@model ConfigurationModel
+
+@{
+    Layout = "_ConfigurePlugin";
+    var showTour = ViewBag.ShowTour ?? false;
+
+    const string hideConfigure = "Configure";
+    var customer = await workContext.GetCurrentCustomerAsync();
+    var hideConfigureBlock = showTour ? false : await genericAttributeService.GetAttributeAsync<bool>(customer, hideConfigure);
+
+}
+@inject Nop.Core.IWebHelper webHelper
+
+
+<form asp-controller="SSOAuthAdmin" asp-action="Configure" method="post">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="form-horizontal">
+                <nop-cards id="product-cards">
+
+                    <nop-card asp-name="product-info" asp-icon="fas fa-info" asp-title="@T("Plugins.ExternalAuth.SSO.Configure")" asp-hide-block-attribute-name="@hideConfigure" asp-hide="@hideConfigureBlock" asp-advanced="false">
+                        <div class="card-body">
+                            <div class="card-utils">
+                                @* ClientId *@
+                                <div class="form-group row">
+                                    <div class="col-md-3">
+                                        <nop-label asp-for="ClientId" />
+                                    </div>
+                                    <div class="col-md-9">
+                                        <nop-editor asp-for="ClientId" />
+                                        <span asp-validation-for="ClientId"></span>
+                                    </div>
+                                </div>
+                                @* ClientSecret *@
+                                <div class="form-group row">
+                                    <div class="col-md-3">
+                                        <nop-label asp-for="ClientSecret" />
+                                    </div>
+                                    <div class="col-md-9">
+                                        <nop-editor asp-for="ClientSecret" />
+                                        <span asp-validation-for="ClientSecret"></span>
+                                    </div>
+                                </div>
+                                @* AuthorizationEndpoint *@
+                                <div class="form-group row">
+                                    <div class="col-md-3">
+                                        <nop-label asp-for="AuthorizationEndpoint" />
+                                    </div>
+                                    <div class="col-md-9">
+                                        <nop-editor asp-for="AuthorizationEndpoint" />
+                                        <span asp-validation-for="AuthorizationEndpoint"></span>
+                                    </div>
+                                </div>
+
+                                @* TokenEndpoint *@
+                                <div class="form-group row">
+                                    <div class="col-md-3">
+                                        <nop-label asp-for="TokenEndpoint" />
+                                    </div>
+                                    <div class="col-md-9">
+                                        <nop-editor asp-for="TokenEndpoint" />
+                                        <span asp-validation-for="TokenEndpoint"></span>
+                                    </div>
+                                </div>
+
+                                @* ApiUrl *@
+                                <div class="form-group row">
+                                    <div class="col-md-3">
+                                        <nop-label asp-for="ApiUrl" />
+                                    </div>
+                                    <div class="col-md-9">
+                                        <nop-editor asp-for="ApiUrl" />
+                                        <span asp-validation-for="ApiUrl"></span>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group row">
+                                    <div class="col-md-3">
+                                        <nop-label asp-for="IsEnableCountryRestrictions" />
+                                    </div>
+                                    <div class="col-md-9">
+                                        <nop-editor asp-for="IsEnableCountryRestrictions" />
+                                        <span asp-validation-for="IsEnableCountryRestrictions"></span>
+                                    </div>
+                                </div>
+                                <input type="hidden" asp-for="WhitelistedCountries" />
+                                @*<input type="hidden" asp-for="IsEnableCountryRestrictions" />*@
+                                <app-root></app-root>
+
+                                <div class="form-group row">
+                                    <div class="col-md-3">
+                                        <nop-label asp-for="DenyNoResident" />
+                                    </div>
+                                    <div class="col-md-9">
+                                        <nop-editor asp-for="DenyNoResident" />
+                                        <span asp-validation-for="DenyNoResident"></span>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group row">
+                                    <div class="col-md-3">
+                                        <nop-label asp-for="DenyEntryToUnpaidAPF" />
+                                    </div>
+                                    <div class="col-md-9">
+                                        <nop-editor asp-for="DenyEntryToUnpaidAPF" />
+                                        <span asp-validation-for="DenyEntryToUnpaidAPF"></span>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="form-group row">
+                                    <div class="col-md-3">
+                                        <nop-label asp-for="IsProhibitedForNotResident" />
+                                    </div>
+                                    <div class="col-md-9">
+                                        <nop-editor asp-for="IsProhibitedForNotResident" />
+                                        <span asp-validation-for="IsProhibitedForNotResident"></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-md-3">
+                                        <nop-label asp-for="UpdateCountryDisRole" />
+                                    </div>
+                                    <div class="col-md-9">
+                                        <nop-editor asp-for="UpdateCountryDisRole" />
+                                        <span asp-validation-for="UpdateCountryDisRole"></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-md-3">
+                                        <nop-label asp-for="AllowedDsTypes" />
+                                    </div>
+                                    <div class="col-md-9">
+                                        <nop-editor asp-for="AllowedDsTypes" />
+                                        <span asp-validation-for="AllowedDsTypes"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-3">
+                                        <nop-label asp-for="AllowedResidenceCountry" />
+                                    </div>
+                                    <div class="col-md-9">
+                                        <nop-editor asp-for="AllowedResidenceCountry" />
+                                        <span asp-validation-for="AllowedResidenceCountry"></span>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group row">
+                                    <div class="col-md-3">
+                                        <nop-label asp-for="DeniedDsTypes" />
+                                    </div>
+                                    <div class="col-md-9">
+                                        <nop-editor asp-for="DeniedDsTypes" />
+                                        <span asp-validation-for="DeniedDsTypes"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-3">
+                                        <nop-label asp-for="DeniedResidenceCountry" />
+                                    </div>
+                                    <div class="col-md-9">
+                                        <nop-editor asp-for="DeniedResidenceCountry" />
+                                        <span asp-validation-for="DeniedResidenceCountry"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-3">
+                                        &nbsp;
+                                    </div>
+                                    <div class="col-md-9">
+                                        <input type="submit" name="save" class="btn bg-blue" value="@T("Admin.Common.Save")" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </nop-card>
+                </nop-cards>
+            </div>
+        </div>
+    </section>
+</form>
+
+
+

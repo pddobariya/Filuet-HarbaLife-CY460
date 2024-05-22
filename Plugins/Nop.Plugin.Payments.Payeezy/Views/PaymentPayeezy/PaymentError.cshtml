@@ -1,0 +1,26 @@
+﻿@{
+    Layout = "~/Views/Shared/_ColumnsOne.cshtml";
+    NopHtml.AppendPageCssClassParts("html-checkout-page");
+    NopHtml.AppendPageCssClassParts("html-order-completed-page");
+    NopHtml.AddCssFileParts("~/lib/jquery-ui/jquery-ui-1.12.1.custom/jquery-ui.min.css");
+}
+<div class="page checkout-page order-completed-page">
+    <div class="page-title">
+        <h1>@T("Plugins.Payments.Payeezy.Fields.ErrorTitle")</h1>
+    </div>
+    <div class="page-body checkout-data">
+        <div class="section order-completed">
+            <div class="details">
+                <div class="payment-payeezy-error">
+                    <div class="payment-payeezy-error-inner">
+                        @T("Plugins.Payments.Payeezy.Fields.ErrorText")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@{
+    ((Action)ViewBag.ResetWorkingLanguageAction)();
+}

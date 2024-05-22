@@ -1,0 +1,133 @@
+﻿@model ISDK.Filuet.Theme.FiluetHerbalife.Models.FiluetSearchModel
+@{
+    Layout = "_ColumnsTwo";
+    //title
+    NopHtml.AddTitleParts(T("PageTitle.Search").Text);
+    //page class
+    NopHtml.AppendPageCssClassParts("html-search-page");
+}
+
+<script asp-location="Footer">
+    $(document).ready(function () {
+        $("#@Html.IdFor(model => model.advs)").on('click', toggleAdvancedSearch);
+        toggleAdvancedSearch();
+
+        $("#cid").selectize();
+    });
+
+    function toggleAdvancedSearch() {
+        if ($('#@Html.IdFor(model => model.advs)').is(':checked')) {
+            $('#hide-block').show();
+        }
+        else {
+            $('#hide-block').hide();
+        }
+    }
+</script>
+
+<section class="content">
+    <section class="page_head">
+        <h1 class="page_title">@T("Search")</h1>
+    </section>
+
+    <section class="search_info">
+        <form asp-route="ProductSearch" method="get" class="form">
+            <div class="line row">
+                <label asp-for="q" class="label">@T("ISDK.Filuet.Theme.FiluetHerbalife.SearchKeyword"):</label>
+
+                <div class="field">
+                    <input asp-for="q" type="text" name="q" class="input" />
+                </div>
+                @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductSearchPageBasic })
+            </div>
+
+            <div class="hide" id="hide-block">
+                @if (Model.AvailableCategories.Count > 0)
+                {
+                    <div class="line row">
+                        <div class="label">@T("Search.Category"):</div>
+
+                        <div class="field">
+                            <select asp-for="cid" asp-items="Model.AvailableCategories" placeholder="Select..."></select>
+                        </div>
+
+                        <div class="absolute_field">
+                            <input asp-for="isc" type="checkbox" checked />
+                            <label asp-for="isc">@T("Search.IncludeSubCategories")</label>
+                        </div>
+                    </div>
+                }
+
+                <div class="line row">
+                    <div class="label">@T("Search.PriceRange"):</div>
+
+                    <div class="field row">
+                        <div class="field">
+                            <div class="prefix">@T("Search.PriceRange.From")</div>
+                            <input asp-for="SearchPriceRangeFrom" type="text" value="@(Model.SearchPriceRangeFrom != null ? Model.SearchPriceRangeFrom : "56")" class="input" />
+                        </div>
+
+                        <div class="field">
+                            <div class="prefix">@T("Search.PriceRange.To")</div>
+                            <input asp-for="SearchPriceRangeTo" type="text" value="@(Model.SearchPriceRangeTo != null ? Model.SearchPriceRangeTo : "256")" class="input" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="line row">
+                    <div class="label">@T("Search.SearchInDescriptions")?</div>
+
+                    <div class="field">
+                        <input asp-for="sid" type="checkbox" checked />
+                        <label asp-for="sid">@T("Common.Yes")</label>
+                    </div>
+                </div>
+
+                @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductSearchPageAdvanced })
+            </div>
+
+            <div class="submit">
+                <button class="submit_btn">@T("ISDK.Filuet.Theme.FiluetHerbalife.Find")</button>
+
+                <div class="advanced_search">
+                    <input asp-for="advs" type="checkbox" />
+                    <label asp-for="advs">@T("Search.AdvancedSearch")</label>
+                </div>
+            </div>
+        </form>
+    </section>
+
+    <section class="products block">
+        @await Html.PartialAsync("_CatalogSelectors", Model.CatalogProductsModel)
+
+        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductSearchPageBeforeResults })
+
+        @{
+            var catalogProductsViewData = new ViewDataDictionary(ViewData);
+            catalogProductsViewData["fetchUrl"] = Html.Raw(Url.Action("FiluetSearchProducts", "FiluetCatalog"));
+        }
+        @await Html.PartialAsync("_CatalogProducts", Model.CatalogProductsModel, catalogProductsViewData)
+
+        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductSearchPageAfterResults })
+
+        <script asp-location="Footer">
+            $(document).ready(function () {
+                $(CatalogProducts).on('before',
+                    function (e) {
+                        var isAdvanced = $('#@Html.IdFor(model => model.advs)').is(':checked');
+
+                        e.payload.urlBuilder
+                            .addParameter('q', $('#@Html.IdFor(model => model.q)').val())
+                            .addParameter('advs', isAdvanced);
+
+                        if (isAdvanced) {
+                            e.payload.urlBuilder
+                                .addParameter('cid', $('#@Html.IdFor(model => model.cid)').val())
+                                .addParameter('isc', $('#@Html.IdFor(model => model.isc)').is(':checked'))
+                                .addParameter('sid', $('#@Html.IdFor(model => model.sid)').is(':checked'));
+                        }
+                    });
+            });
+        </script>
+    </section>
+</section>

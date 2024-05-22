@@ -1,0 +1,155 @@
+@model FiluetOrderTotalsModel
+
+@{
+    var availableMonths = (await dualMonthsService.GetAvailableMonthsAsync())
+        .Select(p => new SelectListItem
+        {
+            Value = p.Timestamp.ToString(),
+            Text = p.DisplayName,
+            Selected = false
+        }).ToList();
+    availableMonths.Insert(0, new SelectListItem("---", "", true));
+    var isAllowMonthSelect = await dualMonthsService.GetDualMonthAllowedAsync();
+
+    string orderMonth = Model.OrderMonth ?? "---";
+    if (!Model.IsEditable)
+    {
+        if (Model?.OrderMonth != null && Model?.OrderMonth.Split('.').Length != 2 && Model?.OrderMonth.Length == 4)
+        {
+            orderMonth = $"{Model.OrderMonth.Substring(2)}.{Model.OrderMonth.Substring(1, 2)}";
+        }
+    }
+    string deliveryPrice = Model.DeliveryPrice ?? "---";
+    string orderMonthVolume = Model.OrderMonthVolume ?? "0.00";
+    string orderVolumePoints = Model.OrderVolumePoints;
+    string taxAmount = Model.Tax;
+    string orderTotal = Model.OrderTotal;
+    string shippingCost = Model.Shipping;
+    string discountRate = Model.DiscountRate;
+    string discountedBasePrice = Model.DiscountedBasePrice;
+    string productEarnbase = Model.ProductEarnBase;
+    string subTotal = Model.SubTotal;
+    string flatFee = Model.FlatFee;
+}
+
+<script asp-location="Footer">
+    $(document).ready(function (){
+        $("#month").niceSelect();
+    })
+    
+</script>
+
+<div class="totals @(!Model.IsEditable ? "with_spoler" : "" )">
+    @if (Model.IsEditable && isAllowMonthSelect)
+    {
+        <div class="item">
+            <div class="name">&nbsp;</div>
+            <div class="val info">@T("ISDK.Filuet.Theme.FiluetHerbalife.ShoppingCart.SelectOrderMonthWarning")</div>
+        </div>
+        <div class="item">
+            <div class="name green">@T("ISDK.Filuet.Theme.FiluetHerbalife.ShoppingCart.SelectOrderMonth"):</div>
+            <div class="val">
+                <select id="month" asp-for="OrderMonth" asp-items="@availableMonths" required></select>
+                <svg class="icon"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_arrow_down")"></use></svg>
+            </div>
+        </div>
+    }
+
+    @if (!Model.IsEditable)
+    {
+        <div class="item">
+            <div class="name">@T("ShoppingCart.Totals.OrderMonth"):</div>
+            <div class="val">@orderMonth</div>
+        </div>
+    }
+
+    @if (Model.DeliveryPrice != null)
+    {
+        <div class="item">
+            <div class="name">@T("ShoppingCart.Totals.DeliveryPrice")</div>
+            <div class="val">@deliveryPrice</div>
+        </div>
+    }
+
+    @if (Model.FlatFee != null)
+    {
+        <div class="item">
+            <div class="name">@T("ShoppingCart.Totals.FlatFee")</div>
+            <div class="val">@flatFee</div>
+        </div>
+    }
+
+    @if (!Model.IsEditable)
+    {
+        <div class="item">
+            <div class="name">@T("ShoppingCart.Totals.OrderMonthVolume")</div>
+            <div class="val">@orderMonthVolume</div>
+        </div>
+    }
+
+    <div class="item">
+        <div class="name">@T("ShoppingCart.Totals.OrderVolumePoints")</div>
+        <div id="order_volume_points" class="val">@orderVolumePoints</div>
+    </div>
+
+    @if (!Model.IsEditable)
+    {
+        <div class="item">
+            <div class="name">@T("ShoppingCart.Totals.TotalTaxAmount")</div>
+            <div class="val">@taxAmount</div>
+        </div>
+    }
+
+    <div class="item">
+        <div class="name">@T("ShoppingCart.Totals.TotalDue")</div>
+        <div id="order_totals_price" class="val">@orderTotal</div>
+    </div>
+
+    @if (!Model.IsEditable)
+    {
+        <button class="spoler_btn">
+            <svg class="icon"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_arrow_down")"></use></svg>
+        </button>
+    }
+</div>
+
+@if (!Model.IsEditable)
+{
+    <div class="totals_data">
+        <div class="row">
+            <div class="col">
+                <div class="item">
+                    <div class="name">@T("ShoppingCart.Totals.DiscountRate"):</div>
+                    <div class="val">@discountRate</div>
+                </div>
+
+                <div class="item">
+                    <div class="name">@T("ShoppingCart.Totals.DiscountedBasePrice"):</div>
+                    <div class="val">@discountedBasePrice</div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="item">
+                    <div class="name">@T("ShoppingCart.Totals.ProductEarnBase"):</div>
+                    <div class="val">@productEarnbase</div>
+                </div>
+
+                <div class="item">
+                    <div class="name">@T("ShoppingCart.Totals.BasePrice"):</div>
+                    <div class="val">@subTotal</div>
+                </div>
+
+                <div class="item">
+                    <div class="name">@T("ShoppingCart.Totals.ShippingCost"):</div>
+                    <div class="val">@shippingCost</div>
+                </div>
+
+                <div class="item">
+                    <div class="name">@T("ShoppingCart.Totals.TotalTaxAmount"):</div>
+                    <div class="val">@taxAmount</div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

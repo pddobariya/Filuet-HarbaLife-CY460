@@ -1,0 +1,113 @@
+﻿@model ConfigurationModel
+
+<div class="cards-group">
+    <div class="card card-default">
+        <div class="card-body">
+
+            @await Html.PartialAsync("Table", new DataTablesModel
+            {
+                Name = "autopostoffice-delivery-grid-" + Model.AutoPostOfficeDtoSearchModel.LanguageId,
+                UrlRead = new DataUrl("GetAutoPostOffices", "DeliveryAdmin", new RouteValueDictionary{[nameof(Model.AutoPostOfficeDtoSearchModel.LanguageId)]=  Model.AutoPostOfficeDtoSearchModel.LanguageId}),
+                UrlUpdate = new DataUrl("AutoPostOfficeUpdate", "DeliveryAdmin", new RouteValueDictionary{[nameof(Model.AutoPostOfficeDtoSearchModel.LanguageId)]=  Model.AutoPostOfficeDtoSearchModel.LanguageId}),
+                UrlDelete = new DataUrl("AutoPostOfficeDelete", "DeliveryAdmin", new RouteValueDictionary{[nameof(Model.AutoPostOfficeDtoSearchModel.LanguageId)]=  Model.AutoPostOfficeDtoSearchModel.LanguageId}),
+                Length = Model.AutoPostOfficeDtoSearchModel.PageSize,
+                LengthMenu = Model.AutoPostOfficeDtoSearchModel.AvailablePageSizes,
+                ColumnCollection = new List<ColumnProperty>
+                {
+                    new ColumnProperty(nameof(AutoPostOfficeDtoModel.DeliveryCityName))
+                    {
+                        Title = T("Plugins.ShippingMethods.Delivery.Fields.DeliveryCity").Text,
+                        Width = "100",
+                        Editable = true,
+                        EditType = EditType.String,
+                    },
+                    new ColumnProperty(nameof(AutoPostOfficeDtoModel.DeliveryOperatorName))
+                    {
+                        Title = T("Plugins.ShippingMethods.Delivery.Fields.DeliveryType").Text,
+                        Width = "100",
+                        Editable = true,
+                        EditType = EditType.String,
+                    },
+                    new ColumnProperty(nameof(AutoPostOfficeDtoModel.TypeName))
+                    {
+                        Title = T("Plugins.ShippingMethods.Delivery.Fields.DeliveryType").Text,
+                        Width = "100",
+                        Editable = true,
+                        EditType = EditType.String,
+                    },
+                    new ColumnProperty(nameof(AutoPostOfficeDtoModel.PointId))
+                    {
+                        Title = T("Plugins.ShippingMethods.Delivery.Fields.PointId").Text,
+                        Width = "100",
+                        Editable = true,
+                        EditType = EditType.String,
+                    },
+                    new ColumnProperty(nameof(AutoPostOfficeDtoModel.Blocked))
+                    {
+                        Title = T("Plugins.ShippingMethods.Delivery.Fields.Blocked").Text,
+                        Width = "100",
+                        Editable = true,
+                        EditType = EditType.String,
+                    },
+                    new ColumnProperty(nameof(AutoPostOfficeDtoModel.Address))
+                    {
+                        Title = T("Plugins.ShippingMethods.Delivery.Fields.Address").Text,
+                        Width = "100",
+                        Editable = true,
+                        EditType = EditType.String,
+                    },
+                    new ColumnProperty(nameof(AutoPostOfficeDtoModel.Comment))
+                    {
+                        Title = T("Plugins.ShippingMethods.Delivery.Fields.Comment").Text,
+                        Width = "100",
+                        Editable = true,
+                        EditType = EditType.String,
+                    },
+                    new ColumnProperty(nameof(AutoPostOfficeDtoModel.PriceIsAbsent))
+                    {
+                        Title = T("Plugins.ShippingMethods.Delivery.Fields.PriceIsAbsent").Text,
+                        Width = "100",
+                        Editable = false,
+                    },
+                    new ColumnProperty(nameof(AutoPostOfficeDtoModel.Id))
+                    {
+                        Title = T("Admin.Common.Edit").Text,
+                        Width = "100",
+                        ClassName =  NopColumnClassDefaults.Button,
+                        Render = new RenderCustom("renderAutoPostColumnEdit"+Model.AutoPostOfficeDtoSearchModel.LanguageId)
+                    },
+                    new ColumnProperty(nameof(AutoPostOfficeDtoModel.Id))
+                    {
+                        Title = T("Admin.Common.Delete").Text,
+                        Width = "100",
+                        ClassName =  NopColumnClassDefaults.Button,
+                        Render = new RenderButtonRemove(T("Admin.Common.Delete").Text)
+                    }
+                }
+            })
+            <script>
+                function renderAutoPostColumnEdit@(Model.AutoPostOfficeDtoSearchModel.LanguageId)(data, type, row, meta) {
+                    return '<button onclick=\"javascript:OpenWindow(\'@Url.Content("~/Admin/DeliveryAdmin/AutoPostOfficeUpdate/")' + data + '?languageId=@(Model.AutoPostOfficeDtoSearchModel.LanguageId)&btnId=btnRefreshAutoPost@(Model.AutoPostOfficeDtoSearchModel.LanguageId)&formId=delivery-form\', 800, 600, true); return false;\" class="btn btn-default">'
+                        + '<i class="fas fa-pencil-alt"></i>@T("Admin.Common.Edit").Text</button>';
+                }
+            </script>
+            <div class="card-footer">
+                <button type="submit" id="btnRefreshAutoPost@(Model.AutoPostOfficeDtoSearchModel.LanguageId)" style="display: none"></button>
+                <script>
+                    $(document).ready(function () {
+                        $('#btnRefreshAutoPost@(Model.AutoPostOfficeDtoSearchModel.LanguageId)').click(function () {
+                            updateTable('#autopostoffice-delivery-grid-@Model.AutoPostOfficeDtoSearchModel.LanguageId');
+                            return false;
+                        });
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="float-left">
+    <a href="@Url.Action("AutoPostOfficeCreate", "DeliveryAdmin", new { languageId = Model.AutoPostOfficeDtoSearchModel.LanguageId })" class="btn btn-primary">
+        <i class="fas fa-plus-square"></i>
+        @T("Admin.Common.AddNew")
+    </a>
+</div>

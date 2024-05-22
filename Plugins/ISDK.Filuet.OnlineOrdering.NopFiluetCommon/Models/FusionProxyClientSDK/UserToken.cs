@@ -1,0 +1,4 @@
+﻿using System;  namespace ISDK.Filuet.OnlineOrdering.NopFiluetCommon.Models.FusionProxyClientSDK {     public class UserToken     {
+        #region Properties          public string UserId { get; }          public string Token { get; protected set; }          public DateTime CreateDate { get; }          public DateTime ExpirationTime { get; }          public UserToken(string userId, TimeSpan expiration)         {             UserId = userId;             Token = GenerateToken();             CreateDate = DateTime.UtcNow;             ExpirationTime = CreateDate.Add(expiration);         }          private string GenerateToken()         {             return Guid.NewGuid().ToString();         }          public bool Expired         {             get { return DateTime.UtcNow > ExpirationTime; }         }
+
+        #endregion     } } 

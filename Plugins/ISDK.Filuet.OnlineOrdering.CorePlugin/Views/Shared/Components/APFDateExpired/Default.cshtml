@@ -1,0 +1,55 @@
+﻿@model DateTime?
+
+<style type="text/css">
+        div.apf-section {
+            font-size: 14px;
+            background-color: #FFF2DE;
+            padding: 5px;
+            border: 1px solid #FFCA78;
+            display: inline-block;
+        }
+
+        a#apf-pay-button {
+            color: #0000ff;
+        }
+    </style>
+@{
+    NopHtml.AppendCssFileParts("~/lib/jquery-ui/jquery-ui-1.10.3/jquery-ui-themes/smoothness/jquery-ui-1.10.3.custom.min.css");
+    if (Model != null)
+    {
+        var messageTitle = string.Format(
+            T("HBL.Baltic.APFDueDateWarningPeriodDays.MessageTemplate").Text, Model);
+        var button = T("HBL.Baltic.APFDueDateWarningPeriodDays.PayNowButton");
+    <script type="text/javascript">
+            $(document).ready(function() {
+            displayPopupNotification('@Html.Raw("<span>" + messageTitle + "</span><a id = \"apf-pay-button\" href = \"#\">" + button + "</a> ")',
+                'warning',
+                true);
+            var urlApfPay = '@Url.Action("AddApfToCart", "FiluetShoppingCart")';
+            var isProcessing = false;
+            $('#apf-pay-button')
+                .on('click',
+                    function(e) {
+                        e.preventDefault();
+                        if (isProcessing) {
+                            return;
+                        }
+
+                        isProcessing = true;
+
+                        $.ajax({
+                            method: 'POST',
+                            success: function(result) {
+                                isProcessing = false;
+                                if (!result) {
+                                    return;
+                                }
+                                setTimeout(function() { location = '@Url.RouteUrl("ShoppingCart")'; }, 3000);
+                            },
+                            url: urlApfPay
+                        });
+                    });
+        });
+    </script>
+    }
+}

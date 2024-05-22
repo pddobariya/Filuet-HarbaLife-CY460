@@ -1,0 +1,11 @@
+{
+  "Group": "Xcellence-it",
+  "FriendlyName": "PriceFilter",
+  "SystemName": "Catalogue.PriceFilter",
+  "Version": "1.50",
+  "SupportedVersions": [ "4.60" ],
+  "Author": "Xcellence-it",
+  "DisplayOrder": 1,
+  "FileName": "HBL.Uzbek.Onlineordering.Catalogue.PriceFilter.dll",
+  "Description": "PriceFilter"
+}

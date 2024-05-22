@@ -1,0 +1,36 @@
+﻿@model ISDK.Filuet.Theme.FiluetHerbalife.Models.ArticleModel
+
+@{
+    var articleClass = ViewData["tabletHide"]?.ToString() ?? "";
+}
+
+<div class="slide swiper-slide">
+    <div class="article @articleClass">
+        <a href="@Url.RouteUrl("BlogPost", new {SeName = Model.SeName})" class="thumb">
+            <img data-src="@Model.PictureUrl" alt="" class="lozad">
+        </a>
+
+        <div class="info">
+            <div class="date">
+                <div class="day">@Model.Day</div>
+                <div class="month">@Model.Month</div>
+            </div>
+
+            <div class="name">
+                <a href="@Url.RouteUrl("BlogPost", new {SeName = Model.SeName})" class="read-more">@Model.Name</a>
+            </div>
+
+            <div class="category">
+                <a href="@Url.RouteUrl("BlogPost", new {SeName = Model.SeName})" style="background: @Model.TagColor;">@Model.Category</a>
+            </div>
+
+            <div class="messengers">
+                <div>
+                    <a download href="@Model.PictureUrl">
+                        <svg class="icon"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_download")"></use></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+﻿@model HBL.Uzbek.Onlineordering.Catalogue.PriceFilter.Models.PriceRangeModel
+
+@{
+    Layout = "_AdminLayout";
+    var showTour = ViewBag.ShowTour ?? false;
+
+    const string hideConfigure = "Configure";
+    var customer = await workContext.GetCurrentCustomerAsync();
+    var hideConfigureBlock = showTour ? false : await genericAttributeService.GetAttributeAsync<bool>(customer, hideConfigure);
+}
+
+<form asp-controller="PriceRangeFilter" asp-action="PriceCreate" method="post">
+    <div class="content-header clearfix">
+        <h1 class="float-left">
+            @T("Admin.Plugins.Create")
+            <small>
+                <i class="fas fa-arrow-circle-left"></i>
+                <a asp-action="Configure" asp-controller="PriceFilter">@T("BackToList")</a>
+            </small>
+        </h1>
+        <div class="float-right">
+            <button type="submit" name="save" class="btn btn-primary">
+                <i class="far fa-save"></i>
+                @T("Admin.Common.Save")
+            </button>
+        </div>
+    </div>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="form-horizontal">
+                <nop-cards id="product-cards">
+                    <nop-card asp-name="product-info" asp-icon="fas fa-info" asp-title="@T("admin.plugins.pricefilter")" asp-hide-block-attribute-name="@hideConfigure" asp-hide="@hideConfigureBlock" asp-advanced="false">
+                        @await Html.PartialAsync("~/Plugins/Catalogue.PriceFilter/Views/PriceFilter/_CreateOrUpdate.cshtml")
+                    </nop-card>
+                </nop-cards>
+            </div>
+        </div>
+    </section>
+</form>

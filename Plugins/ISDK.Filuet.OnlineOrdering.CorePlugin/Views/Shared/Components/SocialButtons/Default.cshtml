@@ -1,0 +1,26 @@
+﻿@model SocialModel
+
+@{
+    var extendedModel = Model as FiluetSocialModel;
+    Model.CustomProperties.TryGetValue("social.site.url", out string wwwUrl);
+}
+
+<ul class="networks">
+    @if (!string.IsNullOrEmpty(Model.FacebookLink))
+    {
+        <li><a target="_blank" class="facebook" href="@Model.FacebookLink"></a></li>
+    }
+    @if (!string.IsNullOrEmpty(Model.YoutubeLink))
+    {
+        <li><a target="_blank" class="youtube" href="@Model.YoutubeLink"></a></li>
+    }
+   @* @if (!string.IsNullOrEmpty(extendedModel.InstagramLink))
+    {
+        <li><a target="_blank" class="instagram" href="@extendedModel.InstagramLink"></a></li>
+    }*@
+
+    @*@if (!string.IsNullOrEmpty(wwwUrl as string))
+        {
+            <li><a target="_blank" class="www" href="@wwwUrl"></a></li>
+        }*@
+</ul>

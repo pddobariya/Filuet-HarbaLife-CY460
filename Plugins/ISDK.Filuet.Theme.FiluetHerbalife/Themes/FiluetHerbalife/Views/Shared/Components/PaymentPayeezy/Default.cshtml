@@ -1,0 +1,18 @@
+﻿@using Nop.Web.Framework
+@{
+    Layout = "";
+}
+@using Nop.Plugin.Payments.Payeezy.Models
+@model PaymentInfoModel
+
+<div class="line radios">
+    <div class="field">
+        <input type="radio" name="IsShipInvoiceWithOrder" value="False" id="receipt_check1" @(Model.IsShipInvoiceWithOrder == false ? "checked" : "") />
+        <label for="receipt_check1">@T("Plugins.Payments.Payeezy.Fields.IsShipInvoiceWithOrder.False")</label>
+    </div>
+
+    <div class="field">
+        <input type="radio" name="IsShipInvoiceWithOrder" value="True" id="receipt_check2" @(Model.IsShipInvoiceWithOrder == true ? "checked" : "") />
+        <label for="receipt_check2">@T("Plugins.Payments.Payeezy.Fields.IsShipInvoiceWithOrder.True")</label>
+    </div>
+</div>

@@ -1,0 +1,11 @@
+{
+  "Group": "Xcellence-it",
+  "FriendlyName": "OrderStatus",
+  "SystemName": "ISDK.Filuet.OrderStatusPlugin",
+  "Version": "1.52",
+  "SupportedVersions": [ "4.60" ],
+  "Author": "Xcellence-it",
+  "DisplayOrder": 1,
+  "FileName": "ISDK.Filuet.OrderStatusPlugin.dll",
+  "Description": "OrderStatus"
+}

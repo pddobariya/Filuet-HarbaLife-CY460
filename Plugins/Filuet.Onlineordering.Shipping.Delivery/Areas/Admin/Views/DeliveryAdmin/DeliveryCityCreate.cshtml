@@ -1,0 +1,50 @@
+﻿@model DeliveryOperatorsCityModel
+
+@{
+    var showTour = ViewBag.ShowTour ?? false;
+    var customer = await workContext.GetCurrentCustomerAsync();
+    const string hideDeliveryCities = "DeliveryCities";
+    var hideDeliveryCitiesBlock = showTour ? false : await genericAttributeService.GetAttributeAsync<bool>(customer, hideDeliveryCities);
+}
+
+
+
+<form asp-controller="DeliveryAdmin" asp-action="DeliveryCityCreate" method="post">
+    <input type="hidden" asp-for="@Model.LanguageId" />
+    <div class="content-header clearfix">
+        <h1 class="float-left">
+            @T("Plugins.ShippingMethods.Delivery.DeliveryOperatorsCity.AddNew")
+            <small>
+                <i class="fas fa-arrow-circle-left"></i>
+                <a asp-controller="Config" asp-action="Configure">@T("Plugins.ShippingMethods.Delivery.BackToList")</a>
+            </small>
+        </h1>
+        <div class="float-right">
+            <button type="submit" name="save" class="btn btn-primary">
+                <i class="far fa-save"></i>
+                @T("Admin.Common.Save")
+            </button>
+        </div>
+    </div>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="form-horizontal">
+                <nop-card asp-name="DeliveryCities-info" asp-icon="fas fa-info" asp-title="@T("Plugins.ShippingMethods.Delivery.DeliveryCities")" asp-hide-block-attribute-name="@hideDeliveryCities" asp-hide="@hideDeliveryCitiesBlock" asp-advanced="false">
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="@Model.CityName" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="@Model.CityName" />
+                                <span asp-validation-for="@Model.CityName"></span>
+                            </div>
+                        </div>
+                    </div>
+                </nop-card>
+            </div>
+        </div>
+    </section>
+
+</form>
+

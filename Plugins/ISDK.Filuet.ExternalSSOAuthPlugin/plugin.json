@@ -1,0 +1,11 @@
+﻿{
+  "Group": "Xcellence-it",
+  "FriendlyName": "SSO authentication",
+  "SystemName": "ExternalSSOAuth.Herbalife",
+  "Version": "1.50",
+  "SupportedVersions": [ "4.60" ],
+  "Author": "Xcellence-it",
+  "DisplayOrder": 1,
+  "FileName": "ISDK.Filuet.ExternalSSOAuthPlugin.dll",
+  "Description": "This plugin enables SSO authentication"
+}

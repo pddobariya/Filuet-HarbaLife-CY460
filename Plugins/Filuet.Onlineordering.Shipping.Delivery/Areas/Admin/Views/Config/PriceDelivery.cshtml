@@ -1,0 +1,103 @@
+﻿@model ConfigurationModel
+
+
+<div class="cards-group">
+    <div class="card card-default">
+        <div class="card-body">
+            @await Html.PartialAsync("Table", new DataTablesModel
+            {
+                Name = "price-delivery-grid-" + Model.PriceDtoSearchModel.LanguageId,
+                UrlRead = new DataUrl("GetPrices", "DeliveryAdmin", new RouteValueDictionary{[nameof(Model.PriceDtoSearchModel.LanguageId)]=  Model.PriceDtoSearchModel.LanguageId}),
+                UrlUpdate = new DataUrl("PriceUpdate", "DeliveryAdmin", new RouteValueDictionary{[nameof(Model.PriceDtoSearchModel.LanguageId)]=  Model.PriceDtoSearchModel.LanguageId}),
+                UrlDelete = new DataUrl("PriceDelete", "DeliveryAdmin", new RouteValueDictionary{[nameof(Model.PriceDtoSearchModel.LanguageId)]=  Model.PriceDtoSearchModel.LanguageId}),
+                Length = Model.PriceDtoSearchModel.PageSize,
+                LengthMenu = Model.PriceDtoSearchModel.AvailablePageSizes,
+                ColumnCollection = new List<ColumnProperty>
+                {
+                    new ColumnProperty(nameof(PriceDtoAddModel.DeliveryCityName))
+                    {
+                        Title = T("Plugins.ShippingMethods.Delivery.Fields.DeliveryCity").Text,
+                        Width = "100",
+                        Editable = true,
+                        EditType = EditType.Number
+                    },
+                    new ColumnProperty(nameof(PriceDtoAddModel.DeliveryOperatorName))
+                    {
+                        Title = T("Plugins.ShippingMethods.Delivery.Fields.DeliveryOperator").Text,
+                        Width = "100",
+                        Editable = true,
+                        EditType = EditType.Number
+                    },
+                    new ColumnProperty(nameof(PriceDtoAddModel.TypeName))
+                    {
+                        Title = T("Plugins.ShippingMethods.Delivery.Fields.DeliveryType").Text,
+                        Width = "100",
+                        Editable = true,
+                        EditType = EditType.Number
+                    },
+                    new ColumnProperty(nameof(PriceDtoAddModel.DeliveryPrise))
+                    {
+                        Title = T("Plugins.ShippingMethods.Delivery.Fields.DeliveryPrise").Text,
+                        Width = "100",
+                        Editable = true,
+                        EditType = EditType.Number
+                    },
+                    new ColumnProperty(nameof(PriceDtoAddModel.MinCriterionValue))
+                    {
+                        Title = T("Plugins.ShippingMethods.Delivery.Fields.MinCriterion").Text,
+                        Editable = true,
+                        Width = "100",
+                        EditType = EditType.Number
+                    },
+                    new ColumnProperty(nameof(PriceDtoAddModel.MaxCriterionValue))
+                    {
+                        Title = T("Plugins.ShippingMethods.Delivery.Fields.MaxCriterion").Text,
+                        Width = "100",
+                        Editable = true,
+                        EditType = EditType.Number
+                    },
+                    new ColumnProperty(nameof(PriceDtoAddModel.Id))
+                    {
+                        Title = T("Admin.Common.Edit").Text,
+                        Width = "100",
+                        ClassName =  NopColumnClassDefaults.Button,
+                        Render = new RenderCustom("renderPriceColumnEdit"+Model.PriceDtoSearchModel.LanguageId)
+                    },
+                    new ColumnProperty(nameof(PriceDtoAddModel.Id))
+                    {
+                        Title = T("Admin.Common.Delete").Text,
+                        Width = "100",
+                        ClassName =  NopColumnClassDefaults.Button,
+                        Render = new RenderButtonRemove(T("Admin.Common.Delete").Text)
+                    }
+                }
+            })
+            <script>
+                function renderPriceColumnEdit@(Model.PriceDtoSearchModel.LanguageId)(data, type, row, meta) {
+                    return '<button onclick=\"javascript:OpenWindow(\'@Url.Content("~/Admin/DeliveryAdmin/PriceUpdate/")' + data + '?languageId=@(Model.PriceDtoSearchModel.LanguageId)&btnId=btnRefreshPrice@(Model.PriceDtoSearchModel.LanguageId)&formId=delivery-form\', 800, 600, true); return false;\" class="btn btn-default">'
+                        + '<i class="fas fa-pencil-alt"></i>@T("Admin.Common.Edit").Text</button>';
+                }
+            </script>
+            <div class="card-footer">
+                <button type="submit" id="btnRefreshPrice@(Model.PriceDtoSearchModel.LanguageId)" style="display: none"></button>
+                <script>
+                    $(document).ready(function () {
+                        $('#btnRefreshPrice@(Model.PriceDtoSearchModel.LanguageId)').click(function () {
+                            updateTable('#price-delivery-grid-@Model.PriceDtoSearchModel.LanguageId');
+                            return false;
+                        });
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="float-left">
+    <a href="@Url.Action("PriceCreate", "DeliveryAdmin", new { languageId = Model.PriceDtoSearchModel.LanguageId })" class="btn btn-primary">
+        <i class="fas fa-plus-square"></i>
+        @T("Admin.Common.AddNew")
+    </a>
+</div>
+
+
+

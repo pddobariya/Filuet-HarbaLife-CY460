@@ -1,0 +1,6 @@
+﻿<div class="checkout-data">
+    <div class="section shipping-method">
+        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.OpCheckoutShippingMethodTop })
+        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.OpCheckoutShippingMethodBottom })
+    </div>
+</div>

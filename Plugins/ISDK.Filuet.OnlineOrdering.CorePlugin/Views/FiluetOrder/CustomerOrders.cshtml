@@ -1,0 +1,105 @@
+﻿@model FiluetCustomerOrderListModel
+@{
+    Layout = "_ColumnsTwo";
+
+    //title
+    NopHtml.AddTitleParts(T("PageTitle.Account").Text);
+    //page class
+    NopHtml.AppendPageCssClassParts("html-account-page");
+    NopHtml.AppendPageCssClassParts("html-order-list-page");
+}
+@section left
+{
+    @await Component.InvokeAsync("CustomerNavigation", new { selectedTabId = CustomerNavigationEnum.Orders })
+}
+@await Html.PartialAsync("~/Plugins/ISDK.Filuet.OnlineOrdering.CorePlugin/Views/FiluetOrder/_OrderSelectors.cshtml", Model.PagingFilteringContext)
+<div class="page account-page order-list-page">
+    <div class="page-title">
+        <h1>@T("Account.MyAccount") - @T("Account.CustomerOrders")</h1>
+    </div>
+    <div class="page-body">
+        <div class="title">
+            <strong>@T("Account.CustomerOrders.Information.NowSiteOrders")</strong>
+        </div>
+        @if (Model.Orders.Count > 0)
+        {
+            <div class="order-list">
+                <div class="section order-header">
+                    <ul class="info">
+                        <li>@T("Account.CustomerOrders.Information.NowSiteOrder.Number")</li>
+                        <li>@T("Account.CustomerOrders.Information.NowSiteOrder.Date")</li>
+                        <li>@T("Account.CustomerOrders.Information.NowSiteOrder.Sum")</li>
+                        <li>VP</li>
+                        <li>@T("Account.CustomerOrders.Information.NowSiteOrder.Status")</li>
+                    </ul>
+                </div>
+                @foreach (var order in Model.Orders)
+                {
+                    <div class="section order-item">
+                        <ul class="info" onclick="setLocation('@Url.RouteUrl("OrderDetails",new { orderId = order.Id})')">
+                            <li>@order.FusionOrderNumber</li>
+                            <li>@order.CreatedOn</li>
+                            <li>@order.OrderTotal</li>
+                            <li>@order.VolumePoints</li>
+                            <li class="@order.OrderStatusClass">@order.OrderStatus</li>
+                        </ul>
+                    </div>
+                }
+                @{
+                    var pager = Html.Pager(Model.PagingFilteringContext).QueryParam("pagenumber").BooleanParameterName("adv").BooleanParameterName("isc").BooleanParameterName("sid").RenderEmptyParameters(true);
+                }
+                @if (!await pager.IsEmpty())
+                {
+                    <div class="pager">
+                        @pager
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            <div class="no-data">
+                @T("Account.CustomerOrders.NoOrders")
+            </div>
+        }
+    </div>
+</div>
+<style type="text/css">
+    .order-list .order-item, .order-list .order-header {
+        display: block;
+        width: auto;
+    }
+
+        .order-list .order-item:hover {
+            background-color: greenyellow;
+            cursor: pointer;
+        }
+
+    .info li {
+        display: inline-block;
+        width: 160px;
+        text-align: center;
+        border: 1px solid black;
+    }
+        .info li.waitforpayment {
+            background-color: rgb(190,58,52);
+            color: white;
+        }
+        .info li.sfsent {
+            background-color: rgb(220,88,42);
+            color: white;
+        }
+        .info li.paid {
+            background-color: rgb(254,209,65);
+        }
+        .info li.sent {
+            background-color: rgb(120,190,32);
+        }
+        .info li.canceled {
+            background-color: rgb(158,162,162);
+        }
+
+    .order-list .order-item .info {
+        margin: 0;
+    }
+</style>

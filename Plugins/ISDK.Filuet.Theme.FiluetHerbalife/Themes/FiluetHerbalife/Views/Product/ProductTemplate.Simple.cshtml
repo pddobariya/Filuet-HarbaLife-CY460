@@ -1,0 +1,298 @@
+﻿@model FiluetProductDetailsModel
+@{
+    Layout = "_ColumnsOne";
+
+    //title
+    NopHtml.AddTitleParts(!string.IsNullOrEmpty(Model.MetaTitle) ? Model.MetaTitle : Model.Name);
+    //meta
+    NopHtml.AddMetaDescriptionParts(Model.MetaDescription);
+    NopHtml.AddMetaKeywordParts(Model.MetaKeywords);
+    //page class
+    NopHtml.AppendPageCssClassParts("html-product-details-page");
+
+    //canonical URL
+    if (seoSettings.CanonicalUrlsEnabled)
+    {
+        var productUrl = Url.RouteUrl("Product", new { SeName = Model.SeName }, webHelper.GetCurrentRequestProtocol()).ToLowerInvariant();
+        NopHtml.AddCanonicalUrlParts(productUrl, seoSettings.QueryStringInCanonicalUrlsEnabled);
+    }
+
+    //open graph META tags
+    if (seoSettings.OpenGraphMetaTags)
+    {
+        NopHtml.AddHeadCustomParts("<meta property=\"og:type\" content=\"product\" />");
+        NopHtml.AddHeadCustomParts("<meta property=\"og:title\" content=\"" + Html.Encode(Model.Name) + "\" />");
+        NopHtml.AddHeadCustomParts("<meta property=\"og:description\" content=\"" + Html.Encode(htmlFormatter.StripTags(Model.MetaDescription)) + "\" />");
+        NopHtml.AddHeadCustomParts("<meta property=\"og:image\" content=\"" + Model.DefaultPictureModel.ImageUrl + "\" />");
+        NopHtml.AddHeadCustomParts("<meta property=\"og:image:url\" content=\"" + Model.DefaultPictureModel.ImageUrl + "\" />");
+        NopHtml.AddHeadCustomParts("<meta property=\"og:url\" content=\"" + webHelper.GetThisPageUrl(false) + "\" />");
+        NopHtml.AddHeadCustomParts("<meta property=\"og:site_name\" content=\"" + Html.Encode(Model.CurrentStoreName) + "\" />");
+    }
+
+    //Twitter META tags
+    if (seoSettings.TwitterMetaTags)
+    {
+        NopHtml.AddHeadCustomParts("<meta property=\"twitter:card\" content=\"summary\" />");
+        NopHtml.AddHeadCustomParts("<meta property=\"twitter:site\" content=\"" + Html.Encode(Model.CurrentStoreName) + "\" />");
+        NopHtml.AddHeadCustomParts("<meta property=\"twitter:title\" content=\"" + Html.Encode(Model.Name) + "\" />");
+        NopHtml.AddHeadCustomParts("<meta property=\"twitter:description\" content=\"" + Html.Encode(htmlFormatter.StripTags(Model.MetaDescription)) + "\" />");
+        NopHtml.AddHeadCustomParts("<meta property=\"twitter:image\" content=\"" + Model.DefaultPictureModel.ImageUrl + "\" />");
+        NopHtml.AddHeadCustomParts("<meta property=\"twitter:url\" content=\"" + webHelper.GetThisPageUrl(false) + "\" />");
+    }
+
+    NopHtml.AddScriptParts(ResourceLocation.Footer, $"~/Themes/FiluetHerbalife/Content/js/basketutils.js");
+
+    //prepare "Add to cart" AJAX link
+    var shoppingCartTypeId = (int)ShoppingCartType.ShoppingCart;
+    var quantity = 1;
+    var addtocartlink = Url.RouteUrl("AddProductToCart-Catalog", new { productId = Model.Id, shoppingCartTypeId = shoppingCartTypeId, quantity = quantity });
+
+    var customer = await workContext.GetCurrentCustomerAsync();
+    var cart = (await shoppingCartService.GetShoppingCartAsync(customer))
+        .Where(sci => sci.ShoppingCartType == ShoppingCartType.ShoppingCart)
+        .ToList();
+
+    var shoppingCartProduct = cart.FirstOrDefault(c => c.ProductId == Model.Id);
+    var showallProductReview = Model.CustomProperties.ContainsValue(NopFiluetCommonDefaults.ShowProductReview);
+}
+<!--product breadcrumb-->
+@section Breadcrumb
+{
+    @await Html.PartialAsync("_ProductBreadcrumb", Model.Breadcrumb)
+}
+@await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductDetailsAfterBreadcrumb, additionalData = Model })
+<div class="page product-details-page">
+    <div class="page-body">
+        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ProductDetailsTop, additionalData = Model })
+
+        @if (seoSettings.MicrodataEnabled)
+        {
+            @await Html.PartialAsync("_Microdata", Model)
+        }
+
+        <section class="product_info block border" data-productid="@Model.Id">
+            <div class="cont">
+
+                <section class="product_data">
+
+                    <!--product pictures-->
+                    @await Html.PartialAsync("_ProductDetailsPictures", Model)
+
+                    <div class="data">
+                        <div class="col_left">
+                            <div class="mob_head">
+                                <h1 class="product_name">@Model.Name</h1>
+
+                               @* New Code For Rating Avarange and half star is not allow.*@
+                                @{
+                                    var ratingPercent = 0;
+                                    if (Model.ProductReviewOverview.TotalReviews != 0)
+                                    {
+                                        ratingPercent = ((Model.ProductReviewOverview.RatingSum) / Model.ProductReviewOverview.TotalReviews);
+                                    }
+                                }
+                                @if(showallProductReview)
+                                {
+                                    <div class="rating">
+                                        @if (@Model.ProductReviewOverview.RatingSum > 0)
+                                        {
+                                            for (int i = 0; i < ratingPercent; i++)
+                                            {
+                                                <svg class="icon active"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_star")"></use></svg>
+                                            }
+                                        }
+                                        <span>@Model.ProductReviewOverview.TotalReviews @T("Reviews.Overview.Reviews")</span>
+                                    </div>
+                                }
+                               @* Old Code For 4.4 according...*@
+                                @*<div class="rating">
+                                    @if (@Model.ProductReviewOverview.RatingSum > 0)
+                                    {
+                                        for (int i = 0; i < Model.ProductReviewOverview.RatingSum; i++)
+                                        {
+                                            <svg class="icon active"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_star")"></use></svg>
+                                        }
+                                    }
+                                    <span>@Model.ProductReviewOverview.TotalReviews @T("Reviews.Overview.Reviews")</span>
+                                </div>*@
+                            </div>
+
+                            @if (!string.IsNullOrEmpty(Model.ShortDescription))
+                            {
+                                <div class="desc text_block">
+                                    @Html.Raw(Model.ShortDescription)
+                                </div>
+                            }
+                        </div>
+
+                        <div class="col_right">
+                            <div class="features">
+                                <div class="item">
+                                    <div class="name">@T("Products.Sku"):</div>
+                                    <div class="val">@Model.Sku</div>
+                                </div>
+
+                                <div class="item">
+                                    <div class="name">@T("ISDK.Filuet.OnlineOrdering.CorePlugin.EarnBasePrice"):</div>
+                                    <div class="val">@Model.EarnBasePrice</div>
+                                </div>
+
+                                <div class="item">
+                                    <div class="name">@T("ISDK.Filuet.OnlineOrdering.CorePlugin.BasicRetailPrice"):</div>
+                                    <div class="val">@Model.BasicRetailPrice</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col_left">
+
+                            @{
+                                var dataDictPrice = new ViewDataDictionary(ViewData);
+                                dataDictPrice.TemplateInfo.HtmlFieldPrefix = $"price_{Model.Id}";
+                                @await Html.PartialAsync("_ProductPrice", Model.ProductPrice, dataDictPrice)
+                            }
+
+                            @if (!Model.AddToCart.DisableBuyButton)
+                            {
+                                <div class="buy">
+                                    <button class="buy_btn @(shoppingCartProduct != null ? "active" : "")" onclick=" $('.buy_btn').css({ 'background-color': '#e5e6e6;', 'color': '#979b9b;' }); $('.buy_btn').prop('disabled', true);  addproducttocart('@addtocartlink', @Model.Id, this);return false;">
+                                        <span>@T("ISDK.Filuet.Theme.FiluetHerbalife.AddToBasket")</span>
+                                        <span>@T("ShoppingCart.AddToCart")</span>
+                                    </button>
+
+                                    <div class="success">
+
+                                        <div class="amount" data-product-id="@Model.Id">
+                                            <button type="button" class="minus">-</button>
+
+                                            <input type="text" value="@(shoppingCartProduct?.Quantity ?? 1)" class="input" data-minimum="0" data-maximum="99" data-step="1" data-unit="" maxlength="2">
+
+                                            <button type="button" class="plus">+</button>
+                                        </div>
+                                    </div>
+
+                                    <form class="shopping-cart-form" method="post" enctype="multipart/form-data" style="display: none;">
+
+                                        <input class="removefromcart" type="checkbox" name="removefromcart" value="@(shoppingCartProduct?.Id)">
+
+                                        @if (shoppingCartProduct != null)
+                                        {
+                                            <input class="itemquantity" name="itemquantity@(shoppingCartProduct.Id)" value="@(shoppingCartProduct.Quantity)">
+                                        }
+
+                                        <input name="updatecart" value="@T("ISDK.Filuet.Theme.FiluetHerbalife.ShoppingCart.UpdateCart")">
+
+                                    </form>
+
+                                </div>
+                            }
+
+                        </div>
+
+                        <div class="col_right mob_top">
+                            <div class="links">
+
+                                @{
+                                    var dataDictAddToWishlist = new ViewDataDictionary(ViewData);
+                                    dataDictAddToWishlist.TemplateInfo.HtmlFieldPrefix = $"addtocart_{Model.Id}";
+                                    @await Html.PartialAsync("_AddToWishlist", Model.AddToCart, dataDictAddToWishlist)
+                                }
+
+                                @await Html.PartialAsync("_CompareProductsButton", Model)
+
+                                @await Html.PartialAsync("_ShareButton", Model)
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+                <section class="tabs_container">
+                    <div class="tabs">
+                        <button data-content="#tab1" data-level="level1" class="active">@T("ISDK.Filuet.Theme.FiluetHerbalife.Products.Information")</button>
+                        <button data-content="#tab2" data-level="level1">@T("ISDK.Filuet.Theme.FiluetHerbalife.Products.Characteristics")</button>
+                        @if (showallProductReview)
+                        {
+                           <button data-content="#tab3" data-level="level1">@T("ISDK.Filuet.Theme.FiluetHerbalife.Products.Reviews")</button>
+                        }
+                    </div>
+
+                    <div class="tab_content level1 active" id="tab1">
+                        <div class="text_block">
+                            @if (!string.IsNullOrEmpty(Model.ProductDescription.Description))
+                            {
+                                @Html.Raw(Model.ProductDescription.Description)
+                            }
+                        </div>
+                    </div>
+
+                    <div class="tab_content level1" id="tab2">
+                        <div class="text_block">
+                            @await Html.PartialAsync("_ProductSpecifications", Model.ProductSpecificationModel)
+                        </div>
+
+                        @if (Model.ProductDescription.PdfFiles.Count > 0)
+                        {
+                            <div class="files">
+                                @foreach (var pdfFile in Model.ProductDescription.PdfFiles)
+                                {
+                                    <a href="@Url.Action("GetFileUpload", "Download", new { downloadId = pdfFile.DownloadGuid })" class="file" target="_blank">
+                                        <img src="@Url.Content("~/Themes/FiluetHerbalife/Content/images/ic_pdf.png")" alt="" class="icon">
+                                        <span>@pdfFile.Label</span>
+                                    </a>
+                                }
+                            </div>
+                        }
+                    </div>
+
+                    <div class="tab_content level1" id="tab3">
+                        @await Component.InvokeAsync("ProductReviews", new { productId = Model.Id })
+                        @await Html.PartialAsync("_FiluetAddProductReview", new ProductReviewsModel { ProductId = Model.Id })
+                    </div>
+                </section>
+            </div>
+        </section>
+
+        @if (Model.AssociatedProducts.Count > 0)
+        {
+            <section class="tastes block">
+                <div class="cont">
+                    <div class="block_head padding_right">
+                        <div class="title">@T("ISDK.Filuet.ProductTemplate.Available.Flavors")</div>
+                    </div>
+
+                    <div class="swiper-container carousel">
+                        <div class="swiper-wrapper">
+                            @foreach (var associatedProduct in Model.AssociatedProducts)
+                            {
+                                <div class="slide swiper-slide">
+                                    <a href="@(Url.RouteUrl<Product>(new { SeName = associatedProduct.SeName }))" class="item">
+                                        <div class="thumb">
+                                            <img data-src="@associatedProduct.DefaultPictureModel.ImageUrl" alt="" class="lozad">
+                                        </div>
+                                        <div>@associatedProduct.Name</div>
+                                    </a>
+                                </div>
+                            }
+
+                        </div>
+
+                        <div class="swiper-button-prev">
+                            <svg class="icon"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_arrow_left")"></use></svg>
+                        </div>
+
+                        <div class="swiper-button-next">
+                            <svg class="icon"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_arrow_right")"></use></svg>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        }
+
+        @await Component.InvokeAsync("ProductsAlsoPurchased", new { productId = Model.Id })
+        @await Component.InvokeAsync("RelatedProducts", new { productId = Model.Id })
+
+
+    </div>
+</div>

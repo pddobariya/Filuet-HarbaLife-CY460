@@ -1,0 +1,41 @@
+﻿@model CatalogProductsModel
+@if (!string.IsNullOrEmpty(Model.WarningMessage))
+{
+    <div class="warning">
+        @Model.WarningMessage
+    </div>
+}
+
+@if (Model.Products.Count > 0)
+{
+    <div class="products block">
+        <div class="@(Model.ViewMode == "list" ? "list" : "row")">
+            @foreach (var product in Model.Products)
+            {
+                @await Html.PartialAsync("_ProductBox", product)
+            }
+        </div>
+    </div>
+
+
+    var pager = new FiluetPager(Model, Html.ViewContext)
+        .MainUlCssClass("pagination").CurrentPageCssClass("active")
+        //.PreviousPageCssClass("next")
+        .NextPageCssClass("next").NextPageLocalization("FiluetPager.Next")
+        .ShowFirst(false).ShowPrevious(false).ShowLast(false).IndividualPagesDisplayedCount(8)
+        .QueryParam("pagenumber").BooleanParameterName("advs").BooleanParameterName("isc").BooleanParameterName("sid")
+        .RenderEmptyParameters(true);
+
+    @if (!await pager.IsEmpty())
+    {
+        @pager
+    }
+
+    <div class="exp">@T("ISDK.Filuet.Theme.FiluetHerbalife.Expression")</div>
+}
+else if (!string.IsNullOrEmpty(Model.NoResultMessage))
+{
+    <div class="no-result">
+        @Model.NoResultMessage
+    </div>
+}

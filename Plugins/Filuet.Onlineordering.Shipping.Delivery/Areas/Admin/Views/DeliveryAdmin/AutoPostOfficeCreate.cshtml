@@ -1,0 +1,101 @@
+@model AutoPostOfficeDtoModel
+
+@{
+    var showTour = ViewBag.ShowTour ?? false;
+    var customer = await workContext.GetCurrentCustomerAsync();
+    const string hideAutoPostOffices = "AutoPostOffices";
+    var hideAutoPostOfficesBlock = showTour ? false : await genericAttributeService.GetAttributeAsync<bool>(customer, hideAutoPostOffices);
+}
+
+<form asp-controller="DeliveryAdmin" asp-action="AutoPostOfficeCreate" method="post">
+    <input type="hidden" asp-for="@Model.LanguageId" />
+    <div class="content-header clearfix">
+        <h1 class="float-left">
+            @T("Plugins.ShippingMethods.Delivery.AutoPostOffice.AddNew")
+            <small>
+                <i class="fas fa-arrow-circle-left"></i>
+                <a asp-controller="Config" asp-action="Configure">@T("Plugins.ShippingMethods.Delivery.BackToList")</a>
+            </small>
+        </h1>
+        <div class="float-right">
+            <button type="submit" name="save" class="btn btn-primary">
+                <i class="far fa-save"></i>
+                @T("Admin.Common.Save")
+            </button>
+        </div>
+    </div>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="form-horizontal">
+                <nop-card asp-name="AutoPostOffices-info" asp-icon="fas fa-info" asp-title="@T("Plugins.ShippingMethods.Delivery.AutoPostOffices")" asp-hide-block-attribute-name="@hideAutoPostOffices" asp-hide="@hideAutoPostOfficesBlock" asp-advanced="false">
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="@Model.DeliveryCityId" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-select asp-for="@Model.DeliveryCityId" asp-items="@Model.AvailableDeliveryCityId" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="@Model.DeliveryOperatorId" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-select asp-for="@Model.DeliveryOperatorId" asp-items="@Model.AvailableOperatorId" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="@Model.DeliveryTypeId" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-select asp-for="@Model.DeliveryTypeId" asp-items="@Model.AvailableTypeId" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="@Model.PointId" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="@Model.PointId" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="@Model.Blocked" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="@Model.Blocked" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="@Model.Address" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="@Model.Address" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="@Model.Comment" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="@Model.Comment" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="@Model.PriceIsAbsent" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="@Model.PriceIsAbsent" />
+                            </div>
+                        </div>
+                    </div>
+                </nop-card>
+            </div>
+        </div>
+    </section>
+</form>

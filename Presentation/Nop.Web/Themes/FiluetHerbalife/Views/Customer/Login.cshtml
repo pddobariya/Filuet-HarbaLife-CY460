@@ -1,0 +1,71 @@
+﻿@model LoginModel
+@using Nop.Core;
+@using Nop.Web.Framework.UI;
+
+@inject IWebHelper webHelper
+
+@{
+    Layout = "~/Views/Shared/_ColumnsOne.cshtml";
+
+    //title
+    NopHtml.AddTitleParts(T("PageTitle.Login").Text);
+    //page class
+    NopHtml.AppendPageCssClassParts("html-login-page");
+}
+
+<section class="auth block">
+    <div class="cont">
+        <div class="login">
+            @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.LoginTop, additionalData = Model })
+            <div class="title">@T("ISDK.Filuet.Theme.FiluetHerbalife.Account.Login.Title")</div>
+            @await Html.PartialAsync("_ExternalAuthentication.Errors")
+            <form asp-route="AdminLogin" asp-route-returnurl="@Context.Request.Query["ReturnUrl"]" method="post" class="form">
+                <div asp-validation-summary="ModelOnly" class="message-error">@T("Account.Login.Unsuccessful")</div>
+               
+                @if (Model.UsernamesEnabled)
+                {
+                    <div class="line">
+                        <div class="field">
+                            <input asp-for="Username" type="text" class="input" autofocus="autofocus" placeholder="@T("Admin.Customers.Customers.Fields.Username")" />
+                            <span asp-validation-for="Username"></span>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="line">
+                        <div class="field">
+                            <input asp-for="Email" type="text" class="input" autofocus="autofocus" placeholder="@T("Admin.Customers.Customers.Fields.Email")" />
+                            <span asp-validation-for="Email"></span>
+                        </div>
+                    </div>
+                }
+                <div class="line">
+                    <div class="field">
+                        <input asp-for="Password" type="password" class="input" autofocus="autofocus" placeholder="@T("Admin.Customers.Customers.Fields.Password")" />
+                        <span asp-validation-for="Password"></span>
+                    </div>
+                </div>
+
+                <div class="line remember">
+                    <div class="field">
+                        <input asp-for="RememberMe" type="checkbox" id="remember_check" />
+                        <label for="remember_check">@T("ISDK.Filuet.Theme.FiluetHerbalife.Account.Login.RememberMe")</label>
+                    </div>
+                </div>
+
+                @if (Model.DisplayCaptcha)
+                {
+                    <div class="captcha-box">
+                        <nop-captcha />
+                    </div>
+                }
+
+                <div class="submit">
+                    <button class="submit_btn">@T("Account.Login")</button>
+                </div>
+            </form>
+            @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.LoginBottom, additionalData = Model })
+        </div>
+    </div>
+</section>

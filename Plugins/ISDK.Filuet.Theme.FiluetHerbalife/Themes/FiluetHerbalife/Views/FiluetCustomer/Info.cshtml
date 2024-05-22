@@ -1,0 +1,333 @@
+﻿@model ISDK.Filuet.OnlineOrdering.CorePlugin.Models.Customer.FiluetCustomerInfoModel
+@{
+    Layout = "_ColumnsTwo";
+
+    //title
+    NopHtml.AddTitleParts(T("PageTitle.Account").Text);
+    //page class
+    NopHtml.AppendPageCssClassParts("html-account-page");
+    NopHtml.AppendPageCssClassParts("html-customer-info-page");
+}
+
+@section left
+{
+    @await Component.InvokeAsync("CustomerNavigation", new { selectedTabId = CustomerNavigationEnum.Info })
+}
+<section class="lk_info">
+    <div class="block_head">
+        <div class="title">@T("Account.MyAccount") - @T("Account.CustomerInfo")</div>
+    </div>
+    <div class="data">
+        <div class="item">
+            <div class="name">@T("Account.Fields.DistributorId")</div>
+            <div class="val">@Model.DistributorId</div>
+        </div>
+
+        <div class="item">
+            <div class="name">@T("Account.Fields.FirstName")</div>
+            <div class="val">@Model.FirstName</div>
+        </div>
+
+        <div class="item">
+            <div class="name">@T("Account.Fields.LastName")</div>
+            <div class="val">@Model.LastName</div>
+        </div>
+
+        <div class="item">
+            <div class="name">@T("Account.Fields.Email")</div>
+            <div class="val">@Model.Email</div>
+        </div>
+
+        @if (Model.VolumeLimits.Any())
+        {
+            <div class="item">
+                <div class="name">@T("Account.Fields.volumeLimits")</div>
+                @foreach (var VolumeLimits in @Model.VolumeLimits)
+                {
+                    <div class="val">@VolumeLimits.PersonalVolumeLimit</div>
+                }
+            </div>
+        }
+        else
+        {
+            <div class="item">
+                <div class="name">@T("Account.Fields.NoVolumelimitsFound")</div>
+            </div>
+        }
+
+        <div class="item">
+            <div class="name">@T("Account.Fields.Tv")</div>
+            <div class="val">@Model.Tv</div>
+        </div>
+
+        <div class="item">
+            <div class="name">@T("Account.Fields.Pv")</div>
+            <div class="val">@Model.Pv</div>
+        </div>
+
+        <div class="item">
+            <div class="name">@T("Account.Fields.Ppv")</div>
+            <div class="val">@Model.Ppv</div>
+        </div>
+    </div>
+    <form asp-route="CustomerInfo" method="post" class="form">
+        <div class="section addresses">
+            <div class="title">@T("Account.CustomerInfo.ShippingInformation")</div>
+
+            <div class="line">
+                <div class="field">
+                    <input class="input" asp-for="Country" disabled="disabled" />
+                </div>
+                <div class="field">
+                    <input class="input" asp-for="StreetAddress" disabled="disabled" />
+                </div>
+            </div>
+
+            @{
+                int counter = 0;
+            }
+            @foreach (var streetAddress in Model.AdditionalStreetAddresses)
+            {
+                <div class="line">
+                    <div class="field row">
+                        <button type="button" class="delete_btn" onclick="DeleteAddress(@counter, this)">
+                            <svg class="icon">
+                                <use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_delete")"></use>
+                            </svg>
+                        </button>
+                        @Html.TextBox("streetAddress" + counter, streetAddress, new { @class = "input", disabled = "disabled" })
+                    </div>
+                </div>
+                counter++;
+            }
+
+            <div class="line" style="display: none">
+                <div class="field">
+                    <input type="text" class="input" />
+                </div>
+                <div class="field buttons">
+                    <button type="button" class="check_btn">
+                        <svg class="icon">
+                            <use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_check")"></use>
+                        </svg>
+                    </button>
+                    <button type="button" class="delete_btn">
+                        <svg class="icon">
+                            <use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_delete")"></use>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <button id="addAddress" type="button" class="add_btn" onclick="Add(this)">
+                <svg class="icon">
+                    <use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_add")"></use>
+                </svg>
+                <span>@T("Account.CustomerInfo.AddAddress")</span>
+            </button>
+        </div>
+
+
+        <div class="section phones">
+            <div class="title">@T("Account.Fields.Phone")</div>
+
+            <div class="line">
+                <div class="field">
+                    <input class="input" asp-for="Phone" disabled="disabled" />
+                </div>
+            </div>
+            @{
+                counter = 0;
+            }
+            @foreach (var phone in Model.AdditionalPhones)
+            {
+                <div class="line">
+                    <div class="field row">
+                        <button type="button" class="delete_btn" onclick="DeletePhone(@counter, this)">
+                            <svg class="icon">
+                                <use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_delete")"></use>
+                            </svg>
+                        </button>
+
+                        @Html.TextBox("phone" + counter, phone, new { @class = "input", disabled = "disabled" })
+                    </div>
+                </div>
+                counter++;
+            }
+
+            <div class="line" style="display: none">
+                <div class="field">
+                    <input type="text" class="input" />
+                </div>
+                <div class="field buttons">
+                    <button type="button" class="check_btn">
+                        <svg class="icon">
+                            <use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_check")"></use>
+                        </svg>
+                    </button>
+                    <button type="button" class="delete_btn">
+                        <svg class="icon">
+                            <use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_delete")"></use>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <button id="addPhone" type="button" class="add_btn" onclick="Add(this)">
+                <svg class="icon">
+                    <use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_add")"></use>
+                </svg>
+                <span>@T("Account.CustomerInfo.AddPhone")</span>
+            </button>
+        </div>
+    </form>
+    <div class="info-text">@T("Account.CustomerInfo.CallToChangePersonalDetails")</div>
+</section>
+
+    <script>
+    function DeleteAddress(counter, node) {
+        var content = node.nextElementSibling.value;
+        var postData = {
+            streetAddress: content
+        };
+        addAntiForgeryToken(postData);
+
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("DeleteStreetAddress")",
+            data: postData,
+            error: function(str) {
+                alert(str.responseText);
+            },
+            success: function () {
+                $("#streetAddress" + counter).parent().remove();
+            }
+        });
+    };
+
+    function DeletePhone(counter, node) {
+        var content = node.nextElementSibling.value;
+        var postData = {
+            phone: content
+        };
+        addAntiForgeryToken(postData);
+
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("DeletePhone")",
+            data: postData,
+            error: function(str) {
+                alert(str.responseText);
+            },
+            success: function () {
+                $("#phone" + counter).parent().remove();
+            }
+        });
+    };
+
+    function Add(node) {
+        var template = node.previousElementSibling;
+        var addNode = template.previousElementSibling;
+        var newElement = template.cloneNode(true);
+        newElement.removeAttribute("id");
+        newElement.removeAttribute("style");
+        newElement = addNode.parentElement.insertBefore(newElement, template);
+        var Commit;
+        if (node.getAttribute("id") === "addAddress")
+            Commit = CommitAddress;
+        else
+            Commit = CommitPhone;
+        newElement.getElementsByTagName('button')[0].onclick = function () { Commit(newElement); };
+        newElement.getElementsByTagName('button')[1].onclick = function () { Cancel(newElement); };
+        node.disabled = "disabled";
+    }
+
+    function CommitAddress(node) {
+        var child = node.getElementsByTagName("input")[0];
+        var content = child.value;
+        if (!content) {
+            alert("The field must be filled");
+            return;
+        }
+        var previousId = node.previousElementSibling.getElementsByTagName("input")[0].id;
+        var match = previousId.match("^streetAddress([0-9]*)$");
+        var number = "0";
+        if (match != null)
+            number = parseInt(match[1]) + 1;
+
+        var postData = {
+            streetAddress: content
+        };
+        addAntiForgeryToken(postData);
+
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("AddStreetAddress")",
+            data: postData,
+            error: function(str) {
+                alert(str.responseText);
+            },
+            success: function () {
+                child.id = "streetAddress" + number;
+                child.disabled = "disabled";
+                var btn = node.getElementsByTagName('button')[1];
+                btn.onclick = function () { DeleteAddress(number, btn) };
+                child.parentNode.insertBefore(btn, child);
+                node.getElementsByClassName('buttons')[0].remove();
+                child.parentElement.classList.add("row");
+            },
+            complete: function () {
+                EnableAdd(node);
+            }
+        });
+    }
+
+    function CommitPhone(node) {
+        var child = node.getElementsByTagName("input")[0];
+        var content = child.value;
+        if (!content) {
+            alert("The field must be filled");
+            return;
+        }
+        var previousId = node.previousElementSibling.getElementsByTagName("input")[0].id;
+        var match = previousId.match("^phone([0-9]*)$");
+        var number = "0";
+        if (match != null)
+            number = parseInt(match[1]) + 1;
+
+        var postData = {
+            phone: content
+        };
+        addAntiForgeryToken(postData);
+
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("AddPhone")",
+            data: postData,
+            error: function(str) {
+                alert(str.responseText);
+            },
+            success: function () {
+                child.id = "phone" + number;
+                child.disabled = "disabled";
+                var btn = node.getElementsByTagName('button')[1];
+                btn.onclick = function () { DeletePhone(number, btn) };
+                child.parentNode.insertBefore(btn, child);
+                node.getElementsByClassName('buttons')[0].remove();
+                child.parentElement.classList.add("row");
+            },
+            complete: function() {
+                EnableAdd(node);
+            }
+        });
+    }
+
+    function Cancel(node) {
+        EnableAdd(node);
+        node.remove();
+    }
+
+    function EnableAdd(node) {
+        node.nextElementSibling.nextElementSibling.removeAttribute("disabled");
+    }
+    </script>

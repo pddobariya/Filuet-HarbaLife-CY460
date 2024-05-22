@@ -1,0 +1,21 @@
+﻿@{
+    Layout = "_HomeColumns";
+    NopHtml.AppendCssFileParts("~/Themes/FiluetHerbalife/Content/css/distributor-restrictions.css");
+}
+
+@section login_splash
+{
+    <form asp-action="login"
+          class="message-block"
+          asp-controller="ssoauth"
+          asp-route-returnurl="@Context.Request.Query["ReturnUrl"]"
+          method="post">
+        <div class="message-body">
+            <h1>@T("Plugins.ExternalAuth.SSO.NotAllow")</h1>
+            <span>@T("Plugins.ExternalAuth.SSO.APFRestriction")</span>
+            <input class="login-button"
+                   type="submit"
+                   value="@T("Account.Login.LoginButton")"/>
+        </div>
+    </form>
+}

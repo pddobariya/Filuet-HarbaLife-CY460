@@ -1,0 +1,27 @@
+﻿@model ProductDetailsModel.ProductPriceModel
+@{
+    bool hasVp = Model.CustomProperties.ContainsKey(NopFiluetCommonDefaults.VolumePoints);
+}
+
+@if (!Model.CustomerEntersPrice)
+{
+    <div class="price @if (string.IsNullOrWhiteSpace(Model.PriceWithDiscount)) { <text>product-price</text> } else { <text>non-discounted-price</text> }">
+
+        @{
+            <div>
+                @Html.Raw(Model.Price)
+            </div>
+
+            @if (hasVp)
+            {
+                <div class="vp-value-@(Model.ProductId) price-small">
+                    @T("HBL.Baltic.OnlineOrdering.ShoppingPlugin.Resources.VolumePoints", Model.CustomProperties[NopFiluetCommonDefaults.VolumePoints])
+                </div>
+            }
+            else
+            {
+                <div class="vp-value-@(Model.ProductId) price-small" style="display: none"></div>
+            }
+        }
+    </div>
+}

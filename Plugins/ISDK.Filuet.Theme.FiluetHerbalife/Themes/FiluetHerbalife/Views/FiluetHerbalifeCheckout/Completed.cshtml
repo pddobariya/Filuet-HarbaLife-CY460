@@ -1,0 +1,63 @@
+﻿@model CheckoutCompletedModel
+@{
+    Layout = "_ColumnsOne";
+
+    //title
+    NopHtml.AddTitleParts(T("PageTitle.Checkout").Text);
+    //page class
+    NopHtml.AppendPageCssClassParts("html-checkout-page");
+    NopHtml.AppendPageCssClassParts("html-order-completed-page");
+
+    string fusionOrderNumber = "--";
+    bool apfCompleted = false;
+    if ((Model as FiluetCheckoutCompleteModel) != null)
+    {
+        fusionOrderNumber = ((FiluetCheckoutCompleteModel)Model).FusionOrderId;
+        apfCompleted = ((FiluetCheckoutCompleteModel)Model).ApfCompleted;
+    }
+}
+
+<section class="checkout_success block">
+    <div class="cont">
+        <div class="title">@T("Checkout.ThankYou")!</div>
+
+        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.CheckoutCompletedTop, additionalData = Model })
+
+        <div class="sub_title">@T("Checkout.YourOrderHasBeenSuccessfullyProcessed")!</div>
+
+        <div class="order">
+            <div class="name">@T("Order.FusionOrder#"):</div>
+            <div class="number">@fusionOrderNumber</div>
+        </div>
+
+        <div class="btns">
+            <a href="@Url.RouteUrl("OrderDetails", new { orderID = Model.OrderId })" class="order_link btn">@T("Order.OrderInformation")</a>
+            <a href="@Url.RouteUrl("HomePage")" class="next_link btn">@T("Checkout.ThankYou.Continue")</a>
+        </div>
+
+        @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.CheckoutCompletedBottom, additionalData = Model.OrderId })
+    </div>
+</section>
+@if (apfCompleted)
+{
+    <div id="apf-dialog-message">
+        <p>
+             @T("ISDK.Filuet.OnlineOrdering.CorePlugin.ApfCompletedMessageBox.Content")
+        </p>
+    </div>
+    <script asp-location="Footer">
+        $(document).ready(function () {
+            var dialog = $("#apf-dialog-message");
+            dialog.kendoDialog({
+                width: "400px",
+                title: "Apf",
+                closable: true,
+                modal: true, 
+                actions: [
+                        { text: '@T("Cart.Dialogiscartvalid.CloseButton")', primary: true }
+                    ]
+                });
+            dialog.data("kendoDialog").open();
+        });
+    </script>
+}

@@ -1,0 +1,174 @@
+﻿@model FiluetCategoryModel
+
+<div class="card-body">
+    @(await Html.LocalizedEditorAsync<FiluetCategoryModel, FiluetCategoryLocalizedModel>("category-name-localized",
+        @<div>
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <nop-label asp-for="@Model.Locales[item].Name" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="@Model.Locales[item].Name" />
+                    <span asp-validation-for="@Model.Locales[item].Name"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <nop-label asp-for="@Model.Locales[item].ProgramCategoryModel.Slogan" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="@Model.Locales[item].ProgramCategoryModel.Slogan" asp-template="RichEditor" />
+                    <span asp-validation-for="@Model.Locales[item].ProgramCategoryModel.Slogan"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <nop-label asp-for="@Model.Locales[item].ProgramCategoryModel.Description" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="@Model.Locales[item].ProgramCategoryModel.Description" asp-template="RichEditor"></nop-editor>
+                    <span asp-validation-for="@Model.Locales[item].ProgramCategoryModel.Description"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <nop-label asp-for="@Model.Locales[item].ProgramCategoryModel.DownloadLink" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="@Model.Locales[item].ProgramCategoryModel.DownloadLink" />
+                    <span asp-validation-for="@Model.Locales[item].ProgramCategoryModel.DownloadLink"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <nop-label asp-for="@Model.Locales[item].ProgramCategoryModel.ExpertPhotoUrl" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="@Model.Locales[item].ProgramCategoryModel.ExpertPhotoUrl" />
+                    <span asp-validation-for="@Model.Locales[item].ProgramCategoryModel.ExpertPhotoUrl"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <nop-label asp-for="@Model.Locales[item].ProgramCategoryModel.ExpertReview" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="@Model.Locales[item].ProgramCategoryModel.ExpertReview" asp-template="RichEditor"></nop-editor>
+                    <span asp-validation-for="@Model.Locales[item].ProgramCategoryModel.ExpertReview"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <nop-label asp-for="@Model.Locales[item].ProgramCategoryModel.ExpertName" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="@Model.Locales[item].ProgramCategoryModel.ExpertName" />
+                    <span asp-validation-for="@Model.Locales[item].ProgramCategoryModel.ExpertName"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <nop-label asp-for="@Model.Locales[item].ProgramCategoryModel.ExpertPost" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="@Model.Locales[item].ProgramCategoryModel.ExpertPost" asp-template="RichEditor"></nop-editor>
+                    <span asp-validation-for="@Model.Locales[item].ProgramCategoryModel.ExpertPost"></span>
+                </div>
+            </div>
+            <input type="hidden" asp-for="@Model.Locales[item].LanguageId" />
+        </div>
+        ,
+        @<div>
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <nop-label asp-for="Name" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="Name" asp-required="true" />
+                    <span asp-validation-for="Name"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <nop-label asp-for="ProgramCategoryModel.Slogan" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="ProgramCategoryModel.Slogan" asp-template="RichEditor" />
+                    <span asp-validation-for="ProgramCategoryModel.Slogan"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <nop-label asp-for="ProgramCategoryModel.Description" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="ProgramCategoryModel.Description" asp-template="RichEditor"></nop-editor>
+                    <span asp-validation-for="ProgramCategoryModel.Description"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <nop-label asp-for="ProgramCategoryModel.DownloadLink" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="ProgramCategoryModel.DownloadLink" />
+                    <span asp-validation-for="ProgramCategoryModel.DownloadLink"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <nop-label asp-for="ProgramCategoryModel.ExpertPhotoUrl" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="ProgramCategoryModel.ExpertPhotoUrl" />
+                    <span asp-validation-for="ProgramCategoryModel.ExpertPhotoUrl"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <nop-label asp-for="ProgramCategoryModel.ExpertReview" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="ProgramCategoryModel.ExpertReview" asp-template="RichEditor"></nop-editor>
+                    <span asp-validation-for="ProgramCategoryModel.ExpertReview"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <nop-label asp-for="ProgramCategoryModel.ExpertName" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="ProgramCategoryModel.ExpertName" />
+                    <span asp-validation-for="ProgramCategoryModel.ExpertName"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <nop-label asp-for="ProgramCategoryModel.ExpertPost" />
+                </div>
+                <div class="col-md-9">
+                    <nop-editor asp-for="ProgramCategoryModel.ExpertPost" asp-template="RichEditor"></nop-editor>
+                    <span asp-validation-for="ProgramCategoryModel.ExpertPost"></span>
+                </div>
+            </div>
+        </div>))
+
+    <div class="form-group row">
+        <div class="col-md-3">
+            <nop-label asp-for="ParentCategoryId" />
+        </div>
+        <div class="col-md-9">
+            <nop-select asp-for="ParentCategoryId" asp-items="Model.AvailableCategories" />
+            <span asp-validation-for="ParentCategoryId"></span>
+        </div>
+    </div>
+    <div class="form-group advanced-setting row">
+        <div class="col-md-3">
+            <nop-label asp-for="PictureId" />
+        </div>
+        <div class="col-md-9">
+            <nop-editor asp-for="PictureId" />
+            <span asp-validation-for="PictureId"></span>
+        </div>
+    </div>
+</div>

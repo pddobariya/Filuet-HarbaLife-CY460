@@ -1,0 +1,15 @@
+﻿@{
+    Layout = "";
+}
+<link rel="stylesheet" href="~/Plugins/Payments.Payeezy/Content/payeezy.min.css" />
+<div class="payment-payeezy-mobile-success">
+    <div class="payment-payeezy-mobile-success-inner">
+        <div class="message-header">@T("Plugins.Payments.Payeezy.Fields.SuccessPurchaseHeader")</div>
+        <div class="message-text">
+            @T("Plugins.Payments.Payeezy.Fields.SuccessPurchaseMessage")
+        </div>
+    </div>
+</div>
+@{
+    ((Action)ViewBag.ResetWorkingLanguageAction)();
+}

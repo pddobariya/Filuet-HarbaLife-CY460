@@ -1,0 +1,72 @@
+﻿@model ProductReviewsModel
+
+@if (Model.Items.Count > 0)
+{
+    <div class="reviews">
+        @foreach (ProductReviewModel item in Model.Items)
+        {
+            <div class="review">
+                <div class="name">@item.CustomerName</div>
+
+                <div class="date">@item.WrittenOnStr</div>
+
+                <div class="rating">
+                    @for (int i = 0; i < item.Rating; i++)
+                    {
+                        <svg class="icon"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_star")"></use></svg>
+                    }
+                </div>
+
+                <div class="text">
+                    <p>@item.Title</p>
+
+                    <p>@item.ReviewText</p>
+                </div>
+
+                <div class="likes">
+                    <span>@T("Reviews.Helpfulness.WasHelpful?")</span>
+
+                    <button id="helpfulness_yes_btn_@(item.Helpfulness.ProductReviewId)" class="btn yes_btn">@T("Common.Yes") @item.Helpfulness.HelpfulYesTotal</button>
+                    <button id="helpfulness_no_btn_@(item.Helpfulness.ProductReviewId)" class="btn no_btn">@T("Common.No") @item.Helpfulness.HelpfulNoTotal</button>
+
+                    <span id="helpfulness_result_@(item.Helpfulness.ProductReviewId)" class="result" style="margin-left: 2%"></span>
+
+                    <script asp-location="Footer">
+                        $(document).ready(function () {
+                            $('#helpfulness_yes_btn_@(item.Helpfulness.ProductReviewId)').on('click', function () {
+                                                                                setProductReviewHelpfulness@(item.Helpfulness.ProductReviewId)('true');
+                            });
+                            $('#helpfulness_no_btn_@(item.Helpfulness.ProductReviewId)').on('click', function () {
+                                                                                setProductReviewHelpfulness@(item.Helpfulness.ProductReviewId)('false');
+                            });
+                        });
+
+                        function setProductReviewHelpfulness@(item.Helpfulness.ProductReviewId)(wasHelpful){
+                            var postData = {
+                                "productReviewId": @(item.Helpfulness.ProductReviewId),
+                                "washelpful": wasHelpful
+                            };
+                            addAntiForgeryToken(postData);
+                            $.ajax({
+                                cache: false,
+                                type: "POST",
+                                url: "@(Url.RouteUrl("SetProductReviewHelpfulness"))",
+                                data: postData,
+                                success: function (data, textStatus, jqXHR) {
+                                    $("#helpfulness_yes_btn_@(item.Helpfulness.ProductReviewId)").html('@T("Common.Yes") ' + data.TotalYes);
+                                    $("#helpfulness_no_btn_@(item.Helpfulness.ProductReviewId)").html('@T("Common.No") ' + data.TotalNo);
+                                    $("#helpfulness_result_@(item.Helpfulness.ProductReviewId)").html(data.Result);
+
+                                    $('#helpfulness_result_@(item.Helpfulness.ProductReviewId)').fadeIn("slow").delay(1000).fadeOut("slow");
+                                },
+                                error: function (jqXHR, textStatus, errorThrown) {
+                                    alert('Failed to vote. Please refresh the page and try one more time.');
+                                }
+                            });
+                        }
+                    </script>
+                </div>
+            </div>
+        }
+    </div>
+}

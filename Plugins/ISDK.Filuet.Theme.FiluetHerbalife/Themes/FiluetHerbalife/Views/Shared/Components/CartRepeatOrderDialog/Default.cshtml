@@ -1,0 +1,42 @@
+﻿@model CartRepeatOrderDialogModel
+@{
+    var kendoVersion = "2020.1.406";
+    NopHtml.AppendScriptParts(ResourceLocation.Footer, "~/lib_npm/jquery/jquery.min.js");
+    NopHtml.AddScriptParts(ResourceLocation.Footer, $"~/lib/kendo/{kendoVersion}/js/kendo.core.min.js");
+    NopHtml.AddScriptParts(ResourceLocation.Footer, $"~/lib/kendo/{kendoVersion}/js/kendo.userevents.min.js");
+    NopHtml.AddScriptParts(ResourceLocation.Footer, $"~/lib/kendo/{kendoVersion}/js/kendo.draganddrop.min.js");
+    NopHtml.AddScriptParts(ResourceLocation.Footer, $"~/lib/kendo/{kendoVersion}/js/kendo.popup.min.js");
+    NopHtml.AddScriptParts(ResourceLocation.Footer, $"~/lib/kendo/{kendoVersion}/js/kendo.window.min.js");
+    NopHtml.AddScriptParts(ResourceLocation.Footer, $"~/lib/kendo/{kendoVersion}/js/kendo.dialog.min.js");
+    NopHtml.AddCssFileParts($"~/Plugins/ISDK.Filuet.OnlineOrdering.CorePlugin/Content/styles.css");
+}
+@if (Model.OrderId.HasValue)
+{
+    <div id="dialog-iscartvalid"></div>
+    var messages = string.Join("; ", @T("ISDK.Filuet.Theme.FiluetHerbalife.CartRepeatOrderDialog.Question"));
+    <script asp-location="Footer">
+        $(document).ready(function () {
+            var dialog = $("#dialog-iscartvalid");
+            dialog.kendoDialog({
+                width: "400px",
+                title: "Error",
+                closable: false,
+                modal: true,
+                content: '@messages',
+                actions: [
+                    { text: '@T("ISDK.Filuet.Theme.FiluetHerbalife.CartRepeatOrderDialog.Yes")', primary: true, action: onYesClick },
+                    { text: '@T("ISDK.Filuet.Theme.FiluetHerbalife.CartRepeatOrderDialog.No")', primary: true }
+                ]
+            });
+            dialog.data("kendoDialog").open();
+
+            function onYesClick() {
+                // Get the URL using Razor syntax
+                const reOrderUrl = '@Url.RouteUrl("ReOrder", new { orderId = Model.OrderId.Value })';
+
+                // Redirect to the specified URL
+                window.location.href = reOrderUrl;
+            }
+        });
+    </script>
+}

@@ -1,0 +1,234 @@
+﻿@model Nop.Plugin.Payments.Payeezy.Models.ConfigurationModel
+
+@{
+    Layout = "_ConfigurePlugin";
+    var showTour = ViewBag.ShowTour ?? false;
+
+    const string hideTESTPAYEEZYYREVERSAL = "TESTPAYEEZYYREVERSAL";
+    var customer = await workContext.GetCurrentCustomerAsync();
+    var hideTESTPAYEEZYYREVERSALBlock = showTour ? false : await genericAttributeService.GetAttributeAsync<bool>(customer, hideTESTPAYEEZYYREVERSAL);
+
+    const string hideConfigure = "Configure";
+    var hideConfigureBlock = showTour ? false : await genericAttributeService.GetAttributeAsync<bool>(customer, hideConfigure);
+}
+
+@await Component.InvokeAsync("StoreScopeConfiguration")
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <nop-card asp-name="product-info" asp-icon="fas fa-info" asp-title="@T("Plugins.Payments.Payeezy.Fields.TestPayeezyyReversal")" asp-hide-block-attribute-name="@hideTESTPAYEEZYYREVERSAL" asp-hide="@hideTESTPAYEEZYYREVERSALBlock" asp-advanced="false">
+        <div class="card-body">
+            <div class="card-utils">
+                <div class="card-payeezy-test-reversal">
+
+                    <div class="form-group row">
+                        <div class="col-md-3">
+                            <div class="label-wrapper"><label class="col-form-label" for="TransactionID">Transaction ID</label><div title="" data-toggle="tooltip" class="ico-help" data-original-title="Enter Transaction ID"><i class="fas fa-question-circle"></i></div></div>
+                        </div>
+                        <div class="col-md-9">
+                            <input class="form-control text-box single-line" id="payeezy-test-reversal-transid" name="payeezy-test-reversal-transid" type="text" value="">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-3">
+                            <div class="label-wrapper"><label class="col-form-label" for="Amount">Amount</label><div title="" data-toggle="tooltip" class="ico-help" data-original-title="Enter Amount"><i class="fas fa-question-circle"></i></div></div>
+                        </div>
+                        <div class="col-md-9">
+                            <input class="form-control text-box single-line" id="payeezy-test-reversal-amount" name="payeezy-test-reversal-amount" type="text" value="">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-3">
+                            <div class="label-wrapper"><label class="col-form-label" for="RESULT">RESULT</label><div title="" data-toggle="tooltip" class="ico-help" data-original-title="RESULT"><i class="fas fa-question-circle"></i></div></div>
+                        </div>
+                        <div class="col-md-9">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-3">
+                            <div class="label-wrapper"><label class="col-form-label" for="RESULTCODE">RESULT CODE</label><div title="" data-toggle="tooltip" class="ico-help" data-original-title="RESULTCODE"><i class="fas fa-question-circle"></i></div></div>
+                        </div>
+                        <div class="col-md-9">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-9 offset-md-3">
+                            <input type="submit" name="payeezy-test-reversal" id="payeezy-test-reversal-button" class="btn bg-primary" value="Test" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nop-card>
+    <nop-card asp-name="product-info" asp-icon="fas fa-info" asp-title="@T("Plugins.Payments.Payeezy.Fields.Configure")" asp-hide-block-attribute-name="@hideConfigure" asp-hide="@hideConfigureBlock" asp-advanced="false">
+        <div class="card-body">
+            <div class="card-utils">
+                <div class="form-group row">
+                    <div class="col-md-3">
+                        <nop-label asp-for="IsSandbox" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="IsSandbox" />
+                        <span asp-validation-for="IsSandbox"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-3">
+                        <nop-label asp-for="APISandboxEndpoint" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="APISandboxEndpoint" />
+                        <span asp-validation-for="APISandboxEndpoint"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-3">
+                        <nop-label asp-for="APIProductionEndpoint" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="APIProductionEndpoint" />
+                        <span asp-validation-for="APIProductionEndpoint"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-3">
+                        <nop-label asp-for="SandboxClientCertificateThumbprint" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="SandboxClientCertificateThumbprint" />
+                        <span asp-validation-for="SandboxClientCertificateThumbprint"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-3">
+                        <nop-label asp-for="ProductionClientCertificateThumbprint" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="ProductionClientCertificateThumbprint" />
+                        <span asp-validation-for="ProductionClientCertificateThumbprint"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-3">
+                        <nop-label asp-for="SandboxPaymentRedirectUrl" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="SandboxPaymentRedirectUrl" />
+                        <span asp-validation-for="SandboxPaymentRedirectUrl"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-3">
+                        <nop-label asp-for="ProductionPaymentRedirectUrl" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="ProductionPaymentRedirectUrl" />
+                        <span asp-validation-for="ProductionPaymentRedirectUrl"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-3">
+                        <nop-label asp-for="PluginControllerName" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="PluginControllerName" />
+                        <span asp-validation-for="PluginControllerName"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-3">
+                        <nop-label asp-for="MobilePaymentQuerystring" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="MobilePaymentQuerystring" />
+                        <span asp-validation-for="MobilePaymentQuerystring"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-3">
+                        <nop-label asp-for="APISandboxReturnOkAction" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="APISandboxReturnOkAction" />
+                        <span asp-validation-for="APISandboxReturnOkAction"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-3">
+                        <nop-label asp-for="APIProductionReturnOkAction" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="APIProductionReturnOkAction" />
+                        <span asp-validation-for="APIProductionReturnOkAction"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-3">
+                        <nop-label asp-for="APISandboxReturnFailAction" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="APISandboxReturnFailAction" />
+                        <span asp-validation-for="APISandboxReturnFailAction"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-3">
+                        <nop-label asp-for="APIProductionReturnFailAction" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="APIProductionReturnFailAction" />
+                        <span asp-validation-for="APIProductionReturnFailAction"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-3">
+                        <nop-label asp-for="APISandboxMobilePaymentAction" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="APISandboxMobilePaymentAction" />
+                        <span asp-validation-for="APISandboxMobilePaymentAction"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-3">
+                        <nop-label asp-for="APIProductionMobilePaymentAction" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="APIProductionMobilePaymentAction" />
+                        <span asp-validation-for="APIProductionMobilePaymentAction"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-3">
+                        &nbsp;
+                    </div>
+                    <div class="col-md-9">
+                        <input type="submit" name="save" class="btn bg-blue" value="@T("Admin.Common.Save")" />
+                    </div>
+                </div>
+            </div>
+    </nop-card>
+    <script type="text/javascript">
+        $('#payeezy-test-reversal-button').click(function () {
+            var transId = $('#payeezy-test-reversal-transid').val();
+            var amount = $('#payeezy-test-reversal-amount').val();
+
+            $.ajax({
+                url: '/Plugins/PaymentPayeezy/testreversal?trans_id=' + transId + '&amount=' + amount,
+                type: 'POST',
+                dataType: 'json',
+                contentType: 'application/json',
+                async: true,
+                cache: false,
+                success: function (data) {
+                    $('#payeezy-test-reversal-result').html(data.result);
+                    $('#payeezy-test-reversal-resultcode').html(data.result_code);
+                },
+                error: function (data) {
+                    alert(JSON.stringify(data));
+                }
+            });
+        });
+    </script>
+}

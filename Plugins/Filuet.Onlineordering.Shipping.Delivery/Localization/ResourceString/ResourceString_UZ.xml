@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Language Name="UZ">
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.City">
+		<Value>shahar</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.Price">
+		<Value>Narxi</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.FreightCode">
+		<Value>Yuk kodi</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.Name">
+		<Value>Ism</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.Address">
+		<Value>Manzil</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.WarehouseCode">
+		<Value>Ombor kodi</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.WorkTime">
+		<Value>Ish vaqti</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.SalesCenter">
+		<Value>Savdo markazi</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Pickup">
+		<Value>oʻzi bilan olib chiqish</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Delivery">
+		<Value>Yetkazib berish</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.PickupCenterAddress">
+		<Value>Olib ketish markazining manzili</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.TheCostWillBe">
+		<Value>Narx tashkil qiladi</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.DeliveryCity">
+		<Value>Shaharga etkazib berish</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Comment">
+		<Value>Izoh</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.ReceiverName">
+		<Value>Qabul qiluvchining nomi</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Phone">
+		<Value>123456789</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.EnterPhoneFormat">
+		<Value>Укажите номер телефона получателя заказа: 9 цифр без пробелов и тире</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.ChoosePickupAddress">
+		<Value>Yig'ish manzilini tanlang</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.FillIn">
+		<Value>Maydonlarni to'ldiring</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.DeliveryOperators">
+		<Value>Yetkazib berish operatorlari</Value>
+	</LocaleResource>
+	<LocaleResource Name="Filuet.Onlineordering.Shipping.Delivery.PhonePrefix">
+		<Value>Telefon Prefiksi</Value>
+	</LocaleResource>
+	<LocaleResource Name="Filuet.Onlineordering.Shipping.Delivery.PhoneMask">
+		<Value>Telefon niqobi</Value>
+	</LocaleResource>
+	<LocaleResource Name="Filuet.Onlineordering.Shipping.Delivery.AddAddressToComment">
+		<Value>Sharhga manzil qo'shish</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.DeliveryTypes">
+		<Value>Yetkazib berish turlari</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.SystemType">
+		<Value>Tizim turi</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.DeliveryCities">
+		<Value>Yetkazib berish shaharlari</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.CityName">
+		<Value>Shahar nomi</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Prices">
+		<Value>Narxlar</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.DeliveryCity">
+		<Value>DeliveryCity</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.DeliveryOperator">
+		<Value>DeliveryOperator</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.DeliveryType">
+		<Value>Yetkazib berish turi</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.DeliveryPrise">
+		<Value>Yetkazib berish narxi</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.MinCriterion">
+		<Value>Minkriteriya</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.MaxCriterion">
+		<Value>Minkriteriya</Value>
+	</LocaleResource>
+	<!--Remaiing-->
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.AutoPostOffices">
+		<Value>AutoPostOffices</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.PointId">
+		<Value>PointId</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.Blocked">
+		<Value>Blocked</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.Address">
+		<Value>Address</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.Comment">
+		<Value>Comment</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.PriceIsAbsent">
+		<Value>PriceIsAbsent</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.AboveReceiverName">
+		<Value>Collected by…</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.BelowReceiverName">
+		<Value>Recipient's full name if different</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.DeliveryOperator">
+		<Value>DeliveryOperator</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.PickupPointCity">
+		<Value>City</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.PickupPointOperator">
+		<Value>Operator</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.PickupPointInfo">
+		<Value>Info</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.PickupPointAddress">
+		<Value>Manzil</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.PostCode">
+		<Value>PostCode</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.Common.DeleteConfirmation">
+		<Value>Are you sure you want to delete this item?</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.Common.Save">
+		<Value>Save</Value>
+	</LocaleResource>
+</Language>

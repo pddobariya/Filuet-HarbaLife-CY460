@@ -1,0 +1,148 @@
+﻿.ajaxCart {
+    display: initial;
+    position: absolute;
+    padding: 1px !important;
+    background: #fff;
+    box-shadow: 0 1px 3px #666;
+    border-color: initial;
+    border-radius: initial;
+    border-style: initial;
+    border-width: initial;
+    box-shadow: 0 1px 3px #666;
+    color: #505050;
+    outline: none;
+    text-decoration: none;
+    -webkit-tap-highlight-color: initial;
+    box-sizing: border-box;
+    background-clip: border-box;
+}
+
+.productAddedToCartWindow {
+    border-radius: initial;
+}
+
+*, *:before, *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.ajaxCart .k-window-titlebar {
+    margin: 0 !important;
+    padding: 10px;
+    border-bottom: 1px solid #999;
+    background: #bbb url('img/button1.png') top repeat-x;
+    position: static;
+    width: -webkit-fill-available;
+    height: 1.1em;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    margin-top: -2em;
+    font-size: 1.2em;
+    white-space: nowrap;
+    min-height: 16px;
+    box-sizing: content-box;
+}
+
+.ajaxCart .k-window-titlebar .k-window-actions {
+    position: absolute;
+    top: 9px;
+    right: 10px;
+    font-size: 0;
+    z-index: 1;
+}
+
+.ajaxCart .k-window-titlebar .k-window-actions a {
+    display: block;
+    width: 16px;
+    height: 16px;
+    border: 1px solid #ccc;
+    background: #333 url('img/button-close-hover.png') center no-repeat;
+    box-shadow: 0 0 1px #999 inset;
+    font-size: 0;
+}
+
+.ajaxCart .k-window-titlebar .k-window-actions a:hover {
+    background: #fff url('img/button-close.png') center no-repeat;
+}
+
+.ajaxCart div.k-window-content {
+    overflow: initial;
+    padding: 15px 10px;
+    position: static;
+}
+
+.k-dialog-buttongroup {
+    margin: 0;
+    padding: 6px 6px;
+    width: 100%;
+    border-width: 1px 0 0;
+    border-style: solid;
+    box-sizing: border-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    border-color: #d5d5d5;
+}
+
+.k-button {
+    margin: 0 4px;
+    padding: 4px 8px;
+    box-sizing: border-box;
+    border-width: 1px;
+    border-style: solid;
+    background-repeat: repeat-x;
+    background-position: 0 center;
+    font: inherit;
+    line-height: 1.42857143;
+    text-align: center;
+    text-decoration: none;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    overflow: hidden;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
+    outline: 0;
+    -webkit-appearance: none;
+    position: relative;
+    border-radius: 4px;
+    border-color: #bbb;
+    color: #2e2e2e;
+    background-color: #e9e9e9;
+    background-position: 50% 50%;
+    background-image: url(textures/highlight.png);
+    background-image: none,linear-gradient(to bottom,rgba(255,255,255,.25) 0,rgba(255,255,255,0) 100%);
+}
+
+.k-button {
+    border-radius: 4px;
+    border-color: #bbb;
+    color: #2e2e2e;
+    background-color: #e9e9e9;
+    background-position: 50% 50%;
+    background-image: url(textures/highlight.png);
+    background-image: none,linear-gradient(to bottom,rgba(255,255,255,.25) 0,rgba(255,255,255,0) 100%);
+}
+
+.k-overlay, .nopAjaxCartPanelAjaxBusy {
+    z-index: 100000 !important;
+}
+
+.k-window {
+    z-index: 100001 !important;
+}
+
+.price_list .row .thumb img {
+    padding-top: 10px;
+    max-width: 100%;
+}

@@ -1,0 +1,106 @@
+﻿@model ContactUsModel
+@{
+    Layout = "_ColumnsOne";
+
+    //title
+    NopHtml.AddTitleParts(T("PageTitle.ContactUs").Text);
+    //page class
+    NopHtml.AppendPageCssClassParts("html-contact-page");
+}
+
+<section class="page_head">
+    <div class="cont">
+        <h1 class="page_title">@T("ISDK.Filuet.Theme.FiluetHerbalife.Contacts.OurContacts")</h1>
+    </div>
+</section>
+
+<section class="contacts_info block">
+    <div class="cont row">
+        <div class="data row">
+            <div class="col_left">
+                <div class="desc">@await Component.InvokeAsync("TopicBlock", new { systemName = "HomePageText" })</div>
+
+                <div class="logos">
+                    <div>
+                        <img data-src="@Url.Content("~/Themes/FiluetHerbalife/Content/images/ltpa_logo.png")" alt="" class="lozad">
+                    </div>
+
+                    <div>
+                        <img data-src="@Url.Content("~/Themes/FiluetHerbalife/Content/images/ltta_logo.png")" alt="" class="lozad">
+                    </div>
+
+                    <div>
+                        <img data-src="@Url.Content("~/Themes/FiluetHerbalife/Content/images/dsa_logo.png")" alt="" class="lozad">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="title">@T("isdk.filuet.theme.filuetherbalife.phonetitle")</div>
+                @T("HBL.Baltic.OnlineOrdering.ShoppingPlugin.CompanyName")
+
+                <div class="phone">
+                    <svg class="icon"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_phone")"></use></svg>
+                    <a href="tel:@T("ISDK.Filuet.Theme.FiluetHerbalife.Phone")">@T("hbl.baltic.onlineordering.shoppingplugin.registrationnumber")</a>
+                </div>
+
+                <div class="email">
+                    <svg class="icon"><use xlink:href="@Url.Content("~/Themes/FiluetHerbalife/Content/images/sprite.svg#ic_email")"></use></svg>
+                    <a href="@string.Format("mailto:{0}{1}{2}", @T("ISDK.Filuet.Theme.FiluetHerbalife.EmailName"), @T("ISDK.Filuet.Theme.FiluetHerbalife.EmailAt"), @T("ISDK.Filuet.Theme.FiluetHerbalife.EmailDomain"))">
+                        @T("ISDK.Filuet.Theme.FiluetHerbalife.EmailName")@T("ISDK.Filuet.Theme.FiluetHerbalife.EmailAt")@T("ISDK.Filuet.Theme.FiluetHerbalife.EmailDomain")
+                    </a>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="title">@T("ISDK.Filuet.Theme.FiluetHerbalife.SiteTitle")</div>
+
+                <div class="requisites">
+                    @T("hbl.baltic.onlineordering.shoppingplugin.address")
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="title">@T("ISDK.Filuet.Theme.FiluetHerbalife.SocialTitle")</div>
+                @await Component.InvokeAsync("SocialButtons")
+            </div>
+        </div>
+
+        <div class="feedback">
+            <div class="title">@T("ISDK.Filuet.Theme.FiluetHerbalife.Contacts.FeedbackForm")</div>
+
+            <form asp-route="ContactUs" method="post" class="form">
+                <div class="line">
+                    <div class="label">@T("ISDK.Filuet.Theme.FiluetHerbalife.Contacts.YourName")</div>
+
+                    <div class="field">
+                        <input type="text" asp-for="FullName" placeholder="@T("ContactUs.Email.Hint")" class="input" />
+                        <span asp-validation-for="FullName"></span>
+                    </div>
+                </div>
+
+                <div class="line">
+                    <div class="label">@T("ISDK.Filuet.Theme.FiluetHerbalife.Contacts.YourEmail")</div>
+
+                    <div class="field">
+                        <input type="email" asp-for="Email" placeholder="@T("ContactUs.Subject.Hint")" class="input" />
+                        <span asp-validation-for="Email"></span>
+                    </div>
+                </div>
+
+                <div class="line">
+                    <div class="label">@T("ISDK.Filuet.Theme.FiluetHerbalife.Contacts.Comment")</div>
+
+                    <div class="field">
+                        <textarea asp-for="Enquiry" name="Enquiry" placeholder="@T("ContactUs.Enquiry.Hint")"></textarea>
+                        <span asp-validation-for="Enquiry"></span>
+                    </div>
+                </div>
+
+                <div class="submit">
+                    <button type="submit" class="submit_btn">@T("ContactUs.Button")</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

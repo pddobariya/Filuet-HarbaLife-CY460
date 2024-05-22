@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Language Name="RU">
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.City">
+		<Value>Город</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.Price">
+		<Value>Цена</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.FreightCode">
+		<Value>Грузовой код</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.Name">
+		<Value>Имя</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.Address">
+		<Value>Адрес</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.WarehouseCode">
+		<Value>Код склада</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.WorkTime">
+		<Value>Время работы</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.City">
+		<Value>Город</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.SalesCenter">
+		<Value>Центры продаж</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Pickup">
+		<Value>Самовывоз</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Delivery">
+		<Value>Доставка</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.PickupCenterAddress">
+		<Value>Адрес центра самовывоза</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.TheCostWillBe">
+		<Value>Стоимость составит</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.DeliveryCity">
+		<Value>Город доставки</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Comment">
+		<Value>Комментарий</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.ReceiverName">
+		<Value>Имя получателя</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Phone">
+		<Value>Телефон</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.EnterPhoneFormat">
+		<Value>Введите телефон в формате</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.ChoosePickupAddress">
+		<Value>Выберите адрес самовывоза</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.FillIn">
+		<Value>Заполните поля</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.DeliveryOperators">
+		<Value>Операторы доставки</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ShippingMethods.Delivery.Fields.Operator">
+		<Value>Оператор</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.Common.DeleteConfirmation">
+		<Value>Вы уверены, что хотите удалить?</Value>
+	</LocaleResource>
+	<LocaleResource Name="Admin.Common.Save">
+		<Value>Сохранить</Value>
+	</LocaleResource>
+</Language>

@@ -1,0 +1,28 @@
+@model CheckoutConfirmModel
+@{
+    Layout = "_ColumnsOne";
+
+    //title
+    var title = $"{T("ISDK.Filuet.Theme.FiluetHerbalife.ShoppingCart.Confirmation1").Text} {T("ISDK.Filuet.Theme.FiluetHerbalife.ShoppingCart.Confirmation2").Text}";
+    NopHtml.AddTitleParts(title);
+
+    NopHtml.AddScriptParts(ResourceLocation.Footer, "~/js/public.onepagecheckout.js");
+}
+
+@{
+    var viewData = new ViewDataDictionary(ViewData)
+    {
+        {"confirmationActiveClass", "active"}
+    };
+}
+@await Html.PartialAsync("_CheckoutSteps", viewData)
+
+<section class="check_order block">
+    <div class="cont">
+        @if (ViewBag.IsDeliverySkipped == null || !ViewBag.IsDeliverySkipped)
+        {
+            @await Component.InvokeAsync("OrderInfo")
+        }
+        @await Component.InvokeAsync("OrderSummary", new {prepareAndDisplayOrderReviewData = true})
+    </div>
+</section>

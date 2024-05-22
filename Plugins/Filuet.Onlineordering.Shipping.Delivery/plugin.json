@@ -1,0 +1,11 @@
+﻿{
+  "Group": "Xcellence-it",
+  "FriendlyName": "Delivery",
+  "SystemName": "Shipping.Delivery",
+  "Version": "1.0.0",
+  "SupportedVersions": [ "4.60" ],
+  "Author": "Xcellence-it",
+  "DisplayOrder": 1,
+  "FileName": "Filuet.Onlineordering.Shipping.Delivery.dll",
+  "Description": "Delivery"
+}

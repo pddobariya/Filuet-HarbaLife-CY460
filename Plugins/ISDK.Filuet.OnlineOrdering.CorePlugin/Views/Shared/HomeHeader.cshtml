@@ -1,0 +1,19 @@
+﻿@{
+    NopHtml.AddCssFileParts("~/Plugins/ISDK.Filuet.OnlineOrdering.CorePlugin/Content/hl-customer-login.min.css");
+    NopHtml.AddCssFileParts("~/Plugins/ISDK.Filuet.OnlineOrdering.CorePlugin/Content/main.min.css");
+}
+
+<div class="header">
+    @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderBefore })
+    <div class="header-top">
+        <div class="header-centering">
+            <div class="header-logo">
+                @await Component.InvokeAsync("Logo")
+            </div>
+            <div class="header-selectors-wrapper">
+                @await Component.InvokeAsync("LanguageSelector")
+                @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderSelectors })
+            </div>
+        </div>
+    </div>
+</div>

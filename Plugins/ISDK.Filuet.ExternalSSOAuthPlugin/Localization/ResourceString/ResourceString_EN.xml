@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Language Name="EN">
+	<LocaleResource Name="Plugins.ExternalAuth.SSO.ClientId">
+		<Value>Client ID</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ExternalAuth.SSO.Configure">
+		<Value>Configure</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ExternalAuth.SSO.ClientId.Hint">
+		<Value>Enter your Client ID here.</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ExternalAuth.SSO.ClientSecret">
+		<Value>Client secret</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ExternalAuth.SSO.ClientSecret.Hint">
+		<Value>Enter your client secret here.</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ExternalAuth.SSO.AuthorizationEndpoint">
+		<Value>Authorization endpoint</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ExternalAuth.SSO.AuthorizationEndpoint.Hint">
+		<Value>Enter your authorization endpoint here.</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ExternalAuth.SSO.TokenEndpoint">
+		<Value>Token endpoint</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ExternalAuth.SSO.TokenEndpoint.Hint">
+		<Value>Enter your token endpoint here.</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ExternalAuth.SSO.ApiUrl">
+		<Value>Api url</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ExternalAuth.SSO.ApiUrl.Hint">
+		<Value>Enter your api url here.</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ExternalAuth.SSO.WhitelistedCountries">
+		<Value>Whitelisted Countries</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ExternalAuth.SSO.WhitelistedCountries.Hint">
+		<Value>Enter whitelisted Countries</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ExternalAuth.SSO.IsEnableCountryRestrictions">
+		<Value>Enable country restrictions</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ExternalAuth.SSO.IsEnableCountryRestrictions.Hint">
+		<Value>Enable country restrictions</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ExternalAuth.SSO.NotAuthorized">
+		<Value>You are not authorized to use this website based on your country of residence.</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ExternalAuth.SSO.AllowedDsTypes">
+		<Value>Allowed distributor</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ExternalAuth.SSO.AllowedDsTypes.Hint">
+		<Value>Distributors of this type are allowed for the following countries</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ExternalAuth.SSO.AllowedResidenceCountry">
+		<Value>Allowed country</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ExternalAuth.SSO.AllowedResidenceCountry.Hint">
+		<Value>These countries are allowed for allowed distributors</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ExternalAuth.SSO.DeniedDsTypes">
+		<Value>Denied distributor</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ExternalAuth.SSO.DeniedDsTypes.Hint">
+		<Value>Distributors of this type are denied for the following countries</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ExternalAuth.SSO.IsProhibitedForNotResident">
+		<Value>Is Prohibited For NotResident</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ExternalAuth.SSO.IsProhibitedForNotResident.Hint">
+		<Value>Enter a Is Prohibited ForNotResident</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ExternalAuth.SSO.DeniedResidenceCountry">
+		<Value>Denied country</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ExternalAuth.SSO.DeniedResidenceCountry.Hint">
+		<Value>These countries are denied for allowed distributors</Value>
+	</LocaleResource>
+	<LocaleResource Name="admin.configuration.authentication.externalmethods.configure">
+		<Value>Configure</Value>
+	</LocaleResource>
+	<LocaleResource Name="admin.configuration.authentication.externalmethods.backtolist">
+		<Value>back to external authentication method list</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ExternalAuth.SSO.DenyNoResident">
+		<Value>Deny No Resident</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ExternalAuth.SSO.DenyEntryToUnpaidAPF">
+		<Value>Deny Entry To UnpaidAPF</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ExternalAuth.SSO.DenyNoResident.Hint">
+		<Value>Deny No Resident</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ExternalAuth.SSO.DenyEntryToUnpaidAPF.Hint">
+		<Value>Deny Entry To UnpaidAPF</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ExternalAuth.SSO.UpdateCountryDisRole">
+		<Value>Update Country DisRole</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ExternalAuth.SSO.UpdateCountryDisRole.Hint">
+		<Value>Update Country DisRole</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ExternalAuth.SSO.NotAllow">
+		<Value>NotAllow</Value>
+	</LocaleResource>
+	<LocaleResource Name="Account.Login.LoginButton">
+		<Value>Log in</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ExternalAuth.SSO.DistributorRestrictions.WithoutEmail">
+		<Value>Without Email</Value>
+	</LocaleResource>
+	<LocaleResource Name="Plugins.ExternalAuth.SSO.DistributorRestrictions.UnCompleted">
+		<Value>UnCompleted</Value>
+	</LocaleResource>	
+	<LocaleResource Name="Plugins.ExternalAuth.SSO.DistributorRestrictions.CantBuy">
+		<Value>CantBuy</Value>
+	</LocaleResource>
+</Language>

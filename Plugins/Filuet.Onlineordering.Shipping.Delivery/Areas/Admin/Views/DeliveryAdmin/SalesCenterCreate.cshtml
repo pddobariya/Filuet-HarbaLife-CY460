@@ -1,0 +1,108 @@
+﻿@model SalesCenterDtoModel
+
+@{
+    var showTour = ViewBag.ShowTour ?? false;
+    var customer = await workContext.GetCurrentCustomerAsync();
+    const string hideSalesCenter = "SalesCenter";
+    var hideSalesCenterBlock = showTour ? false : await genericAttributeService.GetAttributeAsync<bool>(customer, hideSalesCenter);
+}
+
+
+
+<form asp-controller="DeliveryAdmin" asp-action="SalesCenterCreate" method="post">
+    <input type="hidden" asp-for="@Model.LanguageId" />
+    <div class="content-header clearfix">
+        <h1 class="float-left">
+            @T("Plugins.ShippingMethods.Delivery.SalesCenter.AddNew")
+            <small>
+                <i class="fas fa-arrow-circle-left"></i>
+                <a asp-controller="Config" asp-action="Configure">@T("Plugins.ShippingMethods.Delivery.BackToList")</a>
+            </small>
+        </h1>
+        <div class="float-right">
+            <button type="submit" name="save" class="btn btn-primary">
+                <i class="far fa-save"></i>
+                @T("Admin.Common.Save")
+            </button>
+        </div>
+    </div>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="form-horizontal">
+                <nop-card asp-name="SalesCenter-info" asp-icon="fas fa-info" asp-title="@T("Plugins.ShippingMethods.Delivery.SalesCenter")" asp-hide-block-attribute-name="@hideSalesCenter" asp-hide="@hideSalesCenterBlock" asp-advanced="false">
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="@Model.Name" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="@Model.Name" />
+                                <span asp-validation-for="@Model.Name"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="@Model.Address" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="@Model.Address" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="@Model.City" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="@Model.City" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="@Model.Price" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="@Model.Price" />
+                                <span asp-validation-for="@Model.Price"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="@Model.WarehouseCode" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="@Model.WarehouseCode" />
+                                <span asp-validation-for="@Model.WarehouseCode"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="@Model.FreightCode" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="@Model.FreightCode" />
+                                <span asp-validation-for="@Model.FreightCode"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="@Model.VolumePoints" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="@Model.VolumePoints" />
+                                <span asp-validation-for="@Model.VolumePoints"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <nop-label asp-for="@Model.WorkTime" />
+                            </div>
+                            <div class="col-md-9">
+                                <nop-editor asp-for="@Model.WorkTime" />
+                            </div>
+                        </div>
+                    </div>
+                </nop-card>
+            </div>
+        </div>
+    </section>
+</form>

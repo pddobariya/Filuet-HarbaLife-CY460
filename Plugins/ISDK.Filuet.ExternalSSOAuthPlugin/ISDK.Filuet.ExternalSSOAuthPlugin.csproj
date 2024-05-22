@@ -1,0 +1,349 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<Configurations>Debug;Release;TestServer;Debug without Oracle;Prod CY;Debug CY;Debug BLT;Prod am;Prod-az;Prod-uz;Debug uz;Debug am;DebugBltDesign;DebugKz2RuDesign</Configurations>
+		<Platforms>AnyCPU;x64;x86</Platforms>
+		<LangVersion>latest</LangVersion>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<OutputPath>..\..\Presentation\Nop.Web\Plugins\ISDK.Filuet.ExternalSSOAuthPlugin</OutputPath>
+		<OutDir>$(OutputPath)</OutDir>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Prod CY|AnyCPU'">
+		<OutputPath>..\..\Presentation\Nop.Web\Plugins\ISDK.Filuet.ExternalSSOAuthPlugin</OutputPath>
+		<OutDir>$(OutputPath)</OutDir>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Prod-uz|AnyCPU'">
+		<OutputPath>..\..\Presentation\Nop.Web\Plugins\ISDK.Filuet.ExternalSSOAuthPlugin</OutputPath>
+		<OutDir>$(OutputPath)</OutDir>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Prod-az|AnyCPU'">
+		<OutputPath>..\..\Presentation\Nop.Web\Plugins\ISDK.Filuet.ExternalSSOAuthPlugin</OutputPath>
+		<OutDir>$(OutputPath)</OutDir>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Prod am|AnyCPU'">
+		<OutputPath>..\..\Presentation\Nop.Web\Plugins\ISDK.Filuet.ExternalSSOAuthPlugin</OutputPath>
+		<OutDir>$(OutputPath)</OutDir>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug am|AnyCPU'">
+		<OutputPath>..\..\Presentation\Nop.Web\Plugins\ISDK.Filuet.ExternalSSOAuthPlugin</OutputPath>
+		<OutDir>$(OutputPath)</OutDir>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
+		<OutputPath>..\..\Presentation\Nop.Web\Plugins\ISDK.Filuet.ExternalSSOAuthPlugin</OutputPath>
+		<OutDir>$(OutputPath)</OutDir>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Prod CY|x86'">
+		<OutputPath>..\..\Presentation\Nop.Web\Plugins\ISDK.Filuet.ExternalSSOAuthPlugin</OutputPath>
+		<OutDir>$(OutputPath)</OutDir>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Prod-uz|x86'">
+		<OutputPath>..\..\Presentation\Nop.Web\Plugins\ISDK.Filuet.ExternalSSOAuthPlugin</OutputPath>
+		<OutDir>$(OutputPath)</OutDir>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Prod-az|x86'">
+		<OutputPath>..\..\Presentation\Nop.Web\Plugins\ISDK.Filuet.ExternalSSOAuthPlugin</OutputPath>
+		<OutDir>$(OutputPath)</OutDir>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Prod am|x86'">
+		<OutputPath>..\..\Presentation\Nop.Web\Plugins\ISDK.Filuet.ExternalSSOAuthPlugin</OutputPath>
+		<OutDir>$(OutputPath)</OutDir>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug am|x86'">
+		<OutputPath>..\..\Presentation\Nop.Web\Plugins\ISDK.Filuet.ExternalSSOAuthPlugin</OutputPath>
+		<OutDir>$(OutputPath)</OutDir>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+		<OutputPath>..\..\Presentation\Nop.Web\Plugins\ISDK.Filuet.ExternalSSOAuthPlugin</OutputPath>
+		<OutDir>$(OutputPath)</OutDir>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Prod CY|x64'">
+		<OutputPath>..\..\Presentation\Nop.Web\Plugins\ISDK.Filuet.ExternalSSOAuthPlugin</OutputPath>
+		<OutDir>$(OutputPath)</OutDir>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Prod-uz|x64'">
+		<OutputPath>..\..\Presentation\Nop.Web\Plugins\ISDK.Filuet.ExternalSSOAuthPlugin</OutputPath>
+		<OutDir>$(OutputPath)</OutDir>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Prod-az|x64'">
+		<OutputPath>..\..\Presentation\Nop.Web\Plugins\ISDK.Filuet.ExternalSSOAuthPlugin</OutputPath>
+		<OutDir>$(OutputPath)</OutDir>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Prod am|x64'">
+		<OutputPath>..\..\Presentation\Nop.Web\Plugins\ISDK.Filuet.ExternalSSOAuthPlugin</OutputPath>
+		<OutDir>$(OutputPath)</OutDir>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug am|x64'">
+		<OutputPath>..\..\Presentation\Nop.Web\Plugins\ISDK.Filuet.ExternalSSOAuthPlugin</OutputPath>
+		<OutDir>$(OutputPath)</OutDir>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='TestServer|AnyCPU'">
+		<OutputPath>..\..\Presentation\Nop.Web\Plugins\ISDK.Filuet.ExternalSSOAuthPlugin</OutputPath>
+		<OutDir>$(OutputPath)</OutDir>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='TestServer|x86'">
+		<OutputPath>..\..\Presentation\Nop.Web\Plugins\ISDK.Filuet.ExternalSSOAuthPlugin</OutputPath>
+		<OutDir>$(OutputPath)</OutDir>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='TestServer|x64'">
+		<OutputPath>..\..\Presentation\Nop.Web\Plugins\ISDK.Filuet.ExternalSSOAuthPlugin</OutputPath>
+		<OutDir>$(OutputPath)</OutDir>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<OutputPath>..\..\Presentation\Nop.Web\Plugins\ISDK.Filuet.ExternalSSOAuthPlugin</OutputPath>
+		<OutDir>$(OutputPath)</OutDir>
+		<NoWarn>1701;1702;DV2001</NoWarn>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugBltDesign|AnyCPU'">
+		<OutputPath>..\..\Presentation\Nop.Web\Plugins\ISDK.Filuet.ExternalSSOAuthPlugin</OutputPath>
+		<OutDir>$(OutputPath)</OutDir>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugKz2RuDesign|AnyCPU'">
+		<OutputPath>..\..\Presentation\Nop.Web\Plugins\ISDK.Filuet.ExternalSSOAuthPlugin</OutputPath>
+		<OutDir>$(OutputPath)</OutDir>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug uz|AnyCPU'">
+		<OutputPath>..\..\Presentation\Nop.Web\Plugins\ISDK.Filuet.ExternalSSOAuthPlugin</OutputPath>
+		<OutDir>$(OutputPath)</OutDir>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug BLT|AnyCPU'">
+		<OutputPath>..\..\Presentation\Nop.Web\Plugins\ISDK.Filuet.ExternalSSOAuthPlugin</OutputPath>
+		<OutDir>$(OutputPath)</OutDir>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug CY|AnyCPU'">
+		<OutputPath>..\..\Presentation\Nop.Web\Plugins\ISDK.Filuet.ExternalSSOAuthPlugin</OutputPath>
+		<OutDir>$(OutputPath)</OutDir>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug without Oracle|AnyCPU'">
+		<OutputPath>..\..\Presentation\Nop.Web\Plugins\ISDK.Filuet.ExternalSSOAuthPlugin</OutputPath>
+		<OutDir>$(OutputPath)</OutDir>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+		<OutputPath>..\..\Presentation\Nop.Web\Plugins\ISDK.Filuet.ExternalSSOAuthPlugin</OutputPath>
+		<OutDir>$(OutputPath)</OutDir>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugBltDesign|x86'">
+		<OutputPath>..\..\Presentation\Nop.Web\Plugins\ISDK.Filuet.ExternalSSOAuthPlugin</OutputPath>
+		<OutDir>$(OutputPath)</OutDir>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug uz|x86'">
+		<OutputPath>..\..\Presentation\Nop.Web\Plugins\ISDK.Filuet.ExternalSSOAuthPlugin</OutputPath>
+		<OutDir>$(OutputPath)</OutDir>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug BLT|x86'">
+		<OutputPath>..\..\Presentation\Nop.Web\Plugins\ISDK.Filuet.ExternalSSOAuthPlugin</OutputPath>
+		<OutDir>$(OutputPath)</OutDir>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug CY|x86'">
+		<OutputPath>..\..\Presentation\Nop.Web\Plugins\ISDK.Filuet.ExternalSSOAuthPlugin</OutputPath>
+		<OutDir>$(OutputPath)</OutDir>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug without Oracle|x86'">
+		<OutputPath>..\..\Presentation\Nop.Web\Plugins\ISDK.Filuet.ExternalSSOAuthPlugin</OutputPath>
+		<OutDir>$(OutputPath)</OutDir>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+		<OutputPath>..\..\Presentation\Nop.Web\Plugins\ISDK.Filuet.ExternalSSOAuthPlugin</OutputPath>
+		<OutDir>$(OutputPath)</OutDir>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugBltDesign|x64'">
+		<OutputPath>..\..\Presentation\Nop.Web\Plugins\ISDK.Filuet.ExternalSSOAuthPlugin</OutputPath>
+		<OutDir>$(OutputPath)</OutDir>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug uz|x64'">
+		<OutputPath>..\..\Presentation\Nop.Web\Plugins\ISDK.Filuet.ExternalSSOAuthPlugin</OutputPath>
+		<OutDir>$(OutputPath)</OutDir>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug BLT|x64'">
+		<OutputPath>..\..\Presentation\Nop.Web\Plugins\ISDK.Filuet.ExternalSSOAuthPlugin</OutputPath>
+		<OutDir>$(OutputPath)</OutDir>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug CY|x64'">
+		<OutputPath>..\..\Presentation\Nop.Web\Plugins\ISDK.Filuet.ExternalSSOAuthPlugin</OutputPath>
+		<OutDir>$(OutputPath)</OutDir>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug without Oracle|x64'">
+		<OutputPath>..\..\Presentation\Nop.Web\Plugins\ISDK.Filuet.ExternalSSOAuthPlugin</OutputPath>
+		<OutDir>$(OutputPath)</OutDir>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Remove="AngularApp\node_modules\**" />
+		<Compile Remove="Scripts\**" />
+		<EmbeddedResource Remove="AngularApp\node_modules\**" />
+		<EmbeddedResource Remove="Scripts\**" />
+		<None Remove="AngularApp\node_modules\**" />
+		<None Remove="Scripts\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Remove="AngularApp\dist\dev\main-es2015.js" />
+		<None Remove="AngularApp\dist\dev\main-es5.js" />
+		<None Remove="AngularApp\dist\dev\polyfills-es2015.js" />
+		<None Remove="AngularApp\dist\dev\polyfills-es5.js" />
+		<None Remove="AngularApp\dist\dev\runtime-es2015.js" />
+		<None Remove="AngularApp\dist\dev\runtime-es5.js" />
+		<None Remove="AngularApp\dist\dev\styles-es2015.js" />
+		<None Remove="AngularApp\dist\dev\styles-es5.js" />
+		<None Remove="AngularApp\dist\dev\vendor-es2015.js" />
+		<None Remove="AngularApp\dist\dev\vendor-es5.js" />
+		<None Remove="Areas\Admin\Views\_ViewImports.cshtml" />
+		<None Remove="Localization\ResourceString\ResourceString_EN.xml" />
+		<None Remove="logo.png" />
+		<None Remove="plugin.json" />
+		<None Remove="Views\AuthError.cshtml" />
+		<None Remove="Views\Configure.cshtml" />
+		<None Remove="Views\PublicInfo.cshtml" />
+		<None Remove="Views\_ViewImports.cshtml" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="AngularApp\dist\dev\main-es2015.js">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\dev\main-es5.js">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\dev\polyfills-es2015.js">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\dev\polyfills-es5.js">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\dev\runtime-es2015.js">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\dev\runtime-es5.js">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\dev\styles-es2015.js">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\dev\styles-es5.js">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\dev\vendor-es2015.js">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="AngularApp\dist\dev\vendor-es5.js">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Areas\Admin\Views\_ViewImports.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Localization\ResourceString\ResourceString_EN.xml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="logo.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="plugin.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\AuthError.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Areas\Admin\Views\Configure.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\PublicInfo.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Views\_ViewImports.cshtml">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\Libraries\Nop.Core\Nop.Core.csproj">
+			<Private>False</Private>
+		</ProjectReference>
+		<ProjectReference Include="..\..\Presentation\Nop.Web.Framework\Nop.Web.Framework.csproj">
+			<Private>False</Private>
+		</ProjectReference>
+		<ProjectReference Include="..\ISDK.Filuet.OnlineOrdering.CorePlugin\ISDK.Filuet.OnlineOrdering.CorePlugin.csproj">
+			<Private>false</Private>
+			<CopyLocalSatelliteAssemblies>True</CopyLocalSatelliteAssemblies>
+			<EmbedInteropTypes></EmbedInteropTypes>
+			<IncludeAssets></IncludeAssets>
+			<PrivateAssets></PrivateAssets>
+		</ProjectReference>
+		<ProjectReference Include="..\ISDK.Filuet.OnlineOrdering.NopFiluetCommon\ISDK.Filuet.OnlineOrdering.NopFiluetCommon.csproj">
+			<Private>False</Private>
+			<CopyLocalSatelliteAssemblies>True</CopyLocalSatelliteAssemblies>
+		</ProjectReference>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="JetBrains.Annotations" Version="2023.2.0" />
+		<PackageReference Include="Microsoft.DependencyValidation.Analyzers" Version="0.11.0" />
+		<ProjectReference Include="..\Nop.Plugin.Pickup.PickupInStore\Nop.Plugin.Pickup.PickupInStore.csproj">
+			<Private>False</Private>
+			<CopyLocalSatelliteAssemblies>True</CopyLocalSatelliteAssemblies>
+		</ProjectReference>
+	</ItemGroup>
+
+	<ItemGroup>
+		<ClearPluginAssemblies Include="$(MSBuildProjectDirectory)\..\..\Build\ClearPluginAssemblies.proj" />
+	</ItemGroup>
+	<!-- This target execute after "Build" target -->
+	<Target Name="NopTarget" AfterTargets="Build">
+		<!-- Copy all dll files from refs folder -->
+		<ItemGroup>
+			<DllsToCopy Include="$(OutDir)\refs\*.dll" />
+		</ItemGroup>
+		<Copy SourceFiles="@(DllsToCopy)" DestinationFolder="$(OutDir)" />
+
+		<!-- Delete unnecessary libraries from plugins path -->
+		<MSBuild Projects="@(ClearPluginAssemblies)" Properties="PluginPath=$(MSBuildProjectDirectory)\$(OutDir)" Targets="NopClear" />
+		<Delete Files="$(OutDir)\$(AssemblyName).deps.json" />
+		<Delete Files="$(OutDir)\$(AssemblyName).runtimeconfig.json" />
+		<Delete Files="$(OutDir)\$(AssemblyName).runtime.json" />
+		<Delete Files="$(OutDir)\$(AssemblyName).pdb" />
+		<RemoveDir Directories="$(OutDir)\refs" />
+	</Target>
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+		<Exec Command="rd /s /q $(OutDir)runtimes" />
+	</Target>
+</Project>

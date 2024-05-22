@@ -1,0 +1,25 @@
+﻿@model List<HBL.Uzbek.Onlineordering.Catalogue.PriceFilter.Models.PriceRangeModel>
+@if (Model.Count > 0)
+{
+    <div class="block block-manufacturer-navigation">
+        <div class="title">
+            <strong>@T("Products.Price")</strong>
+        </div>
+        <div class="listbox">
+            <ul class="list">
+                @foreach (var priceRangeModel in Model)
+                {
+                    <li class="@(priceRangeModel.IsActive ? "active" : "inactive")">
+                        <a href="@Url.RouteUrl("PriceFilter", new { priceFilterId = priceRangeModel.Id })">@priceRangeModel.Name</a>
+                    </li>
+                }
+                @if (Model.Any(pr => pr.IsActive))
+                {
+                    <li class="inactive">
+                        <a href="@Url.RouteUrl("GenericUrl", new {GenericSeName = "core-products"})">@T("Plugins.PriceFilter.Clear")</a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+}

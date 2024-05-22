@@ -1,0 +1,22 @@
+@model PdfFileModel
+
+@{
+    Layout = "_AdminPopupLayout";
+    ViewBag.PageTitle = T("Admin.ISDK.Filuet.Theme.FiluetHerbalife.Catalog.Products.PdfFiles.AddNew").Text;
+}
+
+<form asp-controller="Product" asp-action="PdfFileCreatePopup"
+      asp-route-productId="@Context.Request.Query["productId"]"
+      asp-route-languageId="@Context.Request.Query["languageId"]"
+      asp-route-btnId="@Context.Request.Query["btnId"]"
+      asp-route-formId="@Context.Request.Query["formId"]">
+    <div class="content-header clearfix">
+        <h1 class="float-left">
+            @T("Admin.ISDK.Filuet.Theme.FiluetHerbalife.Catalog.Products.PdfFiles.AddNew")
+        </h1>
+        <div class="pull-right">
+            &nbsp;
+        </div>
+    </div>
+    @await Html.PartialAsync("_CreateOrUpdatePdfFile", Model)
+</form>

@@ -1,0 +1,36 @@
+@model CartSummaryBarModel
+<div class="cart-summary-bar" id="cart-summary-bar">
+    @Html.Partial("_CartSummaryBar", Model)
+</div>
+<script asp-location="Footer">
+    var pageRenderDelay = 2000; //ms
+    var eventWaitDelay = 3000; //ms
+
+    var targetClickElementSelectors = '.products .buy .amount .plus, .products .buy .amount .minus, .products .product .buy .buy_btn, .product-details-page .buy .buy_btn, .product-details-page .amount .minus, .product-details-page .amount .plus, .cart_info .product .amount .minus, .cart_info .product .amount .plus, .cart_info .product .delete_btn';//(1) plus/minus on category page, (2) add-to-cart button on category page, (3) add-to-cart button on product page, (4) plus/minus on product page, (5) plus/minus qty button on cart page, (6) delete button on cart page
+    var targetInputElementSelectors = '.products .slide .buy .amount .input, .product-details-page .amount .input, .cart_info .product .amount .input' //(1) input qty change on category page, (2) input qty change on product page, (3) input qty change on cart page
+
+
+    function updateCartSummaryBar() {
+        //wait reasonable period of time while cart is updated server-side after click events
+        setTimeout(function () {
+            //update container element with component html containing up-to-date model
+            $('#cart-summary-bar').load('@Url.Action("GetCartSummaryBarViewComponent", "FiluetHerbalifePublic")');
+        }, eventWaitDelay);
+    }
+
+    //wait reasonable period of time before the rest of the page is rendered so all target elements are present
+    setTimeout(function () {
+        if ($('.ajax-loading-block-window').is(':visible')) {
+            return;
+        }
+
+        $(targetInputElementSelectors).on('input', function () {
+            updateCartSummaryBar();
+        });
+
+        $(targetClickElementSelectors).click(function () {
+            updateCartSummaryBar();
+        });
+    }, pageRenderDelay)
+
+</script>
