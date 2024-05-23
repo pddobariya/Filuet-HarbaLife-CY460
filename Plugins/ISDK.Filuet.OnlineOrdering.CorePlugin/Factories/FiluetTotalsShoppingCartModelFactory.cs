@@ -8,6 +8,7 @@ using Nop.Core.Caching;
 using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Common;
 using Nop.Core.Domain.Customers;
+using Nop.Core.Domain.Logging;
 using Nop.Core.Domain.Media;
 using Nop.Core.Domain.Orders;
 using Nop.Core.Domain.Security;
@@ -22,6 +23,7 @@ using Nop.Services.Directory;
 using Nop.Services.Discounts;
 using Nop.Services.Helpers;
 using Nop.Services.Localization;
+using Nop.Services.Logging;
 using Nop.Services.Media;
 using Nop.Services.Orders;
 using Nop.Services.Payments;
@@ -66,6 +68,7 @@ namespace ISDK.Filuet.OnlineOrdering.CorePlugin
         private readonly IDiscountService _discountService;
         private readonly IPaymentPluginManager _paymentPluginManager;
         private readonly IPriceFormatter _priceFormatter;
+        private readonly ILogger _logger;
 
         #endregion
 
@@ -120,7 +123,8 @@ namespace ISDK.Filuet.OnlineOrdering.CorePlugin
             VendorSettings vendorSettings,
             IAuthenticationService authenticationService, 
             IFusionIntegrationService fusionIntegrationService,
-            IDistributorService distributorService) 
+            IDistributorService distributorService,
+            ILogger logger) 
             : base(addressSettings,
                   captchaSettings,
                   catalogSettings,
@@ -187,6 +191,7 @@ namespace ISDK.Filuet.OnlineOrdering.CorePlugin
             _discountService = discountService;
             _paymentPluginManager = paymentPluginManager;
             _priceFormatter = priceFormatter;
+            _logger = logger;
         }
 
         #endregion
@@ -316,8 +321,11 @@ namespace ISDK.Filuet.OnlineOrdering.CorePlugin
         public override async Task<MiniShoppingCartModel> PrepareMiniShoppingCartModelAsync()
         {
             MiniShoppingCartModel model = await base.PrepareMiniShoppingCartModelAsync();
-
             Customer currentCustomer = await _authenticationService.GetAuthenticatedCustomerAsync();
+
+            var quantitySum = model?.Items?.Select(x => x.Quantity).Sum();
+            await _logger.InsertLogAsync(LogLevel.Debug, $"MiniShoppingCartModel Quantity sum: {quantitySum.Value}", customer: currentCustomer);
+
             if (currentCustomer != null)
             {
                 model.SubTotal =await CalculateShoppingCartTotal(await _shoppingCartService.GetShoppingCartAsync(currentCustomer));
@@ -352,6 +360,9 @@ namespace ISDK.Filuet.OnlineOrdering.CorePlugin
         {
             Customer customer = await _workContext.GetCurrentCustomerAsync();
 
+            var quantitySum = cart?.Select(x => x.Quantity).Sum();
+            await _logger.InsertLogAsync(LogLevel.Debug, $"Quantity sum 1: {quantitySum.Value}", customer: customer);
+
             if (customer == null)
             {
                 throw new ArgumentNullException("customer");
@@ -360,7 +371,8 @@ namespace ISDK.Filuet.OnlineOrdering.CorePlugin
             ShoppingCartModel shoppingCartModel = await PrepareCustomShoppingCartModelAsync(model, cart, isEditable, validateCheckoutAttributes, 
                 prepareAndDisplayOrderReviewData);
 
-
+            var quantitySum1 = shoppingCartModel?.Items?.Select(x => x.Quantity).Sum();
+            await _logger.InsertLogAsync(LogLevel.Debug, $"Quantity sum 2: {quantitySum1.Value}", customer: customer);
 
             var distributorProfileOfCurrentCustomer = await _distributorService.GetDistributorDetailedProfileAsync(customer);
 
