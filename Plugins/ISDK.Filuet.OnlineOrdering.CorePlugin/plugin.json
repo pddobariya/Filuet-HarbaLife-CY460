@@ -5,7 +5,7 @@
   "Version": "1.0.0",
   "SupportedVersions": [ "4.60" ],
   "Author": "Xcellence-it",
-  "DisplayOrder": -2,
+  "DisplayOrder": 6,
   "FileName": "ISDK.Filuet.OnlineOrdering.CorePlugin.dll",
   "Description": "Online Ordering Extended Shopping"
 }
