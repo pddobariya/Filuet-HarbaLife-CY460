@@ -397,14 +397,20 @@ namespace ISDK.Filuet.OnlineOrdering.NopFiluetCommon.Services.ShoppingCart
 
             var shoppingCartItems = await GetShoppingCartAsync(customer);
 
+            if (shoppingCartItems != null && shoppingCartItems.Select(x => x.ProductId).ToList().Any())
+                await _logger.InsertLogAsync(LogLevel.Debug, $"Get ShoppingCartItem customer, Quantity {shoppingCartItems.Select(x => x.Quantity).Sum()} ,product id :{string.Join(",", shoppingCartItems.Select(x => x.ProductId).ToList())}", customer: customer);
+
             if (!shoppingCartItems.Any(x => x.ProductId == shoppingCartItem.ProductId))
             {
+                await _logger.InsertLogAsync(LogLevel.Debug, $"Add ShoppingCartItem , Quantity {shoppingCartItem.Quantity}, ProductId {shoppingCartItem.ProductId}", customer: customer);
+
                 await _sciRepository.InsertAsync(shoppingCartItem);
                 shoppingCartItems = await GetShoppingCartAsync(customer);
             }
 
             //updated "HasShoppingCartItems" property used for performance optimization
-            customer.HasShoppingCartItems = shoppingCartItems.Any();
+            //customer.HasShoppingCartItems = shoppingCartItems.Any();
+            customer.HasShoppingCartItems = !IsCustomerShoppingCartEmpty(customer);
             await _customerService.UpdateCustomerAsync(customer);
 
             //Update paired stock items
@@ -432,12 +438,7 @@ namespace ISDK.Filuet.OnlineOrdering.NopFiluetCommon.Services.ShoppingCart
             }
             _logger.Information(string.Format("DEBUG: DeleteShoppingCartItem - sci ID: {0}", shoppingCartItem.Id));
 
-            ShoppingCartItem dbItem = _sciRepository.GetById(shoppingCartItem.Id);
-
-            if (dbItem == null)
-            {
-                _logger.Information("DEBUG: DeleteShoppingCartItem - db item not found");
-            }
+            
 
             Customer customer = await _customerService.GetCustomerByIdAsync(shoppingCartItem.CustomerId);
             if (customer == null)
@@ -477,16 +478,29 @@ namespace ISDK.Filuet.OnlineOrdering.NopFiluetCommon.Services.ShoppingCart
                 }
             }
 
+            ShoppingCartItem dbItem = await _sciRepository.GetByIdAsync(shoppingCartItem.Id);
+
+            if (dbItem == null)
+            {
+                _logger.Information("DEBUG: DeleteShoppingCartItem - db item not found");
+            }
             //delete item
             if (dbItem != null)
             {
-                _sciRepository.Delete(dbItem);
+                await _sciRepository.DeleteAsync(shoppingCartItem);
+                //_sciRepository.Delete(dbItem);
+                await _logger.InsertLogAsync(LogLevel.Debug, $"Delete ShoppingCartItem , ProductId {dbItem.ProductId}, Product Quantity{dbItem.Quantity}", customer: customer);
+
             }
+            else
+                await _logger.InsertLogAsync(LogLevel.Debug, $"Delete ShoppingCartItem, ShoppingCartItem is null", customer: customer);
+
             if (customer != null)
             {
-                var cart = await GetShoppingCartAsync(await _workContext.GetCurrentCustomerAsync());
+                //var cart = await GetShoppingCartAsync(await _workContext.GetCurrentCustomerAsync());
                 //reset "HasShoppingCartItems" property used for performance optimization
-                customer.HasShoppingCartItems = cart.Any();
+                //customer.HasShoppingCartItems = cart.Any();
+                customer.HasShoppingCartItems = !IsCustomerShoppingCartEmpty(customer);
                 await _customerService.UpdateCustomerAsync(customer);
 
                 //validate checkout attributes
@@ -494,6 +508,9 @@ namespace ISDK.Filuet.OnlineOrdering.NopFiluetCommon.Services.ShoppingCart
                     //only for shopping cart items (ignore wishlist)
                     shoppingCartItem.ShoppingCartType == ShoppingCartType.ShoppingCart)
                 {
+                    var cart = await GetShoppingCartAsync(customer, ShoppingCartType.ShoppingCart, storeId);
+
+                    await _logger.InsertLogAsync(LogLevel.Debug, $"Delete Cart Item After Save {cart.Sum(x=>x.Quantity)}");
                     cart = cart
                            .Where(x => x.ShoppingCartType == ShoppingCartType.ShoppingCart)
                            .ToList();
@@ -546,7 +563,7 @@ namespace ISDK.Filuet.OnlineOrdering.NopFiluetCommon.Services.ShoppingCart
                     warnings.AddRange(await GetShoppingCartItemWarningsAsync(customer, shoppingCartItem.ShoppingCartType,
                         await _productService.GetProductByIdAsync(shoppingCartItem.ProductId), shoppingCartItem.StoreId,
                         attributesXml, customerEnteredPrice,
-                        rentalStartDate, rentalEndDate, quantity, false,shoppingCartItemId));
+                        rentalStartDate, rentalEndDate, quantity, false, shoppingCartItemId));
                     if (!warnings.Any())
                     {
                         //if everything is OK, then update a shopping cart item
@@ -559,6 +576,10 @@ namespace ISDK.Filuet.OnlineOrdering.NopFiluetCommon.Services.ShoppingCart
                         shoppingCartItem.RentalEndDateUtc = rentalEndDate;
                         shoppingCartItem.UpdatedOnUtc = DateTime.UtcNow;
                         await _sciRepository.UpdateAsync(shoppingCartItem);
+                        await _customerService.UpdateCustomerAsync(customer);
+
+                        await _logger.InsertLogAsync(LogLevel.Debug, $"Update ShoppingCartItem , ProductId {shoppingCartItem.ProductId}, Quantity {shoppingCartItem.Quantity}", customer: customer);
+
 
                         //event notification
                         await _eventPublisher.EntityUpdatedAsync(shoppingCartItem);
@@ -595,13 +616,13 @@ namespace ISDK.Filuet.OnlineOrdering.NopFiluetCommon.Services.ShoppingCart
                 {
                     var RequireProduct = await _productService.GetProductByIdAsync(id);
                     var stockQuantity = await _productService.GetTotalStockQuantityAsync(RequireProduct);
-                    if(stockQuantity == 0)
+                    if (stockQuantity == 0)
                     {
                         warnings.Add(string.Format(await _localizationService.GetResourceAsync("NopFiluetCommon.Products.Availability.OutOfStock"), RequireProduct.Sku));
                     }
                     else if (quantity > stockQuantity)
                     {
-                        warnings.Add(string.Format(await _localizationService.GetResourceAsync("NopFiluetCommon.ShoppingCart.ProductUpdateWarning"), stockQuantity,product.Sku));
+                        warnings.Add(string.Format(await _localizationService.GetResourceAsync("NopFiluetCommon.ShoppingCart.ProductUpdateWarning"), stockQuantity, product.Sku));
                     }
                 }
 
@@ -625,17 +646,17 @@ namespace ISDK.Filuet.OnlineOrdering.NopFiluetCommon.Services.ShoppingCart
                     var requiredCartItem = cart.FirstOrDefault(sci => sci.ProductId == id);
                     if (requiredCartItem != null)
                     {
-                       warnings.AddRange(await UpdateShoppingCartItemAsync(
-                            customer: customer,
-                            shoppingCartItemId: requiredCartItem.Id,
-                            attributesXml: string.Empty,
-                            customerEnteredPrice: decimal.Zero,
-                            quantity: requiredCartItem.Quantity + newQuantity - oldQuantity));
+                        warnings.AddRange(await UpdateShoppingCartItemAsync(
+                             customer: customer,
+                             shoppingCartItemId: requiredCartItem.Id,
+                             attributesXml: string.Empty,
+                             customerEnteredPrice: decimal.Zero,
+                             quantity: requiredCartItem.Quantity + newQuantity - oldQuantity));
                         if (warnings.Any())
                         {
                             var Product = await _productService.GetProductByIdAsync(requiredCartItem.ProductId);
                             string warningMessage = $"Product sku: {Product.Sku}-{string.Join(", ", warnings)}";
-                            await _logger.InsertLogAsync(LogLevel.Information,warningMessage, warningMessage, customer);
+                            await _logger.InsertLogAsync(LogLevel.Information, warningMessage, warningMessage, customer);
                         }
                     }
                     else
@@ -652,7 +673,7 @@ namespace ISDK.Filuet.OnlineOrdering.NopFiluetCommon.Services.ShoppingCart
                             if (warnings.Any())
                             {
                                 string warningMessage = $"Product Sku: {requiredProduct.Sku}-{string.Join(", ", warnings)}";
-                                await _logger.InsertLogAsync(LogLevel.Information, warningMessage,string.Format($"Product SKU : {requiredProduct.Sku} cannot be added into cart due to {string.Join(",",warnings)} which added automaticaly added with Product SKU : {product.Sku}"),customer);
+                                await _logger.InsertLogAsync(LogLevel.Information, warningMessage, string.Format($"Product SKU : {requiredProduct.Sku} cannot be added into cart due to {string.Join(",", warnings)} which added automaticaly added with Product SKU : {product.Sku}"), customer);
                             }
                         }
                     }
@@ -671,6 +692,7 @@ namespace ISDK.Filuet.OnlineOrdering.NopFiluetCommon.Services.ShoppingCart
                     CategoryTypeEnum.Ticket || await _genericAttributeService.GetAttributeAsync<CategoryTypeEnum>(x, CategoryAttributeNames.CategoryType) ==
                     CategoryTypeEnum.Maintenance))
                 getStandardWarnings = false;
+
             return await base.GetShoppingCartItemWarningsAsync(customer, shoppingCartType, product, storeId, attributesXml, customerEnteredPrice, rentalStartDate, rentalEndDate, quantity, addRequiredProducts, shoppingCartItemId, getStandardWarnings, getAttributesWarnings, getGiftCardWarnings, getRequiredProductWarnings, getRentalWarnings);
         }
 
@@ -699,7 +721,7 @@ namespace ISDK.Filuet.OnlineOrdering.NopFiluetCommon.Services.ShoppingCart
                 var requireProducts = await _productService.SearchProductsAsync();
                 var requireProduct = product.Id.ToString();
                 var RequireOtherProducts = requireProducts.Any(x => x.RequiredProductIds?.Contains(requireProduct) == true);
-               // The process skips when RequireOtherProducts are not published
+                // The process skips when RequireOtherProducts are not published
                 if (!RequireOtherProducts)
                 {
                     warnings.Add(await _localizationService.GetResourceAsync("ShoppingCart.ProductUnpublished"));

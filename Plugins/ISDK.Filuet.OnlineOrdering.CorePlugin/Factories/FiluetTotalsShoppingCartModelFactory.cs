@@ -77,37 +77,37 @@ namespace ISDK.Filuet.OnlineOrdering.CorePlugin
         public FiluetTotalsShoppingCartModelFactory(
             AddressSettings addressSettings,
             CaptchaSettings captchaSettings,
-            CatalogSettings catalogSettings, 
-            CommonSettings commonSettings, 
+            CatalogSettings catalogSettings,
+            CommonSettings commonSettings,
             CustomerSettings customerSettings,
             IAddressModelFactory addressModelFactory,
             ICheckoutAttributeFormatter checkoutAttributeFormatter,
             ICheckoutAttributeParser checkoutAttributeParser,
             ICheckoutAttributeService checkoutAttributeService,
-            ICountryService countryService, 
+            ICountryService countryService,
             ICurrencyService currencyService,
             ICustomerService customerService,
             IDateTimeHelper dateTimeHelper,
             IDiscountService discountService,
             IDownloadService downloadService,
-            IGenericAttributeService genericAttributeService, 
+            IGenericAttributeService genericAttributeService,
             IGiftCardService giftCardService,
             IHttpContextAccessor httpContextAccessor,
             ILocalizationService localizationService,
-            IOrderProcessingService orderProcessingService, 
+            IOrderProcessingService orderProcessingService,
             IOrderTotalCalculationService orderTotalCalculationService,
             IPaymentPluginManager paymentPluginManager,
             IPaymentService paymentService,
             IPermissionService permissionService,
             IPictureService pictureService,
-            IPriceFormatter priceFormatter, 
-            IProductAttributeFormatter productAttributeFormatter, 
+            IPriceFormatter priceFormatter,
+            IProductAttributeFormatter productAttributeFormatter,
             IProductService productService,
-            IShippingService shippingService, 
+            IShippingService shippingService,
             IShoppingCartService shoppingCartService,
             IStateProvinceService stateProvinceService,
             IStaticCacheManager staticCacheManager,
-            IStoreContext storeContext, 
+            IStoreContext storeContext,
             IStoreMappingService storeMappingService,
             ITaxService taxService,
             IUrlRecordService urlRecordService,
@@ -116,26 +116,26 @@ namespace ISDK.Filuet.OnlineOrdering.CorePlugin
             IWorkContext workContext,
             MediaSettings mediaSettings,
             OrderSettings orderSettings,
-            RewardPointsSettings rewardPointsSettings, 
+            RewardPointsSettings rewardPointsSettings,
             ShippingSettings shippingSettings,
             ShoppingCartSettings shoppingCartSettings,
             TaxSettings taxSettings,
             VendorSettings vendorSettings,
-            IAuthenticationService authenticationService, 
+            IAuthenticationService authenticationService,
             IFusionIntegrationService fusionIntegrationService,
             IDistributorService distributorService,
-            ILogger logger) 
+            ILogger logger)
             : base(addressSettings,
                   captchaSettings,
                   catalogSettings,
                   commonSettings,
-                  customerSettings, 
+                  customerSettings,
                   addressModelFactory,
                   checkoutAttributeFormatter,
                   checkoutAttributeParser,
                   checkoutAttributeService,
                   countryService,
-                  currencyService, 
+                  currencyService,
                   customerService,
                   dateTimeHelper,
                   discountService,
@@ -146,29 +146,29 @@ namespace ISDK.Filuet.OnlineOrdering.CorePlugin
                   localizationService,
                   orderProcessingService,
                   orderTotalCalculationService,
-                  paymentPluginManager, 
-                  paymentService, 
-                  permissionService, 
+                  paymentPluginManager,
+                  paymentService,
+                  permissionService,
                   pictureService,
-                  priceFormatter, 
+                  priceFormatter,
                   productAttributeFormatter,
                   productService,
                   shippingService,
                   shoppingCartService,
-                  stateProvinceService, 
+                  stateProvinceService,
                   staticCacheManager,
-                  storeContext, 
+                  storeContext,
                   storeMappingService,
-                  taxService, 
+                  taxService,
                   urlRecordService,
-                  vendorService, 
-                  webHelper, 
+                  vendorService,
+                  webHelper,
                   workContext,
                   mediaSettings,
                   orderSettings,
                   rewardPointsSettings,
                   shippingSettings,
-                  shoppingCartSettings, 
+                  shoppingCartSettings,
                   taxSettings,
                   vendorSettings)
         {
@@ -226,7 +226,7 @@ namespace ISDK.Filuet.OnlineOrdering.CorePlugin
 
             if (!cart.Any())
                 return model;
-   
+
             model.IsEditable = isEditable;
             model.ShowProductImages = _shoppingCartSettings.ShowProductImagesOnShoppingCart;
             model.ShowSku = _catalogSettings.ShowSkuOnProductDetailsPage;
@@ -324,11 +324,15 @@ namespace ISDK.Filuet.OnlineOrdering.CorePlugin
             Customer currentCustomer = await _authenticationService.GetAuthenticatedCustomerAsync();
 
             var quantitySum = model?.Items?.Select(x => x.Quantity).Sum();
-            await _logger.InsertLogAsync(LogLevel.Debug, $"MiniShoppingCartModel Quantity sum: {quantitySum.Value}", customer: currentCustomer);
+            if (model != null && model.Items.Any() && model.Items.Select(x => x.ProductId).ToList().Any())
+            {
+                await _logger.InsertLogAsync(LogLevel.Debug, $"MiniShoppingCartModel Quantity :{model.Items.Select(x => x.Quantity).Sum()}", customer: currentCustomer);
+                await _logger.InsertLogAsync(LogLevel.Debug, $"MiniShoppingCartModel product id :{string.Join(",", model.Items.Select(x => x.ProductId).ToList())}", customer: currentCustomer);
+            }
 
             if (currentCustomer != null)
             {
-                model.SubTotal =await CalculateShoppingCartTotal(await _shoppingCartService.GetShoppingCartAsync(currentCustomer));
+                model.SubTotal = await CalculateShoppingCartTotal(await _shoppingCartService.GetShoppingCartAsync(currentCustomer));
             }
             model.DisplayCheckoutButton = false;
             return model;
@@ -337,7 +341,7 @@ namespace ISDK.Filuet.OnlineOrdering.CorePlugin
         public override async Task<OrderTotalsModel> PrepareOrderTotalsModelAsync(IList<ShoppingCartItem> cart, bool isEditable)
         {
             OrderTotalsModel baseModel = await base.PrepareOrderTotalsModelAsync(cart, isEditable);
-            baseModel.OrderTotal =await CalculateShoppingCartTotal(cart);
+            baseModel.OrderTotal = await CalculateShoppingCartTotal(cart);
             return baseModel;
         }
 
@@ -361,18 +365,18 @@ namespace ISDK.Filuet.OnlineOrdering.CorePlugin
             Customer customer = await _workContext.GetCurrentCustomerAsync();
 
             var quantitySum = cart?.Select(x => x.Quantity).Sum();
-            await _logger.InsertLogAsync(LogLevel.Debug, $"Quantity sum 1: {quantitySum.Value}", customer: customer);
+            await _logger.InsertLogAsync(LogLevel.Debug, $"Quantity sum before: {quantitySum.Value}", customer: customer);
 
             if (customer == null)
             {
                 throw new ArgumentNullException("customer");
             }
 
-            ShoppingCartModel shoppingCartModel = await PrepareCustomShoppingCartModelAsync(model, cart, isEditable, validateCheckoutAttributes, 
+            ShoppingCartModel shoppingCartModel = await PrepareCustomShoppingCartModelAsync(model, cart, isEditable, validateCheckoutAttributes,
                 prepareAndDisplayOrderReviewData);
 
             var quantitySum1 = shoppingCartModel?.Items?.Select(x => x.Quantity).Sum();
-            await _logger.InsertLogAsync(LogLevel.Debug, $"Quantity sum 2: {quantitySum1.Value}", customer: customer);
+            await _logger.InsertLogAsync(LogLevel.Debug, $"Quantity sum after: {quantitySum1.Value}", customer: customer);
 
             var distributorProfileOfCurrentCustomer = await _distributorService.GetDistributorDetailedProfileAsync(customer);
 
@@ -397,8 +401,8 @@ namespace ISDK.Filuet.OnlineOrdering.CorePlugin
 
         private async Task<string> CalculateShoppingCartTotal(IEnumerable<ShoppingCartItem> cart)
         {
-            Customer currentCustomer =await _authenticationService.GetAuthenticatedCustomerAsync();            
-            var cartTotal =await _fusionIntegrationService.GetShoppingCartTotalOffline(currentCustomer, cart);            
+            Customer currentCustomer = await _authenticationService.GetAuthenticatedCustomerAsync();
+            var cartTotal = await _fusionIntegrationService.GetShoppingCartTotalOffline(currentCustomer, cart);
             return await cartTotal.TotalDue.FormatPriceAsync();
         }
 

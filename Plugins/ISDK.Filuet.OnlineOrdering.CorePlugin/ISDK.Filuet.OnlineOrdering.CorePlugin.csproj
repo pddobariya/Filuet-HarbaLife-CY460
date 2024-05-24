@@ -449,7 +449,7 @@
 
 	<ItemGroup>
 		<Reference Include="SevenSpikes.Nop.Framework">
-			<HintPath>..\..\Presentation\Nop.Web\Plugins\SevenSpikes.Core\SevenSpikes.Nop.Framework.dll</HintPath>
+		  <HintPath>..\..\Presentation\Nop.Web\Plugins\SevenSpikes.Core\SevenSpikes.Nop.Framework.dll</HintPath>
 		</Reference>
 		<Reference Include="SevenSpikes.Nop.Plugins.AjaxCart">
 			<HintPath>SevenSpikes.Nop.Plugins.AjaxCart.dll</HintPath>

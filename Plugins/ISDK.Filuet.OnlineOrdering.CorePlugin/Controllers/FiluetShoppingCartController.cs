@@ -21,6 +21,7 @@ using Nop.Core;
 using Nop.Core.Caching;
 using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Customers;
+using Nop.Core.Domain.Logging;
 using Nop.Core.Domain.Media;
 using Nop.Core.Domain.Orders;
 using Nop.Core.Domain.Security;
@@ -234,15 +235,29 @@ namespace ISDK.Filuet.OnlineOrdering.CorePlugin.Controllers
         public override async Task<IActionResult> Cart()
         {
             var currentCustomer = await _workContext.GetCurrentCustomerAsync();
+            await _logger.InsertLogAsync(LogLevel.Debug, $"Start cart refresh", customer: currentCustomer);
+
             var store = await _storeContext.GetCurrentStoreAsync();
             FiluetShoppingCartModel model = null;
             var isDebtor = await PrepareDebtorCart(currentCustomer);
             IActionResult baseResult = await base.Cart();
             //List<ShoppingCartItem> cart = GetUserCart();
             var cart = await _shoppingCartService.GetShoppingCartAsync(await _workContext.GetCurrentCustomerAsync(), ShoppingCartType.ShoppingCart, store.Id);
+
+            if (cart.Any() && cart.Select(x => x.ProductId).ToList().Any())
+            {
+                await _logger.InsertLogAsync(LogLevel.Debug, $"Get cart form db, Quantity :{cart?.Select(x => x.Quantity).Sum()}", customer: currentCustomer);
+                await _logger.InsertLogAsync(LogLevel.Debug, $"Get cart form db, product id :{string.Join(",", cart.Select(x => x.ProductId).ToList())}", customer: currentCustomer);
+            }
+
             ShoppingCartModel baseModel = (ShoppingCartModel)((ViewResult)baseResult).Model;
             string baseSerialized = JsonConvert.SerializeObject(baseModel);
             model = JsonConvert.DeserializeObject<FiluetShoppingCartModel>(baseSerialized);
+            if (model != null && model.Items.Any() && model.Items.Select(x => x.ProductId).ToList().Any())
+            {
+                await _logger.InsertLogAsync(LogLevel.Debug, $"Get cart form db, Quantity :{model.Items.Select(x => x.Quantity).Sum()}", customer: currentCustomer);
+                await _logger.InsertLogAsync(LogLevel.Debug, $"Get cart form db, product id :{string.Join(",", model.Items.Select(x => x.ProductId).ToList())}", customer: currentCustomer);
+            }
 
             IResidentChecker residentChecker = null;
             var serviceScopeFactory = EngineContext.Current.Resolve<IServiceScopeFactory>();
@@ -266,7 +281,7 @@ namespace ISDK.Filuet.OnlineOrdering.CorePlugin.Controllers
                 var product = await _productService.GetProductByIdAsync(x.ProductId);
                 var volumePoints = await _genericAttributeService.GetAttributeAsync<double>(product, ProductAttributeNames.VolumePoints);
                 return x.Quantity * volumePoints;
-            }))) .Sum();
+            }))).Sum();
 
             var distributorLimits = await _fusionValidationService.ValidateDistributorLimitsAsync(currentCustomer, cart, volumePoints);
             if (!distributorLimits.IsValid)
@@ -297,6 +312,7 @@ namespace ISDK.Filuet.OnlineOrdering.CorePlugin.Controllers
                 }
             }
 
+            await _logger.InsertLogAsync(LogLevel.Debug, "End Cart refresh", customer: currentCustomer);
             return View(model);
         }
 
@@ -328,11 +344,16 @@ namespace ISDK.Filuet.OnlineOrdering.CorePlugin.Controllers
         public override async Task<IActionResult> UpdateCart(IFormCollection form)
         {
             var currentCustomer = await _workContext.GetCurrentCustomerAsync();
-
+            await _logger.InsertLogAsync(LogLevel.Debug, "Start UpdateCart", customer: currentCustomer);
             var shoppingCart = await _shoppingCartService.GetShoppingCartAsync(currentCustomer);
 
             var cart = shoppingCart.Where(sci => sci.ShoppingCartType == ShoppingCartType.ShoppingCart).ToList();
 
+            if (cart.Any() && cart.Select(x => x.ProductId).ToList().Any())
+            {
+                await _logger.InsertLogAsync(LogLevel.Debug, $"Get cart from db, Quantity :{cart?.Select(x => x.Quantity).Sum()}", customer: currentCustomer);
+                await _logger.InsertLogAsync(LogLevel.Debug, $"Get cart from db, product id :{string.Join(",", cart.Select(x => x.ProductId).ToList())}", customer: currentCustomer);
+            }
             Func<double> getVP = () =>
             {
                 var volumePoints = cart.Sum(x => x.Quantity * _genericAttributeService.GetAttributeAsync<double>(_productService.GetProductByIdAsync(x.ProductId).Result, ProductAttributeNames.VolumePoints).Result);
@@ -376,6 +397,7 @@ namespace ISDK.Filuet.OnlineOrdering.CorePlugin.Controllers
                                 CoreGenericAttributes.ApfMessageAcceptedAttribute, false);
                         }
                         await _shoppingCartService.DeleteShoppingCartItemAsync(sci, ensureOnlyActiveCheckoutAttributes: true);
+                        await _logger.InsertLogAsync(LogLevel.Debug, "UpdateCartMethod, remove cart, ", customer: currentCustomer);
                     }
                     else
                     {
@@ -460,13 +482,14 @@ namespace ISDK.Filuet.OnlineOrdering.CorePlugin.Controllers
                     model = PluginMapper.Mapper.Map<FiluetShoppingCartModel>(baseModel);
                 }
 
+                await _logger.InsertLogAsync(LogLevel.Debug, "End UpdateCart", customer: currentCustomer);
                 model.IsCartValid = await _filuetShippingCartService.IsCartValid(currentCustomer, cart, (_filuetCorePluginSettings.MonthVpLimit, _filuetCorePluginSettings.OneOrderVpLimit));
                 return Json(model);
             }
             catch (Exception exc)
             {
                 await _logger.ErrorAsync("[FiluetShoppingCart] Cart()/Update() Error.", exc);
-
+                await _logger.InsertLogAsync(LogLevel.Debug, "End UpdateCart, Exception", customer: currentCustomer);
                 return RedirectToRoute("HomePage");
             }
         }
@@ -601,7 +624,7 @@ namespace ISDK.Filuet.OnlineOrdering.CorePlugin.Controllers
         {
             bool isDeptor = await customer.IsDebtorAsync();
 
-            if (isDeptor || await _genericAttributeService.GetAttributeAsync<bool>(customer,CoreGenericAttributes.ApfMessageAcceptedAttribute))
+            if (isDeptor || await _genericAttributeService.GetAttributeAsync<bool>(customer, CoreGenericAttributes.ApfMessageAcceptedAttribute))
             {
                 var replaced = await ApfApfShoppingCartHelper.ReplaceShoppingCartWithApfItemAsync(customer);
                 if (!replaced)
@@ -673,6 +696,11 @@ namespace ISDK.Filuet.OnlineOrdering.CorePlugin.Controllers
         public override async Task<IActionResult> AddProductToCart_Catalog(int productId, int shoppingCartTypeId,
             int quantity, bool forceredirection = false)
         {
+            var customer = await _workContext.GetCurrentCustomerAsync();
+            await _logger.InsertLogAsync(LogLevel.Debug, "Start AddProductToCart_Catalog", customer: customer);
+
+            await _logger.InsertLogAsync(LogLevel.Debug, $"New Added productId:{productId},New Added  quantity: quantity{quantity}", customer: customer);
+
             var cartType = (ShoppingCartType)shoppingCartTypeId;
 
             var product = await _productService.GetProductByIdAsync(productId);
@@ -779,19 +807,32 @@ namespace ISDK.Filuet.OnlineOrdering.CorePlugin.Controllers
 
             //get standard warnings without attribute validations
             //first, try to find existing shopping cart item
-            var customer = await _workContext.GetCurrentCustomerAsync();
             var store = await _storeContext.GetCurrentStoreAsync();
             var cart = await _shoppingCartService.GetShoppingCartAsync(customer, cartType, store.Id);
+
+            if (cart.Select(x => x.ProductId).ToList().Any())
+            {
+                await _logger.InsertLogAsync(LogLevel.Debug, $"AddProductToCart_Catalog Method, get cart from db , Quantity :{cart?.Select(x => x.Quantity).Sum()}", customer: customer);
+                await _logger.InsertLogAsync(LogLevel.Debug, $"AddProductToCart_Catalog Method, get cart from db, cart product Id :{string.Join(",", cart?.Select(x => x.ProductId).ToList())}", customer: customer);
+            }
+
             var shoppingCartItem = await _shoppingCartService.FindShoppingCartItemInTheCartAsync(cart, cartType, product);
+
+            await _logger.InsertLogAsync(LogLevel.Debug, $"FindShoppingCartItemInTheCart Quantity: {shoppingCartItem?.Quantity}, shoppingCartItem product:  {shoppingCartItem?.ProductId}", customer: customer);
+
             //if we already have the same product in the cart, then use the total quantity to validate
             var quantityToValidate = shoppingCartItem != null ? shoppingCartItem.Quantity + quantity : quantity;
+
+            await _logger.InsertLogAsync(LogLevel.Debug, $"quantityToValidate: {quantityToValidate}", customer: customer);
+
             var addToCartWarnings = await _shoppingCartService
                 .GetShoppingCartItemWarningsAsync(customer, cartType,
                 product, store.Id, string.Empty,
                 decimal.Zero, null, null, quantityToValidate, false, shoppingCartItem?.Id ?? 0, true, false, false, false);
+
             if (addToCartWarnings.Any())
             {
-                await _logger.InformationAsync($"AddProductToCart_Catalog productId {product.Id} addToCartWarnings {string.Join(';', addToCartWarnings)}");
+                await _logger.InformationAsync($"AddProductToCart_Catalog productId {product.Id} addToCartWarnings 1 : {string.Join(';', addToCartWarnings)}");
                 //cannot be added to the cart
                 //let's display standard warnings
                 return Json(new
@@ -810,6 +851,7 @@ namespace ISDK.Filuet.OnlineOrdering.CorePlugin.Controllers
                 quantity: quantity);
             if (addToCartWarnings.Any())
             {
+                await _logger.InformationAsync($"AddProductToCart_Catalog productId {product.Id} addToCartWarnings 2 : {string.Join(';', addToCartWarnings)}");
                 //cannot be added to the cart
                 //but we do not display attribute and gift card warnings here. let's do it on the product details page
                 var warnings = string.Join(";\n", addToCartWarnings.Distinct());
@@ -875,12 +917,24 @@ namespace ISDK.Filuet.OnlineOrdering.CorePlugin.Controllers
                         //display notification message and update appropriate blocks
                         var shoppingCarts = await _shoppingCartService.GetShoppingCartAsync(customer, ShoppingCartType.ShoppingCart, store.Id);
 
+                        if (shoppingCarts.Any() && shoppingCarts.Select(x => x.ProductId).ToList().Any())
+                        {
+                            await _logger.InsertLogAsync(LogLevel.Debug, $"cart Quantity :{shoppingCarts?.Select(x => x.Quantity).Sum()}", customer: customer);
+                            await _logger.InsertLogAsync(LogLevel.Debug, $"cart product id :{string.Join(",", shoppingCarts.Select(x => x.ProductId).ToList())}", customer: customer);
+                        }
+
+
                         var updatetopcartsectionhtml = string.Format(await _localizationService.GetResourceAsync("ShoppingCart.HeaderQuantity"),
                             shoppingCarts.Sum(item => item.Quantity));
 
                         var updateflyoutcartsectionhtml = _shoppingCartSettings.MiniShoppingCartEnabled
                             ? await RenderViewComponentToStringAsync(typeof(FlyoutShoppingCartViewComponent))
                             : string.Empty;
+
+                        await _logger.InsertLogAsync(LogLevel.Debug, $"update flyoutcartsection total Quantity:{updatetopcartsectionhtml}", customer: customer);
+
+
+                        await _logger.InsertLogAsync(LogLevel.Debug, "End AddProductToCart_Catalog", customer: customer);
 
                         return Json(new
                         {
@@ -891,6 +945,7 @@ namespace ISDK.Filuet.OnlineOrdering.CorePlugin.Controllers
                         });
                     }
             }
+
         }
 
         #endregion

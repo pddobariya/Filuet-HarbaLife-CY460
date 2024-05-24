@@ -74,6 +74,7 @@
 		</Reference>
 		<Reference Include="SevenSpikes.Nop.Plugins.AjaxCart">
 			<HintPath>SevenSpikes.Nop.Plugins.AjaxCart.dll</HintPath>
+			<Private>False</Private>
 		</Reference>
 	</ItemGroup>
 

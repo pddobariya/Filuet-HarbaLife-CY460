@@ -720,12 +720,15 @@
 	<ItemGroup>
 		<Reference Include="SevenSpikes.Nop.Framework">
 			<HintPath>..\..\Presentation\Nop.Web\Plugins\SevenSpikes.Core\SevenSpikes.Nop.Framework.dll</HintPath>
+			<Private>False</Private>
 		</Reference>
 		<Reference Include="SevenSpikes.Nop.Plugins.AjaxCart">
 			<HintPath>..\..\Presentation\Nop.Web\Plugins\SevenSpikes.Nop.Plugins.AjaxCart\SevenSpikes.Nop.Plugins.AjaxCart.dll</HintPath>
+			<Private>False</Private>
 		</Reference>
 		<Reference Include="SevenSpikes.Nop.Plugins.ProductRibbons">
 			<HintPath>..\..\Presentation\Nop.Web\Plugins\SevenSpikes.Nop.Plugins.ProductRibbons\SevenSpikes.Nop.Plugins.ProductRibbons.dll</HintPath>
+			<Private>False</Private>
 		</Reference>
 	</ItemGroup>
 	<ItemGroup>
